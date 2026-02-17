@@ -29,7 +29,23 @@ class PortfolioApp {
         this.startLoop();
         this.setupTelegram();
         this.setupEasterEgg();
-        this.setupGalleryFilters(); // Инициализация фильтров
+        this.setupGalleryFilters();
+        this.setupHeroButton(); // <--- ДОБАВИЛ ЭТУ СТРОКУ
+    }
+
+    // <--- ДОБАВЬ ЭТОТ НОВЫЙ МЕТОД ПОСЛЕ init()
+    setupHeroButton() {
+        const heroBtn = document.querySelector('a[href="#design"]');
+        if (heroBtn) {
+            heroBtn.addEventListener('click', (e) => {
+                e.preventDefault(); // Отменяем стандартный переход
+                // Имитируем клик по пункту меню "Projects"
+                const designNavLink = document.querySelector('.nav-links li[data-target="design"]');
+                if (designNavLink) {
+                    designNavLink.click();
+                }
+            });
+        }
     }
 
     setupGalleryFilters() {
