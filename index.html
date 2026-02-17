@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Burger | Digital Garden</title>
+    <title>Burger | Content & Code</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;500;700;900&display=swap" rel="stylesheet">
@@ -17,14 +17,12 @@
 
     <div class="app-container">
         <nav class="sidebar glass-panel">
-            <div class="logo">BC.</div>
-            <ul class="nav-links">
+            <div class="logo" id="logo-trigger">BC.</div> <ul class="nav-links">
                 <li class="active" data-target="home"><i class="ph ph-house"></i> <span>Главная</span></li>
-                <li data-target="projects"><i class="ph ph-code"></i> <span>Проекты</span></li>
                 <li data-target="genshin"><i class="ph ph-sparkle"></i> <span>Genshin</span></li>
-                <li data-target="moto"><i class="ph ph-motorcycle"></i> <span>Мото</span></li>
-                <li data-target="photo"><i class="ph ph-camera"></i> <span>Фото</span></li>
+                <li data-target="moto"><i class="ph ph-motorcycle"></i> <span>Moto Life</span></li>
                 <li data-target="youtube"><i class="ph ph-youtube-logo"></i> <span>YouTube</span></li>
+                <li data-target="photo"><i class="ph ph-camera"></i> <span>Gallery</span></li>
             </ul>
             <div class="socials-mini">
                 <a href="https://t.me/ТВОЙ_НИК" target="_blank"><i class="ph ph-telegram-logo"></i></a>
@@ -41,28 +39,28 @@
                         </div>
                         <div>
                             <h1>Burger Create</h1>
-                            <p class="role-text">Frontend Dev // Content Creator</p>
-                            <div class="status-pill" id="season-badge">Loading Weather...</div>
+                            <p class="role-text">Content Creator & Developer</p>
+                            <div class="status-pill" id="season-badge">Loading...</div>
                         </div>
                     </div>
                     
                     <div class="bento-card stat-card">
                         <h3>GitHub</h3>
-                        <p class="big-number">20+</p>
-                        <p class="desc">Repos</p>
+                        <p class="big-number">Active</p>
+                        <p class="desc">Repos & Commits</p>
                     </div>
 
-                    <div class="bento-card stat-card highlight">
+                    <div class="bento-card stat-card highlight" onclick="window.open('https://www.youtube.com/@burgerdom6', '_blank')">
                         <h3>YouTube</h3>
-                        <p class="big-number">Active</p>
-                        <p class="desc">Channel</p>
+                        <p class="big-number">Creator</p>
+                        <p class="desc">Click to Watch</p>
                     </div>
 
                     <div class="bento-card contact-card">
-                        <h3>Написать мне в TG</h3>
+                        <h3>Связаться со мной</h3>
                         <form id="tg-form">
-                            <input type="text" id="tg-name" placeholder="Твое имя" required>
-                            <textarea id="tg-msg" placeholder="Сообщение..." required></textarea>
+                            <input type="text" id="tg-name" placeholder="Имя" required>
+                            <textarea id="tg-msg" placeholder="Предложение..." required></textarea>
                             <button type="submit">Отправить <i class="ph ph-paper-plane-right"></i></button>
                         </form>
                         <p id="form-status"></p>
@@ -72,50 +70,85 @@
 
             <section id="genshin" class="page-section">
                 <div class="theme-header genshin-theme">
-                    <h2>Teyvat Explorer</h2>
-                    <p>Моя коллекция, билды и бездна.</p>
+                    <h2>Teyvat Chronicles</h2>
+                    <p>UID: 7xxxxxxxxx | World Level 8</p>
                 </div>
                 <div class="grid-gallery">
-                    <div class="card glass-panel">
-                        <h3>Main: Hu Tao</h3>
-                        <p>C1 + Homa. Top 1% Akasha.</p>
-                        <div class="placeholder-img">IMG</div> 
+                    <div class="card glass-panel char-card pyro">
+                        <div class="card-bg" style="background-image: url('https://w.forfun.com/fetch/5d/5d314845558133534882772589009808.jpeg')"></div>
+                        <div class="card-content">
+                            <h3>Hu Tao 👻</h3>
+                            <p>Main DPS | C1 + Homa</p>
+                            <span class="tag">Pyro Queen</span>
+                        </div>
                     </div>
-                    <div class="card glass-panel">
-                        <h3>Abyss Records</h3>
-                        <p>36* Stars consistently.</p>
+                    <div class="card glass-panel char-card anemo">
+                        <div class="card-bg" style="background-image: url('https://images3.alphacoders.com/112/1127899.jpg')"></div>
+                        <div class="card-content">
+                            <h3>Xiao 👹</h3>
+                            <p>Anemo DPS | Vigilant Yaksha</p>
+                            <span class="tag">Conqueror of Demons</span>
+                        </div>
                     </div>
+                    <a href="https://act.hoyolab.com/app/community-game-records-sea/index.html?bbs_presentation_style=fullscreen&bbs_auth_required=true&gid=2&user_id=177920342" target="_blank" class="card glass-panel link-card">
+                        <h3>👉 HoYoLab Profile</h3>
+                        <p>Полная статистика и бездна</p>
+                    </a>
                 </div>
             </section>
 
             <section id="moto" class="page-section">
                 <div class="theme-header moto-theme">
-                    <h2>On The Road</h2>
-                    <p>Свобода, скорость и асфальт.</p>
+                    <h2>Moto Life</h2>
+                    <p>От эндуро к мотарду.</p>
                 </div>
                 <div class="grid-gallery">
-                    <div class="card glass-panel">
-                        <h3>Мой Байк</h3>
-                        <p>Описание модели...</p>
+                    <div class="card glass-panel moto-card">
+                        <h3>Current: Kayo K1</h3>
+                        <p>Status: 🔴 Selling / For Sale</p>
+                        <p class="desc-sm">Надежный аппарат для старта. Отслужил верой и правдой.</p>
                     </div>
+                    <div class="card glass-panel moto-card future">
+                        <h3>Project: Motard Build</h3>
+                        <p>Status: 🟡 Loading...</p>
+                        <p class="desc-sm">Цель на сезон 2026. Строим уличного бойца.</p>
                     </div>
+                </div>
             </section>
             
             <section id="youtube" class="page-section">
-                <h2>Latest Content</h2>
+                <div class="theme-header">
+                    <h2>Latest Uploads</h2>
+                </div>
                 <div class="video-grid">
-                    <iframe width="100%" height="200" src="https://www.youtube.com/embed/dQw4w9WgXcQ" frameborder="0" allowfullscreen></iframe>
-                    <iframe width="100%" height="200" src="https://www.youtube.com/embed/dQw4w9WgXcQ" frameborder="0" allowfullscreen></iframe>
+                    <div class="video-wrapper">
+                        <iframe src="https://www.youtube.com/embed/L13FJlzavbM" title="Video 1" allowfullscreen></iframe>
+                    </div>
+                    <div class="video-wrapper">
+                        <iframe src="https://www.youtube.com/embed/JvhISaFT1rI" title="Video 2" allowfullscreen></iframe>
+                    </div>
+                    <div class="video-wrapper">
+                        <iframe src="https://www.youtube.com/embed/sJJxi8jqE1A" title="Video 3" allowfullscreen></iframe>
+                    </div>
                 </div>
             </section>
 
-            <section id="projects" class="page-section">
-                <h2>Code Projects</h2>
-                <p>Здесь список репозиториев</p>
-            </section>
             <section id="photo" class="page-section">
-                <h2>Photography</h2>
-                <p>Галерея работ</p>
+                <h2>Gallery</h2>
+                <div class="photo-grid">
+                    <div class="photo-item">
+                        <img src="https://images.unsplash.com/photo-1558981806-ec527fa84c3d?auto=format&fit=crop&w=800&q=80" alt="Moto">
+                        <span class="hashtag">#MotoLife</span>
+                    </div>
+                    <div class="photo-item">
+                        <img src="https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?auto=format&fit=crop&w=800&q=80" alt="Travel">
+                        <span class="hashtag">#Travel</span>
+                    </div>
+                    <div class="photo-item">
+                        <img src="https://images.unsplash.com/photo-1511512578047-dfb367046420?auto=format&fit=crop&w=800&q=80" alt="Gaming">
+                        <span class="hashtag">#Setup</span>
+                    </div>
+                </div>
             </section>
 
         </main>
