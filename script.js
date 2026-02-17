@@ -14,6 +14,10 @@ class PortfolioApp {
         this.navLinks = document.querySelectorAll('.nav-links li');
         this.sections = document.querySelectorAll('.page-section');
         
+        // Gallery Filters
+        this.filterButtons = document.querySelectorAll('.filter-btn');
+        this.galleryItems = document.querySelectorAll('.gallery-item');
+        
         this.init();
     }
 
@@ -25,6 +29,42 @@ class PortfolioApp {
         this.startLoop();
         this.setupTelegram();
         this.setupEasterEgg();
+        this.setupGalleryFilters(); // Инициализация фильтров
+    }
+
+    setupGalleryFilters() {
+        if (this.filterButtons.length === 0) return;
+
+        this.filterButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                // UI update
+                this.filterButtons.forEach(btn => btn.classList.remove('active'));
+                button.classList.add('active');
+
+                // Filter Logic
+                const filterValue = button.getAttribute('data-filter');
+
+                this.galleryItems.forEach(item => {
+                    const category = item.getAttribute('data-category');
+                    
+                    if (filterValue === 'all' || category === filterValue) {
+                        item.classList.remove('hide');
+                        item.style.display = 'block'; // Возвращаем в поток
+                        setTimeout(() => {
+                            item.style.opacity = '1';
+                            item.style.transform = 'scale(1)';
+                        }, 50);
+                    } else {
+                        item.style.opacity = '0';
+                        item.style.transform = 'scale(0.8)';
+                        setTimeout(() => {
+                            item.style.display = 'none'; // Убираем из потока
+                            item.classList.add('hide');
+                        }, 300);
+                    }
+                });
+            });
+        });
     }
 
     setupEasterEgg() {
@@ -35,9 +75,9 @@ class PortfolioApp {
             if(this.clickCount === 5) {
                 this.isBurgerMode = !this.isBurgerMode;
                 this.clickCount = 0;
-                this.particles = []; // Сброс частиц
+                this.particles = []; 
                 alert(this.isBurgerMode ? "🍔 BURGER MODE ACTIVATED!" : "Mode Normal");
-                this.setSeason(this.season); // Перезапуск частиц
+                this.setSeason(this.season); 
             }
         });
     }
@@ -46,13 +86,17 @@ class PortfolioApp {
         this.navLinks.forEach(link => {
             link.addEventListener('click', () => {
                 const target = link.dataset.target;
+                
+                // Active class updates
                 this.navLinks.forEach(l => l.classList.remove('active'));
                 link.classList.add('active');
 
+                // Show Section
                 this.sections.forEach(sec => {
                     sec.classList.remove('active', 'fade-in-up');
                     if(sec.id === target) {
                         sec.classList.add('active');
+                        // Trigger reflow for animation restart
                         void sec.offsetWidth; 
                         sec.classList.add('fade-in-up');
                     }
@@ -65,9 +109,11 @@ class PortfolioApp {
 
     updateThemeForSection(section) {
         const root = document.documentElement;
+        // Сброс цвета при переходе
         if (section === 'genshin') root.style.setProperty('--accent-color', '#d4a3ff'); 
         else if (section === 'moto') root.style.setProperty('--accent-color', '#ff4b1f');
         else if (section === 'youtube') root.style.setProperty('--accent-color', '#FF0000');
+        else if (section === 'design') root.style.setProperty('--accent-color', '#00d2ff'); // Цвет для дизайна
         else this.applySeasonTheme(this.season);
     }
 
@@ -87,7 +133,9 @@ class PortfolioApp {
     setSeason(season) {
         this.season = season;
         const names = { winter: 'Winter Frost', spring: 'Spring Bloom', summer: 'Summer Vibes', autumn: 'Autumn Rain' };
-        document.getElementById('season-badge').textContent = names[season];
+        const badge = document.getElementById('season-badge');
+        if(badge) badge.textContent = names[season];
+        
         this.applySeasonTheme(season);
         
         this.particles = [];
@@ -131,11 +179,9 @@ class PortfolioApp {
         
         this.particles.forEach(p => {
             if (this.isBurgerMode) {
-                // BURGER RAIN
                 this.ctx.font = '20px serif';
                 this.ctx.fillText(p.burgerEmoji, p.x, p.y);
             } else {
-                // NORMAL WEATHER
                 this.ctx.fillStyle = 'rgba(255,255,255,0.6)';
                 this.ctx.strokeStyle = 'rgba(255,255,255,0.3)';
                 
@@ -156,7 +202,6 @@ class PortfolioApp {
 
     startLoop() {
         const animate = () => {
-            // Рисуем, если не лето ИЛИ если включен режим бургеров
             if(this.season !== 'summer' || this.isBurgerMode) this.draw();
             requestAnimationFrame(animate);
         };
@@ -165,6 +210,8 @@ class PortfolioApp {
 
     setupTelegram() {
         const form = document.getElementById('tg-form');
+        if(!form) return;
+        
         form.addEventListener('submit', async (e) => {
             e.preventDefault();
             const btn = form.querySelector('button');
@@ -173,10 +220,8 @@ class PortfolioApp {
             const name = document.getElementById('tg-name').value;
             const msg = document.getElementById('tg-msg').value;
             
-            // --- НАСТРОЙКИ БОТА ---
             const BOT_TOKEN = '8467633783:AAHkaNcFFCz6fn8AYEUbIjBXLB8uMLsdKH0'; 
-            // ⚠️ ВСТАВЬ СВОЙ ID НИЖЕ ⚠️
-            const CHAT_ID = '1577660217'; // Например: '123456789'
+            const CHAT_ID = '1577660217'; 
             
             const text = `🍔 Message from Portfolio:\n👤: ${name}\n💬: ${msg}`;
             
@@ -192,7 +237,7 @@ class PortfolioApp {
                 status.style.color = '#71B280';
                 form.reset();
             } catch (err) {
-                status.textContent = 'Ошибка (проверь Chat ID)';
+                status.textContent = 'Ошибка';
                 status.style.color = 'red';
             } finally {
                 btn.innerHTML = 'Отправить <i class="ph ph-paper-plane-right"></i>';
@@ -201,47 +246,5 @@ class PortfolioApp {
     }
 }
 
+// Запуск всего приложения
 document.addEventListener('DOMContentLoaded', () => new PortfolioApp());
-
-document.addEventListener('DOMContentLoaded', () => {
-    // Ждем, пока прогрузится весь HTML, и только потом ищем кнопки
-    const filterButtons = document.querySelectorAll('.filter-btn');
-    const galleryItems = document.querySelectorAll('.gallery-item');
-
-    if (filterButtons.length === 0) return; // Защита от ошибок, если на странице нет галереи
-
-    filterButtons.forEach(button => {
-        button.addEventListener('click', () => {
-            // Убираем активный класс у всех
-            filterButtons.forEach(btn => btn.classList.remove('active'));
-            // Добавляем нажатой
-            button.classList.add('active');
-
-            const filterValue = button.getAttribute('data-filter');
-
-            galleryItems.forEach(item => {
-                if (filterValue === 'all' || item.getAttribute('data-category') === filterValue) {
-                    item.classList.remove('hide');
-                    // Небольшая задержка перед сменой position, чтобы анимация успела начаться
-                    setTimeout(() => {
-                         item.style.position = 'relative'; 
-                         item.style.opacity = '1';
-                         item.style.transform = 'scale(1)';
-                    }, 50);
-                } else {
-                    item.classList.add('hide');
-                    item.style.opacity = '0';
-                    item.style.transform = 'scale(0.8)';
-                    // Ждем окончания анимации (400мс) перед тем как убрать из потока
-                    setTimeout(() => {
-                        if(item.classList.contains('hide')) {
-                            item.style.position = 'absolute';
-                            item.style.top = '0'; // Чтобы не растягивал контейнер
-                            item.style.left = '0';
-                        }
-                    }, 400);
-                }
-            });
-        });
-    });
-});
