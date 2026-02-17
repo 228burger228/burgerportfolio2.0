@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio | BurgerCreate</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <canvas id="weatherCanvas"></canvas>
+    
+    <div id="sun" class="sun-element"></div>
+
+    <div class="overlay"></div>
+
+    <main class="glass-container">
+        <header class="profile-header">
+            <div class="avatar-placeholder">
+                <span>BC</span> 
+            </div>
+            <h1>Burger Create</h1>
+            <p class="subtitle">Frontend Developer & UI Enthusiast</p>
+            <div class="status-badge" id="season-badge">Detecting Season...</div>
+        </header>
+
+        <section class="content-grid">
+            <article class="card">
+                <h2>Обо мне</h2>
+                <p>Привет! Я создаю современные веб-интерфейсы. Люблю чистый код, анимации и интерактивность.</p>
+            </article>
+
+            <article class="card">
+                <h2>Мои Проекты</h2>
+                <ul class="project-list">
+                    <li>
+                        <a href="#" class="project-link">
+                            <span class="project-name">Project Alpha</span>
+                            <span class="project-desc">React / Node.js</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="project-link">
+                            <span class="project-name">Weather App</span>
+                            <span class="project-desc">Vanilla JS API</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="project-link">
+                            <span class="project-name">Portfolio v1</span>
+                            <span class="project-desc">HTML / CSS</span>
+                        </a>
+                    </li>
+                </ul>
+            </article>
+
+            <article class="card">
+                <h2>Связь</h2>
+                <div class="social-links">
+                    <a href="https://github.com/228burger228" target="_blank">GitHub</a>
+                    <a href="#">Telegram</a>
+                    <a href="#">Email</a>
+                </div>
+            </article>
+        </section>
+    </main>
+
+    <div class="controls">
+        <button onclick="weatherApp.setSeason('winter')">❄️</button>
+        <button onclick="weatherApp.setSeason('spring')">🌱</button>
+        <button onclick="weatherApp.setSeason('summer')">☀️</button>
+        <button onclick="weatherApp.setSeason('autumn')">🍂</button>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
