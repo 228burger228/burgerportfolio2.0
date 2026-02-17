@@ -189,3 +189,50 @@ body {
     .content-area { padding-bottom: 100px; }
     .logo { display: none; }
 }
+
+
+/* Улучшаем читаемость текста в разделах (Genshin, Moto) */
+.content-text {
+    max-width: 800px; /* Не даем тексту растягиваться на весь экран */
+    margin: 0 auto 40px; /* Центрируем и даем отступ снизу */
+    line-height: 1.6; /* Воздух между строками */
+    font-size: 1.1rem;
+    color: #e0e0e0; /* Чуть мягче белого */
+    text-align: left; /* Или justify, если нравится ровный край */
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.05); /* Легкая подложка */
+    border-radius: 12px;
+    backdrop-filter: blur(5px); /* Эффект стекла */
+}
+
+/* Сетка для YouTube */
+.video-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Адаптивная сетка */
+    gap: 20px;
+    padding: 20px 0;
+}
+
+.video-wrapper {
+    position: relative;
+    padding-bottom: 56.25%; /* Соотношение 16:9 */
+    height: 0;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    transition: transform 0.3s ease;
+}
+
+.video-wrapper:hover {
+    transform: scale(1.02); /* Легкое увеличение при наведении */
+    box-shadow: 0 8px 25px rgba(var(--primary-color-rgb), 0.4);
+}
+
+.video-wrapper iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+}
