@@ -237,16 +237,19 @@ body {
     border: none;
 }
 
-/* Бегущая строка */
+/* Бегущая строка (FIXED) */
 .marquee-container {
     width: 100%;
     overflow: hidden;
-    background: var(--primary-color); /* Твой акцентный цвет */
+    background: var(--accent-color); /* ИСПРАВЛЕНО: было primary-color */
     color: #000;
-    padding: 10px 0;
+    padding: 12px 0;
+    margin-bottom: 30px; /* Отступ от контента */
     white-space: nowrap;
     position: relative;
     display: flex;
+    border-radius: 12px; /* Чуть скруглим края */
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
 }
 
 .marquee-content {
@@ -255,8 +258,9 @@ body {
 }
 
 .marquee-content span {
-    padding: 0 20px;
-    font-weight: bold;
+    padding: 0 30px;
+    font-weight: 900;
+    font-size: 1.1rem;
     text-transform: uppercase;
     letter-spacing: 2px;
 }
