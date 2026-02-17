@@ -1,0 +1,165 @@
+:root {
+    --font-main: 'Inter', sans-serif;
+    
+    /* Дефолтные цвета (будут меняться JS-ом) */
+    --bg-gradient-top: #0f2027;
+    --bg-gradient-bottom: #203a43;
+    --glass-bg: rgba(255, 255, 255, 0.1);
+    --glass-border: rgba(255, 255, 255, 0.2);
+    --text-color: #ffffff;
+    --accent-color: #4facfe;
+}
+
+/* Сброс и база */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+    font-family: var(--font-main);
+    color: var(--text-color);
+    background: linear-gradient(to bottom, var(--bg-gradient-top), var(--bg-gradient-bottom));
+    min-height: 100vh;
+    overflow-x: hidden;
+    transition: background 1s ease; /* Плавная смена фона */
+}
+
+/* Канвас на весь фон */
+#weatherCanvas {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    z-index: 1;
+    pointer-events: none;
+}
+
+/* Солнце */
+.sun-element {
+    position: fixed;
+    top: -50px; right: -50px;
+    width: 200px; height: 200px;
+    background: radial-gradient(circle, #fdbb2d, transparent 70%);
+    border-radius: 50%;
+    box-shadow: 0 0 100px #fdbb2d;
+    opacity: 0;
+    transition: opacity 1s ease;
+    z-index: 0;
+}
+.sun-element.active { opacity: 1; }
+
+/* Основной контейнер */
+.glass-container {
+    position: relative;
+    z-index: 10;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 40px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+/* Хедер */
+.profile-header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+.avatar-placeholder {
+    width: 100px; height: 100px;
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    border-radius: 50%;
+    margin: 0 auto 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+.subtitle { opacity: 0.8; font-weight: 300; }
+
+.status-badge {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 5px 15px;
+    background: rgba(0,0,0,0.3);
+    border-radius: 20px;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* Сетка карточек */
+.content-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+}
+@media(min-width: 600px) {
+    .content-grid { grid-template-columns: 1fr 1fr; }
+    /* О себе на всю ширину */
+    .card:first-child { grid-column: span 2; }
+}
+
+/* Карточки (Glassmorphism) */
+.card {
+    background: var(--glass-bg);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid var(--glass-border);
+    border-radius: 16px;
+    padding: 25px;
+    transition: transform 0.3s ease, background 0.3s ease;
+}
+.card:hover {
+    transform: translateY(-5px);
+    background: rgba(255, 255, 255, 0.15);
+}
+.card h2 {
+    font-size: 1.2rem;
+    margin-bottom: 15px;
+    color: var(--accent-color);
+}
+
+/* Список проектов */
+.project-list { list-style: none; }
+.project-list li { margin-bottom: 12px; }
+.project-link {
+    text-decoration: none;
+    color: inherit;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px;
+    border-radius: 8px;
+    transition: background 0.2s;
+}
+.project-link:hover { background: rgba(255,255,255,0.1); }
+.project-desc { font-size: 0.8rem; opacity: 0.7; }
+
+/* Ссылки соцсетей */
+.social-links { display: flex; gap: 15px; }
+.social-links a {
+    color: var(--text-color);
+    text-decoration: none;
+    font-weight: 500;
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.3s;
+}
+.social-links a:hover { border-color: var(--accent-color); }
+
+/* Контролы для теста */
+.controls {
+    position: fixed;
+    bottom: 20px; right: 20px;
+    z-index: 100;
+    display: flex; gap: 10px;
+}
+.controls button {
+    background: rgba(0,0,0,0.5);
+    border: none;
+    color: white;
+    font-size: 1.5rem;
+    padding: 10px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+.controls button:hover { transform: scale(1.1); }
