@@ -123,13 +123,61 @@ body {
 .video-wrapper iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; }
 
 /* PHOTO GRID */
-.photo-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 15px; margin-top: 20px; }
-.photo-item { position: relative; aspect-ratio: 1; border-radius: 12px; overflow: hidden; cursor: pointer; }
-.photo-item img { width: 100%; height: 100%; object-fit: cover; transition: 0.5s; }
-.photo-item:hover img { transform: scale(1.1); }
+/* Сетка галереи */
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); /* Адаптивная плитка */
+    gap: 20px;
+    padding: 20px 0;
+}
+
+/* Карточка фото */
+.gallery-item {
+    position: relative;
+    border-radius: 15px;
+    overflow: hidden;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    transition: transform 0.3s ease, opacity 0.4s ease;
+    height: 300px; /* Фиксированная высота для аккуратности */
+}
+
+.gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Фото заполнит блок без искажений */
+    transition: transform 0.5s ease;
+}
+
+/* Эффект при наведении (Zoom + Затемнение) */
+.gallery-item:hover img {
+    transform: scale(1.1);
+}
+
+/* Оверлей с хештегом */
+.overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+    padding: 20px;
+    opacity: 0; /* Скрыто по умолчанию */
+    transform: translateY(20px);
+    transition: all 0.3s ease;
+}
+
+.gallery-item:hover .overlay {
+    opacity: 1;
+    transform: translateY(0);
+}
+
 .hashtag {
-    position: absolute; bottom: 10px; left: 10px;
-    background: rgba(0,0,0,0.6); padding: 4px 10px; border-radius: 20px; font-size: 0.8rem;
+    color: #fff;
+    font-weight: bold;
+    font-size: 1.2rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
 }
 
 /* RESPONSIVE */
