@@ -4,7 +4,11 @@ class PortfolioApp {
         this.ctx = this.weatherCanvas.getContext('2d');
         this.sun = document.getElementById('sun');
         this.particles = [];
-        this.season = 'winter'; // Default
+        this.season = 'winter';
+        
+        // Пасхалка (Burger Mode)
+        this.clickCount = 0;
+        this.isBurgerMode = false;
         
         // Navigation
         this.navLinks = document.querySelectorAll('.nav-links li');
@@ -20,30 +24,40 @@ class PortfolioApp {
         this.detectSeason();
         this.startLoop();
         this.setupTelegram();
+        this.setupEasterEgg();
     }
 
-    /* --- ROUTING SYSTEM --- */
+    setupEasterEgg() {
+        const logo = document.getElementById('logo-trigger');
+        if(!logo) return;
+        logo.addEventListener('click', () => {
+            this.clickCount++;
+            if(this.clickCount === 5) {
+                this.isBurgerMode = !this.isBurgerMode;
+                this.clickCount = 0;
+                this.particles = []; // Сброс частиц
+                alert(this.isBurgerMode ? "🍔 BURGER MODE ACTIVATED!" : "Mode Normal");
+                this.setSeason(this.season); // Перезапуск частиц
+            }
+        });
+    }
+
     setupNavigation() {
         this.navLinks.forEach(link => {
             link.addEventListener('click', () => {
                 const target = link.dataset.target;
-                
-                // 1. Update Menu
                 this.navLinks.forEach(l => l.classList.remove('active'));
                 link.classList.add('active');
 
-                // 2. Switch Page with Animation
                 this.sections.forEach(sec => {
                     sec.classList.remove('active', 'fade-in-up');
                     if(sec.id === target) {
                         sec.classList.add('active');
-                        // Trigger reflow for animation restart
                         void sec.offsetWidth; 
                         sec.classList.add('fade-in-up');
                     }
                 });
 
-                // 3. Optional: Change Theme Vibes based on section
                 this.updateThemeForSection(target);
             });
         });
@@ -51,17 +65,12 @@ class PortfolioApp {
 
     updateThemeForSection(section) {
         const root = document.documentElement;
-        if (section === 'genshin') {
-            root.style.setProperty('--accent-color', '#d4a3ff'); // Electro vibe
-        } else if (section === 'moto') {
-            root.style.setProperty('--accent-color', '#ff4b1f'); // Aggressive red
-        } else {
-            // Вернуть цвет погоды
-            this.applySeasonTheme(this.season);
-        }
+        if (section === 'genshin') root.style.setProperty('--accent-color', '#d4a3ff'); 
+        else if (section === 'moto') root.style.setProperty('--accent-color', '#ff4b1f');
+        else if (section === 'youtube') root.style.setProperty('--accent-color', '#FF0000');
+        else this.applySeasonTheme(this.season);
     }
 
-    /* --- WEATHER ENGINE (Optimized) --- */
     resize() {
         this.weatherCanvas.width = window.innerWidth;
         this.weatherCanvas.height = window.innerHeight;
@@ -82,7 +91,7 @@ class PortfolioApp {
         this.applySeasonTheme(season);
         
         this.particles = [];
-        if(season !== 'summer') this.initParticles(season);
+        if(season !== 'summer' || this.isBurgerMode) this.initParticles(season);
     }
 
     applySeasonTheme(season) {
@@ -111,33 +120,35 @@ class PortfolioApp {
                 x: Math.random() * this.weatherCanvas.width,
                 y: Math.random() * this.weatherCanvas.height,
                 speed: Math.random() * 2 + 1,
-                size: Math.random() * 2
+                size: Math.random() * 2,
+                burgerEmoji: ['🍔', '🍟', '🥤'][Math.floor(Math.random() * 3)]
             });
         }
     }
 
     draw() {
         this.ctx.clearRect(0,0, this.weatherCanvas.width, this.weatherCanvas.height);
-        this.ctx.fillStyle = 'rgba(255,255,255,0.6)';
-        this.ctx.strokeStyle = 'rgba(255,255,255,0.3)';
         
         this.particles.forEach(p => {
-            if (this.season === 'autumn') {
-                // Rain
-                this.ctx.beginPath();
-                this.ctx.moveTo(p.x, p.y);
-                this.ctx.lineTo(p.x, p.y + 10);
-                this.ctx.stroke();
+            if (this.isBurgerMode) {
+                // BURGER RAIN
+                this.ctx.font = '20px serif';
+                this.ctx.fillText(p.burgerEmoji, p.x, p.y);
             } else {
-                // Snow / Pollen
-                this.ctx.beginPath();
-                this.ctx.arc(p.x, p.y, p.size, 0, Math.PI*2);
-                this.ctx.fill();
+                // NORMAL WEATHER
+                this.ctx.fillStyle = 'rgba(255,255,255,0.6)';
+                this.ctx.strokeStyle = 'rgba(255,255,255,0.3)';
+                
+                if (this.season === 'autumn') {
+                    this.ctx.beginPath(); this.ctx.moveTo(p.x, p.y); this.ctx.lineTo(p.x, p.y + 10); this.ctx.stroke();
+                } else {
+                    this.ctx.beginPath(); this.ctx.arc(p.x, p.y, p.size, 0, Math.PI*2); this.ctx.fill();
+                }
             }
 
             p.y += p.speed;
             if (p.y > this.weatherCanvas.height) {
-                p.y = -10;
+                p.y = -20;
                 p.x = Math.random() * this.weatherCanvas.width;
             }
         });
@@ -145,13 +156,13 @@ class PortfolioApp {
 
     startLoop() {
         const animate = () => {
-            if(this.season !== 'summer') this.draw();
+            // Рисуем, если не лето ИЛИ если включен режим бургеров
+            if(this.season !== 'summer' || this.isBurgerMode) this.draw();
             requestAnimationFrame(animate);
         };
         animate();
     }
 
-    /* --- TELEGRAM INTEGRATION --- */
     setupTelegram() {
         const form = document.getElementById('tg-form');
         form.addEventListener('submit', async (e) => {
@@ -162,14 +173,14 @@ class PortfolioApp {
             const name = document.getElementById('tg-name').value;
             const msg = document.getElementById('tg-msg').value;
             
-            // ВНИМАНИЕ: В реальном продакшене токен лучше прятать на бэкенде.
-            // Для портфолио ок, но знай о рисках.
+            // --- НАСТРОЙКИ БОТА ---
             const BOT_TOKEN = '8467633783:AAHkaNcFFCz6fn8AYEUbIjBXLB8uMLsdKH0'; 
-            const CHAT_ID = '1577660217';
+            // ⚠️ ВСТАВЬ СВОЙ ID НИЖЕ ⚠️
+            const CHAT_ID = '1577660217'; // Например: '123456789'
             
-            const text = `📬 New Message from Portfolio:\n👤: ${name}\n💬: ${msg}`;
+            const text = `🍔 Message from Portfolio:\n👤: ${name}\n💬: ${msg}`;
             
-            btn.textContent = 'Sending...';
+            btn.textContent = '...';
             
             try {
                 await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
@@ -177,11 +188,11 @@ class PortfolioApp {
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ chat_id: CHAT_ID, text: text })
                 });
-                status.textContent = 'Sent successfully!';
+                status.textContent = 'Отправлено!';
                 status.style.color = '#71B280';
                 form.reset();
             } catch (err) {
-                status.textContent = 'Error sending message.';
+                status.textContent = 'Ошибка (проверь Chat ID)';
                 status.style.color = 'red';
             } finally {
                 btn.innerHTML = 'Отправить <i class="ph ph-paper-plane-right"></i>';
@@ -190,7 +201,4 @@ class PortfolioApp {
     }
 }
 
-// Запуск
-document.addEventListener('DOMContentLoaded', () => {
-    new PortfolioApp();
-});
+document.addEventListener('DOMContentLoaded', () => new PortfolioApp());
