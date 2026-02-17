@@ -53,41 +53,93 @@
     </div>
 </div>
             <section id="home" class="page-section active fade-in-up">
-                <header class="hero-bento">
-                    <div class="bento-card profile-card">
-                        <div class="avatar-box">
-                            <img src="https://github.com/228burger228.png" alt="Avatar">
-                        </div>
-                        <div>
-                            <h1>Burger Create</h1>
-                            <p class="role-text">Content Creator & Developer</p>
-                            <div class="status-pill" id="season-badge">Loading...</div>
-                        </div>
-                    </div>
+    <header class="hero-bento">
+        
+        <div class="bento-card profile-card">
+            <div class="profile-content">
+                <div class="avatar-box">
+                    <img src="https://github.com/228burger228.png" alt="Avatar">
+                </div>
+                <div class="profile-text">
+                    <h1>Burger Create</h1>
+                    <p class="role-text">Visual Designer & Frontend Dev</p>
                     
-                    <div class="bento-card stat-card">
-                        <h3>GitHub</h3>
-                        <p class="big-number">Active</p>
-                        <p class="desc">Repos & Commits</p>
+                    <div class="tech-stack">
+                        <i class="ph ph-figma-logo" title="Figma"></i>
+                        <i class="ph ph-paint-brush-broad" title="Photoshop"></i>
+                        <i class="ph ph-film-strip" title="Premiere/After Effects"></i>
+                        <i class="ph ph-code" title="HTML/CSS"></i>
+                        <i class="ph ph-lightning" title="Motion Design"></i>
                     </div>
 
-                    <div class="bento-card stat-card highlight" onclick="window.open('https://www.youtube.com/@burgerdom6', '_blank')">
-                        <h3>YouTube</h3>
-                        <p class="big-number">Creator</p>
-                        <p class="desc">Click to Watch</p>
-                    </div>
+                    <a href="#design" class="btn-primary">
+                        Смотреть работы <i class="ph ph-arrow-down"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
 
-                    <div class="bento-card contact-card">
-                        <h3>Связаться со мной</h3>
-                        <form id="tg-form">
-                            <input type="text" id="tg-name" placeholder="Имя" required>
-                            <textarea id="tg-msg" placeholder="Предложение..." required></textarea>
-                            <button type="submit">Отправить <i class="ph ph-paper-plane-right"></i></button>
-                        </form>
-                        <p id="form-status"></p>
+        <div class="bento-card services-card">
+            <h3>My Skills</h3>
+            <ul class="services-list">
+                <li>
+                    <i class="ph ph-pen-nib service-icon"></i>
+                    <div>
+                        <strong>Design</strong>
+                        <span>Web, UI, Print</span>
                     </div>
-                </header>
-            </section>
+                </li>
+                <li>
+                    <i class="ph ph-brackets-curly service-icon"></i>
+                    <div>
+                        <strong>Code</strong>
+                        <span>Frontend, JS</span>
+                    </div>
+                </li>
+                <li>
+                    <i class="ph ph-video-camera service-icon"></i>
+                    <div>
+                        <strong>Content</strong>
+                        <span>YouTube, Motion</span>
+                    </div>
+                </li>
+            </ul>
+        </div>
+
+        <div class="bento-card stat-card" onclick="window.open('https://github.com/228burger228', '_blank')">
+            <div class="stat-header">
+                <i class="ph ph-github-logo"></i> <span>Git</span>
+            </div>
+            <p class="big-number">Active</p>
+        </div>
+
+        <div class="bento-card stat-card highlight" onclick="window.open('https://www.youtube.com/@burgerdom6', '_blank')">
+            <div class="stat-header">
+                <i class="ph ph-youtube-logo"></i> <span>YT</span>
+            </div>
+            <p class="big-number">Creator</p>
+        </div>
+
+        <div class="bento-card contact-card">
+            <div class="contact-header">
+                <h3>Quick Contact</h3>
+                <p class="status-indicator"><span class="dot"></span> Available for work</p>
+            </div>
+            <form id="tg-form">
+                <div class="input-group">
+                    <input type="text" id="tg-name" placeholder="Name" required>
+                    <input type="text" id="tg-contact" placeholder="Telegram/Email" required>
+                </div>
+                <div class="input-wrapper">
+                    <textarea id="tg-msg" placeholder="Project details..." required></textarea>
+                    <button type="submit" class="send-btn"><i class="ph ph-paper-plane-right"></i></button>
+                </div>
+            </form>
+            <p id="form-status"></p>
+        </div>
+
+    </header>
+</section>
 
             <section id="genshin" class="page-section">
                 <div class="theme-header genshin-theme">
