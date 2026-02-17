@@ -97,6 +97,8 @@
                 </div>
             </section>
 
+            
+
             <section id="moto" class="page-section">
                 <div class="theme-header moto-theme">
                     <h2>Moto Life</h2>
@@ -132,24 +134,41 @@
                     </div>
                 </div>
             </section>
+<section id="gallery" class="page-section">
+    <h2>Gallery</h2>
 
-            <section id="photo" class="page-section">
-                <h2>Gallery</h2>
-                <div class="photo-grid">
-                    <div class="photo-item">
-                        <img src="https://images.unsplash.com/photo-1558981806-ec527fa84c3d?auto=format&fit=crop&w=800&q=80" alt="Moto">
-                        <span class="hashtag">#MotoLife</span>
-                    </div>
-                    <div class="photo-item">
-                        <img src="https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?auto=format&fit=crop&w=800&q=80" alt="Travel">
-                        <span class="hashtag">#Travel</span>
-                    </div>
-                    <div class="photo-item">
-                        <img src="https://images.unsplash.com/photo-1511512578047-dfb367046420?auto=format&fit=crop&w=800&q=80" alt="Gaming">
-                        <span class="hashtag">#Setup</span>
-                    </div>
-                </div>
-            </section>
+    <div class="gallery-filters">
+        <button class="filter-btn active" data-filter="all">All</button>
+        <button class="filter-btn" data-filter="moto">Moto</button>
+        <button class="filter-btn" data-filter="travel">Travel</button>
+        <button class="filter-btn" data-filter="setup">Setup</button>
+    </div>
+
+    <div class="gallery-grid">
+        
+        <div class="gallery-item" data-category="moto">
+            <img src="https://images.unsplash.com/photo-1558981806-ec527fa84c3d?auto=format&fit=crop&w=800&q=80" alt="Moto">
+            <div class="overlay">
+                <span class="hashtag">#MotoLife</span>
+            </div>
+        </div>
+
+        <div class="gallery-item" data-category="travel">
+            <img src="https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?auto=format&fit=crop&w=800&q=80" alt="Travel">
+            <div class="overlay">
+                <span class="hashtag">#Travel</span>
+            </div>
+        </div>
+
+        <div class="gallery-item" data-category="setup">
+            <img src="https://images.unsplash.com/photo-1511512578047-dfb367046420?auto=format&fit=crop&w=800&q=80" alt="Gaming">
+            <div class="overlay">
+                <span class="hashtag">#Setup</span>
+            </div>
+        </div>
+
+        </div>
+</section>
 
         </main>
     </div>
