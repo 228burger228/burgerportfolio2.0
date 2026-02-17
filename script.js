@@ -202,3 +202,46 @@ class PortfolioApp {
 }
 
 document.addEventListener('DOMContentLoaded', () => new PortfolioApp());
+
+document.addEventListener('DOMContentLoaded', () => {
+    // Ждем, пока прогрузится весь HTML, и только потом ищем кнопки
+    const filterButtons = document.querySelectorAll('.filter-btn');
+    const galleryItems = document.querySelectorAll('.gallery-item');
+
+    if (filterButtons.length === 0) return; // Защита от ошибок, если на странице нет галереи
+
+    filterButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            // Убираем активный класс у всех
+            filterButtons.forEach(btn => btn.classList.remove('active'));
+            // Добавляем нажатой
+            button.classList.add('active');
+
+            const filterValue = button.getAttribute('data-filter');
+
+            galleryItems.forEach(item => {
+                if (filterValue === 'all' || item.getAttribute('data-category') === filterValue) {
+                    item.classList.remove('hide');
+                    // Небольшая задержка перед сменой position, чтобы анимация успела начаться
+                    setTimeout(() => {
+                         item.style.position = 'relative'; 
+                         item.style.opacity = '1';
+                         item.style.transform = 'scale(1)';
+                    }, 50);
+                } else {
+                    item.classList.add('hide');
+                    item.style.opacity = '0';
+                    item.style.transform = 'scale(0.8)';
+                    // Ждем окончания анимации (400мс) перед тем как убрать из потока
+                    setTimeout(() => {
+                        if(item.classList.contains('hide')) {
+                            item.style.position = 'absolute';
+                            item.style.top = '0'; // Чтобы не растягивал контейнер
+                            item.style.left = '0';
+                        }
+                    }, 400);
+                }
+            });
+        });
+    });
+});
