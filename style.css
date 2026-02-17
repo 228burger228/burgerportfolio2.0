@@ -180,14 +180,90 @@ body {
     letter-spacing: 1px;
 }
 
-/* RESPONSIVE */
+/* --- IMPROVED MOBILE ADAPTIVE --- */
 @media (max-width: 768px) {
-    .app-container { flex-direction: column; }
-    .sidebar { width: 100%; height: auto; margin: 0; bottom: 0; position: fixed; z-index: 100; border-radius: 0; flex-direction: row; justify-content: space-around; padding: 10px; }
-    .hero-bento { grid-template-columns: 1fr; }
-    .profile-card, .contact-card { grid-column: span 1; }
-    .content-area { padding-bottom: 100px; }
-    .logo { display: none; }
+    /* Основной контейнер */
+    .app-container {
+        flex-direction: column;
+        height: 100vh; /* Фиксируем высоту */
+    }
+
+    /* Навигация (снизу) */
+    .sidebar {
+        width: 100%;
+        height: auto;
+        margin: 0;
+        bottom: 0;
+        left: 0;
+        position: fixed;
+        z-index: 1000;
+        border-radius: 20px 20px 0 0; /* Скругление только сверху */
+        flex-direction: row;
+        justify-content: space-around;
+        padding: 12px 10px;
+        background: rgba(15, 32, 39, 0.95); /* Менее прозрачный фон для читаемости */
+        border: none;
+        border-top: 1px solid var(--glass-border);
+        box-shadow: 0 -5px 20px rgba(0,0,0,0.5);
+    }
+
+    .nav-links {
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+        padding: 0 10px;
+    }
+
+    .nav-links li {
+        padding: 10px;
+        flex-direction: column; /* Иконка над текстом (или без текста) */
+        border-right: none;
+        border-radius: 10px;
+    }
+    
+    .nav-links li.active {
+        border-right: none;
+        background: rgba(255,255,255,0.1);
+        color: var(--accent-color);
+    }
+
+    .nav-links li i { margin: 0; font-size: 1.6rem; }
+    .nav-links li span { display: none; } /* Скрываем текст на телефоне для экономии места */
+    
+    .socials-mini { display: none; } /* Убираем соцсети из меню на телефоне */
+
+    /* Контент */
+    .content-area {
+        padding: 15px;
+        padding-bottom: 100px; /* ВАЖНО: Отступ снизу, чтобы меню не закрывало контент */
+        overflow-y: auto;
+        width: 100%;
+    }
+
+    /* Логотип (возвращаем его наверх страницы) */
+    .logo {
+        display: block;
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        z-index: 900;
+        font-size: 1.2rem;
+        background: rgba(0,0,0,0.5);
+        padding: 5px 10px;
+        border-radius: 8px;
+    }
+
+    /* Карточки Bento */
+    .hero-bento {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+    
+    .profile-card { grid-column: span 1; flex-direction: column; text-align: center; }
+    .contact-card { grid-column: span 1; }
+    
+    /* Шрифты */
+    h1 { font-size: 2rem; }
 }
 
 
