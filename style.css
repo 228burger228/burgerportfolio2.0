@@ -65,22 +65,184 @@ body {
 .fade-in-up { animation: fadeInUp 0.6s ease forwards; }
 @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
 
-/* HERO BENTO */
-.hero-bento { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
-.bento-card {
-    background: var(--glass-bg); border: 1px solid var(--glass-border);
-    backdrop-filter: blur(15px); border-radius: 24px; padding: 25px;
-    transition: transform 0.3s;
+/* --- HERO SECTION 2.0 (Senior Layout) --- */
+
+.hero-bento {
+    display: grid;
+    /* 3 колонки: Профиль (2) | Услуги (1) */
+    grid-template-columns: 2fr 1fr 1fr; 
+    grid-template-rows: auto auto;
+    gap: 20px;
 }
-.bento-card:hover { transform: translateY(-3px); border-color: rgba(255,255,255,0.3); }
-.profile-card { grid-column: span 2; display: flex; align-items: center; gap: 20px; }
-.avatar-box img { width: 100px; height: 100px; border-radius: 50%; border: 2px solid var(--accent-color); }
-.role-text { color: rgba(255,255,255,0.6); font-weight: 300; }
-.status-pill { background: rgba(0,0,0,0.3); padding: 5px 12px; border-radius: 50px; font-size: 0.75rem; margin-top: 10px; display: inline-block; }
-.stat-card { text-align: center; cursor: pointer; }
-.big-number { font-size: 2.5rem; font-weight: 700; color: var(--accent-color); }
-.highlight { border: 1px solid var(--accent-color); }
-.contact-card { grid-column: span 3; }
+
+/* 1. PROFILE CARD */
+.profile-card {
+    grid-column: span 2; /* Широкая карточка */
+    display: flex;
+    align-items: center;
+}
+
+.profile-content {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+    width: 100%;
+}
+
+.avatar-box img {
+    width: 110px;
+    height: 110px;
+    border-radius: 50%;
+    border: 3px solid var(--accent-color);
+    box-shadow: 0 0 20px rgba(var(--accent-color-rgb), 0.2);
+}
+
+.profile-text h1 {
+    font-size: 2rem;
+    line-height: 1.1;
+    margin-bottom: 5px;
+}
+
+/* Иконки технологий */
+.tech-stack {
+    display: flex;
+    gap: 15px;
+    margin: 15px 0;
+    font-size: 1.5rem;
+    color: rgba(255,255,255,0.6);
+}
+
+.tech-stack i {
+    transition: 0.3s;
+    cursor: help;
+}
+.tech-stack i:hover {
+    color: var(--accent-color);
+    transform: translateY(-3px);
+}
+
+/* Кнопка "Смотреть работы" */
+.btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--accent-color);
+    color: #000; /* Контрастный текст */
+    padding: 10px 20px;
+    border-radius: 12px;
+    text-decoration: none;
+    font-weight: 800;
+    font-size: 0.9rem;
+    transition: 0.3s;
+}
+
+.btn-primary:hover {
+    box-shadow: 0 5px 15px rgba(var(--accent-color-rgb), 0.4);
+    transform: translateY(-2px);
+}
+
+/* 2. SERVICES CARD */
+.services-card {
+    grid-column: span 1;
+    grid-row: span 2; /* Высокая карточка справа */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.services-list {
+    list-style: none;
+    margin-top: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.services-list li {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px;
+    background: rgba(255,255,255,0.03);
+    border-radius: 10px;
+    border: 1px solid rgba(255,255,255,0.05);
+}
+
+.service-icon {
+    font-size: 1.4rem;
+    color: var(--accent-color);
+}
+
+.services-list strong { display: block; font-size: 0.95rem; }
+.services-list span { font-size: 0.75rem; color: #aaa; }
+
+/* 3. STAT CARDS (Git & YT) */
+.stat-card {
+    grid-column: span 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 15px;
+}
+.stat-header { display: flex; gap: 8px; align-items: center; color: #aaa; font-size: 0.9rem; }
+.stat-card .big-number { font-size: 1.5rem; margin-top: 5px; }
+
+/* 4. CONTACT FORM (Компактная) */
+.contact-card {
+    grid-column: span 2; /* Под профилем */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.contact-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.contact-header h3 { font-size: 1.2rem; margin: 0; }
+.status-indicator { font-size: 0.8rem; color: #71B280; display: flex; align-items: center; gap: 6px; }
+.dot { width: 8px; height: 8px; background: #71B280; border-radius: 50%; display: inline-block; animation: pulse 2s infinite; }
+
+#tg-form { display: flex; flex-direction: column; gap: 10px; }
+
+.input-group { display: flex; gap: 10px; }
+.input-group input { width: 50%; background: rgba(0,0,0,0.3); border: 1px solid rgba(255,255,255,0.1); padding: 10px; border-radius: 8px; color: #fff; }
+
+.input-wrapper { display: flex; gap: 10px; }
+#tg-msg { flex-grow: 1; height: 40px; padding: 10px; background: rgba(0,0,0,0.3); border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; color: #fff; resize: none; }
+
+.send-btn {
+    width: 40px; height: 40px;
+    background: var(--accent-color);
+    border: none; border-radius: 8px;
+    color: #000; font-size: 1.2rem;
+    cursor: pointer; transition: 0.2s;
+    display: flex; align-items: center; justify-content: center;
+}
+.send-btn:hover { transform: scale(1.05); }
+
+@keyframes pulse { 0% { opacity: 1; } 50% { opacity: 0.5; } 100% { opacity: 1; } }
+
+/* --- MOBILE ADAPTIVE FOR HERO --- */
+@media (max-width: 768px) {
+    .hero-bento {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+    }
+    
+    .profile-content { flex-direction: column; text-align: center; }
+    .services-card { order: 2; } /* Услуги после профиля */
+    .contact-card { order: 3; }
+    .stat-card { display: none; } /* Скрываем статистику на телефоне, чтобы не засорять экран */
+    
+    .input-group { flex-direction: column; }
+    .input-group input { width: 100%; }
+}
 
 /* FORMS */
 #tg-form { display: flex; gap: 10px; margin-top: 15px; }
