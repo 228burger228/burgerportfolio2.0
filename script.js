@@ -164,8 +164,8 @@ class PortfolioApp {
             
             // ВНИМАНИЕ: В реальном продакшене токен лучше прятать на бэкенде.
             // Для портфолио ок, но знай о рисках.
-            const BOT_TOKEN = 'ТВОЙ_ТОКЕН_БОТА'; 
-            const CHAT_ID = 'ТВОЙ_CHAT_ID';
+            const BOT_TOKEN = '8467633783:AAHkaNcFFCz6fn8AYEUbIjBXLB8uMLsdKH0'; 
+            const CHAT_ID = '1577660217';
             
             const text = `📬 New Message from Portfolio:\n👤: ${name}\n💬: ${msg}`;
             
