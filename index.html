@@ -3,75 +3,122 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolio | BurgerCreate</title>
+    <title>Burger | Digital Garden</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;500;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
 </head>
 <body>
     <canvas id="weatherCanvas"></canvas>
-    
     <div id="sun" class="sun-element"></div>
-
     <div class="overlay"></div>
 
-    <main class="glass-container">
-        <header class="profile-header">
-            <div class="avatar-placeholder">
-                <span>BC</span> 
+    <div class="app-container">
+        <nav class="sidebar glass-panel">
+            <div class="logo">BC.</div>
+            <ul class="nav-links">
+                <li class="active" data-target="home"><i class="ph ph-house"></i> <span>Главная</span></li>
+                <li data-target="projects"><i class="ph ph-code"></i> <span>Проекты</span></li>
+                <li data-target="genshin"><i class="ph ph-sparkle"></i> <span>Genshin</span></li>
+                <li data-target="moto"><i class="ph ph-motorcycle"></i> <span>Мото</span></li>
+                <li data-target="photo"><i class="ph ph-camera"></i> <span>Фото</span></li>
+                <li data-target="youtube"><i class="ph ph-youtube-logo"></i> <span>YouTube</span></li>
+            </ul>
+            <div class="socials-mini">
+                <a href="https://t.me/ТВОЙ_НИК" target="_blank"><i class="ph ph-telegram-logo"></i></a>
             </div>
-            <h1>Burger Create</h1>
-            <p class="subtitle">Frontend Developer & UI Enthusiast</p>
-            <div class="status-badge" id="season-badge">Detecting Season...</div>
-        </header>
+        </nav>
 
-        <section class="content-grid">
-            <article class="card">
-                <h2>Обо мне</h2>
-                <p>Привет! Я создаю современные веб-интерфейсы. Люблю чистый код, анимации и интерактивность.</p>
-            </article>
+        <main class="content-area">
+            
+            <section id="home" class="page-section active fade-in-up">
+                <header class="hero-bento">
+                    <div class="bento-card profile-card">
+                        <div class="avatar-box">
+                            <img src="https://github.com/228burger228.png" alt="Avatar">
+                        </div>
+                        <div>
+                            <h1>Burger Create</h1>
+                            <p class="role-text">Frontend Dev // Content Creator</p>
+                            <div class="status-pill" id="season-badge">Loading Weather...</div>
+                        </div>
+                    </div>
+                    
+                    <div class="bento-card stat-card">
+                        <h3>GitHub</h3>
+                        <p class="big-number">20+</p>
+                        <p class="desc">Repos</p>
+                    </div>
 
-            <article class="card">
-                <h2>Мои Проекты</h2>
-                <ul class="project-list">
-                    <li>
-                        <a href="#" class="project-link">
-                            <span class="project-name">Project Alpha</span>
-                            <span class="project-desc">React / Node.js</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#" class="project-link">
-                            <span class="project-name">Weather App</span>
-                            <span class="project-desc">Vanilla JS API</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#" class="project-link">
-                            <span class="project-name">Portfolio v1</span>
-                            <span class="project-desc">HTML / CSS</span>
-                        </a>
-                    </li>
-                </ul>
-            </article>
+                    <div class="bento-card stat-card highlight">
+                        <h3>YouTube</h3>
+                        <p class="big-number">Active</p>
+                        <p class="desc">Channel</p>
+                    </div>
 
-            <article class="card">
-                <h2>Связь</h2>
-                <div class="social-links">
-                    <a href="https://github.com/228burger228" target="_blank">GitHub</a>
-                    <a href="#">Telegram</a>
-                    <a href="#">Email</a>
+                    <div class="bento-card contact-card">
+                        <h3>Написать мне в TG</h3>
+                        <form id="tg-form">
+                            <input type="text" id="tg-name" placeholder="Твое имя" required>
+                            <textarea id="tg-msg" placeholder="Сообщение..." required></textarea>
+                            <button type="submit">Отправить <i class="ph ph-paper-plane-right"></i></button>
+                        </form>
+                        <p id="form-status"></p>
+                    </div>
+                </header>
+            </section>
+
+            <section id="genshin" class="page-section">
+                <div class="theme-header genshin-theme">
+                    <h2>Teyvat Explorer</h2>
+                    <p>Моя коллекция, билды и бездна.</p>
                 </div>
-            </article>
-        </section>
-    </main>
+                <div class="grid-gallery">
+                    <div class="card glass-panel">
+                        <h3>Main: Hu Tao</h3>
+                        <p>C1 + Homa. Top 1% Akasha.</p>
+                        <div class="placeholder-img">IMG</div> 
+                    </div>
+                    <div class="card glass-panel">
+                        <h3>Abyss Records</h3>
+                        <p>36* Stars consistently.</p>
+                    </div>
+                </div>
+            </section>
 
-    <div class="controls">
-        <button onclick="weatherApp.setSeason('winter')">❄️</button>
-        <button onclick="weatherApp.setSeason('spring')">🌱</button>
-        <button onclick="weatherApp.setSeason('summer')">☀️</button>
-        <button onclick="weatherApp.setSeason('autumn')">🍂</button>
+            <section id="moto" class="page-section">
+                <div class="theme-header moto-theme">
+                    <h2>On The Road</h2>
+                    <p>Свобода, скорость и асфальт.</p>
+                </div>
+                <div class="grid-gallery">
+                    <div class="card glass-panel">
+                        <h3>Мой Байк</h3>
+                        <p>Описание модели...</p>
+                    </div>
+                    </div>
+            </section>
+            
+            <section id="youtube" class="page-section">
+                <h2>Latest Content</h2>
+                <div class="video-grid">
+                    <iframe width="100%" height="200" src="https://www.youtube.com/embed/dQw4w9WgXcQ" frameborder="0" allowfullscreen></iframe>
+                    <iframe width="100%" height="200" src="https://www.youtube.com/embed/dQw4w9WgXcQ" frameborder="0" allowfullscreen></iframe>
+                </div>
+            </section>
+
+            <section id="projects" class="page-section">
+                <h2>Code Projects</h2>
+                <p>Здесь список репозиториев</p>
+            </section>
+            <section id="photo" class="page-section">
+                <h2>Photography</h2>
+                <p>Галерея работ</p>
+            </section>
+
+        </main>
     </div>
 
     <script src="script.js"></script>
