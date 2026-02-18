@@ -607,3 +607,24 @@ body {
 
 .design-info h3 { margin-bottom: 10px; font-size: 1.4rem; }
 .design-info p { color: #aaa; font-size: 0.95rem; line-height: 1.5; }
+
+
+
+/* --- WARPATH THEME STYLES --- */
+
+/* Цвет темы (военный зеленый/хаки) */
+:root {
+    --warpath-color: #6b8e23; /* Olive Drab */
+}
+
+/* Стили для карточек Warpath */
+.warpath-card .tag { background: var(--warpath-color); color: #fff; }
+
+.warpath-card.tank .tag { background: #4a5d23; } /* Темнее для танка */
+.warpath-card.arty .tag { background: #8b4513; } /* Коричневый для арты */
+
+/* Теги для мото (чтобы отличались) */
+.moto-tag {
+    background: #ff4b1f; /* Оранжевый, как акцент */
+    color: #fff;
+}
