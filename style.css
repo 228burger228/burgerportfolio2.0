@@ -612,9 +612,23 @@ body {
 
 /* --- WARPATH THEME STYLES --- */
 
-/* Цвет темы (военный зеленый/хаки) */
-:root {
-    --warpath-color: #6b8e23; /* Olive Drab */
+/* --- WARPATH UNIT STYLES --- */
+
+/* Цвета наций для тегов */
+.warpath-card.usa-unit .tag { background: #3C3B6E; } /* Navy Blue (USA) */
+.warpath-card.ger-unit .tag { background: #DD0000; } /* Red (Germany) */
+.warpath-card.ru-unit .tag { background: #D52B1E; } /* Red (Russia) */
+.warpath-card.atg-unit .tag { background: #555; } /* Grey (Neutral/Gun) */
+.warpath-card.air-unit .tag { background: #00BFFF; color: #000; } /* Sky Blue (Air) */
+.warpath-card.naval-unit .tag { background: #000080; } /* Deep Navy (Sea) */
+
+/* Общий стиль для карточек Warpath */
+.warpath-card {
+    border-color: rgba(107, 142, 35, 0.3); /* Оливковая рамка */
+}
+
+.warpath-card:hover {
+    box-shadow: 0 0 20px rgba(107, 142, 35, 0.4); /* Оливковое свечение */
 }
 
 /* Стили для карточек Warpath */
