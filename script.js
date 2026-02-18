@@ -30,16 +30,14 @@ class PortfolioApp {
         this.setupTelegram();
         this.setupEasterEgg();
         this.setupGalleryFilters();
-        this.setupHeroButton(); // <--- ДОБАВИЛ ЭТУ СТРОКУ
+        this.setupHeroButton();
     }
 
-    // <--- ДОБАВЬ ЭТОТ НОВЫЙ МЕТОД ПОСЛЕ init()
     setupHeroButton() {
         const heroBtn = document.querySelector('a[href="#design"]');
         if (heroBtn) {
             heroBtn.addEventListener('click', (e) => {
-                e.preventDefault(); // Отменяем стандартный переход
-                // Имитируем клик по пункту меню "Projects"
+                e.preventDefault();
                 const designNavLink = document.querySelector('.nav-links li[data-target="design"]');
                 if (designNavLink) {
                     designNavLink.click();
@@ -53,11 +51,9 @@ class PortfolioApp {
 
         this.filterButtons.forEach(button => {
             button.addEventListener('click', () => {
-                // UI update
                 this.filterButtons.forEach(btn => btn.classList.remove('active'));
                 button.classList.add('active');
 
-                // Filter Logic
                 const filterValue = button.getAttribute('data-filter');
 
                 this.galleryItems.forEach(item => {
@@ -65,7 +61,7 @@ class PortfolioApp {
                     
                     if (filterValue === 'all' || category === filterValue) {
                         item.classList.remove('hide');
-                        item.style.display = 'block'; // Возвращаем в поток
+                        item.style.display = 'block';
                         setTimeout(() => {
                             item.style.opacity = '1';
                             item.style.transform = 'scale(1)';
@@ -74,7 +70,7 @@ class PortfolioApp {
                         item.style.opacity = '0';
                         item.style.transform = 'scale(0.8)';
                         setTimeout(() => {
-                            item.style.display = 'none'; // Убираем из потока
+                            item.style.display = 'none';
                             item.classList.add('hide');
                         }, 300);
                     }
@@ -91,9 +87,9 @@ class PortfolioApp {
             if(this.clickCount === 5) {
                 this.isBurgerMode = !this.isBurgerMode;
                 this.clickCount = 0;
-                this.particles = []; 
+                this.particles = [];
                 alert(this.isBurgerMode ? "🍔 BURGER MODE ACTIVATED!" : "Mode Normal");
-                this.setSeason(this.season); 
+                this.setSeason(this.season);
             }
         });
     }
@@ -103,18 +99,18 @@ class PortfolioApp {
             link.addEventListener('click', () => {
                 const target = link.dataset.target;
                 
-                // Active class updates
                 this.navLinks.forEach(l => l.classList.remove('active'));
                 link.classList.add('active');
 
-                // Show Section
                 this.sections.forEach(sec => {
                     sec.classList.remove('active', 'fade-in-up');
                     if(sec.id === target) {
                         sec.classList.add('active');
-                        // Trigger reflow for animation restart
-                        void sec.offsetWidth; 
+                        // Trigger reflow
+                        void sec.offsetWidth;
                         sec.classList.add('fade-in-up');
+                        // Scroll to top on mobile
+                        document.querySelector('.content-area').scrollTop = 0;
                     }
                 });
 
@@ -125,12 +121,20 @@ class PortfolioApp {
 
     updateThemeForSection(section) {
         const root = document.documentElement;
-        // Сброс цвета при переходе
-        if (section === 'genshin') root.style.setProperty('--accent-color', '#d4a3ff'); 
-        else if (section === 'moto') root.style.setProperty('--accent-color', '#ff4b1f');
-        else if (section === 'youtube') root.style.setProperty('--accent-color', '#FF0000');
-        else if (section === 'design') root.style.setProperty('--accent-color', '#00d2ff'); // Цвет для дизайна
-        else this.applySeasonTheme(this.season);
+        
+        if (section === 'genshin') {
+            root.style.setProperty('--accent-color', '#d4a3ff');
+        } else if (section === 'moto') {
+            root.style.setProperty('--accent-color', '#ff4b1f');
+        } else if (section === 'youtube') {
+            root.style.setProperty('--accent-color', '#FF0000');
+        } else if (section === 'design') {
+            root.style.setProperty('--accent-color', '#00d2ff');
+        } else if (section === 'warpath') {
+            root.style.setProperty('--accent-color', '#6b8e23');
+        } else {
+            this.applySeasonTheme(this.season);
+        }
     }
 
     resize() {
@@ -148,9 +152,9 @@ class PortfolioApp {
 
     setSeason(season) {
         this.season = season;
-        const names = { winter: 'Winter Frost', spring: 'Spring Bloom', summer: 'Summer Vibes', autumn: 'Autumn Rain' };
+        // Убрал ссылку на бейдж, если его нет в HTML
         const badge = document.getElementById('season-badge');
-        if(badge) badge.textContent = names[season];
+        if(badge) badge.textContent = season; 
         
         this.applySeasonTheme(season);
         
@@ -160,7 +164,7 @@ class PortfolioApp {
 
     applySeasonTheme(season) {
         const root = document.documentElement;
-        this.sun.classList.remove('active');
+        if(this.sun) this.sun.classList.remove('active');
         
         const themes = {
             winter: { top: '#141E30', bottom: '#243B55', accent: '#00d2ff' },
@@ -174,7 +178,7 @@ class PortfolioApp {
         root.style.setProperty('--bg-gradient-bottom', t.bottom);
         root.style.setProperty('--accent-color', t.accent);
 
-        if(season === 'summer') this.sun.classList.add('active');
+        if(season === 'summer' && this.sun) this.sun.classList.add('active');
     }
 
     initParticles(season) {
@@ -236,8 +240,8 @@ class PortfolioApp {
             const name = document.getElementById('tg-name').value;
             const msg = document.getElementById('tg-msg').value;
             
-            const BOT_TOKEN = '8467633783:AAHkaNcFFCz6fn8AYEUbIjBXLB8uMLsdKH0'; 
-            const CHAT_ID = '1577660217'; 
+            const BOT_TOKEN = '8467633783:AAHkaNcFFCz6fn8AYEUbIjBXLB8uMLsdKH0';
+            const CHAT_ID = '1577660217';
             
             const text = `🍔 Message from Portfolio:\n👤: ${name}\n💬: ${msg}`;
             
@@ -262,7 +266,4 @@ class PortfolioApp {
     }
 }
 
-// Запуск всего приложения
 document.addEventListener('DOMContentLoaded', () => new PortfolioApp());
-
-
