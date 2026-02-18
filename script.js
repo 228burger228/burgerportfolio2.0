@@ -266,15 +266,3 @@ class PortfolioApp {
 document.addEventListener('DOMContentLoaded', () => new PortfolioApp());
 
 
-// варпах
-updateThemeForSection(section) {
-        const root = document.documentElement;
-        // Сброс цвета при переходе
-        if (section === 'genshin') root.style.setProperty('--accent-color', '#d4a3ff'); 
-        else if (section === 'moto') root.style.setProperty('--accent-color', '#ff4b1f');
-        else if (section === 'youtube') root.style.setProperty('--accent-color', '#FF0000');
-        else if (section === 'design') root.style.setProperty('--accent-color', '#00d2ff');
-        // ДОБАВЛЕНА НОВАЯ СТРОКА ДЛЯ WARPATH
-        else if (section === 'warpath') root.style.setProperty('--accent-color', '#6b8e23'); // Военный зеленый
-        else this.applySeasonTheme(this.season);
-    }
