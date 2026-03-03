@@ -563,6 +563,171 @@
       letter-spacing: 0.06em;
     }
 
+    /* ── HOME EXTRAS ── */
+
+    .home-stats {
+      display: flex;
+      align-items: center;
+      gap: 0;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 0;
+      margin-top: 14px;
+      overflow: hidden;
+    }
+
+    .hstat {
+      flex: 1;
+      text-align: center;
+      padding: 22px 16px;
+    }
+
+    .hstat-div {
+      width: 1px;
+      height: 40px;
+      background: var(--border);
+      flex-shrink: 0;
+    }
+
+    .hstat-num {
+      font-family: var(--font-display);
+      font-weight: 800;
+      font-size: 28px;
+      color: var(--accent);
+      letter-spacing: -0.02em;
+      line-height: 1;
+    }
+
+    .hstat-num span { font-size: 18px; }
+
+    .hstat-label {
+      font-size: 12px;
+      color: var(--muted);
+      margin-top: 4px;
+    }
+
+    .home-section-label {
+      font-family: var(--font-display);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin: 24px 0 12px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .home-section-label::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+      margin-left: 14px;
+    }
+
+    .see-all-btn {
+      background: none;
+      border: 1px solid var(--border);
+      color: var(--muted);
+      font-family: var(--font-body);
+      font-size: 12px;
+      font-weight: 500;
+      padding: 5px 12px;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: all 0.2s;
+      margin-left: 14px;
+      flex-shrink: 0;
+      white-space: nowrap;
+    }
+
+    .see-all-btn:hover { color: var(--accent); border-color: rgba(var(--accent-rgb),.4); }
+
+    .tools-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .tool-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 8px 14px;
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--muted);
+      transition: color 0.2s, border-color 0.2s;
+      cursor: default;
+    }
+
+    .tool-chip:hover { color: var(--text); border-color: rgba(var(--accent-rgb),.3); }
+    .tool-chip i { font-size: 16px; color: var(--accent); }
+
+    .featured-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+    }
+
+    .feat-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      overflow: hidden;
+      cursor: pointer;
+      transition: border-color 0.2s, transform 0.3s;
+    }
+
+    .feat-card:hover { border-color: rgba(var(--accent-rgb),.35); transform: translateY(-4px); }
+
+    .feat-img {
+      height: 140px;
+      position: relative;
+      overflow: hidden;
+      background: rgba(255,255,255,.02);
+    }
+
+    .feat-img img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s; }
+    .feat-card:hover .feat-img img { transform: scale(1.06); }
+
+    .feat-ph {
+      width: 100%; height: 100%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 32px;
+    }
+
+    .feat-tag {
+      position: absolute;
+      top: 10px; right: 10px;
+      background: var(--accent);
+      color: #0a0a0c;
+      font-family: var(--font-display);
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 3px 8px;
+      border-radius: 4px;
+    }
+
+    .feat-body { padding: 14px 14px 16px; }
+
+    .feat-body h4 {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 14px;
+      margin-bottom: 4px;
+    }
+
+    .feat-body p { font-size: 12px; color: var(--muted); }
+
     /* ── MOBILE ── */
     @media (max-width: 768px) {
       .sidebar {
@@ -591,7 +756,10 @@
       .card-profile { flex-direction: column; text-align: center; }
       .card-skills { grid-column: 1; grid-row: auto; }
       .card-contact { grid-column: 1; }
-      .form-row { flex-direction: column; }
+      .featured-grid { grid-template-columns: 1fr; }
+      .home-stats { flex-wrap: wrap; }
+      .hstat { min-width: 45%; }
+      .hstat-div { display: none; }
     }
   </style>
 </head>
@@ -709,6 +877,82 @@
         </div>
 
       </div>
+
+      <!-- STATS ROW -->
+      <div class="home-stats">
+        <div class="hstat">
+          <div class="hstat-num">10<span>+</span></div>
+          <div class="hstat-label">Проектов</div>
+        </div>
+        <div class="hstat-div"></div>
+        <div class="hstat">
+          <div class="hstat-num">2<span>+</span></div>
+          <div class="hstat-label">Года опыта</div>
+        </div>
+        <div class="hstat-div"></div>
+        <div class="hstat">
+          <div class="hstat-num">3</div>
+          <div class="hstat-label">Направления</div>
+        </div>
+        <div class="hstat-div"></div>
+        <div class="hstat">
+          <div class="hstat-num">∞</div>
+          <div class="hstat-label">Кофе выпито</div>
+        </div>
+      </div>
+
+      <!-- TOOLS GRID -->
+      <div class="home-section-label">Инструменты</div>
+      <div class="tools-grid">
+        <div class="tool-chip"><i class="ph ph-figma-logo"></i> Figma</div>
+        <div class="tool-chip"><i class="ph ph-code"></i> HTML / CSS</div>
+        <div class="tool-chip"><i class="ph ph-brackets-curly"></i> JavaScript</div>
+        <div class="tool-chip"><i class="ph ph-paint-brush-broad"></i> Photoshop</div>
+        <div class="tool-chip"><i class="ph ph-film-strip"></i> Premiere Pro</div>
+        <div class="tool-chip"><i class="ph ph-lightning"></i> After Effects</div>
+        <div class="tool-chip"><i class="ph ph-github-logo"></i> GitHub</div>
+        <div class="tool-chip"><i class="ph ph-monitor"></i> VS Code</div>
+        <div class="tool-chip"><i class="ph ph-chart-bar"></i> Analytics</div>
+      </div>
+
+      <!-- FEATURED PROJECTS -->
+      <div class="home-section-label" style="margin-top: 28px;">
+        Избранные проекты
+        <button class="see-all-btn" id="see-all-btn">Все проекты →</button>
+      </div>
+      <div class="featured-grid">
+        <div class="feat-card" onclick="window.open('https://228burger228.github.io/triatlon/','_blank')">
+          <div class="feat-img">
+            <img src="https://228burger228.github.io/burgerCreate/scrintrial.png" alt="Triathlon" onerror="this.parentElement.innerHTML='<div class=feat-ph>🏊</div>'" />
+            <div class="feat-tag">Frontend</div>
+          </div>
+          <div class="feat-body">
+            <h4>Спортшкола Триатлон</h4>
+            <p>Многостраничный сайт · адаптив · галерея</p>
+          </div>
+        </div>
+        <div class="feat-card" onclick="window.open('https://www.figma.com/design/2u0JYeK7QvPeYxCvcYyHtL/ecostep','_blank')">
+          <div class="feat-img">
+            <img src="ecostep.png" alt="Ecostep" onerror="this.parentElement.innerHTML='<div class=feat-ph>🌱</div>'" />
+            <div class="feat-tag">UI/UX</div>
+          </div>
+          <div class="feat-body">
+            <h4>Eco-Step App</h4>
+            <p>Мобильный интерфейс · маршруты · трекер</p>
+          </div>
+        </div>
+        <div class="feat-card" onclick="window.open('https://228burger228.github.io/New2026/','_blank')">
+          <div class="feat-img">
+            <img src="https://228burger228.github.io/burgerCreate/web2026.png" alt="NY" onerror="this.parentElement.innerHTML='<div class=feat-ph>🎄</div>'" />
+            <div class="feat-tag">JS</div>
+          </div>
+          <div class="feat-body">
+            <h4>New Year 2026 Card</h4>
+            <p>Интерактивная открытка · анимации</p>
+          </div>
+        </div>
+      </div>
+
     </div>
 
     <!-- PROJECTS -->
@@ -926,7 +1170,11 @@ document.getElementById('to-projects').addEventListener('click', () => {
   document.querySelector('[data-page="projects"]').click();
 });
 
-// ── PROJECT FILTER ──
+document.getElementById('see-all-btn').addEventListener('click', () => {
+  document.querySelector('[data-page="projects"]').click();
+});
+
+
 document.querySelectorAll('.proj-filter .filt').forEach(btn => {
   btn.addEventListener('click', () => {
     document.querySelectorAll('.proj-filter .filt').forEach(b => b.classList.remove('active'));
