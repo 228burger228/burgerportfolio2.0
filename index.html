@@ -1,605 +1,1080 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Burger | Content & Code</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;500;700;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
-    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Burger | UI/UX & Frontend</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet" />
+  <script src="https://unpkg.com/@phosphor-icons/web"></script>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg-top: #0f1117;
+      --bg-bottom: #151820;
+      --surface: rgba(18,19,26,0.85);
+      --border: rgba(255,255,255,0.07);
+      --accent: #e8ff47;
+      --accent-rgb: 232, 255, 71;
+      --text: #eeeef2;
+      --muted: #666680;
+      --font-display: 'Syne', sans-serif;
+      --font-body: 'DM Sans', sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font-body);
+      color: var(--text);
+      background: linear-gradient(160deg, var(--bg-top), var(--bg-bottom));
+      min-height: 100vh;
+      transition: background 1.5s ease;
+    }
+
+    ::-webkit-scrollbar { width: 3px; }
+    ::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 2px; }
+
+    /* CANVAS */
+    #weatherCanvas {
+      position: fixed; top: 0; left: 0;
+      width: 100%; height: 100%;
+      z-index: 0; pointer-events: none;
+    }
+
+    .noise {
+      position: fixed; inset: 0;
+      background: url('https://grainy-gradients.vercel.app/noise.svg');
+      opacity: 0.04; z-index: 1; pointer-events: none;
+    }
+
+    .app-wrap {
+      display: flex;
+      position: relative;
+      z-index: 10;
+      min-height: 100vh;
+    }
+
+    /* ── SIDEBAR ── */
+    .sidebar {
+      position: fixed;
+      top: 50%;
+      left: 16px;
+      transform: translateY(-50%);
+      width: 56px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      backdrop-filter: blur(24px);
+      border-radius: 20px;
+      padding: 18px 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      z-index: 200;
+      overflow: hidden;
+      transition: width 0.3s cubic-bezier(0.4,0,0.2,1);
+    }
+
+    .sidebar:hover { width: 196px; }
+
+    .s-logo {
+      font-family: var(--font-display);
+      font-weight: 800;
+      font-size: 15px;
+      color: var(--accent);
+      margin-bottom: 18px;
+      cursor: pointer;
+      user-select: none;
+      white-space: nowrap;
+      padding: 0 16px;
+      width: 100%;
+      text-align: center;
+    }
+
+    .nav-list { list-style: none; width: 100%; }
+
+    .nav-list li {
+      display: flex;
+      align-items: center;
+      padding: 12px 16px;
+      cursor: pointer;
+      color: var(--muted);
+      white-space: nowrap;
+      position: relative;
+      transition: color 0.2s, background 0.2s;
+    }
+
+    .nav-list li i { font-size: 20px; min-width: 24px; text-align: center; flex-shrink: 0; }
+    .nav-list li span { margin-left: 12px; font-size: 13px; font-weight: 500; opacity: 0; transition: opacity 0.2s; }
+    .sidebar:hover .nav-list li span { opacity: 1; }
+
+    .nav-list li:hover { color: var(--text); background: rgba(255,255,255,0.04); }
+
+    .nav-list li.active { color: var(--accent); background: rgba(232,255,71,0.05); }
+
+    .nav-list li.active::before {
+      content: '';
+      position: absolute; left: 0; top: 50%; transform: translateY(-50%);
+      width: 3px; height: 22px;
+      background: var(--accent);
+      border-radius: 0 2px 2px 0;
+    }
+
+    .s-footer {
+      margin-top: auto;
+      padding: 14px 0 0;
+      display: flex;
+      justify-content: center;
+    }
+
+    .s-footer a { color: var(--muted); font-size: 20px; text-decoration: none; transition: color 0.2s; }
+    .s-footer a:hover { color: var(--accent); }
+
+    /* ── MAIN ── */
+    .main {
+      margin-left: 92px;
+      flex: 1;
+      padding: 28px 36px 80px;
+      max-width: 1080px;
+    }
+
+    .page { display: none; animation: fadeUp 0.45s ease forwards; }
+    .page.active { display: block; }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(18px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .glass {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      backdrop-filter: blur(20px);
+      border-radius: 16px;
+    }
+
+    /* ── MARQUEE ── */
+    .marquee-wrap {
+      overflow: hidden;
+      background: var(--accent);
+      border-radius: 10px;
+      padding: 10px 0;
+      margin-bottom: 24px;
+      display: flex;
+    }
+
+    .mtrack {
+      display: flex;
+      animation: mq 22s linear infinite;
+      width: max-content;
+    }
+
+    .mtrack span {
+      font-family: var(--font-display);
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: #0a0a0c;
+      padding: 0 24px;
+      white-space: nowrap;
+    }
+
+    @keyframes mq {
+      from { transform: translateX(0); }
+      to   { transform: translateX(-50%); }
+    }
+
+    /* ── BENTO ── */
+    .bento {
+      display: grid;
+      grid-template-columns: 1fr 250px;
+      gap: 14px;
+    }
+
+    .card-profile {
+      grid-column: 1; grid-row: 1;
+      padding: 28px;
+      display: flex;
+      align-items: center;
+      gap: 24px;
+    }
+
+    .avatar {
+      width: 92px; height: 92px;
+      border-radius: 50%;
+      border: 2px solid var(--accent);
+      object-fit: cover;
+      flex-shrink: 0;
+      box-shadow: 0 0 24px rgba(var(--accent-rgb),.18);
+    }
+
+    .profile-text h1 {
+      font-family: var(--font-display);
+      font-weight: 800;
+      font-size: 26px;
+      letter-spacing: -0.02em;
+      line-height: 1.1;
+      margin-bottom: 4px;
+    }
+
+    .role-tag { font-size: 13px; color: var(--muted); margin-bottom: 14px; }
+
+    .tech-stack {
+      display: flex;
+      gap: 14px;
+      font-size: 20px;
+      color: var(--muted);
+      margin-bottom: 18px;
+    }
+
+    .tech-stack i { transition: 0.2s; cursor: help; }
+    .tech-stack i:hover { color: var(--accent); transform: translateY(-3px); }
+
+    .btn-accent {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--accent);
+      color: #0a0a0c;
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 12px;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      padding: 10px 20px;
+      border-radius: 8px;
+      border: none;
+      cursor: pointer;
+      text-decoration: none;
+      transition: transform 0.15s, box-shadow 0.2s;
+    }
+
+    .btn-accent:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(var(--accent-rgb),.28);
+    }
+
+    /* Skills card */
+    .card-skills {
+      grid-column: 2; grid-row: 1 / 3;
+      padding: 24px 20px;
+    }
+
+    .card-skills h3 {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 16px;
+    }
+
+    .skills-list { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+
+    .skills-list li {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 11px 12px;
+      background: rgba(255,255,255,0.025);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      transition: border-color 0.2s;
+    }
+
+    .skills-list li:hover { border-color: rgba(var(--accent-rgb),.3); }
+    .skills-list li i { font-size: 20px; color: var(--accent); }
+    .skills-list strong { display: block; font-size: 13px; font-weight: 600; }
+    .skills-list span { font-size: 11px; color: var(--muted); }
+
+    .stat-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 16px; }
+
+    .stat-mini {
+      padding: 12px 8px;
+      background: rgba(255,255,255,0.02);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      text-align: center;
+      cursor: pointer;
+      transition: border-color 0.2s;
+    }
+
+    .stat-mini:hover { border-color: rgba(var(--accent-rgb),.3); }
+    .stat-mini i { font-size: 18px; color: var(--muted); }
+    .stat-mini .num { font-family: var(--font-display); font-weight: 700; font-size: 12px; color: var(--accent); display: block; margin-top: 4px; }
+
+    /* Contact card */
+    .card-contact {
+      grid-column: 1; grid-row: 2;
+      padding: 22px 26px;
+    }
+
+    .contact-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 14px;
+    }
+
+    .contact-top h3 { font-family: var(--font-display); font-weight: 700; font-size: 15px; }
+
+    .avail {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 12px;
+      color: #71b280;
+    }
+
+    .avail-dot {
+      width: 7px; height: 7px;
+      border-radius: 50%;
+      background: #71b280;
+      box-shadow: 0 0 6px #71b280;
+      animation: pulse 2s ease infinite;
+    }
+
+    @keyframes pulse { 0%,100%{opacity:1}50%{opacity:.4} }
+
+    .form-row { display: flex; gap: 8px; margin-bottom: 8px; }
+
+    .form-row input {
+      flex: 1;
+      background: rgba(0,0,0,.3);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 9px 12px;
+      color: var(--text);
+      font-family: var(--font-body);
+      font-size: 13px;
+    }
+
+    .form-row input:focus { outline: none; border-color: rgba(var(--accent-rgb),.4); }
+
+    .form-bottom { display: flex; gap: 8px; }
+
+    .form-msg {
+      flex: 1;
+      height: 40px;
+      background: rgba(0,0,0,.3);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 9px 12px;
+      color: var(--text);
+      font-family: var(--font-body);
+      font-size: 13px;
+      resize: none;
+    }
+
+    .form-msg:focus { outline: none; border-color: rgba(var(--accent-rgb),.4); }
+
+    .send-btn {
+      width: 40px; height: 40px;
+      background: var(--accent);
+      border: none; border-radius: 8px;
+      color: #0a0a0c; font-size: 18px;
+      cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+      transition: transform 0.15s;
+    }
+
+    .send-btn:hover { transform: scale(1.06); }
+
+    #form-status { font-size: 12px; margin-top: 6px; }
+
+    /* ── SECTION HEAD ── */
+    .sh { margin-bottom: 24px; }
+    .sh h2 { font-family: var(--font-display); font-weight: 800; font-size: 34px; letter-spacing: -0.02em; }
+    .sh p { font-size: 13px; color: var(--muted); margin-top: 5px; }
+
+    /* ── PROJECTS ── */
+    .proj-filter { display: flex; gap: 5px; margin-bottom: 20px; flex-wrap: wrap; }
+
+    .filt {
+      background: none;
+      border: 1px solid var(--border);
+      color: var(--muted);
+      font-family: var(--font-body);
+      font-size: 13px;
+      font-weight: 500;
+      padding: 7px 15px;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .filt.active, .filt:hover { background: var(--accent); color: #0a0a0c; border-color: var(--accent); }
+
+    .proj-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+      gap: 14px;
+    }
+
+    .proj-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      overflow: hidden;
+      transition: border-color 0.2s, transform 0.3s;
+    }
+
+    .proj-card:hover { border-color: rgba(var(--accent-rgb),.3); transform: translateY(-5px); }
+
+    .proj-img {
+      height: 190px;
+      position: relative;
+      overflow: hidden;
+      background: rgba(255,255,255,0.02);
+    }
+
+    .proj-img img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s, filter 0.3s;
+    }
+
+    .proj-card:hover .proj-img img { transform: scale(1.06); filter: brightness(.7); }
+
+    .proj-ph {
+      width: 100%; height: 100%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 36px;
+      background: linear-gradient(135deg, rgba(255,255,255,.03), rgba(255,255,255,.01));
+    }
+
+    .proj-ov {
+      position: absolute; inset: 0;
+      display: flex; align-items: center; justify-content: center;
+      opacity: 0; transition: opacity 0.3s;
+    }
+
+    .proj-card:hover .proj-ov { opacity: 1; }
+
+    .proj-ov a, .proj-ov button {
+      background: var(--accent);
+      color: #0a0a0c;
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 13px;
+      padding: 10px 22px;
+      border-radius: 20px;
+      text-decoration: none;
+      border: none;
+      cursor: pointer;
+      transform: translateY(8px);
+      transition: transform 0.3s;
+    }
+
+    .proj-card:hover .proj-ov a,
+    .proj-card:hover .proj-ov button { transform: translateY(0); }
+
+    .proj-body { padding: 18px 18px 16px; }
+
+    .proj-cats { display: flex; gap: 5px; flex-wrap: wrap; margin-bottom: 8px; }
+
+    .pcat {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 3px 7px;
+      border: 1px solid rgba(var(--accent-rgb),.3);
+      border-radius: 4px;
+      color: var(--accent);
+    }
+
+    .proj-body h3 {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 15px;
+      margin-bottom: 6px;
+      line-height: 1.3;
+    }
+
+    .proj-body p { font-size: 12px; color: var(--muted); line-height: 1.6; }
+
+    /* ── YOUTUBE ── */
+    .video-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+      gap: 14px;
+      margin-top: 4px;
+    }
+
+    .video-wrap {
+      position: relative;
+      padding-bottom: 56.25%;
+      height: 0;
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      transition: transform 0.3s;
+    }
+
+    .video-wrap:hover { transform: translateY(-4px); }
+
+    .video-wrap iframe {
+      position: absolute; inset: 0;
+      width: 100%; height: 100%;
+      border: none;
+    }
+
+    /* ── GALLERY ── */
+    .gal-filters { display: flex; gap: 5px; margin-bottom: 18px; }
+
+    .gal-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 12px;
+    }
+
+    .gal-item {
+      height: 230px;
+      border-radius: 12px;
+      overflow: hidden;
+      position: relative;
+      border: 1px solid var(--border);
+      cursor: pointer;
+    }
+
+    .gal-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s; }
+    .gal-item:hover img { transform: scale(1.08); }
+
+    .gal-ov {
+      position: absolute; inset: 0;
+      background: linear-gradient(to top, rgba(0,0,0,.7), transparent);
+      opacity: 0; transition: opacity 0.3s;
+      display: flex; align-items: flex-end;
+      padding: 14px;
+    }
+
+    .gal-item:hover .gal-ov { opacity: 1; }
+
+    .gal-ov span {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 12px;
+      color: white;
+      letter-spacing: 0.06em;
+    }
+
+    /* ── MOBILE ── */
+    @media (max-width: 768px) {
+      .sidebar {
+        position: fixed;
+        top: auto; bottom: 0; left: 0; right: 0;
+        width: 100%; height: auto;
+        transform: none;
+        border-radius: 20px 20px 0 0;
+        flex-direction: row;
+        padding: 10px 8px;
+        border-left: none; border-right: none; border-bottom: none;
+      }
+
+      .sidebar:hover { width: 100%; }
+      .s-logo { display: none; }
+      .s-footer { display: none; }
+
+      .nav-list { flex-direction: row; justify-content: space-around; width: 100%; }
+      .nav-list li { padding: 10px; flex-direction: column; border-radius: 10px; }
+      .nav-list li::before { display: none; }
+      .nav-list li span { display: none; }
+      .nav-list li i { font-size: 22px; margin: 0; }
+
+      .main { margin-left: 0; padding: 14px 14px 100px; }
+      .bento { grid-template-columns: 1fr; }
+      .card-profile { flex-direction: column; text-align: center; }
+      .card-skills { grid-column: 1; grid-row: auto; }
+      .card-contact { grid-column: 1; }
+      .form-row { flex-direction: column; }
+    }
+  </style>
 </head>
-
-
-
-    
 <body>
-    <canvas id="weatherCanvas"></canvas>
-    <div id="sun" class="sun-element"></div>
-    <div class="overlay"></div>
-    
-    <div class="app-container">
-        <nav class="sidebar glass-panel">
-            <div class="logo" id="logo-trigger">ВС.</div> <ul class="nav-links">
-                <li class="active" data-target="home"><i class="ph ph-house"></i> <span>Главная</span></li>
-                <li data-target="genshin"><i class="ph ph-sparkle"></i> <span>Genshin</span></li>
-                <li data-target="moto"><i class="ph ph-motorcycle"></i> <span>Moto Life</span></li>
-                <li data-target="warpath"><i class="ph ph-crosshair"></i> <span>Warpath</span></li>
-                <li data-target="youtube"><i class="ph ph-youtube-logo"></i> <span>YouTube</span></li>
-                <li data-target="photo"><i class="ph ph-camera"></i> <span>Gallery</span></li>
-                <li data-target="design"><i class="ph ph-briefcase"></i> <span>Projects</span></li>
-            </ul>
-            <div class="socials-mini">
-                <a href="https://t.me/aimovl" target="_blank"><i class="ph ph-telegram-logo"></i></a>
-            </div>
-        </nav>
 
-        <main class="content-area">
-            
-            <div class="marquee-container">
-    <div class="marquee-content">
-        <span>VIDEO EDITING</span> • 
-        <span>VIDEO СТРИМИНГ</span> •
-        <span>WEB DEVELOPMENT</span> • 
-        <span>CONTENT CREATION</span> • 
-        <span>MOTION DESIGN</span> • 
-        <span>GENSHIN IMPACT</span> • 
-        <span>MOTO LIFE</span> • 
+<canvas id="weatherCanvas"></canvas>
+<div class="noise"></div>
+
+<div class="app-wrap">
+
+  <!-- SIDEBAR -->
+  <nav class="sidebar">
+    <div class="s-logo" id="logo-trigger">ВС.</div>
+    <ul class="nav-list" id="navList">
+      <li class="active" data-page="home"><i class="ph ph-house"></i><span>Главная</span></li>
+      <li data-page="projects"><i class="ph ph-briefcase"></i><span>Проекты</span></li>
+      <li data-page="youtube"><i class="ph ph-youtube-logo"></i><span>YouTube</span></li>
+      <li data-page="gallery"><i class="ph ph-camera"></i><span>Gallery</span></li>
+      <li id="hobbies-nav"><i class="ph ph-game-controller"></i><span>Хобби</span></li>
+    </ul>
+    <div class="s-footer">
+      <a href="https://t.me/aimovl" target="_blank"><i class="ph ph-telegram-logo"></i></a>
     </div>
-    <div class="marquee-content" aria-hidden="true">
-        <span>VIDEO EDITING</span> • 
-        <span>VIDEO СТРИМИНГ</span> •
-        <span>WEB DEVELOPMENT</span> • 
-        <span>CONTENT CREATION</span> • 
-        <span>MOTION DESIGN</span> • 
-        <span>GENSHIN IMPACT</span> • 
-        <span>MOTO LIFE</span> • 
+  </nav>
+
+  <!-- MAIN -->
+  <main class="main">
+
+    <!-- HOME -->
+    <div class="page active" id="page-home">
+
+      <div class="marquee-wrap">
+        <div class="mtrack">
+          <span>UI/UX Design</span><span>•</span>
+          <span>Figma</span><span>•</span>
+          <span>Frontend Dev</span><span>•</span>
+          <span>HTML / CSS / JS</span><span>•</span>
+          <span>Motion Design</span><span>•</span>
+          <span>Content Creation</span><span>•</span>
+          <span>Video Editing</span><span>•</span>
+          <span>UI/UX Design</span><span>•</span>
+          <span>Figma</span><span>•</span>
+          <span>Frontend Dev</span><span>•</span>
+          <span>HTML / CSS / JS</span><span>•</span>
+          <span>Motion Design</span><span>•</span>
+          <span>Content Creation</span><span>•</span>
+          <span>Video Editing</span><span>•</span>
+        </div>
+      </div>
+
+      <div class="bento">
+
+        <div class="glass card-profile">
+          <img class="avatar" src="https://github.com/228burger228.png" alt="Burger" />
+          <div class="profile-text">
+            <h1>Burger Create</h1>
+            <p class="role-tag">UI/UX Designer · Frontend Developer · Content Creator</p>
+            <div class="tech-stack">
+              <i class="ph ph-figma-logo" title="Figma"></i>
+              <i class="ph ph-paint-brush-broad" title="Photoshop"></i>
+              <i class="ph ph-film-strip" title="Premiere / After Effects"></i>
+              <i class="ph ph-code" title="HTML / CSS / JS"></i>
+              <i class="ph ph-lightning" title="Motion Design"></i>
+            </div>
+            <button class="btn-accent" id="to-projects">
+              Смотреть работы <i class="ph ph-arrow-right"></i>
+            </button>
+          </div>
+        </div>
+
+        <div class="glass card-skills">
+          <h3>Что умею</h3>
+          <ul class="skills-list">
+            <li>
+              <i class="ph ph-pen-nib"></i>
+              <div><strong>Design</strong><span>Web, UI/UX, Print</span></div>
+            </li>
+            <li>
+              <i class="ph ph-brackets-curly"></i>
+              <div><strong>Code</strong><span>HTML, CSS, JS</span></div>
+            </li>
+            <li>
+              <i class="ph ph-video-camera"></i>
+              <div><strong>Content</strong><span>YouTube, Motion</span></div>
+            </li>
+          </ul>
+          <div class="stat-row">
+            <div class="stat-mini" onclick="window.open('https://github.com/228burger228','_blank')">
+              <i class="ph ph-github-logo"></i>
+              <span class="num">GitHub</span>
+            </div>
+            <div class="stat-mini" onclick="window.open('https://www.youtube.com/@burgerdom6','_blank')">
+              <i class="ph ph-youtube-logo"></i>
+              <span class="num">YouTube</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="glass card-contact">
+          <div class="contact-top">
+            <h3>Связаться со мной</h3>
+            <div class="avail"><div class="avail-dot"></div>Открыт к работе</div>
+          </div>
+          <form id="tg-form">
+            <div class="form-row">
+              <input type="text" id="tg-name" placeholder="Имя" required />
+              <input type="text" id="tg-contact" placeholder="Telegram / Email" required />
+            </div>
+            <div class="form-bottom">
+              <textarea class="form-msg" id="tg-msg" placeholder="Детали проекта..." required></textarea>
+              <button type="submit" class="send-btn"><i class="ph ph-paper-plane-right"></i></button>
+            </div>
+          </form>
+          <p id="form-status"></p>
+        </div>
+
+      </div>
     </div>
+
+    <!-- PROJECTS -->
+    <div class="page" id="page-projects">
+      <div class="sh">
+        <h2>Проекты</h2>
+        <p>UI/UX дизайн и фронтенд · коммерческие работы и концепты</p>
+      </div>
+
+      <div class="proj-filter">
+        <button class="filt active" data-f="all">Все</button>
+        <button class="filt" data-f="ui">UI/UX</button>
+        <button class="filt" data-f="frontend">Frontend</button>
+        <button class="filt" data-f="content">Контент</button>
+      </div>
+
+      <div class="proj-grid">
+
+        <div class="proj-card" data-cat="ui">
+          <div class="proj-img">
+            <img src="./music.jpg" alt="Music Label" onerror="this.parentElement.innerHTML='<div class=proj-ph>🎵</div>'" />
+            <div class="proj-ov"><a href="https://www.figma.com/design/vynb9Q4A1K2rJ09Q4kRRvy/" target="_blank">Figma →</a></div>
+          </div>
+          <div class="proj-body">
+            <div class="proj-cats"><span class="pcat">UI/UX</span><span class="pcat">Figma</span></div>
+            <h3>Music Label Concept</h3>
+            <p>Дизайн сайта лейбла. Тёмная эстетика, неон, акцент на артистах.</p>
+          </div>
+        </div>
+
+        <div class="proj-card" data-cat="ui">
+          <div class="proj-img">
+            <img src="./scooter.jpg" alt="Scooter" onerror="this.parentElement.innerHTML='<div class=proj-ph>🛴</div>'" />
+            <div class="proj-ov"><a href="https://www.figma.com/design/3FyaRye7LEPnBvXM7jOVsr/" target="_blank">Figma →</a></div>
+          </div>
+          <div class="proj-body">
+            <div class="proj-cats"><span class="pcat">Mobile</span><span class="pcat">Interface</span></div>
+            <h3>E-Scooter Rental</h3>
+            <p>Интерфейс аренды самокатов. Карта, профиль, система оплаты.</p>
+          </div>
+        </div>
+
+        <div class="proj-card" data-cat="ui">
+          <div class="proj-img">
+            <img src="ecostep.png" alt="Ecostep" onerror="this.parentElement.innerHTML='<div class=proj-ph>🌱</div>'" />
+            <div class="proj-ov"><a href="https://www.figma.com/design/2u0JYeK7QvPeYxCvcYyHtL/ecostep" target="_blank">Figma →</a></div>
+          </div>
+          <div class="proj-body">
+            <div class="proj-cats"><span class="pcat">Mobile</span><span class="pcat">Interface</span></div>
+            <h3>Eco-Step App</h3>
+            <p>Экоприложение для велосипедистов: маршруты, трекер, сообщество.</p>
+          </div>
+        </div>
+
+        <div class="proj-card" data-cat="ui">
+          <div class="proj-img">
+            <img src="midquest.png" alt="Midnight Choice" onerror="this.parentElement.innerHTML='<div class=proj-ph>🎬</div>'" />
+            <div class="proj-ov"><a href="https://www.figma.com/design/zcN1ZENeexrt7Re0UzFFOS/" target="_blank">Figma →</a></div>
+          </div>
+          <div class="proj-body">
+            <div class="proj-cats"><span class="pcat">Web</span><span class="pcat">Concept</span></div>
+            <h3>Midnight Choice</h3>
+            <p>Квест-сайт выбора кино по настроению и темам.</p>
+          </div>
+        </div>
+
+        <div class="proj-card" data-cat="frontend">
+          <div class="proj-img">
+            <img src="https://228burger228.github.io/burgerCreate/scrintrial.png" alt="Triathlon" onerror="this.parentElement.innerHTML='<div class=proj-ph>🏊</div>'" />
+            <div class="proj-ov"><a href="https://228burger228.github.io/triatlon/" target="_blank">Открыть →</a></div>
+          </div>
+          <div class="proj-body">
+            <div class="proj-cats"><span class="pcat">HTML/CSS</span><span class="pcat">Frontend</span></div>
+            <h3>Спортшкола Триатлон</h3>
+            <p>Многостраничный сайт. Адаптив, галерея, инфоблоки.</p>
+          </div>
+        </div>
+
+        <div class="proj-card" data-cat="frontend">
+          <div class="proj-img">
+            <img src="https://228burger228.github.io/burgerCreate/web2026.png" alt="NY 2026" onerror="this.parentElement.innerHTML='<div class=proj-ph>🎄</div>'" />
+            <div class="proj-ov"><a href="https://228burger228.github.io/New2026/" target="_blank">Открыть →</a></div>
+          </div>
+          <div class="proj-body">
+            <div class="proj-cats"><span class="pcat">JS</span><span class="pcat">Animation</span></div>
+            <h3>New Year 2026 Card</h3>
+            <p>Интерактивная открытка с анимациями и генерацией поздравлений.</p>
+          </div>
+        </div>
+
+        <div class="proj-card" data-cat="ui">
+          <div class="proj-img">
+            <img src="stromaz.png" alt="Stroy" onerror="this.parentElement.innerHTML='<div class=proj-ph>🏗️</div>'" />
+            <div class="proj-ov"><a href="https://www.figma.com/design/IeIQQCUhqWNWFuZfymvviR/" target="_blank">Figma →</a></div>
+          </div>
+          <div class="proj-body">
+            <div class="proj-cats"><span class="pcat">Редизайн</span><span class="pcat">UX/UI</span></div>
+            <h3>Редизайн стройкомпании</h3>
+            <p>Редизайн шапки для роста конверсии и функциональности.</p>
+          </div>
+        </div>
+
+        <div class="proj-card" data-cat="content">
+          <div class="proj-img">
+            <div class="proj-ph">⚡</div>
+            <div class="proj-ov"><a href="https://www.figma.com/design/fvr4rOpbbFhIbScrTiCqLp/" target="_blank">Figma →</a></div>
+          </div>
+          <div class="proj-body">
+            <div class="proj-cats"><span class="pcat">Реклама</span><span class="pcat">Figma/PS</span></div>
+            <h3>EcoVolt Pulse</h3>
+            <p>Билборд 3×6м для запуска электрокара. Экология и динамика.</p>
+          </div>
+        </div>
+
+        <div class="proj-card" data-cat="content">
+          <div class="proj-img"><div class="proj-ph">🛍️</div></div>
+          <div class="proj-body">
+            <div class="proj-cats"><span class="pcat">E-commerce</span><span class="pcat">Figma</span></div>
+            <h3>Wildberries Rich Content</h3>
+            <p>Инфографика для карточек GoPro и зимней рыбалки. Рост CTR.</p>
+          </div>
+        </div>
+
+        <div class="proj-card" data-cat="content">
+          <div class="proj-img"><div class="proj-ph">📊</div></div>
+          <div class="proj-body">
+            <div class="proj-cats"><span class="pcat">PowerPoint</span><span class="pcat">Storytelling</span></div>
+            <h3>Hybrid Pass</h3>
+            <p>Дизайн презентации для стартапа (10 слайдов) + скрипт.</p>
+          </div>
+        </div>
+
+        <div class="proj-card" data-cat="frontend">
+          <div class="proj-img">
+            <img src="Porfolscr.png" alt="Portfolio v1" onerror="this.parentElement.innerHTML='<div class=proj-ph>💼</div>'" />
+            <div class="proj-ov"><a href="https://228burger228.github.io/burgerCreate/index.html" target="_blank">Открыть →</a></div>
+          </div>
+          <div class="proj-body">
+            <div class="proj-cats"><span class="pcat">HTML/CSS</span><span class="pcat">Frontend</span></div>
+            <h3>Портфолио v1</h3>
+            <p>Первая версия портфолио. Адаптив, галерея, многостраничный.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- YOUTUBE -->
+    <div class="page" id="page-youtube">
+      <div class="sh">
+        <h2>YouTube</h2>
+        <p>Последние видео · Burger Create</p>
+      </div>
+      <div class="video-grid">
+        <div class="video-wrap"><iframe src="https://www.youtube.com/embed/L13FJlzavbM" allowfullscreen></iframe></div>
+        <div class="video-wrap"><iframe src="https://www.youtube.com/embed/JvhISaFT1rI" allowfullscreen></iframe></div>
+        <div class="video-wrap"><iframe src="https://www.youtube.com/embed/sJJxi8jqE1A" allowfullscreen></iframe></div>
+        <div class="video-wrap"><iframe src="https://www.youtube.com/embed/Xy1UkZrxkrY" allowfullscreen></iframe></div>
+        <div class="video-wrap"><iframe src="https://www.youtube.com/embed/JACgDDwLJ9k" allowfullscreen></iframe></div>
+      </div>
+    </div>
+
+    <!-- GALLERY -->
+    <div class="page" id="page-gallery">
+      <div class="sh">
+        <h2>Gallery</h2>
+        <p>Фото из жизни</p>
+      </div>
+      <div class="gal-filters">
+        <button class="filt active" data-gf="all">All</button>
+        <button class="filt" data-gf="moto">Moto</button>
+        <button class="filt" data-gf="travel">Travel</button>
+        <button class="filt" data-gf="setup">Setup</button>
+      </div>
+      <div class="gal-grid">
+        <div class="gal-item" data-gc="moto">
+          <img src="https://images.unsplash.com/photo-1558981806-ec527fa84c3d?auto=format&fit=crop&w=800&q=80" alt="Moto"/>
+          <div class="gal-ov"><span>#MotoLife</span></div>
+        </div>
+        <div class="gal-item" data-gc="travel">
+          <img src="https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?auto=format&fit=crop&w=800&q=80" alt="Travel"/>
+          <div class="gal-ov"><span>#Travel</span></div>
+        </div>
+        <div class="gal-item" data-gc="setup">
+          <img src="https://images.unsplash.com/photo-1511512578047-dfb367046420?auto=format&fit=crop&w=800&q=80" alt="Setup"/>
+          <div class="gal-ov"><span>#Setup</span></div>
+        </div>
+      </div>
+    </div>
+
+  </main>
 </div>
 
+<script>
+// ── NAVIGATION ──
+const navItems = document.querySelectorAll('#navList li[data-page]');
+const pages    = document.querySelectorAll('.page');
 
+navItems.forEach(item => {
+  item.addEventListener('click', () => {
+    navItems.forEach(n => n.classList.remove('active'));
+    item.classList.add('active');
+    pages.forEach(p => {
+      p.classList.remove('active');
+      if (p.id === 'page-' + item.dataset.page) p.classList.add('active');
+    });
+  });
+});
 
-            
-            <section id="home" class="page-section active fade-in-up">
-    <header class="hero-bento">
-        
-        <div class="bento-card profile-card">
-            <div class="profile-content">
-                <div class="avatar-box">
-                    <img src="https://github.com/228burger228.png" alt="Avatar">
-                </div>
-                <div class="profile-text">
-                    <h1>Burger Create</h1>
-                    <p class="role-text">Visual Designer & Frontend Dev</p>
-                    
-                    <div class="tech-stack">
-                        <i class="ph ph-figma-logo" title="Figma"></i>
-                        <i class="ph ph-paint-brush-broad" title="Photoshop"></i>
-                        <i class="ph ph-film-strip" title="Premiere/After Effects"></i>
-                        <i class="ph ph-code" title="HTML/CSS"></i>
-                        <i class="ph ph-lightning" title="Motion Design"></i>
-                    </div>
+document.getElementById('hobbies-nav').addEventListener('click', () => {
+  window.location.href = 'hobbies.html';
+});
 
-                    <a href="#design" class="btn-primary">
-                        Смотреть работы <i class="ph ph-arrow-down"></i>
-                    </a>
-                </div>
-            </div>
-        </div>
+document.getElementById('to-projects').addEventListener('click', () => {
+  document.querySelector('[data-page="projects"]').click();
+});
 
-        <div class="bento-card services-card">
-            <h3>My Skills</h3>
-            <ul class="services-list">
-                <li>
-                    <i class="ph ph-pen-nib service-icon"></i>
-                    <div>
-                        <strong>Design</strong>
-                        <span>Web, UI, Print</span>
-                    </div>
-                </li>
-                <li>
-                    <i class="ph ph-brackets-curly service-icon"></i>
-                    <div>
-                        <strong>Code</strong>
-                        <span>Frontend, JS</span>
-                    </div>
-                </li>
-                <li>
-                    <i class="ph ph-video-camera service-icon"></i>
-                    <div>
-                        <strong>Content</strong>
-                        <span>YouTube, Motion</span>
-                    </div>
-                </li>
-            </ul>
-        </div>
+// ── PROJECT FILTER ──
+document.querySelectorAll('.proj-filter .filt').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.proj-filter .filt').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    const f = btn.dataset.f;
+    document.querySelectorAll('.proj-card').forEach(card => {
+      card.style.display = (f === 'all' || card.dataset.cat === f) ? '' : 'none';
+    });
+  });
+});
 
-        <div class="bento-card stat-card" onclick="window.open('https://github.com/228burger228', '_blank')">
-            <div class="stat-header">
-                <i class="ph ph-github-logo"></i> <span>Git</span>
-            </div>
-            <p class="big-number">Active</p>
-        </div>
+// ── GALLERY FILTER ──
+document.querySelectorAll('[data-gf]').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('[data-gf]').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    const f = btn.dataset.gf;
+    document.querySelectorAll('.gal-item').forEach(item => {
+      item.style.display = (f === 'all' || item.dataset.gc === f) ? '' : 'none';
+    });
+  });
+});
 
-        <div class="bento-card stat-card highlight" onclick="window.open('https://www.youtube.com/@burgerdom6', '_blank')">
-            <div class="stat-header">
-                <i class="ph ph-youtube-logo"></i> <span>YT</span>
-            </div>
-            <p class="big-number">Creator</p>
-        </div>
+// ── TELEGRAM FORM ──
+document.getElementById('tg-form').addEventListener('submit', async e => {
+  e.preventDefault();
+  const btn    = e.target.querySelector('.send-btn');
+  const status = document.getElementById('form-status');
+  const name    = document.getElementById('tg-name').value;
+  const contact = document.getElementById('tg-contact').value;
+  const msg     = document.getElementById('tg-msg').value;
 
-        <div class="bento-card contact-card">
-            <div class="contact-header">
-                <h3>Quick Contact</h3>
-                <p class="status-indicator"><span class="dot"></span> Available for work</p>
-            </div>
-            <form id="tg-form">
-                <div class="input-group">
-                    <input type="text" id="tg-name" placeholder="Name" required>
-                    <input type="text" id="tg-contact" placeholder="Telegram/Email" required>
-                </div>
-                <div class="input-wrapper">
-                    <textarea id="tg-msg" placeholder="Project details..." required></textarea>
-                    <button type="submit" class="send-btn"><i class="ph ph-paper-plane-right"></i></button>
-                </div>
-            </form>
-            <p id="form-status"></p>
-        </div>
-        
-    </header>         
-</section>
+  const BOT_TOKEN = '8467633783:AAHkaNcFFCz6fn8AYEUbIjBXLB8uMLsdKH0';
+  const CHAT_ID   = '1577660217';
+  const text = `🍔 Portfolio Contact\n👤 ${name}\n📩 ${contact}\n💬 ${msg}`;
 
+  btn.innerHTML = '<i class="ph ph-circle-notch"></i>';
 
+  try {
+    await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ chat_id: CHAT_ID, text })
+    });
+    status.textContent = '✓ Отправлено!';
+    status.style.color = '#71b280';
+    e.target.reset();
+  } catch {
+    status.textContent = '✕ Ошибка';
+    status.style.color = '#ff6b6b';
+  } finally {
+    btn.innerHTML = '<i class="ph ph-paper-plane-right"></i>';
+  }
+});
 
+// ── CANVAS WEATHER ──
+(function () {
+  const canvas = document.getElementById('weatherCanvas');
+  const ctx    = canvas.getContext('2d');
+  let particles = [];
+  let season    = 'winter';
+  let burger    = false;
+  let clicks    = 0;
 
+  function resize() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
+  resize();
+  window.addEventListener('resize', resize);
 
-            
-            <section id="genshin" class="page-section">
-    <div class="theme-header genshin-theme">
-        <h2>Teyvat Chronicles</h2>
-        <p>UID: 733958866 | World Level 9 | Europe</p>
-    </div>
-    <div class="grid-gallery">
-        
-        <div class="card glass-panel char-card pyro">
-            <div class="card-bg" style="background-image: url('https://228burger228.github.io/burgerCreate/tao1.jpg')"></div>
-            <div class="card-content">
-                <h3>Hu Tao 👻</h3>
-                <p>Main DPS | C1 + Homa</p>
-                <span class="tag">Pyro Queen</span>
-            </div>
-        </div>
-        
-        <div class="card glass-panel char-card anemo">
-            <div class="card-bg" style="background-image: url('https://228burger228.github.io/burgerCreate/say1.jpg')"></div>
-            <div class="card-content">
-                <h3>Xiao 👹</h3>
-                <p>Anemo DPS | Vigilant Yaksha</p>
-                <span class="tag">Conqueror</span>
-            </div>
-        </div>
+  function initParticles() {
+    const count = season === 'autumn' ? 90 : 55;
+    for (let i = 0; i < count; i++) {
+      particles.push({
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height,
+        speed: Math.random() * 1.4 + 0.4,
+        size: Math.random() * 2,
+        emoji: ['🍔','🍟','🥤'][Math.floor(Math.random() * 3)]
+      });
+    }
+  }
 
-        <div class="card glass-panel char-card electro">
-            <div class="card-bg" style="background-image: url('https://228burger228.github.io/burgerCreate/ray1.jpg')"></div>
-            <div class="card-content">
-                <h3>Raiden ⚡</h3>
-                <p>Sub DPS | The Catch R5</p>
-                <span class="tag">Shogun</span>
-            </div>
-        </div>
-        
-        <div class="card glass-panel char-card pyro">
-            <div class="card-bg" style="background-image: url('https://228burger228.github.io/burgerCreate/mava1.jpg')"></div>
-            <div class="card-content">
-                <h3>Mavuika 🔥</h3>
-                <p>Pyro Archon | Natlan</p>
-                <span class="tag">God of War</span>
-            </div>
-        </div>
+  function applyTheme(s) {
+    const map = {
+      winter: ['#0f1117','#151820'],
+      spring: ['#0d1f14','#152a1a'],
+      summer: ['#1f140a','#261c0c'],
+      autumn: ['#1a0e08','#2a1508']
+    };
+    const [t, b] = map[s] || map.winter;
+    document.documentElement.style.setProperty('--bg-top', t);
+    document.documentElement.style.setProperty('--bg-bottom', b);
+  }
 
-        <a href="https://act.hoyolab.com/app/community-game-records-sea/index.html?bbs_presentation_style=fullscreen&bbs_auth_required=true&gid=2&user_id=177920342" target="_blank" class="card glass-panel link-card">
-            <h3>👉 HoYoLab Profile</h3>
-            <p>Полная статистика, бездна и персонажи</p>
-        </a>
-    </div>
-</section>
+  function setSeason(s) {
+    season = s;
+    particles = [];
+    applyTheme(s);
+    if (s !== 'summer' || burger) initParticles();
+  }
 
-            
+  function detect() {
+    const m = new Date().getMonth();
+    if (m >= 2 && m <= 4) setSeason('spring');
+    else if (m >= 5 && m <= 7) setSeason('summer');
+    else if (m >= 8 && m <= 10) setSeason('autumn');
+    else setSeason('winter');
+  }
 
-           <section id="moto" class="page-section">
-    <div class="theme-header moto-theme">
-        <h2>Moto Life</h2>
-        <p>Kayo K1: От леса до города</p>
-    </div>
-    <div class="grid-gallery">
-        
-        <div class="card glass-panel moto-card">
-            <div class="card-bg" style="background-image: url('https://228burger228.github.io/burgerCreate/kay1.jpg')"></div>
-            <div class="card-content">
-                <h3>Forest Run 🌲</h3>
-                <p>Эндуро прохват по лесам</p>
-            </div>
-        </div>
+  function draw() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    particles.forEach(p => {
+      if (burger) {
+        ctx.font = '18px serif';
+        ctx.fillText(p.emoji, p.x, p.y);
+      } else if (season === 'autumn') {
+        ctx.strokeStyle = 'rgba(255,180,60,0.3)';
+        ctx.lineWidth = 1;
+        ctx.beginPath();
+        ctx.moveTo(p.x, p.y);
+        ctx.lineTo(p.x + 2, p.y + 10);
+        ctx.stroke();
+      } else {
+        ctx.fillStyle = 'rgba(255,255,255,0.45)';
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+        ctx.fill();
+      }
+      p.y += p.speed;
+      if (p.y > canvas.height + 20) { p.y = -20; p.x = Math.random() * canvas.width; }
+    });
+    requestAnimationFrame(draw);
+  }
 
-        <div class="card glass-panel moto-card">
-            <div class="card-bg" style="background-image: url('https://228burger228.github.io/burgerCreate/kay3.JPG')"></div>
-            <div class="card-content">
-                <h3>Sunset Ride 🌅</h3>
-                <p>Вечерний вайб на закате</p>
-            </div>
-        </div>
-        
-        <div class="card glass-panel moto-card">
-             <div class="card-bg" style="background-image: url('https://228burger228.github.io/burgerCreate/kay2.jpg')"></div>
-            <div class="card-content">
-                <h3>Current Status: K1</h3>
-                 <span class="tag moto-tag">🔴 For Sale</span>
-                <p style="margin-top: 10px; font-size: 0.9rem; opacity: 0.8;">Надежный аппарат, ищет нового владельца.</p>
-            </div>
-        </div>
+  // Easter egg
+  document.getElementById('logo-trigger').addEventListener('click', () => {
+    clicks++;
+    if (clicks >= 5) {
+      burger = !burger;
+      clicks = 0;
+      particles = [];
+      if (burger || season !== 'summer') initParticles();
+      alert(burger ? '🍔 BURGER MODE ACTIVATED!' : '😐 Back to normal');
+    }
+  });
 
-        <div class="card glass-panel moto-card future">
-            <div class="card-bg" style="background-color: #1a1a1a; background-image: url('https://images.unsplash.com/photo-1609630875171-b1321377ee16?auto=format&fit=crop&w=800&q=80'); opacity: 0.4;"></div>
-            <div class="card-content">
-                <h3>Next Chapter: Motard 🏍️</h3>
-                <span class="tag moto-tag">🟡 Loading...</span>
-                <p style="margin-top: 10px; font-size: 0.9rem; opacity: 0.8;">Цель на сезон 2026. Строим уличного бойца.</p>
-            </div>
-        </div>
-    </div>
-</section>
-
-
-            
-
-<section id="warpath" class="page-section">
-    <div class="theme-header warpath-theme">
-        <h2>Warpath: Ace Shooter</h2>
-        <p>Main Hangar & Airbase</p>
-    </div>
-    
-    <div class="grid-gallery">
-        
-        <div class="card glass-panel warpath-card usa-unit">
-            <div class="card-bg" style="background-image: url('https://w.forfun.com/fetch/94/94c56e15f13f1de4f40ea7bfc777e69c.jpeg')"></div>
-            <div class="card-content">
-                <h3>M1 Abrams 🇺🇸</h3>
-                <p>Main Battle Tank</p>
-                <span class="tag">Heavy Armor</span>
-            </div>
-        </div>
-
-        <div class="card glass-panel warpath-card ger-unit">
-             <div class="card-bg" style="background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/7/77/Eurocopter_Tiger_UHT_ILA_2002.jpg/1200px-Eurocopter_Tiger_UHT_ILA_2002.jpg')"></div>
-            <div class="card-content">
-                <h3>Tiger UHT 🇩🇪</h3>
-                <p>Attack Helicopter</p>
-                <span class="tag">Air Support</span>
-            </div>
-        </div>
-
-        <div class="card glass-panel warpath-card usa-unit">
-             <div class="card-bg" style="background-image: url('https://upload.wikimedia.org/wikipedia/commons/a/a2/M109A6_Paladin_2.jpg')"></div>
-            <div class="card-content">
-                <h3>M109 Paladin 🇺🇸</h3>
-                <p>Self-Propelled Howitzer</p>
-                <span class="tag">Long Range</span>
-            </div>
-        </div>
-
-        <div class="card glass-panel warpath-card ru-unit">
-             <div class="card-bg" style="background-image: url('https://upload.wikimedia.org/wikipedia/commons/9/93/9A52-2_Smerch-M_MLRS_03.jpg')"></div>
-            <div class="card-content">
-                <h3>BM-30 Smerch 🇷🇺</h3>
-                <p>Rocket Artillery</p>
-                <span class="tag">Massive DMG</span>
-            </div>
-        </div>
-
-        <div class="card glass-panel warpath-card atg-unit">
-             <div class="card-bg" style="background-image: url('https://upload.wikimedia.org/wikipedia/commons/3/36/Pak_40_side.jpg')"></div>
-            <div class="card-content">
-                <h3>Anti-Tank Gun 🏳️</h3>
-                <p>Defensive Line</p>
-                <span class="tag">Tank Killer</span>
-            </div>
-        </div>
-
-        <div class="card glass-panel warpath-card air-unit">
-             <div class="card-bg" style="background-image: url('https://upload.wikimedia.org/wikipedia/commons/1/14/F-22_Raptor_-_100702-F-4815G-106.jpg')"></div>
-            <div class="card-content">
-                <h3>Air Superiority ✈️</h3>
-                <p>Jet Fighter</p>
-                <span class="tag">Interceptor</span>
-            </div>
-        </div>
-        
-         <div class="card glass-panel warpath-card naval-unit">
-             <div class="card-bg" style="background-image: url('https://upload.wikimedia.org/wikipedia/commons/f/f6/US_Navy_040608-N-1126D-002_The_guided_missile_cruiser_USS_Vicksburg_%28CG_69%29_cruises_the_Atlantic_Ocean_as_part_of_the_USS_John_F._Kennedy_%28CV_67%29_Carrier_Strike_Group.jpg')"></div>
-            <div class="card-content">
-                <h3>Missile Cruiser ⚓</h3>
-                <p>Naval Force</p>
-                <span class="tag">Sea Power</span>
-            </div>
-        </div>
-
-    </div>
-</section>
-            
-
-            
-            
- <section id="youtube" class="page-section">
-                <div class="theme-header">
-                    <h2>Latest Uploads</h2>
-                </div>
-                <div class="video-grid">
-                    <div class="video-wrapper">
-                        <iframe src="https://www.youtube.com/embed/L13FJlzavbM" title="Video 1" allowfullscreen></iframe>
-                    </div>
-                    <div class="video-wrapper">
-                        <iframe src="https://www.youtube.com/embed/JvhISaFT1rI" title="Video 2" allowfullscreen></iframe>
-                    </div>
-                    <div class="video-wrapper">
-                        <iframe src="https://www.youtube.com/embed/sJJxi8jqE1A" title="Video 3" allowfullscreen></iframe>
-                    </div>
-                    <div class="video-wrapper">
-                        <iframe src="https://youtu.be/Xy1UkZrxkrY?si=mJwXZES-3V6GxecH" title="Video 4" allowfullscreen></iframe>
-                    </div>
-                    <div class="video-wrapper">
-                        <iframe src="https://www.youtube.com/live/JACgDDwLJ9k?si=6x9wkVYqUDuq1zjY" title="Стрим" allowfullscreen></iframe>
-                    </div>
-                </div>
-            </section>
-
-
-
-
-            
-<section id="gallery" class="page-section">
-    <h2>Gallery</h2>
-
-    <div class="gallery-filters">
-        <button class="filter-btn active" data-filter="all">All</button>
-        <button class="filter-btn" data-filter="moto">Moto</button>
-        <button class="filter-btn" data-filter="travel">Travel</button>
-        <button class="filter-btn" data-filter="setup">Setup</button>
-    </div>
-
-    <div class="gallery-grid">
-        
-        <div class="gallery-item" data-category="moto">
-            <img src="https://images.unsplash.com/photo-1558981806-ec527fa84c3d?auto=format&fit=crop&w=800&q=80" alt="Moto">
-            <div class="overlay">
-                <span class="hashtag">#MotoLife</span>
-            </div>
-        </div>
-
-        <div class="gallery-item" data-category="travel">
-            <img src="https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?auto=format&fit=crop&w=800&q=80" alt="Travel">
-            <div class="overlay">
-                <span class="hashtag">#Travel</span>
-            </div>
-        </div>
-
-        <div class="gallery-item" data-category="setup">
-            <img src="https://images.unsplash.com/photo-1511512578047-dfb367046420?auto=format&fit=crop&w=800&q=80" alt="Gaming">
-            <div class="overlay">
-                <span class="hashtag">#Setup</span>
-            </div>
-        </div>
-
-        </div>
-</section>
-
-
-
-            
-
-    
-
-            
-    <section id="design" class="page-section">
-    <div class="theme-header">
-        <h2>Design & Web Cases</h2>
-        <p>Commercial Projects & Concepts</p>
-    </div>
-
-    <div class="design-grid">
-        
-        <article class="design-card">
-            <div class="design-image">
-                <img src="./music.jpg" alt="Music Label" onerror="this.src='https://via.placeholder.com/600x400/111/fff?text=Make+Screenshot+Music'">
-                <div class="design-overlay">
-                    <a href="https://www.figma.com/design/vynb9Q4A1K2rJ09Q4kRRvy/%D0%BC%D1%83%D0%B7-%D0%BB%D0%B5%D0%B9%D0%B1%D0%BB?node-id=5-4&p=f&t=SN4sy1BiFtAEKz8M-0" target="_blank" class="view-btn">Смотреть в Figma</a>
-                </div>
-            </div>
-            <div class="design-info">
-                <div class="tags">
-                    <span>UI/UX</span><span>Figma</span>
-                </div>
-                <h3>Music Label Concept</h3>
-                <p>Дизайн сайта музыкального лейбла. Темная эстетика, неон, акцент на артистах.</p>
-            </div>
-        </article>
-
-        <article class="design-card">
-            <div class="design-image">
-                <img src="./scooter.jpg" alt="Scooter App" onerror="this.src='https://via.placeholder.com/600x400/333/fff?text=Make+Screenshot+Scooter'">
-                <div class="design-overlay">
-                    <a href="https://www.figma.com/design/3FyaRye7LEPnBvXM7jOVsr/%D0%90%D1%80%D0%B5%D0%BD%D0%B4%D0%B0-%D1%8D%D0%BB-%D1%81%D0%B0%D0%BC%D0%B8%D0%BA?node-id=0-1&p=f&t=QpHeq3aLWH4qqHnY-0" target="_blank" class="view-btn">Смотреть в Figma</a>
-                </div>
-            </div>
-            <div class="design-info">
-                <div class="tags">
-                    <span>Mobile App</span><span>Interface</span>
-                </div>
-                <h3>E-Scooter Rental</h3>
-                <p>Интерфейс приложения аренды самокатов. Удобная карта, профиль и система оплаты.</p>
-            </div>
-
-            
-        </article>
-<article class="design-card">
-            <div class="design-image">
-                <img src="ecostep.png" alt="Scooter App" onerror="this.src='https://via.placeholder.com/600x400/333/fff?text=Make+Screenshot+Scooter'">
-                <div class="design-overlay">
-                    <a href="https://www.figma.com/design/2u0JYeK7QvPeYxCvcYyHtL/ecostep?node-id=31-96&t=5DJVNFkjUOFhadY1-1" target="_blank" class="view-btn">Смотреть в Figma</a>
-                </div>
-            </div>
-            <div class="design-info">
-                <div class="tags">
-                    <span>Mobile App</span><span>Interface</span><span>mud board</span>
-                </div>
-                <h3>Eco-step</h3>
-                <p>Интерфейс экологического приложения многих решений для велосипедистов и активных людей: Удобная карта с маршрутизацией и проф наклонностью, профиль , сообщетсво , трекер привычек.</p>
-            </div>
-        </article>
-
-
-        <article class="design-card">
-            <div class="design-image">
-                <img src="midquest.png" alt="Scooter App" onerror="this.src='https://via.placeholder.com/600x400/333/fff?text=Make+Screenshot+Scooter'">
-                <div class="design-overlay">
-                    <a href="https://www.figma.com/design/zcN1ZENeexrt7Re0UzFFOS/%D0%BA%D0%B2%D0%B5%D1%81%D1%82-%D1%81%D0%B0%D0%B9%D1%82?node-id=0-1&t=igdH0zlnROvrIHoM-1" target="_blank" class="view-btn">Смотреть в Figma</a>
-                </div>
-            </div>
-            <div class="design-info">
-                <div class="tags">
-                    <span>Концепт сайта квеса для выбора кина.   </span><span>Interface</span>
-                </div>
-                <h3>MIDNIGHT CHOICE</h3>
-                <p>Квест сайт-выбор по настроению и темам кино. Интерфейс, меню бургер для будующего внедрения и развития. </p>
-            </div>
-        </article>
-
-        
-
-        <article class="design-card">
-            <div class="design-image">
-                <img src="https://228burger228.github.io/burgerCreate/scrintrial.png" alt="Triathlon Site">
-                <div class="design-overlay">
-                    <a href="https://228burger228.github.io/triatlon/" target="_blank" class="view-btn">Открыть сайт</a>
-                </div>
-            </div>
-            <div class="design-info">
-                <div class="tags">
-                    <span>HTML/CSS</span><span>Frontend</span>
-                </div>
-                <h3>Спортшкола Триатлон</h3>
-                <p>Многостраничный сайт. Адаптивная верстка, галерея, информационные блоки.</p>
-            </div>
-        </article>
-
-
-         <article class="design-card">
-            <div class="design-image">
-                <img src="Porfolscr.png" alt="My portfolio Site">
-                <div class="design-overlay">
-                    <a href="https://228burger228.github.io/burgerCreate/index.html" class="view-btn">Открыть сайт</a>
-                </div>
-            </div>
-            <div class="design-info">
-                <div class="tags">
-                    <span>HTML/CSS</span><span>Frontend</span>
-                </div>
-                <h3>Первая версия портфолио</h3>
-                <p>Многостраничный сайт. Адаптивная верстка, галерея, информационные блоки. Большиство работ представленно временно там</p>
-            </div>
-        </article>
-        
-
-        <article class="design-card">
-            <div class="design-image">
-                <img src="https://228burger228.github.io/burgerCreate/web2026.png" alt="New Year 2026">
-                <div class="design-overlay">
-                    <a href="https://228burger228.github.io/New2026/" target="_blank" class="view-btn">Открыть сайт</a>
-                </div>
-            </div>
-            <div class="design-info">
-                <div class="tags">
-                    <span>JS Animation</span><span>Fun</span>
-                </div>
-                <h3>New Year 2026 Card</h3>
-                <p>Интерактивная открытка с генерацией поздравлений и скринами.</p>
-            </div>
-        </article>
-
-
-
-        <article class="design-card">
-            <div class="design-image">
-                <img src="stromaz.png" alt="Строительная компания">
-                <div class="design-overlay">
-                    <a href="https://www.figma.com/design/IeIQQCUhqWNWFuZfymvviR/%D0%A1%D1%82%D1%80%D0%BE%D0%B9?t=UEMQyEsaRKdCxLLJ-1" target="_blank" class="view-btn">Открыть сайт</a>
-                </div>
-            </div>
-            <div class="design-info">
-                <div class="tags">
-                    <span>Редизайн</span><span>UX/UI</span>
-                </div>
-                <h3>Редизайн строительной компании</h3>
-                <p>Редизайн шапке сайта строительной компании для увеличение посещаемости, функциональности...</p>
-            </div>
-        </article>
-
-        
-<article class="design-card">
-            <div class="design-image">
-                <img src="https://via.placeholder.com/600x400/333/fff?text=Hybrid+Pass" alt="Presentation">
-                <div class="design-overlay">
-                    <button class="view-btn">View Details</button>
-                </div>
-            </div>
-            <div class="design-info">
-                <div class="tags">
-                    <span>PowerPoint</span><span>Storytelling</span>
-                </div>
-                <h3>Hybrid Pass</h3>
-                <p>Структура и дизайн презентации для стартапа (10 слайдов) + скрипт выступления.</p>
-            </div>
-        </article>
-             <article class="design-card">
-            <div class="design-image">
-                <img src="https://via.placeholder.com/600x400/200/dbdbdb?text=Wildberries+Cards" alt="WB Cards">
-                <div class="design-overlay">
-                    <button class="view-btn">View Details</button>
-                </div>
-            </div>
-            <div class="design-info">
-                <div class="tags">
-                    <span>Figma</span><span>E-commerce</span>
-                </div>
-                <h3>Wildberries Rich Content</h3>
-                <p>Инфографика для карточек GoPro и товаров для зимней рыбалки. Увеличение CTR.</p>
-            </div>
-        </article>
-        <div class="design-grid">
-        <article class="design-card">
-            <div class="design-image">
-                <img src="https://www.figma.com/design/fvr4rOpbbFhIbScrTiCqLp/Untitled?node-id=0-1&t=PBGlIP41foNJGqQW-1" alt="Billboard Design">
-                <div class="design-overlay">
-                    <button class="view-btn">Смотреть Details</button>
-                </div>
-            </div>
-            <div class="design-info">
-                <div class="tags">
-                    <span>Ps/figma/Al</span><span>Advertising</span>
-                </div>
-                <h3>EcoVolt Pulse</h3>
-                <p>Дизайн билборда 3x6м для запуска электрокара. Акцент на экологичность и динамику.</p>
-            </div>
-        </article>
-
-    </div>
-</section>
-
-            
-        </main>
-    </div>
-
-    <script src="script.js"></script>
-    
+  detect();
+  draw();
+})();
+</script>
 </body>
 </html>
