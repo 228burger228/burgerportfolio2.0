@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Burger | Хобби</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet" />
+  <script src="https://unpkg.com/@phosphor-icons/web"></script>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg-top: #0f1117;
+      --bg-bottom: #151820;
+      --surface: rgba(18,19,26,0.85);
+      --border: rgba(255,255,255,0.07);
+      --accent: #e8ff47;
+      --accent-rgb: 232,255,71;
+      --text: #eeeef2;
+      --muted: #666680;
+      --font-display: 'Syne', sans-serif;
+      --font-body: 'DM Sans', sans-serif;
+    }
+
+    body {
+      font-family: var(--font-body);
+      color: var(--text);
+      background: linear-gradient(160deg, var(--bg-top), var(--bg-bottom));
+      min-height: 100vh;
+    }
+
+    ::-webkit-scrollbar { width: 3px; }
+    ::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 2px; }
+
+    canvas {
+      position: fixed; top: 0; left: 0;
+      width: 100%; height: 100%;
+      z-index: 0; pointer-events: none;
+    }
+
+    .noise {
+      position: fixed; inset: 0;
+      background: url('https://grainy-gradients.vercel.app/noise.svg');
+      opacity: 0.04; z-index: 1; pointer-events: none;
+    }
+
+    .wrap {
+      display: flex;
+      position: relative; z-index: 10;
+      min-height: 100vh;
+    }
+
+    /* SIDEBAR */
+    .sidebar {
+      position: fixed;
+      top: 50%; left: 16px;
+      transform: translateY(-50%);
+      width: 56px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      backdrop-filter: blur(24px);
+      border-radius: 20px;
+      padding: 18px 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      z-index: 200;
+      overflow: hidden;
+      transition: width 0.3s cubic-bezier(0.4,0,0.2,1);
+    }
+
+    .sidebar:hover { width: 196px; }
+
+    .s-logo {
+      font-family: var(--font-display);
+      font-weight: 800;
+      font-size: 15px;
+      color: var(--accent);
+      margin-bottom: 18px;
+      cursor: pointer;
+      white-space: nowrap;
+      padding: 0 16px;
+      text-decoration: none;
+    }
+
+    .nav-list { list-style: none; width: 100%; }
+
+    .nav-list li {
+      display: flex;
+      align-items: center;
+      padding: 12px 16px;
+      cursor: pointer;
+      color: var(--muted);
+      white-space: nowrap;
+      position: relative;
+      transition: color 0.2s, background 0.2s;
+    }
+
+    .nav-list li i { font-size: 20px; min-width: 24px; text-align: center; }
+    .nav-list li span { margin-left: 12px; font-size: 13px; font-weight: 500; opacity: 0; transition: opacity 0.2s; }
+    .sidebar:hover .nav-list li span { opacity: 1; }
+    .nav-list li:hover { color: var(--text); background: rgba(255,255,255,0.04); }
+    .nav-list li.active { color: var(--accent); background: rgba(232,255,71,0.05); }
+    .nav-list li.active::before {
+      content: '';
+      position: absolute; left: 0; top: 50%; transform: translateY(-50%);
+      width: 3px; height: 22px;
+      background: var(--accent);
+      border-radius: 0 2px 2px 0;
+    }
+
+    .s-footer { margin-top: auto; padding: 14px 0 0; }
+    .s-footer a { color: var(--muted); font-size: 20px; text-decoration: none; transition: color 0.2s; }
+    .s-footer a:hover { color: var(--accent); }
+
+    /* MAIN */
+    .main {
+      margin-left: 92px;
+      flex: 1;
+      padding: 28px 36px 80px;
+      max-width: 1080px;
+    }
+
+    .page { display: none; animation: fadeUp 0.45s ease forwards; }
+    .page.active { display: block; }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(18px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .glass {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      backdrop-filter: blur(20px);
+      border-radius: 16px;
+    }
+
+    /* SECTION HEAD */
+    .sh { margin-bottom: 24px; }
+    .sh h2 { font-family: var(--font-display); font-weight: 800; font-size: 34px; letter-spacing: -0.02em; }
+    .sh p { font-size: 13px; color: var(--muted); margin-top: 5px; }
+
+    /* BACK BAR */
+    .back-bar {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 10px 18px;
+      text-decoration: none;
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 500;
+      margin-bottom: 28px;
+      transition: color 0.2s, border-color 0.2s;
+    }
+
+    .back-bar:hover { color: var(--accent); border-color: rgba(var(--accent-rgb),.3); }
+
+    /* CARD GRID */
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 14px;
+    }
+
+    .themed-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      min-height: 210px;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      transition: border-color 0.3s, transform 0.3s;
+    }
+
+    .themed-card:hover { transform: translateY(-4px); border-color: rgba(var(--accent-rgb),.25); }
+
+    .tc-bg {
+      position: absolute; inset: 0;
+      background-size: cover; background-position: center top;
+      opacity: 0.55; transition: opacity 0.4s, transform 0.5s;
+      z-index: 0;
+    }
+
+    .themed-card:hover .tc-bg { opacity: 0.75; transform: scale(1.05); }
+
+    .tc-info {
+      position: relative; z-index: 1;
+      padding: 20px;
+      background: linear-gradient(to top, rgba(0,0,0,.85) 0%, transparent 100%);
+    }
+
+    .tc-info h3 {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 16px;
+      margin-bottom: 4px;
+      text-shadow: 0 1px 4px rgba(0,0,0,.8);
+    }
+
+    .tc-info p {
+      font-size: 12px;
+      color: rgba(255,255,255,.7);
+      text-shadow: 0 1px 3px rgba(0,0,0,.8);
+      margin-bottom: 8px;
+    }
+
+    .badge {
+      display: inline-block;
+      font-size: 10px; font-weight: 700;
+      letter-spacing: 0.08em; text-transform: uppercase;
+      padding: 3px 8px; border-radius: 4px;
+      background: var(--accent); color: #0a0a0c;
+    }
+
+    .badge.gray { background: rgba(255,255,255,.12); color: var(--text); }
+
+    /* GENSHIN element borders */
+    .pyro { border-color: rgba(255,90,30,.25); }
+    .anemo { border-color: rgba(60,220,170,.25); }
+    .electro { border-color: rgba(160,80,255,.25); }
+    .pyro2 { border-color: rgba(255,120,30,.25); }
+
+    /* Link card */
+    .link-card {
+      text-decoration: none;
+      color: var(--text);
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100px;
+      text-align: center;
+      transition: border-color 0.2s, background 0.2s;
+    }
+
+    .link-card:hover { border-color: rgba(var(--accent-rgb),.4); background: rgba(var(--accent-rgb),.04); }
+    .link-card h3 { font-family: var(--font-display); font-weight: 700; font-size: 15px; margin-bottom: 6px; }
+    .link-card p { font-size: 12px; color: var(--muted); }
+
+    /* UID bar */
+    .uid-bar {
+      display: flex; gap: 24px;
+      padding: 11px 18px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      font-size: 13px; color: var(--muted);
+      margin-bottom: 8px;
+    }
+
+    .uid-bar strong { color: var(--text); }
+
+    /* Status */
+    .status-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 10px;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    .sdot { width: 7px; height: 7px; border-radius: 50%; }
+    .sdot.red  { background: #ff4444; box-shadow: 0 0 6px #ff4444; }
+    .sdot.yel  { background: #ffbb33; box-shadow: 0 0 6px #ffbb33; }
+
+    /* MOBILE */
+    @media (max-width: 768px) {
+      .sidebar {
+        position: fixed;
+        top: auto; bottom: 0; left: 0; right: 0;
+        width: 100%; height: auto;
+        transform: none;
+        border-radius: 20px 20px 0 0;
+        flex-direction: row;
+        padding: 10px 8px;
+        border-left: none; border-right: none; border-bottom: none;
+      }
+      .sidebar:hover { width: 100%; }
+      .s-logo { display: none; }
+      .s-footer { display: none; }
+      .nav-list { flex-direction: row; justify-content: space-around; width: 100%; }
+      .nav-list li { padding: 10px; flex-direction: column; border-radius: 10px; }
+      .nav-list li::before { display: none; }
+      .nav-list li span { display: none; }
+      .nav-list li i { font-size: 22px; margin: 0; }
+      .main { margin-left: 0; padding: 14px 14px 100px; }
+      .card-grid { grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); }
+    }
+  </style>
+</head>
+<body>
+
+<canvas id="hCanvas"></canvas>
+<div class="noise"></div>
+
+<div class="wrap">
+
+  <nav class="sidebar">
+    <a href="index.html" class="s-logo">ВС.</a>
+    <ul class="nav-list" id="hNav">
+      <li class="active" data-page="genshin"><i class="ph ph-sparkle"></i><span>Genshin</span></li>
+      <li data-page="moto"><i class="ph ph-motorcycle"></i><span>Moto Life</span></li>
+      <li data-page="warpath"><i class="ph ph-crosshair"></i><span>Warpath</span></li>
+      <li id="back-nav"><i class="ph ph-arrow-left"></i><span>← Портфолио</span></li>
+    </ul>
+    <div class="s-footer">
+      <a href="https://t.me/aimovl" target="_blank"><i class="ph ph-telegram-logo"></i></a>
+    </div>
+  </nav>
+
+  <main class="main">
+
+    <a href="index.html" class="back-bar">
+      <i class="ph ph-arrow-left"></i> Вернуться к портфолио
+    </a>
+
+    <!-- GENSHIN -->
+    <div class="page active" id="page-genshin">
+      <div class="sh">
+        <h2>⚔️ Genshin Impact</h2>
+        <p>Teyvat Chronicles</p>
+      </div>
+      <div class="uid-bar">
+        <span><strong>UID:</strong> 733958866</span>
+        <span><strong>World Level:</strong> 9</span>
+        <span><strong>Server:</strong> Europe</span>
+      </div>
+      <div class="card-grid" style="margin-top: 14px;">
+        <div class="themed-card pyro">
+          <div class="tc-bg" style="background-image: url('https://228burger228.github.io/burgerCreate/tao1.jpg')"></div>
+          <div class="tc-info">
+            <h3>Hu Tao 👻</h3>
+            <p>Main DPS · C1 + Homa</p>
+            <span class="badge">Pyro Queen</span>
+          </div>
+        </div>
+        <div class="themed-card anemo">
+          <div class="tc-bg" style="background-image: url('https://228burger228.github.io/burgerCreate/say1.jpg')"></div>
+          <div class="tc-info">
+            <h3>Xiao 👹</h3>
+            <p>Anemo DPS · Vigilant Yaksha</p>
+            <span class="badge">Conqueror</span>
+          </div>
+        </div>
+        <div class="themed-card electro">
+          <div class="tc-bg" style="background-image: url('https://228burger228.github.io/burgerCreate/ray1.jpg')"></div>
+          <div class="tc-info">
+            <h3>Raiden ⚡</h3>
+            <p>Sub DPS · The Catch R5</p>
+            <span class="badge">Shogun</span>
+          </div>
+        </div>
+        <div class="themed-card pyro2">
+          <div class="tc-bg" style="background-image: url('https://228burger228.github.io/burgerCreate/mava1.jpg')"></div>
+          <div class="tc-info">
+            <h3>Mavuika 🔥</h3>
+            <p>Pyro Archon · Natlan</p>
+            <span class="badge">God of War</span>
+          </div>
+        </div>
+        <a href="https://act.hoyolab.com/app/community-game-records-sea/index.html?bbs_presentation_style=fullscreen&bbs_auth_required=true&gid=2&user_id=177920342" target="_blank" class="link-card">
+          <h3>👉 HoYoLab Profile</h3>
+          <p>Полная статистика, бездна и персонажи</p>
+        </a>
+      </div>
+    </div>
+
+    <!-- MOTO -->
+    <div class="page" id="page-moto">
+      <div class="sh">
+        <h2>🏍️ Moto Life</h2>
+        <p>Kayo K1: От леса до города</p>
+      </div>
+      <div class="card-grid">
+        <div class="themed-card">
+          <div class="tc-bg" style="background-image: url('https://228burger228.github.io/burgerCreate/kay1.jpg')"></div>
+          <div class="tc-info">
+            <h3>Forest Run 🌲</h3>
+            <p>Эндуро прохват по лесам</p>
+          </div>
+        </div>
+        <div class="themed-card">
+          <div class="tc-bg" style="background-image: url('https://228burger228.github.io/burgerCreate/kay3.JPG')"></div>
+          <div class="tc-info">
+            <h3>Sunset Ride 🌅</h3>
+            <p>Вечерний вайб на закате</p>
+          </div>
+        </div>
+        <div class="themed-card">
+          <div class="tc-bg" style="background-image: url('https://228burger228.github.io/burgerCreate/kay2.jpg')"></div>
+          <div class="tc-info">
+            <h3>Current Status: K1</h3>
+            <p>Надёжный аппарат, ищет нового владельца.</p>
+            <div class="status-row"><div class="sdot red"></div><span style="color:#ff4444">For Sale</span></div>
+          </div>
+        </div>
+        <div class="themed-card">
+          <div class="tc-bg" style="background-image: url('https://images.unsplash.com/photo-1609630875171-b1321377ee16?auto=format&fit=crop&w=800&q=80'); opacity: 0.35;"></div>
+          <div class="tc-info">
+            <h3>Next Chapter: Motard 🏙️</h3>
+            <p>Цель на сезон 2026. Строим уличного бойца.</p>
+            <div class="status-row"><div class="sdot yel"></div><span style="color:#ffbb33">Loading 2026...</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- WARPATH -->
+    <div class="page" id="page-warpath">
+      <div class="sh">
+        <h2>🎖️ Warpath: Ace Shooter</h2>
+        <p>Main Hangar & Airbase</p>
+      </div>
+      <div class="card-grid">
+        <div class="themed-card">
+          <div class="tc-bg" style="background-image: url('https://w.forfun.com/fetch/94/94c56e15f13f1de4f40ea7bfc777e69c.jpeg')"></div>
+          <div class="tc-info"><h3>M1 Abrams 🇺🇸</h3><p>Main Battle Tank</p><span class="badge gray">Heavy Armor</span></div>
+        </div>
+        <div class="themed-card">
+          <div class="tc-bg" style="background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/7/77/Eurocopter_Tiger_UHT_ILA_2002.jpg/1200px-Eurocopter_Tiger_UHT_ILA_2002.jpg')"></div>
+          <div class="tc-info"><h3>Tiger UHT 🇩🇪</h3><p>Attack Helicopter</p><span class="badge gray">Air Support</span></div>
+        </div>
+        <div class="themed-card">
+          <div class="tc-bg" style="background-image: url('https://upload.wikimedia.org/wikipedia/commons/a/a2/M109A6_Paladin_2.jpg')"></div>
+          <div class="tc-info"><h3>M109 Paladin 🇺🇸</h3><p>Self-Propelled Howitzer</p><span class="badge gray">Long Range</span></div>
+        </div>
+        <div class="themed-card">
+          <div class="tc-bg" style="background-image: url('https://upload.wikimedia.org/wikipedia/commons/9/93/9A52-2_Smerch-M_MLRS_03.jpg')"></div>
+          <div class="tc-info"><h3>BM-30 Smerch 🇷🇺</h3><p>Rocket Artillery</p><span class="badge gray">Massive DMG</span></div>
+        </div>
+        <div class="themed-card">
+          <div class="tc-bg" style="background-image: url('https://upload.wikimedia.org/wikipedia/commons/3/36/Pak_40_side.jpg')"></div>
+          <div class="tc-info"><h3>Anti-Tank Gun 🏳️</h3><p>Defensive Line</p><span class="badge gray">Tank Killer</span></div>
+        </div>
+        <div class="themed-card">
+          <div class="tc-bg" style="background-image: url('https://upload.wikimedia.org/wikipedia/commons/1/14/F-22_Raptor_-_100702-F-4815G-106.jpg')"></div>
+          <div class="tc-info"><h3>Air Superiority ✈️</h3><p>Jet Fighter</p><span class="badge gray">Interceptor</span></div>
+        </div>
+        <div class="themed-card">
+          <div class="tc-bg" style="background-image: url('https://upload.wikimedia.org/wikipedia/commons/f/f6/US_Navy_040608-N-1126D-002_The_guided_missile_cruiser_USS_Vicksburg_%28CG_69%29_cruises_the_Atlantic_Ocean_as_part_of_the_USS_John_F._Kennedy_%28CV_67%29_Carrier_Strike_Group.jpg')"></div>
+          <div class="tc-info"><h3>Missile Cruiser ⚓</h3><p>Naval Force</p><span class="badge gray">Sea Power</span></div>
+        </div>
+      </div>
+    </div>
+
+  </main>
+</div>
+
+<script>
+  const navItems = document.querySelectorAll('#hNav li[data-page]');
+  const pages    = document.querySelectorAll('.page');
+
+  navItems.forEach(item => {
+    item.addEventListener('click', () => {
+      navItems.forEach(n => n.classList.remove('active'));
+      item.classList.add('active');
+      pages.forEach(p => {
+        p.classList.remove('active');
+        if (p.id === 'page-' + item.dataset.page) p.classList.add('active');
+      });
+    });
+  });
+
+  document.getElementById('back-nav').addEventListener('click', () => {
+    window.location.href = 'index.html';
+  });
+
+  // Simple canvas snow
+  (function() {
+    const c = document.getElementById('hCanvas');
+    const ctx = c.getContext('2d');
+    let pts = [];
+    function resize() { c.width = window.innerWidth; c.height = window.innerHeight; }
+    resize();
+    window.addEventListener('resize', resize);
+    for (let i = 0; i < 50; i++) {
+      pts.push({ x: Math.random()*c.width, y: Math.random()*c.height, r: Math.random()*1.5+0.5, s: Math.random()*1+0.3 });
+    }
+    function draw() {
+      ctx.clearRect(0,0,c.width,c.height);
+      pts.forEach(p => {
+        ctx.fillStyle = 'rgba(255,255,255,0.4)';
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.r, 0, Math.PI*2);
+        ctx.fill();
+        p.y += p.s;
+        if (p.y > c.height + 10) { p.y = -10; p.x = Math.random()*c.width; }
+      });
+      requestAnimationFrame(draw);
+    }
+    draw();
+  })();
+</script>
+</body>
+</html>
