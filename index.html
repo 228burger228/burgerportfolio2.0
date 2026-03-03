@@ -135,8 +135,8 @@
     .main {
       margin-left: 92px;
       flex: 1;
-      padding: 28px 36px 80px;
-      max-width: 1080px;
+      padding: 28px 48px 80px;
+      min-width: 0;
     }
 
     .page { display: none; animation: fadeUp 0.45s ease forwards; }
@@ -189,7 +189,7 @@
     /* ── BENTO ── */
     .bento {
       display: grid;
-      grid-template-columns: 1fr 250px;
+      grid-template-columns: 1fr 280px;
       gap: 14px;
     }
 
@@ -672,7 +672,7 @@
 
     .featured-grid {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
       gap: 12px;
     }
 
@@ -951,11 +951,17 @@
             <p>Интерактивная открытка · анимации</p>
           </div>
         </div>
+        <div class="feat-card" onclick="window.open('https://228burger228.github.io/Dorybim/index.html','_blank')">
+          <div class="feat-img">
+            <img src="https://228burger228.github.io/Dorybim/pixel_cafe.jpg" alt="DoryBim" onerror="this.parentElement.innerHTML='<div class=feat-ph>🎨</div>'" />
+            <div class="feat-tag">Frontend</div>
+          </div>
+          <div class="feat-body">
+            <h4>DoryBim — Иллюстратор</h4>
+            <p>Сайт-портфолио · галерея · прайс · заказ</p>
+          </div>
+        </div>
       </div>
-
-    </div>
-
-    <!-- PROJECTS -->
     <div class="page" id="page-projects">
       <div class="sh">
         <h2>Проекты</h2>
@@ -1082,6 +1088,18 @@
             <div class="proj-cats"><span class="pcat">PowerPoint</span><span class="pcat">Storytelling</span></div>
             <h3>Hybrid Pass</h3>
             <p>Дизайн презентации для стартапа (10 слайдов) + скрипт.</p>
+          </div>
+        </div>
+
+        <div class="proj-card" data-cat="frontend">
+          <div class="proj-img">
+            <img src="https://228burger228.github.io/Dorybim/pixel_cafe.jpg" alt="DoryBim" onerror="this.parentElement.innerHTML='<div class=proj-ph>🎨</div>'" />
+            <div class="proj-ov"><a href="https://228burger228.github.io/Dorybim/index.html" target="_blank">Открыть →</a></div>
+          </div>
+          <div class="proj-body">
+            <div class="proj-cats"><span class="pcat">Frontend</span><span class="pcat">HTML/CSS/JS</span></div>
+            <h3>DoryBim — Иллюстратор</h3>
+            <p>Сайт-портфолио для цифрового иллюстратора. Галерея, прайс, форма заказа арта.</p>
           </div>
         </div>
 
