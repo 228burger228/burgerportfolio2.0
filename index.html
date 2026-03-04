@@ -21,11 +21,11 @@
     <div class="s-logo" id="logo-trigger">ВС.</div>
     <ul class="nav-list" id="navList">
       <li class="active" data-page="home"><i class="ph ph-house"></i><span>Главная</span></li>
+      <li data-page="about"><i class="ph ph-user"></i><span>Обо мне</span></li>
       <li data-page="projects"><i class="ph ph-briefcase"></i><span>Проекты</span></li>
       <li data-page="packaging"><i class="ph ph-package"></i><span>Упаковка</span></li>
       <li data-page="youtube"><i class="ph ph-youtube-logo"></i><span>YouTube</span></li>
       <li data-page="gallery"><i class="ph ph-camera"></i><span>Gallery</span></li>
-      <li data-page="about"><i class="ph ph-user"></i><span>Обо мне</span></li>
       <li id="hobbies-nav"><i class="ph ph-game-controller"></i><span>Хобби</span></li>
     </ul>
     <div class="s-footer">
@@ -35,34 +35,22 @@
 
   <main class="main">
 
-    <!-- ══════════════════════════════════════════
-         HOME
-    ══════════════════════════════════════════ -->
+    <!-- HOME -->
     <div class="page active" id="page-home">
-
       <div class="marquee-wrap">
         <div class="mtrack">
-          <span>UI/UX Design</span><span>•</span>
-          <span>Figma</span><span>•</span>
-          <span>Frontend Dev</span><span>•</span>
-          <span>HTML / CSS / JS</span><span>•</span>
-          <span>Motion Design</span><span>•</span>
-          <span>Content Creation</span><span>•</span>
-          <span>Video Editing</span><span>•</span>
-          <span>Упаковка & Печать</span><span>•</span>
-          <span>UI/UX Design</span><span>•</span>
-          <span>Figma</span><span>•</span>
-          <span>Frontend Dev</span><span>•</span>
-          <span>HTML / CSS / JS</span><span>•</span>
-          <span>Motion Design</span><span>•</span>
-          <span>Content Creation</span><span>•</span>
-          <span>Video Editing</span><span>•</span>
-          <span>Упаковка & Печать</span><span>•</span>
+          <span>UI/UX Design</span><span>•</span><span>Figma</span><span>•</span>
+          <span>Frontend Dev</span><span>•</span><span>HTML / CSS / JS</span><span>•</span>
+          <span>Motion Design</span><span>•</span><span>Content Creation</span><span>•</span>
+          <span>Video Editing</span><span>•</span><span>Упаковка & Печать</span><span>•</span>
+          <span>UI/UX Design</span><span>•</span><span>Figma</span><span>•</span>
+          <span>Frontend Dev</span><span>•</span><span>HTML / CSS / JS</span><span>•</span>
+          <span>Motion Design</span><span>•</span><span>Content Creation</span><span>•</span>
+          <span>Video Editing</span><span>•</span><span>Упаковка & Печать</span><span>•</span>
         </div>
       </div>
 
       <div class="bento">
-
         <div class="glass card-profile">
           <img class="avatar" src="https://github.com/228burger228.png" alt="Burger" />
           <div class="profile-text">
@@ -91,12 +79,10 @@
           </ul>
           <div class="stat-row">
             <div class="stat-mini" onclick="window.open('https://github.com/228burger228','_blank')">
-              <i class="ph ph-github-logo"></i>
-              <span class="num">GitHub</span>
+              <i class="ph ph-github-logo"></i><span class="num">GitHub</span>
             </div>
             <div class="stat-mini" onclick="window.open('https://www.youtube.com/@burgerdom6','_blank')">
-              <i class="ph ph-youtube-logo"></i>
-              <span class="num">YouTube</span>
+              <i class="ph ph-youtube-logo"></i><span class="num">YouTube</span>
             </div>
           </div>
         </div>
@@ -118,10 +104,8 @@
           </form>
           <p id="form-status"></p>
         </div>
+      </div>
 
-      </div><!-- /bento -->
-
-      <!-- STATS -->
       <div class="home-stats">
         <div class="hstat"><div class="hstat-num">12<span>+</span></div><div class="hstat-label">Проектов</div></div>
         <div class="hstat-div"></div>
@@ -132,7 +116,6 @@
         <div class="hstat"><div class="hstat-num">∞</div><div class="hstat-label">Кофе выпито</div></div>
       </div>
 
-      <!-- TOOLS -->
       <div class="home-section-label">Инструменты</div>
       <div class="tools-grid">
         <div class="tool-chip"><i class="ph ph-figma-logo"></i> Figma</div>
@@ -146,7 +129,6 @@
         <div class="tool-chip"><i class="ph ph-package"></i> Упаковка & Печать</div>
       </div>
 
-      <!-- FEATURED -->
       <div class="home-section-label" style="margin-top:28px">
         Избранные проекты
         <button class="see-all-btn" id="see-all-btn">Все проекты →</button>
@@ -181,192 +163,188 @@
           <div class="feat-body"><h4>Eco-Step App</h4><p>Мобильный интерфейс · маршруты · трекер</p></div>
         </div>
       </div>
-
     </div><!-- /page-home -->
 
-    <!-- ══════════════════════════════════════════
-         PROJECTS
-    ══════════════════════════════════════════ -->
+    <!-- ABOUT -->
+    <div class="page" id="page-about">
+      <div class="about-hero">
+        <img class="about-avatar" src="https://github.com/228burger228.png" alt="Dmitry" />
+        <div class="about-intro">
+          <div class="about-name-row">
+            <h1>Дмитрий <span class="about-nick">(Burger)</span></h1>
+            <div class="avail"><div class="avail-dot"></div>Открыт к работе</div>
+          </div>
+          <p class="about-tagline">UI/UX Designer · Frontend Developer · Content Creator</p>
+          <p class="about-bio">Делаю интерфейсы, которые хочется трогать, и сайты, которые работают. 2+ года в дизайне и фронтенде — от учебных проектов до коммерческих заказов. Умею закрыть задачу целиком: от концепции в Figma до задеплоенного кода.</p>
+          <div class="about-cta-row">
+            <button class="btn-accent" id="about-contact-btn"><i class="ph ph-telegram-logo"></i> Написать</button>
+            <a class="about-link-btn" href="https://t.me/aimovl" target="_blank"><i class="ph ph-arrow-square-out"></i> Telegram</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="about-section-label">Опыт</div>
+      <div class="exp-grid">
+        <div class="exp-card exp-featured">
+          <div class="exp-head">
+            <div class="exp-icon"><i class="ph ph-sword"></i></div>
+            <div>
+              <div class="exp-title">Frontend Developer & Designer</div>
+              <div class="exp-company"><a href="https://masterscitygame.ru" target="_blank">MastersCityGame.ru <i class="ph ph-arrow-square-out"></i></a></div>
+            </div>
+            <div class="exp-badge">Коммерческий</div>
+          </div>
+          <p class="exp-desc">Государственный игровой проект. Полностью верстал макет и писал код — от дизайна в Figma до рабочего сайта. Решал одновременно дизайнерские и программистские задачи в рамках официального сотрудничества.</p>
+          <div class="exp-tags">
+            <span>HTML/CSS/JS</span><span>Figma</span><span>Вёрстка макета</span><span>Официальный заказ</span>
+          </div>
+        </div>
+        <div class="exp-card">
+          <div class="exp-head">
+            <div class="exp-icon"><i class="ph ph-crosshair"></i></div>
+            <div>
+              <div class="exp-title">Frontend Developer & Content Creator</div>
+              <div class="exp-company">Warpath: Ace Shooter <span class="exp-official">· Официальное сотрудничество</span></div>
+            </div>
+          </div>
+          <p class="exp-desc">Официальный блогер и разработчик для игрового комьюнити. Создаю справочный сайт для русскоязычных игроков — заполняю нишу, которую не закрывают ни английские, ни китайские ресурсы. Параллельно снимаю видео для YouTube.</p>
+          <div class="exp-tags">
+            <span>Vue 3</span><span>Vite</span><span>GitHub Pages</span><span>Content</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="about-section-label" style="margin-top:28px">Образование</div>
+      <div class="edu-grid">
+        <div class="edu-card">
+          <div class="edu-icon"><i class="ph ph-graduation-cap"></i></div>
+          <div class="edu-body">
+            <div class="edu-title">Графический дизайн</div>
+            <div class="edu-place">МГКЭИТ · Специальность</div>
+            <p class="edu-desc">За время учёбы прошёл полный цикл: чертежи в традиционном и диджитал-форматах, постеры, карточки товара, визитки, баннеры, брендбук, фирменные стили, редизайны. Большой объём работы в Figma.</p>
+          </div>
+        </div>
+        <div class="edu-card">
+          <div class="edu-icon"><i class="ph ph-certificate"></i></div>
+          <div class="edu-body">
+            <div class="edu-title">UI/UX Design</div>
+            <div class="edu-place">Яндекс Практикум · Курс (в процессе)</div>
+            <p class="edu-desc">Курс по дизайну интерфейсов для укрепления базы — систематизирую знания, полученные на практике.</p>
+          </div>
+        </div>
+        <div class="edu-card">
+          <div class="edu-icon"><i class="ph ph-code"></i></div>
+          <div class="edu-body">
+            <div class="edu-title">Frontend Development</div>
+            <div class="edu-place">Self-taught · 2+ года практики</div>
+            <p class="edu-desc">HTML, CSS, JavaScript — чистый код без фреймворков. Сейчас изучаю React и Vue 3. Весь стек виден в реальных проектах в разделе "Проекты".</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="about-section-label" style="margin-top:28px">Навыки</div>
+      <div class="skills-blocks">
+        <div class="skill-block">
+          <div class="skill-block-title"><i class="ph ph-pen-nib"></i> Дизайн</div>
+          <div class="skill-tags">
+            <span>Figma</span><span>UI/UX</span><span>Photoshop</span><span>Брендбук</span><span>Фирменный стиль</span><span>Упаковка</span><span>Баннеры</span><span>Редизайн</span>
+          </div>
+        </div>
+        <div class="skill-block">
+          <div class="skill-block-title"><i class="ph ph-brackets-curly"></i> Разработка</div>
+          <div class="skill-tags">
+            <span>HTML5</span><span>CSS3</span><span>JavaScript</span><span>Vue 3</span><span>React (изучаю)</span><span>Vite</span><span>GitHub Pages</span><span>Адаптивная вёрстка</span>
+          </div>
+        </div>
+        <div class="skill-block">
+          <div class="skill-block-title"><i class="ph ph-video-camera"></i> Контент</div>
+          <div class="skill-tags">
+            <span>Premiere Pro</span><span>After Effects</span><span>Motion Design</span><span>YouTube</span><span>Сценарий</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="about-personal glass">
+        <div class="about-personal-icon"><i class="ph ph-sparkle"></i></div>
+        <div>
+          <div class="about-personal-title">Почему я?</div>
+          <p class="about-personal-text">Закрываю сразу несколько ролей — дизайнер, верстальщик, контент-мейкер. Не нужно объяснять, как дизайн должен работать в коде: я понимаю это изнутри. Умею работать самостоятельно и довожу проекты до результата — всё что в портфолио реально задеплоено и работает.</p>
+        </div>
+      </div>
+    </div><!-- /page-about -->
+
+    <!-- PROJECTS -->
     <div class="page" id="page-projects">
       <div class="sh">
         <h2>Проекты</h2>
         <p>UI/UX дизайн и фронтенд · коммерческие работы и концепты</p>
       </div>
-
       <div class="proj-filter">
         <button class="filt active" data-f="all">Все</button>
         <button class="filt" data-f="frontend">Frontend</button>
         <button class="filt" data-f="ui">UI/UX</button>
         <button class="filt" data-f="content">Контент</button>
       </div>
-
       <div class="proj-grid">
-
         <div class="proj-card" data-cat="frontend">
-          <div class="proj-img">
-            <div class="proj-ph">🧮</div>
-            <div class="proj-ov"><a href="https://228burger228.github.io/Amakids/" target="_blank">Открыть →</a></div>
-          </div>
-          <div class="proj-body">
-            <div class="proj-cats"><span class="pcat">Frontend</span><span class="pcat">Лендинг</span></div>
-            <h3>Amakids — Детский центр</h3>
-            <p>Лендинг для центра ментальной арифметики. Курсы, запись на урок, раздел для педагогов.</p>
-          </div>
+          <div class="proj-img"><div class="proj-ph">🧮</div><div class="proj-ov"><a href="https://228burger228.github.io/Amakids/" target="_blank">Открыть →</a></div></div>
+          <div class="proj-body"><div class="proj-cats"><span class="pcat">Frontend</span><span class="pcat">Лендинг</span></div><h3>Amakids — Детский центр</h3><p>Лендинг для центра ментальной арифметики. Курсы, запись на урок, раздел для педагогов.</p></div>
         </div>
-
         <div class="proj-card" data-cat="frontend">
-          <div class="proj-img">
-            <img src="https://228burger228.github.io/Dorybim/pixel_cafe.jpg" alt="DoryBim" onerror="this.parentElement.innerHTML='<div class=proj-ph>🎨</div>'" />
-            <div class="proj-ov"><a href="https://228burger228.github.io/Dorybim/index.html" target="_blank">Открыть →</a></div>
-          </div>
-          <div class="proj-body">
-            <div class="proj-cats"><span class="pcat">Frontend</span><span class="pcat">HTML/CSS/JS</span></div>
-            <h3>DoryBim — Иллюстратор</h3>
-            <p>Сайт-портфолио для цифрового иллюстратора. Галерея, прайс, форма заказа арта.</p>
-          </div>
+          <div class="proj-img"><img src="https://228burger228.github.io/Dorybim/pixel_cafe.jpg" alt="DoryBim" onerror="this.parentElement.innerHTML='<div class=proj-ph>🎨</div>'" /><div class="proj-ov"><a href="https://228burger228.github.io/Dorybim/index.html" target="_blank">Открыть →</a></div></div>
+          <div class="proj-body"><div class="proj-cats"><span class="pcat">Frontend</span><span class="pcat">HTML/CSS/JS</span></div><h3>DoryBim — Иллюстратор</h3><p>Сайт-портфолио для цифрового иллюстратора. Галерея, прайс, форма заказа арта.</p></div>
         </div>
-
         <div class="proj-card" data-cat="frontend">
-          <div class="proj-img">
-            <img src="https://228burger228.github.io/burgerCreate/scrintrial.png" alt="Triathlon" onerror="this.parentElement.innerHTML='<div class=proj-ph>🏊</div>'" />
-            <div class="proj-ov"><a href="https://228burger228.github.io/triatlon/" target="_blank">Открыть →</a></div>
-          </div>
-          <div class="proj-body">
-            <div class="proj-cats"><span class="pcat">HTML/CSS</span><span class="pcat">Frontend</span></div>
-            <h3>Спортшкола Триатлон</h3>
-            <p>Многостраничный сайт. Адаптив, галерея, инфоблоки.</p>
-          </div>
+          <div class="proj-img"><img src="https://228burger228.github.io/burgerCreate/scrintrial.png" alt="Triathlon" onerror="this.parentElement.innerHTML='<div class=proj-ph>🏊</div>'" /><div class="proj-ov"><a href="https://228burger228.github.io/triatlon/" target="_blank">Открыть →</a></div></div>
+          <div class="proj-body"><div class="proj-cats"><span class="pcat">HTML/CSS</span><span class="pcat">Frontend</span></div><h3>Спортшкола Триатлон</h3><p>Многостраничный сайт. Адаптив, галерея, инфоблоки.</p></div>
         </div>
-
         <div class="proj-card" data-cat="frontend">
-          <div class="proj-img">
-            <img src="https://228burger228.github.io/burgerCreate/web2026.png" alt="NY 2026" onerror="this.parentElement.innerHTML='<div class=proj-ph>🎄</div>'" />
-            <div class="proj-ov"><a href="https://228burger228.github.io/New2026/" target="_blank">Открыть →</a></div>
-          </div>
-          <div class="proj-body">
-            <div class="proj-cats"><span class="pcat">JS</span><span class="pcat">Animation</span></div>
-            <h3>New Year 2026 Card</h3>
-            <p>Интерактивная открытка с анимациями и генерацией поздравлений.</p>
-          </div>
+          <div class="proj-img"><img src="https://228burger228.github.io/burgerCreate/web2026.png" alt="NY 2026" onerror="this.parentElement.innerHTML='<div class=proj-ph>🎄</div>'" /><div class="proj-ov"><a href="https://228burger228.github.io/New2026/" target="_blank">Открыть →</a></div></div>
+          <div class="proj-body"><div class="proj-cats"><span class="pcat">JS</span><span class="pcat">Animation</span></div><h3>New Year 2026 Card</h3><p>Интерактивная открытка с анимациями и генерацией поздравлений.</p></div>
         </div>
-
         <div class="proj-card" data-cat="frontend">
-          <div class="proj-img">
-            <img src="Porfolscr.png" alt="Portfolio v1" onerror="this.parentElement.innerHTML='<div class=proj-ph>💼</div>'" />
-            <div class="proj-ov"><a href="https://228burger228.github.io/burgerCreate/index.html" target="_blank">Открыть →</a></div>
-          </div>
-          <div class="proj-body">
-            <div class="proj-cats"><span class="pcat">HTML/CSS</span><span class="pcat">Frontend</span></div>
-            <h3>Портфолио v1</h3>
-            <p>Первая версия портфолио. Адаптив, галерея, многостраничный.</p>
-          </div>
+          <div class="proj-img"><img src="Porfolscr.png" alt="Portfolio v1" onerror="this.parentElement.innerHTML='<div class=proj-ph>💼</div>'" /><div class="proj-ov"><a href="https://228burger228.github.io/burgerCreate/index.html" target="_blank">Открыть →</a></div></div>
+          <div class="proj-body"><div class="proj-cats"><span class="pcat">HTML/CSS</span><span class="pcat">Frontend</span></div><h3>Портфолио v1</h3><p>Первая версия портфолио. Адаптив, галерея, многостраничный.</p></div>
         </div>
-
         <div class="proj-card" data-cat="ui">
-          <div class="proj-img">
-            <img src="./music.jpg" alt="Music Label" onerror="this.parentElement.innerHTML='<div class=proj-ph>🎵</div>'" />
-            <div class="proj-ov"><a href="https://www.figma.com/design/vynb9Q4A1K2rJ09Q4kRRvy/" target="_blank">Figma →</a></div>
-          </div>
-          <div class="proj-body">
-            <div class="proj-cats"><span class="pcat">UI/UX</span><span class="pcat">Figma</span></div>
-            <h3>Music Label Concept</h3>
-            <p>Дизайн сайта лейбла. Тёмная эстетика, неон, акцент на артистах.</p>
-          </div>
+          <div class="proj-img"><img src="./music.jpg" alt="Music Label" onerror="this.parentElement.innerHTML='<div class=proj-ph>🎵</div>'" /><div class="proj-ov"><a href="https://www.figma.com/design/vynb9Q4A1K2rJ09Q4kRRvy/" target="_blank">Figma →</a></div></div>
+          <div class="proj-body"><div class="proj-cats"><span class="pcat">UI/UX</span><span class="pcat">Figma</span></div><h3>Music Label Concept</h3><p>Дизайн сайта лейбла. Тёмная эстетика, неон, акцент на артистах.</p></div>
         </div>
-
         <div class="proj-card" data-cat="ui">
-          <div class="proj-img">
-            <img src="./scooter.jpg" alt="Scooter" onerror="this.parentElement.innerHTML='<div class=proj-ph>🛴</div>'" />
-            <div class="proj-ov"><a href="https://www.figma.com/design/3FyaRye7LEPnBvXM7jOVsr/" target="_blank">Figma →</a></div>
-          </div>
-          <div class="proj-body">
-            <div class="proj-cats"><span class="pcat">Mobile</span><span class="pcat">Interface</span></div>
-            <h3>E-Scooter Rental</h3>
-            <p>Интерфейс аренды самокатов. Карта, профиль, система оплаты.</p>
-          </div>
+          <div class="proj-img"><img src="./scooter.jpg" alt="Scooter" onerror="this.parentElement.innerHTML='<div class=proj-ph>🛴</div>'" /><div class="proj-ov"><a href="https://www.figma.com/design/3FyaRye7LEPnBvXM7jOVsr/" target="_blank">Figma →</a></div></div>
+          <div class="proj-body"><div class="proj-cats"><span class="pcat">Mobile</span><span class="pcat">Interface</span></div><h3>E-Scooter Rental</h3><p>Интерфейс аренды самокатов. Карта, профиль, система оплаты.</p></div>
         </div>
-
         <div class="proj-card" data-cat="ui">
-          <div class="proj-img">
-            <img src="ecostep.png" alt="Ecostep" onerror="this.parentElement.innerHTML='<div class=proj-ph>🌱</div>'" />
-            <div class="proj-ov"><a href="https://www.figma.com/design/2u0JYeK7QvPeYxCvcYyHtL/ecostep" target="_blank">Figma →</a></div>
-          </div>
-          <div class="proj-body">
-            <div class="proj-cats"><span class="pcat">Mobile</span><span class="pcat">Interface</span></div>
-            <h3>Eco-Step App</h3>
-            <p>Экоприложение для велосипедистов: маршруты, трекер, сообщество.</p>
-          </div>
+          <div class="proj-img"><img src="ecostep.png" alt="Ecostep" onerror="this.parentElement.innerHTML='<div class=proj-ph>🌱</div>'" /><div class="proj-ov"><a href="https://www.figma.com/design/2u0JYeK7QvPeYxCvcYyHtL/ecostep" target="_blank">Figma →</a></div></div>
+          <div class="proj-body"><div class="proj-cats"><span class="pcat">Mobile</span><span class="pcat">Interface</span></div><h3>Eco-Step App</h3><p>Экоприложение для велосипедистов: маршруты, трекер, сообщество.</p></div>
         </div>
-
         <div class="proj-card" data-cat="ui">
-          <div class="proj-img">
-            <img src="midquest.png" alt="Midnight Choice" onerror="this.parentElement.innerHTML='<div class=proj-ph>🎬</div>'" />
-            <div class="proj-ov"><a href="https://www.figma.com/design/zcN1ZENeexrt7Re0UzFFOS/" target="_blank">Figma →</a></div>
-          </div>
-          <div class="proj-body">
-            <div class="proj-cats"><span class="pcat">Web</span><span class="pcat">Concept</span></div>
-            <h3>Midnight Choice</h3>
-            <p>Квест-сайт выбора кино по настроению и темам.</p>
-          </div>
+          <div class="proj-img"><img src="midquest.png" alt="Midnight Choice" onerror="this.parentElement.innerHTML='<div class=proj-ph>🎬</div>'" /><div class="proj-ov"><a href="https://www.figma.com/design/zcN1ZENeexrt7Re0UzFFOS/" target="_blank">Figma →</a></div></div>
+          <div class="proj-body"><div class="proj-cats"><span class="pcat">Web</span><span class="pcat">Concept</span></div><h3>Midnight Choice</h3><p>Квест-сайт выбора кино по настроению и темам.</p></div>
         </div>
-
         <div class="proj-card" data-cat="ui">
-          <div class="proj-img">
-            <img src="stromaz.png" alt="Stroy" onerror="this.parentElement.innerHTML='<div class=proj-ph>🏗️</div>'" />
-            <div class="proj-ov"><a href="https://www.figma.com/design/IeIQQCUhqWNWFuZfymvviR/" target="_blank">Figma →</a></div>
-          </div>
-          <div class="proj-body">
-            <div class="proj-cats"><span class="pcat">Редизайн</span><span class="pcat">UX/UI</span></div>
-            <h3>Редизайн стройкомпании</h3>
-            <p>Редизайн шапки для роста конверсии и функциональности.</p>
-          </div>
+          <div class="proj-img"><img src="stromaz.png" alt="Stroy" onerror="this.parentElement.innerHTML='<div class=proj-ph>🏗️</div>'" /><div class="proj-ov"><a href="https://www.figma.com/design/IeIQQCUhqWNWFuZfymvviR/" target="_blank">Figma →</a></div></div>
+          <div class="proj-body"><div class="proj-cats"><span class="pcat">Редизайн</span><span class="pcat">UX/UI</span></div><h3>Редизайн стройкомпании</h3><p>Редизайн шапки для роста конверсии и функциональности.</p></div>
         </div>
-
         <div class="proj-card" data-cat="content">
-          <div class="proj-img">
-            <div class="proj-ph">⚡</div>
-            <div class="proj-ov"><a href="https://www.figma.com/design/fvr4rOpbbFhIbScrTiCqLp/" target="_blank">Figma →</a></div>
-          </div>
-          <div class="proj-body">
-            <div class="proj-cats"><span class="pcat">Реклама</span><span class="pcat">Figma/PS</span></div>
-            <h3>EcoVolt Pulse</h3>
-            <p>Билборд 3×6м для запуска электрокара. Экология и динамика.</p>
-          </div>
+          <div class="proj-img"><div class="proj-ph">⚡</div><div class="proj-ov"><a href="https://www.figma.com/design/fvr4rOpbbFhIbScrTiCqLp/" target="_blank">Figma →</a></div></div>
+          <div class="proj-body"><div class="proj-cats"><span class="pcat">Реклама</span><span class="pcat">Figma/PS</span></div><h3>EcoVolt Pulse</h3><p>Билборд 3×6м для запуска электрокара. Экология и динамика.</p></div>
         </div>
-
         <div class="proj-card" data-cat="content">
           <div class="proj-img"><div class="proj-ph">🛍️</div></div>
-          <div class="proj-body">
-            <div class="proj-cats"><span class="pcat">E-commerce</span><span class="pcat">Figma</span></div>
-            <h3>Wildberries Rich Content</h3>
-            <p>Инфографика для карточек GoPro и зимней рыбалки. Рост CTR.</p>
-          </div>
+          <div class="proj-body"><div class="proj-cats"><span class="pcat">E-commerce</span><span class="pcat">Figma</span></div><h3>Wildberries Rich Content</h3><p>Инфографика для карточек GoPro и зимней рыбалки. Рост CTR.</p></div>
         </div>
-
         <div class="proj-card" data-cat="content">
           <div class="proj-img"><div class="proj-ph">📊</div></div>
-          <div class="proj-body">
-            <div class="proj-cats"><span class="pcat">PowerPoint</span><span class="pcat">Storytelling</span></div>
-            <h3>Hybrid Pass</h3>
-            <p>Дизайн презентации для стартапа (10 слайдов) + скрипт.</p>
-          </div>
+          <div class="proj-body"><div class="proj-cats"><span class="pcat">PowerPoint</span><span class="pcat">Storytelling</span></div><h3>Hybrid Pass</h3><p>Дизайн презентации для стартапа (10 слайдов) + скрипт.</p></div>
         </div>
-
       </div>
     </div><!-- /page-projects -->
 
-    <!-- ══════════════════════════════════════════
-         PACKAGING
-    ══════════════════════════════════════════ -->
+    <!-- PACKAGING -->
     <div class="page" id="page-packaging">
-      <div class="sh">
-        <h2>Упаковка & Печать</h2>
-        <p>Дизайн упаковки, этикеток и полиграфии</p>
-      </div>
-
+      <div class="sh"><h2>Упаковка & Печать</h2><p>Дизайн упаковки, этикеток и полиграфии</p></div>
       <div class="pack-grid">
-
-        <!-- Карточка 1: PNG превью -->
         <div class="pack-card">
           <div class="pack-preview">
             <img src="Ypakovka1.png" alt="Упаковка" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" />
@@ -382,8 +360,6 @@
             </div>
           </div>
         </div>
-
-        <!-- Карточка 2: PDF мармелад -->
         <div class="pack-card">
           <div class="pack-preview">
             <div class="pack-ph">📄</div>
@@ -398,8 +374,6 @@
             </div>
           </div>
         </div>
-
-        <!-- Карточка 3: PDF малинка -->
         <div class="pack-card">
           <div class="pack-preview">
             <div class="pack-ph">🍓</div>
@@ -414,23 +388,16 @@
             </div>
           </div>
         </div>
-
       </div>
-
       <div class="upload-hint">
         <i class="ph ph-plus-circle"></i>
-        Когда добавишь новые работы — просто загрузи файлы в репозиторий и добавь новые карточки по этому же шаблону.
+        Когда добавишь новые работы — загрузи файлы в репозиторий и добавь карточки по этому шаблону.
       </div>
     </div><!-- /page-packaging -->
 
-    <!-- ══════════════════════════════════════════
-         YOUTUBE
-    ══════════════════════════════════════════ -->
+    <!-- YOUTUBE -->
     <div class="page" id="page-youtube">
-      <div class="sh">
-        <h2>YouTube</h2>
-        <p>Последние видео · Burger Create</p>
-      </div>
+      <div class="sh"><h2>YouTube</h2><p>Последние видео · Burger Create</p></div>
       <div class="video-grid">
         <div class="video-wrap"><iframe src="https://www.youtube.com/embed/L13FJlzavbM" allowfullscreen></iframe></div>
         <div class="video-wrap"><iframe src="https://www.youtube.com/embed/JvhISaFT1rI" allowfullscreen></iframe></div>
@@ -440,14 +407,9 @@
       </div>
     </div><!-- /page-youtube -->
 
-    <!-- ══════════════════════════════════════════
-         GALLERY
-    ══════════════════════════════════════════ -->
+    <!-- GALLERY -->
     <div class="page" id="page-gallery">
-      <div class="sh">
-        <h2>Gallery</h2>
-        <p>Фото из жизни</p>
-      </div>
+      <div class="sh"><h2>Gallery</h2><p>Фото из жизни</p></div>
       <div class="gal-filters">
         <button class="filt active" data-gf="all">All</button>
         <button class="filt" data-gf="moto">Moto</button>
@@ -470,133 +432,6 @@
       </div>
     </div><!-- /page-gallery -->
 
-    <!-- ══════════════════════════════════════════
-         ABOUT
-    ══════════════════════════════════════════ -->
-    <div class="page" id="page-about">
-
-      <div class="about-hero">
-        <img class="about-avatar" src="https://github.com/228burger228.png" alt="Dmitry" />
-        <div class="about-intro">
-          <div class="about-name-row">
-            <h1>Дмитрий <span class="about-nick">(Burger)</span></h1>
-            <div class="avail"><div class="avail-dot"></div>Открыт к работе</div>
-          </div>
-          <p class="about-tagline">UI/UX Designer · Frontend Developer · Content Creator</p>
-          <p class="about-bio">Делаю интерфейсы, которые хочется трогать, и сайты, которые работают. 2+ года в дизайне и фронтенде — от учебных проектов до коммерческих заказов. Умею закрыть задачу целиком: от концепции в Figma до задеплоенного кода.</p>
-          <div class="about-cta-row">
-            <button class="btn-accent" id="about-contact-btn"><i class="ph ph-telegram-logo"></i> Написать</button>
-            <a class="about-link-btn" href="https://t.me/aimovl" target="_blank"><i class="ph ph-arrow-square-out"></i> Telegram</a>
-          </div>
-        </div>
-      </div>
-
-      <!-- EXPERIENCE -->
-      <div class="about-section-label">Опыт</div>
-      <div class="exp-grid">
-
-        <div class="exp-card exp-featured">
-          <div class="exp-head">
-            <div class="exp-icon"><i class="ph ph-sword"></i></div>
-            <div>
-              <div class="exp-title">Frontend Developer & Designer</div>
-              <div class="exp-company"><a href="https://masterscitygame.ru" target="_blank">MastersCityGame.ru <i class="ph ph-arrow-square-out"></i></a></div>
-            </div>
-            <div class="exp-badge">Коммерческий</div>
-          </div>
-          <p class="exp-desc">Государственный игровой проект. Полностью верстал макет и писал код — от дизайна в Figma до рабочего сайта. Решал одновременно дизайнерские и программистские задачи в рамках официального сотрудничества.</p>
-          <div class="exp-tags">
-            <span>HTML/CSS/JS</span><span>Figma</span><span>Вёрстка макета</span><span>Официальный заказ</span>
-          </div>
-        </div>
-
-        <div class="exp-card">
-          <div class="exp-head">
-            <div class="exp-icon"><i class="ph ph-crosshair"></i></div>
-            <div>
-              <div class="exp-title">Frontend Developer & Content Creator</div>
-              <div class="exp-company">Warpath: Ace Shooter <span class="exp-official">· Официальное сотрудничество</span></div>
-            </div>
-          </div>
-          <p class="exp-desc">Официальный блогер и разработчик для игрового комьюнити. Создаю справочный сайт для русскоязычных игроков — заполняю нишу, которую не закрывают ни английские, ни китайские ресурсы. Параллельно снимаю видео для YouTube.</p>
-          <div class="exp-tags">
-            <span>Vue 3</span><span>Vite</span><span>GitHub Pages</span><span>Content</span>
-          </div>
-        </div>
-
-      </div>
-
-      <!-- EDUCATION -->
-      <div class="about-section-label" style="margin-top:28px">Образование</div>
-      <div class="edu-grid">
-
-        <div class="edu-card">
-          <div class="edu-icon"><i class="ph ph-graduation-cap"></i></div>
-          <div class="edu-body">
-            <div class="edu-title">Графический дизайн</div>
-            <div class="edu-place">МГКЭИТ · Специальность</div>
-            <p class="edu-desc">За время учёбы прошёл полный цикл: чертежи в традиционном и диджитал-форматах, постеры, карточки товара, визитки, баннеры, брендбук, фирменные стили, редизайны. Большой объём работы в Figma.</p>
-          </div>
-        </div>
-
-        <div class="edu-card">
-          <div class="edu-icon"><i class="ph ph-certificate"></i></div>
-          <div class="edu-body">
-            <div class="edu-title">UI/UX Design</div>
-            <div class="edu-place">Яндекс Практикум · Курс (в процессе)</div>
-            <p class="edu-desc">Курс по дизайну интерфейсов для укрепления базы — систематизирую знания, полученные на практике.</p>
-          </div>
-        </div>
-
-        <div class="edu-card">
-          <div class="edu-icon"><i class="ph ph-code"></i></div>
-          <div class="edu-body">
-            <div class="edu-title">Frontend Development</div>
-            <div class="edu-place">Self-taught · 2+ года практики</div>
-            <p class="edu-desc">HTML, CSS, JavaScript — чистый код без фреймворков. Сейчас изучаю React и Vue 3. Весь стек виден в реальных проектах в разделе "Проекты".</p>
-          </div>
-        </div>
-
-      </div>
-
-      <!-- SKILLS -->
-      <div class="about-section-label" style="margin-top:28px">Навыки</div>
-      <div class="skills-blocks">
-
-        <div class="skill-block">
-          <div class="skill-block-title"><i class="ph ph-pen-nib"></i> Дизайн</div>
-          <div class="skill-tags">
-            <span>Figma</span><span>UI/UX</span><span>Photoshop</span><span>Брендбук</span><span>Фирменный стиль</span><span>Упаковка</span><span>Баннеры</span><span>Редизайн</span>
-          </div>
-        </div>
-
-        <div class="skill-block">
-          <div class="skill-block-title"><i class="ph ph-brackets-curly"></i> Разработка</div>
-          <div class="skill-tags">
-            <span>HTML5</span><span>CSS3</span><span>JavaScript</span><span>Vue 3</span><span>React (изучаю)</span><span>Vite</span><span>GitHub Pages</span><span>Адаптивная вёрстка</span>
-          </div>
-        </div>
-
-        <div class="skill-block">
-          <div class="skill-block-title"><i class="ph ph-video-camera"></i> Контент</div>
-          <div class="skill-tags">
-            <span>Premiere Pro</span><span>After Effects</span><span>Motion Design</span><span>YouTube</span><span>Сценарий</span>
-          </div>
-        </div>
-
-      </div>
-
-      <!-- ABOUT PERSONALITY -->
-      <div class="about-personal glass">
-        <div class="about-personal-icon"><i class="ph ph-sparkle"></i></div>
-        <div>
-          <div class="about-personal-title">Почему я?</div>
-          <p class="about-personal-text">Закрываю сразу несколько ролей — дизайнер, верстальщик, контент-мейкер. Не нужно объяснять, как дизайн должен работать в коде: я понимаю это изнутри. Умею работать самостоятельно и довожу проекты до результата — всё что в портфолио реально задеплоено и работает.</p>
-        </div>
-      </div>
-
-    </div><!-- /page-about -->
-
   </main>
 </div><!-- /app-wrap -->
 
@@ -609,6 +444,8 @@ navItems.forEach(item => {
   item.addEventListener('click', () => {
     navItems.forEach(n => n.classList.remove('active'));
     item.classList.add('active');
+    const main = document.querySelector('.main');
+    if (main) main.scrollTop = 0;
     pages.forEach(p => {
       p.classList.remove('active');
       if (p.id === 'page-' + item.dataset.page) p.classList.add('active');
@@ -626,6 +463,11 @@ document.getElementById('to-projects').addEventListener('click', () => {
 
 document.getElementById('see-all-btn').addEventListener('click', () => {
   document.querySelector('[data-page="projects"]').click();
+});
+
+document.getElementById('about-contact-btn').addEventListener('click', () => {
+  document.querySelector('[data-page="home"]').click();
+  setTimeout(() => { document.getElementById('tg-name').focus(); }, 400);
 });
 
 // ── PROJECT FILTER ──
@@ -660,18 +502,12 @@ document.getElementById('tg-form').addEventListener('submit', async e => {
   const name    = document.getElementById('tg-name').value;
   const contact = document.getElementById('tg-contact').value;
   const msg     = document.getElementById('tg-msg').value;
-
   const BOT_TOKEN = '8467633783:AAHkaNcFFCz6fn8AYEUbIjBXLB8uMLsdKH0';
   const CHAT_ID   = '1577660217';
-  const text = `🍔 Portfolio Contact
-👤 ${name}
-📩 ${contact}
-💬 ${msg}`;
-
+  const text = '🍔 Portfolio Contact\n👤 ' + name + '\n📩 ' + contact + '\n💬 ' + msg;
   btn.innerHTML = '<i class="ph ph-circle-notch"></i>';
-
   try {
-    await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
+    await fetch('https://api.telegram.org/bot' + BOT_TOKEN + '/sendMessage', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ chat_id: CHAT_ID, text })
@@ -687,30 +523,21 @@ document.getElementById('tg-form').addEventListener('submit', async e => {
   }
 });
 
-document.getElementById('about-contact-btn').addEventListener('click', () => {
-  document.querySelector('[data-page="home"]').click();
-  setTimeout(() => { document.getElementById('tg-name').focus(); }, 400);
-});
-
-: скрывать при скролле вниз ──
+// ── MOBILE: скрывать таббар при скролле вниз ──
 (function() {
   const sidebar = document.querySelector('.sidebar');
   const mainEl  = document.querySelector('.main');
   let lastY = 0;
-
   mainEl.addEventListener('scroll', () => {
     if (window.innerWidth > 768) return;
     const y = mainEl.scrollTop;
-    if (y > lastY + 4) {
-      sidebar.classList.add('hidden');
-    } else if (y < lastY - 4) {
-      sidebar.classList.remove('hidden');
-    }
+    if (y > lastY + 4)      sidebar.classList.add('hidden');
+    else if (y < lastY - 4) sidebar.classList.remove('hidden');
     lastY = y;
   }, { passive: true });
 })();
 
-
+// ── CANVAS WEATHER ──
 (function () {
   const canvas = document.getElementById('weatherCanvas');
   const ctx    = canvas.getContext('2d');
