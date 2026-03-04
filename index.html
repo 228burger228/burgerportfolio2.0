@@ -54,7 +54,7 @@
         <div class="glass card-profile">
           <img class="avatar" src="https://github.com/228burger228.png" alt="Burger" />
           <div class="profile-text">
-            <h1>Burger Create</h1>
+            <h1>Dmitry (Burger)</h1>
             <p class="role-tag">UI/UX Designer · Frontend Developer · Content Creator</p>
             <div class="tech-stack">
               <i class="ph ph-figma-logo" title="Figma"></i>
@@ -134,6 +134,13 @@
         <button class="see-all-btn" id="see-all-btn">Все проекты →</button>
       </div>
       <div class="featured-grid">
+        <div class="feat-card feat-card--gov" onclick="window.open('https://masterscitygame.ru','_blank')">
+          <div class="feat-img">
+            <div class="feat-ph">🏛️</div>
+            <div class="feat-tag feat-tag--gov"><i class="ph ph-seal-check"></i> Гос. проект</div>
+          </div>
+          <div class="feat-body"><h4>Город Мастеров</h4><p>Платформа Деп. образования Москвы · авторизация · профили · достижения</p></div>
+        </div>
         <div class="feat-card" onclick="window.open('https://228burger228.github.io/triatlon/','_blank')">
           <div class="feat-img">
             <img src="https://228burger228.github.io/burgerCreate/scrintrial.png" alt="Triathlon" onerror="this.parentElement.innerHTML='<div class=feat-ph>🏊</div>'" />
@@ -167,6 +174,8 @@
 
     <!-- ABOUT -->
     <div class="page" id="page-about">
+
+      <!-- HERO -->
       <div class="about-hero">
         <img class="about-avatar" src="https://github.com/228burger228.png" alt="Dmitry" />
         <div class="about-intro">
@@ -174,62 +183,105 @@
             <h1>Дмитрий <span class="about-nick">(Burger)</span></h1>
             <div class="avail"><div class="avail-dot"></div>Открыт к работе</div>
           </div>
-          <p class="about-tagline">UI/UX Designer · Frontend Developer · Content Creator</p>
-          <p class="about-bio">Делаю интерфейсы, которые хочется трогать, и сайты, которые работают. 2+ года в дизайне и фронтенде — от учебных проектов до коммерческих заказов. Умею закрыть задачу целиком: от концепции в Figma до задеплоенного кода.</p>
+          <p class="about-tagline">UI/UX Designer · Frontend Developer · Content Creator · Москва</p>
+          <p class="about-bio">Делаю интерфейсы, которые хочется трогать, и сайты, которые работают. 2+ года в дизайне и фронтенде — от учебных проектов до государственных заказов. Умею закрыть задачу целиком: от концепции в Figma до задеплоенного кода. Дизайнер, который понимает код — и разработчик, которому не надо объяснять про эстетику.</p>
           <div class="about-cta-row">
             <button class="btn-accent" id="about-contact-btn"><i class="ph ph-telegram-logo"></i> Написать</button>
             <a class="about-link-btn" href="https://t.me/aimovl" target="_blank"><i class="ph ph-arrow-square-out"></i> Telegram</a>
+            <a class="about-link-btn" href="https://github.com/228burger228" target="_blank"><i class="ph ph-github-logo"></i> GitHub</a>
           </div>
         </div>
       </div>
 
+      <!-- QUICK STATS -->
+      <div class="about-stats-row">
+        <div class="about-stat"><div class="about-stat-num">2<span>+</span></div><div class="about-stat-label">Года в профессии</div></div>
+        <div class="about-stat-div"></div>
+        <div class="about-stat"><div class="about-stat-num">12<span>+</span></div><div class="about-stat-label">Завершённых проектов</div></div>
+        <div class="about-stat-div"></div>
+        <div class="about-stat"><div class="about-stat-num">1</div><div class="about-stat-label">Гос. проект</div></div>
+        <div class="about-stat-div"></div>
+        <div class="about-stat"><div class="about-stat-num">4</div><div class="about-stat-label">Направления</div></div>
+      </div>
+
+      <!-- EXPERIENCE TIMELINE -->
       <div class="about-section-label">Опыт</div>
-      <div class="exp-grid">
-        <div class="exp-card exp-featured">
-          <div class="exp-head">
-            <div class="exp-icon"><i class="ph ph-sword"></i></div>
-            <div>
-              <div class="exp-title">Frontend Developer & Designer</div>
-              <div class="exp-company"><a href="https://masterscitygame.ru" target="_blank">MastersCityGame.ru <i class="ph ph-arrow-square-out"></i></a></div>
+      <div class="timeline">
+
+        <div class="tl-item tl-featured">
+          <div class="tl-dot"></div>
+          <div class="tl-card">
+            <div class="tl-head">
+              <div class="tl-icon"><i class="ph ph-buildings"></i></div>
+              <div class="tl-meta">
+                <div class="tl-title">Frontend Developer & Designer</div>
+                <div class="tl-company"><a href="https://masterscitygame.ru" target="_blank">Город Мастеров — masterscitygame.ru <i class="ph ph-arrow-square-out"></i></a></div>
+                <div class="tl-period">2024 · Официальный заказ · Департамент образования Москвы</div>
+              </div>
+              <div class="exp-badge">Гос. проект</div>
             </div>
-            <div class="exp-badge">Коммерческий</div>
-          </div>
-          <p class="exp-desc">Государственный игровой проект. Полностью верстал макет и писал код — от дизайна в Figma до рабочего сайта. Решал одновременно дизайнерские и программистские задачи в рамках официального сотрудничества.</p>
-          <div class="exp-tags">
-            <span>HTML/CSS/JS</span><span>Figma</span><span>Вёрстка макета</span><span>Официальный заказ</span>
-          </div>
-        </div>
-        <div class="exp-card">
-          <div class="exp-head">
-            <div class="exp-icon"><i class="ph ph-crosshair"></i></div>
-            <div>
-              <div class="exp-title">Frontend Developer & Content Creator</div>
-              <div class="exp-company">Warpath: Ace Shooter <span class="exp-official">· Официальное сотрудничество</span></div>
+            <p class="tl-desc">Образовательная игровая платформа для московских колледжей. Разработал сайт с нуля: система авторизации и регистрации с email-верификацией, личные профили с выбором аватара, система достижений, тёмная тема, настройка шрифтов, канбан-доска, модуль техподдержки. Работал как единственный фронтенд-разработчик — от макета в Figma до рабочего продакшна.</p>
+            <div class="tl-stack">
+              <span>HTML/CSS/JS</span><span>Figma</span><span>Авторизация</span><span>LocalStorage</span><span>Адаптив</span><span>Тёмная тема</span><span>Канбан</span>
             </div>
           </div>
-          <p class="exp-desc">Официальный блогер и разработчик для игрового комьюнити. Создаю справочный сайт для русскоязычных игроков — заполняю нишу, которую не закрывают ни английские, ни китайские ресурсы. Параллельно снимаю видео для YouTube.</p>
-          <div class="exp-tags">
-            <span>Vue 3</span><span>Vite</span><span>GitHub Pages</span><span>Content</span>
+        </div>
+
+        <div class="tl-item">
+          <div class="tl-dot tl-dot--small"></div>
+          <div class="tl-card">
+            <div class="tl-head">
+              <div class="tl-icon"><i class="ph ph-crosshair"></i></div>
+              <div class="tl-meta">
+                <div class="tl-title">Frontend Developer & Official Content Creator</div>
+                <div class="tl-company">Warpath: Ace Shooter <span class="exp-official">· Официальное партнёрство</span></div>
+                <div class="tl-period">2024 — настоящее время</div>
+              </div>
+            </div>
+            <p class="tl-desc">Официальный блогер и разработчик для одной из крупнейших мобильных стратегий. Создаю справочный сайт для русскоязычного комьюнити на Vue 3 — закрываю нишу, которую не покрывают ни английские, ни китайские ресурсы. Снимаю видео и веду канал на YouTube.</p>
+            <div class="tl-stack">
+              <span>Vue 3</span><span>Vite</span><span>GitHub Pages</span><span>Supabase</span><span>YouTube</span><span>Сценарий</span>
+            </div>
           </div>
         </div>
+
+        <div class="tl-item">
+          <div class="tl-dot tl-dot--small"></div>
+          <div class="tl-card">
+            <div class="tl-head">
+              <div class="tl-icon"><i class="ph ph-briefcase"></i></div>
+              <div class="tl-meta">
+                <div class="tl-title">Freelance Designer & Frontend Developer</div>
+                <div class="tl-company">Коммерческие проекты · Фриланс</div>
+                <div class="tl-period">2023 — настоящее время</div>
+              </div>
+            </div>
+            <p class="tl-desc">Разработка сайтов и дизайн под ключ: спортшкола триатлона, портфолио иллюстратора, детский образовательный центр, лендинги, UI/UX концепты. Каждый проект — от брифа до готового задеплоенного сайта.</p>
+            <div class="tl-stack">
+              <span>HTML/CSS/JS</span><span>Figma</span><span>GitHub Pages</span><span>UI/UX</span>
+            </div>
+          </div>
+        </div>
+
       </div>
 
-      <div class="about-section-label" style="margin-top:28px">Образование</div>
+      <!-- EDUCATION -->
+      <div class="about-section-label" style="margin-top:32px">Образование</div>
       <div class="edu-grid">
         <div class="edu-card">
           <div class="edu-icon"><i class="ph ph-graduation-cap"></i></div>
           <div class="edu-body">
             <div class="edu-title">Графический дизайн</div>
             <div class="edu-place">МГКЭИТ · Специальность</div>
-            <p class="edu-desc">За время учёбы прошёл полный цикл: чертежи в традиционном и диджитал-форматах, постеры, карточки товара, визитки, баннеры, брендбук, фирменные стили, редизайны. Большой объём работы в Figma.</p>
+            <p class="edu-desc">Полный профессиональный цикл: традиционный и цифровой рисунок, постеры, карточки товара, визитки, баннеры, брендбук, фирменные стили, редизайны интерфейсов. Большой объём работы в Figma и Photoshop.</p>
           </div>
         </div>
         <div class="edu-card">
           <div class="edu-icon"><i class="ph ph-certificate"></i></div>
           <div class="edu-body">
             <div class="edu-title">UI/UX Design</div>
-            <div class="edu-place">Яндекс Практикум · Курс (в процессе)</div>
-            <p class="edu-desc">Курс по дизайну интерфейсов для укрепления базы — систематизирую знания, полученные на практике.</p>
+            <div class="edu-place">Яндекс Практикум · В процессе</div>
+            <p class="edu-desc">Систематизирую практические знания: процессы проектирования, пользовательские исследования, прототипирование, дизайн-системы.</p>
           </div>
         </div>
         <div class="edu-card">
@@ -237,23 +289,24 @@
           <div class="edu-body">
             <div class="edu-title">Frontend Development</div>
             <div class="edu-place">Self-taught · 2+ года практики</div>
-            <p class="edu-desc">HTML, CSS, JavaScript — чистый код без фреймворков. Сейчас изучаю React и Vue 3. Весь стек виден в реальных проектах в разделе "Проекты".</p>
+            <p class="edu-desc">HTML5, CSS3, JavaScript ES6+ — чистый код без фреймворков. Изучаю Vue 3 и React. Всё подтверждено реальными проектами в разделе "Проекты".</p>
           </div>
         </div>
       </div>
 
-      <div class="about-section-label" style="margin-top:28px">Навыки</div>
+      <!-- SKILLS -->
+      <div class="about-section-label" style="margin-top:32px">Навыки</div>
       <div class="skills-blocks">
         <div class="skill-block">
           <div class="skill-block-title"><i class="ph ph-pen-nib"></i> Дизайн</div>
           <div class="skill-tags">
-            <span>Figma</span><span>UI/UX</span><span>Photoshop</span><span>Брендбук</span><span>Фирменный стиль</span><span>Упаковка</span><span>Баннеры</span><span>Редизайн</span>
+            <span>Figma</span><span>UI/UX</span><span>Photoshop</span><span>Брендбук</span><span>Фирменный стиль</span><span>Упаковка</span><span>Баннеры</span><span>Редизайн</span><span>Прототипирование</span>
           </div>
         </div>
         <div class="skill-block">
           <div class="skill-block-title"><i class="ph ph-brackets-curly"></i> Разработка</div>
           <div class="skill-tags">
-            <span>HTML5</span><span>CSS3</span><span>JavaScript</span><span>Vue 3</span><span>React (изучаю)</span><span>Vite</span><span>GitHub Pages</span><span>Адаптивная вёрстка</span>
+            <span>HTML5</span><span>CSS3</span><span>JavaScript</span><span>Vue 3</span><span>React (изучаю)</span><span>Vite</span><span>GitHub Pages</span><span>Адаптивная вёрстка</span><span>Git</span>
           </div>
         </div>
         <div class="skill-block">
@@ -264,13 +317,31 @@
         </div>
       </div>
 
-      <div class="about-personal glass">
-        <div class="about-personal-icon"><i class="ph ph-sparkle"></i></div>
-        <div>
-          <div class="about-personal-title">Почему я?</div>
-          <p class="about-personal-text">Закрываю сразу несколько ролей — дизайнер, верстальщик, контент-мейкер. Не нужно объяснять, как дизайн должен работать в коде: я понимаю это изнутри. Умею работать самостоятельно и довожу проекты до результата — всё что в портфолио реально задеплоено и работает.</p>
+      <!-- WHY ME -->
+      <div class="about-section-label" style="margin-top:32px">Почему я</div>
+      <div class="about-why-grid">
+        <div class="about-why-card">
+          <div class="about-why-icon"><i class="ph ph-intersect"></i></div>
+          <div class="about-why-title">Дизайн + код в одном</div>
+          <p>Не нужно объяснять, как макет должен работать в браузере. Я проектирую с пониманием ограничений вёрстки и верстаю с пониманием дизайна.</p>
+        </div>
+        <div class="about-why-card">
+          <div class="about-why-icon"><i class="ph ph-check-fat"></i></div>
+          <div class="about-why-title">Довожу до конца</div>
+          <p>Все проекты в портфолио реально задеплоены и работают. Государственный проект masterscitygame.ru — от нуля до продакшна самостоятельно.</p>
+        </div>
+        <div class="about-why-card">
+          <div class="about-why-icon"><i class="ph ph-rocket-launch"></i></div>
+          <div class="about-why-title">Закрываю несколько ролей</div>
+          <p>Дизайнер, верстальщик, контент-мейкер. Для небольшой команды это значит меньше коммуникации, быстрее результат.</p>
+        </div>
+        <div class="about-why-card">
+          <div class="about-why-icon"><i class="ph ph-trend-up"></i></div>
+          <div class="about-why-title">Постоянно расту</div>
+          <p>Параллельно веду два активных проекта, прохожу курс Яндекса и изучаю Vue 3 с React. Не жду задач — нахожу их сам.</p>
         </div>
       </div>
+
     </div><!-- /page-about -->
 
     <!-- PROJECTS -->
@@ -286,6 +357,20 @@
         <button class="filt" data-f="content">Контент</button>
       </div>
       <div class="proj-grid">
+
+        <div class="proj-card proj-card--featured" data-cat="frontend">
+          <div class="proj-img">
+            <div class="proj-ph proj-ph--gov">🏛️</div>
+            <div class="proj-ov"><a href="https://masterscitygame.ru" target="_blank">Открыть →</a></div>
+            <div class="proj-gov-badge"><i class="ph ph-seal-check"></i> Гос. проект</div>
+          </div>
+          <div class="proj-body">
+            <div class="proj-cats"><span class="pcat">Frontend</span><span class="pcat">Full-cycle</span><span class="pcat">Коммерческий</span></div>
+            <h3>Город Мастеров</h3>
+            <p>Образовательная игровая платформа Департамента образования Москвы. Авторизация, профили пользователей, достижения, тёмная тема, выбор шрифта, канбан-доска, техподдержка. Верстал макет и писал весь код — от дизайна до деплоя.</p>
+          </div>
+        </div>
+
         <div class="proj-card" data-cat="frontend">
           <div class="proj-img"><div class="proj-ph">🧮</div><div class="proj-ov"><a href="https://228burger228.github.io/Amakids/" target="_blank">Открыть →</a></div></div>
           <div class="proj-body"><div class="proj-cats"><span class="pcat">Frontend</span><span class="pcat">Лендинг</span></div><h3>Amakids — Детский центр</h3><p>Лендинг для центра ментальной арифметики. Курсы, запись на урок, раздел для педагогов.</p></div>
