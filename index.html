@@ -24,7 +24,6 @@
     }
 
     html { scroll-behavior: smooth; }
-
     body {
       font-family: var(--font-body);
       color: var(--text);
@@ -36,7 +35,6 @@
     ::-webkit-scrollbar { width: 3px; }
     ::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 2px; }
 
-    /* CANVAS */
     #weatherCanvas {
       position: fixed; top: 0; left: 0;
       width: 100%; height: 100%;
@@ -59,8 +57,7 @@
     /* ── SIDEBAR ── */
     .sidebar {
       position: fixed;
-      top: 50%;
-      left: 16px;
+      top: 50%; left: 16px;
       transform: translateY(-50%);
       width: 56px;
       background: var(--surface);
@@ -108,11 +105,8 @@
     .nav-list li i { font-size: 20px; min-width: 24px; text-align: center; flex-shrink: 0; }
     .nav-list li span { margin-left: 12px; font-size: 13px; font-weight: 500; opacity: 0; transition: opacity 0.2s; }
     .sidebar:hover .nav-list li span { opacity: 1; }
-
     .nav-list li:hover { color: var(--text); background: rgba(255,255,255,0.04); }
-
     .nav-list li.active { color: var(--accent); background: rgba(232,255,71,0.05); }
-
     .nav-list li.active::before {
       content: '';
       position: absolute; left: 0; top: 50%; transform: translateY(-50%);
@@ -121,13 +115,7 @@
       border-radius: 0 2px 2px 0;
     }
 
-    .s-footer {
-      margin-top: auto;
-      padding: 14px 0 0;
-      display: flex;
-      justify-content: center;
-    }
-
+    .s-footer { margin-top: auto; padding: 14px 0 0; display: flex; justify-content: center; }
     .s-footer a { color: var(--muted); font-size: 20px; text-decoration: none; transition: color 0.2s; }
     .s-footer a:hover { color: var(--accent); }
 
@@ -256,7 +244,6 @@
       box-shadow: 0 8px 20px rgba(var(--accent-rgb),.28);
     }
 
-    /* Skills card */
     .card-skills {
       grid-column: 2; grid-row: 1 / 3;
       padding: 24px 20px;
@@ -306,7 +293,6 @@
     .stat-mini i { font-size: 18px; color: var(--muted); }
     .stat-mini .num { font-family: var(--font-display); font-weight: 700; font-size: 12px; color: var(--accent); display: block; margin-top: 4px; }
 
-    /* Contact card */
     .card-contact {
       grid-column: 1; grid-row: 2;
       padding: 22px 26px;
@@ -321,13 +307,7 @@
 
     .contact-top h3 { font-family: var(--font-display); font-weight: 700; font-size: 15px; }
 
-    .avail {
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      font-size: 12px;
-      color: #71b280;
-    }
+    .avail { display: flex; align-items: center; gap: 6px; font-size: 12px; color: #71b280; }
 
     .avail-dot {
       width: 7px; height: 7px;
@@ -357,8 +337,7 @@
     .form-bottom { display: flex; gap: 8px; }
 
     .form-msg {
-      flex: 1;
-      height: 40px;
+      flex: 1; height: 40px;
       background: rgba(0,0,0,.3);
       border: 1px solid var(--border);
       border-radius: 8px;
@@ -383,8 +362,144 @@
     }
 
     .send-btn:hover { transform: scale(1.06); }
-
     #form-status { font-size: 12px; margin-top: 6px; }
+
+    /* ── HOME EXTRAS ── */
+    .home-stats {
+      display: flex;
+      align-items: center;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      margin-top: 14px;
+      overflow: hidden;
+    }
+
+    .hstat { flex: 1; text-align: center; padding: 22px 16px; }
+
+    .hstat-div { width: 1px; height: 40px; background: var(--border); flex-shrink: 0; }
+
+    .hstat-num {
+      font-family: var(--font-display);
+      font-weight: 800;
+      font-size: 28px;
+      color: var(--accent);
+      letter-spacing: -0.02em;
+      line-height: 1;
+    }
+
+    .hstat-num span { font-size: 18px; }
+    .hstat-label { font-size: 12px; color: var(--muted); margin-top: 4px; }
+
+    .home-section-label {
+      font-family: var(--font-display);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin: 24px 0 12px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .home-section-label::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+      margin-left: 14px;
+    }
+
+    .see-all-btn {
+      background: none;
+      border: 1px solid var(--border);
+      color: var(--muted);
+      font-family: var(--font-body);
+      font-size: 12px;
+      font-weight: 500;
+      padding: 5px 12px;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: all 0.2s;
+      margin-left: 14px;
+      flex-shrink: 0;
+      white-space: nowrap;
+    }
+
+    .see-all-btn:hover { color: var(--accent); border-color: rgba(var(--accent-rgb),.4); }
+
+    .tools-grid { display: flex; flex-wrap: wrap; gap: 8px; }
+
+    .tool-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 8px 14px;
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--muted);
+      transition: color 0.2s, border-color 0.2s;
+      cursor: default;
+    }
+
+    .tool-chip:hover { color: var(--text); border-color: rgba(var(--accent-rgb),.3); }
+    .tool-chip i { font-size: 16px; color: var(--accent); }
+
+    .featured-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 12px;
+    }
+
+    .feat-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      overflow: hidden;
+      cursor: pointer;
+      transition: border-color 0.2s, transform 0.3s;
+    }
+
+    .feat-card:hover { border-color: rgba(var(--accent-rgb),.35); transform: translateY(-4px); }
+
+    .feat-img {
+      height: 140px;
+      position: relative;
+      overflow: hidden;
+      background: rgba(255,255,255,.02);
+    }
+
+    .feat-img img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s; }
+    .feat-card:hover .feat-img img { transform: scale(1.06); }
+
+    .feat-ph {
+      width: 100%; height: 100%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 32px;
+    }
+
+    .feat-tag {
+      position: absolute;
+      top: 10px; right: 10px;
+      background: var(--accent);
+      color: #0a0a0c;
+      font-family: var(--font-display);
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 3px 8px;
+      border-radius: 4px;
+    }
+
+    .feat-body { padding: 14px 14px 16px; }
+    .feat-body h4 { font-family: var(--font-display); font-weight: 700; font-size: 14px; margin-bottom: 4px; }
+    .feat-body p { font-size: 12px; color: var(--muted); }
 
     /* ── SECTION HEAD ── */
     .sh { margin-bottom: 24px; }
@@ -474,7 +589,6 @@
     .proj-card:hover .proj-ov button { transform: translateY(0); }
 
     .proj-body { padding: 18px 18px 16px; }
-
     .proj-cats { display: flex; gap: 5px; flex-wrap: wrap; margin-bottom: 8px; }
 
     .pcat {
@@ -488,14 +602,7 @@
       color: var(--accent);
     }
 
-    .proj-body h3 {
-      font-family: var(--font-display);
-      font-weight: 700;
-      font-size: 15px;
-      margin-bottom: 6px;
-      line-height: 1.3;
-    }
-
+    .proj-body h3 { font-family: var(--font-display); font-weight: 700; font-size: 15px; margin-bottom: 6px; line-height: 1.3; }
     .proj-body p { font-size: 12px; color: var(--muted); line-height: 1.6; }
 
     /* ── YOUTUBE ── */
@@ -525,7 +632,7 @@
     }
 
     /* ── GALLERY ── */
-    .gal-filters { display: flex; gap: 5px; margin-bottom: 18px; }
+    .gal-filters { display: flex; gap: 5px; margin-bottom: 18px; flex-wrap: wrap; }
 
     .gal-grid {
       display: grid;
@@ -563,170 +670,111 @@
       letter-spacing: 0.06em;
     }
 
-    /* ── HOME EXTRAS ── */
-
-    .home-stats {
-      display: flex;
-      align-items: center;
-      gap: 0;
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 14px;
-      padding: 0;
-      margin-top: 14px;
-      overflow: hidden;
-    }
-
-    .hstat {
-      flex: 1;
-      text-align: center;
-      padding: 22px 16px;
-    }
-
-    .hstat-div {
-      width: 1px;
-      height: 40px;
-      background: var(--border);
-      flex-shrink: 0;
-    }
-
-    .hstat-num {
-      font-family: var(--font-display);
-      font-weight: 800;
-      font-size: 28px;
-      color: var(--accent);
-      letter-spacing: -0.02em;
-      line-height: 1;
-    }
-
-    .hstat-num span { font-size: 18px; }
-
-    .hstat-label {
-      font-size: 12px;
-      color: var(--muted);
+    /* ── PACKAGING VIEWER ── */
+    .pack-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 14px;
       margin-top: 4px;
     }
 
-    .home-section-label {
-      font-family: var(--font-display);
-      font-size: 11px;
-      font-weight: 700;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: var(--muted);
-      margin: 24px 0 12px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-
-    .home-section-label::after {
-      content: '';
-      flex: 1;
-      height: 1px;
-      background: var(--border);
-      margin-left: 14px;
-    }
-
-    .see-all-btn {
-      background: none;
-      border: 1px solid var(--border);
-      color: var(--muted);
-      font-family: var(--font-body);
-      font-size: 12px;
-      font-weight: 500;
-      padding: 5px 12px;
-      border-radius: 6px;
-      cursor: pointer;
-      transition: all 0.2s;
-      margin-left: 14px;
-      flex-shrink: 0;
-      white-space: nowrap;
-    }
-
-    .see-all-btn:hover { color: var(--accent); border-color: rgba(var(--accent-rgb),.4); }
-
-    .tools-grid {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-    }
-
-    .tool-chip {
-      display: inline-flex;
-      align-items: center;
-      gap: 7px;
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      padding: 8px 14px;
-      font-size: 13px;
-      font-weight: 500;
-      color: var(--muted);
-      transition: color 0.2s, border-color 0.2s;
-      cursor: default;
-    }
-
-    .tool-chip:hover { color: var(--text); border-color: rgba(var(--accent-rgb),.3); }
-    .tool-chip i { font-size: 16px; color: var(--accent); }
-
-    .featured-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-      gap: 12px;
-    }
-
-    .feat-card {
+    .pack-card {
       background: var(--surface);
       border: 1px solid var(--border);
       border-radius: 14px;
       overflow: hidden;
-      cursor: pointer;
       transition: border-color 0.2s, transform 0.3s;
+      cursor: pointer;
     }
 
-    .feat-card:hover { border-color: rgba(var(--accent-rgb),.35); transform: translateY(-4px); }
+    .pack-card:hover { border-color: rgba(var(--accent-rgb),.35); transform: translateY(-4px); }
 
-    .feat-img {
-      height: 140px;
+    .pack-preview {
+      height: 200px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(255,255,255,0.02);
       position: relative;
       overflow: hidden;
-      background: rgba(255,255,255,.02);
     }
 
-    .feat-img img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s; }
-    .feat-card:hover .feat-img img { transform: scale(1.06); }
-
-    .feat-ph {
+    .pack-preview img {
       width: 100%; height: 100%;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 32px;
+      object-fit: cover;
+      transition: transform 0.5s;
     }
 
-    .feat-tag {
+    .pack-card:hover .pack-preview img { transform: scale(1.05); }
+
+    .pack-ph {
+      font-size: 48px;
+      opacity: 0.4;
+    }
+
+    .pack-type-badge {
       position: absolute;
-      top: 10px; right: 10px;
-      background: var(--accent);
-      color: #0a0a0c;
+      top: 10px; left: 10px;
+      background: rgba(0,0,0,0.6);
+      border: 1px solid var(--border);
+      color: var(--muted);
       font-family: var(--font-display);
       font-size: 10px;
-      font-weight: 800;
+      font-weight: 700;
       letter-spacing: 0.08em;
       text-transform: uppercase;
       padding: 3px 8px;
       border-radius: 4px;
+      backdrop-filter: blur(8px);
     }
 
-    .feat-body { padding: 14px 14px 16px; }
+    .pack-body { padding: 14px 16px 16px; }
+    .pack-body h4 { font-family: var(--font-display); font-weight: 700; font-size: 14px; margin-bottom: 4px; }
+    .pack-body p { font-size: 12px; color: var(--muted); line-height: 1.5; }
 
-    .feat-body h4 {
-      font-family: var(--font-display);
-      font-weight: 700;
-      font-size: 14px;
-      margin-bottom: 4px;
+    .pack-body .pack-actions {
+      display: flex;
+      gap: 8px;
+      margin-top: 12px;
     }
 
-    .feat-body p { font-size: 12px; color: var(--muted); }
+    .pack-btn {
+      flex: 1;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      background: none;
+      border: 1px solid var(--border);
+      color: var(--muted);
+      font-family: var(--font-body);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      padding: 7px 10px;
+      border-radius: 6px;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.2s;
+    }
+
+    .pack-btn:hover { background: var(--accent); color: #0a0a0c; border-color: var(--accent); }
+    .pack-btn i { font-size: 14px; }
+
+    /* Upload hint */
+    .upload-hint {
+      border: 2px dashed var(--border);
+      border-radius: 14px;
+      padding: 32px;
+      text-align: center;
+      color: var(--muted);
+      font-size: 13px;
+      margin-top: 14px;
+    }
+
+    .upload-hint i { font-size: 32px; color: var(--border); display: block; margin-bottom: 10px; }
+    .upload-hint strong { color: var(--accent); }
 
     /* ── MOBILE ── */
     @media (max-width: 768px) {
@@ -760,6 +808,7 @@
       .home-stats { flex-wrap: wrap; }
       .hstat { min-width: 45%; }
       .hstat-div { display: none; }
+      .form-row { flex-direction: column; }
     }
   </style>
 </head>
@@ -776,6 +825,7 @@
     <ul class="nav-list" id="navList">
       <li class="active" data-page="home"><i class="ph ph-house"></i><span>Главная</span></li>
       <li data-page="projects"><i class="ph ph-briefcase"></i><span>Проекты</span></li>
+      <li data-page="packaging"><i class="ph ph-package"></i><span>Упаковка</span></li>
       <li data-page="youtube"><i class="ph ph-youtube-logo"></i><span>YouTube</span></li>
       <li data-page="gallery"><i class="ph ph-camera"></i><span>Gallery</span></li>
       <li id="hobbies-nav"><i class="ph ph-game-controller"></i><span>Хобби</span></li>
@@ -785,10 +835,11 @@
     </div>
   </nav>
 
-  <!-- MAIN -->
   <main class="main">
 
-    <!-- HOME -->
+    <!-- ══════════════════════════════════════════
+         HOME
+    ══════════════════════════════════════════ -->
     <div class="page active" id="page-home">
 
       <div class="marquee-wrap">
@@ -800,6 +851,7 @@
           <span>Motion Design</span><span>•</span>
           <span>Content Creation</span><span>•</span>
           <span>Video Editing</span><span>•</span>
+          <span>Упаковка & Печать</span><span>•</span>
           <span>UI/UX Design</span><span>•</span>
           <span>Figma</span><span>•</span>
           <span>Frontend Dev</span><span>•</span>
@@ -807,6 +859,7 @@
           <span>Motion Design</span><span>•</span>
           <span>Content Creation</span><span>•</span>
           <span>Video Editing</span><span>•</span>
+          <span>Упаковка & Печать</span><span>•</span>
         </div>
       </div>
 
@@ -833,18 +886,10 @@
         <div class="glass card-skills">
           <h3>Что умею</h3>
           <ul class="skills-list">
-            <li>
-              <i class="ph ph-pen-nib"></i>
-              <div><strong>Design</strong><span>Web, UI/UX, Print</span></div>
-            </li>
-            <li>
-              <i class="ph ph-brackets-curly"></i>
-              <div><strong>Code</strong><span>HTML, CSS, JS</span></div>
-            </li>
-            <li>
-              <i class="ph ph-video-camera"></i>
-              <div><strong>Content</strong><span>YouTube, Motion</span></div>
-            </li>
+            <li><i class="ph ph-pen-nib"></i><div><strong>Design</strong><span>Web, UI/UX, Print</span></div></li>
+            <li><i class="ph ph-brackets-curly"></i><div><strong>Code</strong><span>HTML, CSS, JS</span></div></li>
+            <li><i class="ph ph-video-camera"></i><div><strong>Content</strong><span>YouTube, Motion</span></div></li>
+            <li><i class="ph ph-package"></i><div><strong>Packaging</strong><span>Упаковка, Печать</span></div></li>
           </ul>
           <div class="stat-row">
             <div class="stat-mini" onclick="window.open('https://github.com/228burger228','_blank')">
@@ -876,32 +921,20 @@
           <p id="form-status"></p>
         </div>
 
-      </div>
+      </div><!-- /bento -->
 
-      <!-- STATS ROW -->
+      <!-- STATS -->
       <div class="home-stats">
-        <div class="hstat">
-          <div class="hstat-num">10<span>+</span></div>
-          <div class="hstat-label">Проектов</div>
-        </div>
+        <div class="hstat"><div class="hstat-num">12<span>+</span></div><div class="hstat-label">Проектов</div></div>
         <div class="hstat-div"></div>
-        <div class="hstat">
-          <div class="hstat-num">2<span>+</span></div>
-          <div class="hstat-label">Года опыта</div>
-        </div>
+        <div class="hstat"><div class="hstat-num">2<span>+</span></div><div class="hstat-label">Года опыта</div></div>
         <div class="hstat-div"></div>
-        <div class="hstat">
-          <div class="hstat-num">3</div>
-          <div class="hstat-label">Направления</div>
-        </div>
+        <div class="hstat"><div class="hstat-num">4</div><div class="hstat-label">Направления</div></div>
         <div class="hstat-div"></div>
-        <div class="hstat">
-          <div class="hstat-num">∞</div>
-          <div class="hstat-label">Кофе выпито</div>
-        </div>
+        <div class="hstat"><div class="hstat-num">∞</div><div class="hstat-label">Кофе выпито</div></div>
       </div>
 
-      <!-- TOOLS GRID -->
+      <!-- TOOLS -->
       <div class="home-section-label">Инструменты</div>
       <div class="tools-grid">
         <div class="tool-chip"><i class="ph ph-figma-logo"></i> Figma</div>
@@ -912,11 +945,11 @@
         <div class="tool-chip"><i class="ph ph-lightning"></i> After Effects</div>
         <div class="tool-chip"><i class="ph ph-github-logo"></i> GitHub</div>
         <div class="tool-chip"><i class="ph ph-monitor"></i> VS Code</div>
-        <div class="tool-chip"><i class="ph ph-chart-bar"></i> Analytics</div>
+        <div class="tool-chip"><i class="ph ph-package"></i> Упаковка & Печать</div>
       </div>
 
-      <!-- FEATURED PROJECTS -->
-      <div class="home-section-label" style="margin-top: 28px;">
+      <!-- FEATURED -->
+      <div class="home-section-label" style="margin-top:28px">
         Избранные проекты
         <button class="see-all-btn" id="see-all-btn">Все проекты →</button>
       </div>
@@ -926,42 +959,36 @@
             <img src="https://228burger228.github.io/burgerCreate/scrintrial.png" alt="Triathlon" onerror="this.parentElement.innerHTML='<div class=feat-ph>🏊</div>'" />
             <div class="feat-tag">Frontend</div>
           </div>
-          <div class="feat-body">
-            <h4>Спортшкола Триатлон</h4>
-            <p>Многостраничный сайт · адаптив · галерея</p>
-          </div>
-        </div>
-        <div class="feat-card" onclick="window.open('https://www.figma.com/design/2u0JYeK7QvPeYxCvcYyHtL/ecostep','_blank')">
-          <div class="feat-img">
-            <img src="ecostep.png" alt="Ecostep" onerror="this.parentElement.innerHTML='<div class=feat-ph>🌱</div>'" />
-            <div class="feat-tag">UI/UX</div>
-          </div>
-          <div class="feat-body">
-            <h4>Eco-Step App</h4>
-            <p>Мобильный интерфейс · маршруты · трекер</p>
-          </div>
-        </div>
-        <div class="feat-card" onclick="window.open('https://228burger228.github.io/New2026/','_blank')">
-          <div class="feat-img">
-            <img src="https://228burger228.github.io/burgerCreate/web2026.png" alt="NY" onerror="this.parentElement.innerHTML='<div class=feat-ph>🎄</div>'" />
-            <div class="feat-tag">JS</div>
-          </div>
-          <div class="feat-body">
-            <h4>New Year 2026 Card</h4>
-            <p>Интерактивная открытка · анимации</p>
-          </div>
+          <div class="feat-body"><h4>Спортшкола Триатлон</h4><p>Многостраничный сайт · адаптив · галерея</p></div>
         </div>
         <div class="feat-card" onclick="window.open('https://228burger228.github.io/Dorybim/index.html','_blank')">
           <div class="feat-img">
             <img src="https://228burger228.github.io/Dorybim/pixel_cafe.jpg" alt="DoryBim" onerror="this.parentElement.innerHTML='<div class=feat-ph>🎨</div>'" />
             <div class="feat-tag">Frontend</div>
           </div>
-          <div class="feat-body">
-            <h4>DoryBim — Иллюстратор</h4>
-            <p>Сайт-портфолио · галерея · прайс · заказ</p>
+          <div class="feat-body"><h4>DoryBim — Иллюстратор</h4><p>Сайт-портфолио · галерея · прайс</p></div>
+        </div>
+        <div class="feat-card" onclick="window.open('https://228burger228.github.io/Amakids/','_blank')">
+          <div class="feat-img">
+            <div class="feat-ph">🧮</div>
+            <div class="feat-tag">Frontend</div>
           </div>
+          <div class="feat-body"><h4>Amakids — Детский центр</h4><p>Лендинг · курсы · запись · педагогам</p></div>
+        </div>
+        <div class="feat-card" onclick="window.open('https://www.figma.com/design/2u0JYeK7QvPeYxCvcYyHtL/ecostep','_blank')">
+          <div class="feat-img">
+            <img src="ecostep.png" alt="Ecostep" onerror="this.parentElement.innerHTML='<div class=feat-ph>🌱</div>'" />
+            <div class="feat-tag">UI/UX</div>
+          </div>
+          <div class="feat-body"><h4>Eco-Step App</h4><p>Мобильный интерфейс · маршруты · трекер</p></div>
         </div>
       </div>
+
+    </div><!-- /page-home -->
+
+    <!-- ══════════════════════════════════════════
+         PROJECTS
+    ══════════════════════════════════════════ -->
     <div class="page" id="page-projects">
       <div class="sh">
         <h2>Проекты</h2>
@@ -970,12 +997,72 @@
 
       <div class="proj-filter">
         <button class="filt active" data-f="all">Все</button>
-        <button class="filt" data-f="ui">UI/UX</button>
         <button class="filt" data-f="frontend">Frontend</button>
+        <button class="filt" data-f="ui">UI/UX</button>
         <button class="filt" data-f="content">Контент</button>
       </div>
 
       <div class="proj-grid">
+
+        <div class="proj-card" data-cat="frontend">
+          <div class="proj-img">
+            <div class="proj-ph">🧮</div>
+            <div class="proj-ov"><a href="https://228burger228.github.io/Amakids/" target="_blank">Открыть →</a></div>
+          </div>
+          <div class="proj-body">
+            <div class="proj-cats"><span class="pcat">Frontend</span><span class="pcat">Лендинг</span></div>
+            <h3>Amakids — Детский центр</h3>
+            <p>Лендинг для центра ментальной арифметики. Курсы, запись на урок, раздел для педагогов.</p>
+          </div>
+        </div>
+
+        <div class="proj-card" data-cat="frontend">
+          <div class="proj-img">
+            <img src="https://228burger228.github.io/Dorybim/pixel_cafe.jpg" alt="DoryBim" onerror="this.parentElement.innerHTML='<div class=proj-ph>🎨</div>'" />
+            <div class="proj-ov"><a href="https://228burger228.github.io/Dorybim/index.html" target="_blank">Открыть →</a></div>
+          </div>
+          <div class="proj-body">
+            <div class="proj-cats"><span class="pcat">Frontend</span><span class="pcat">HTML/CSS/JS</span></div>
+            <h3>DoryBim — Иллюстратор</h3>
+            <p>Сайт-портфолио для цифрового иллюстратора. Галерея, прайс, форма заказа арта.</p>
+          </div>
+        </div>
+
+        <div class="proj-card" data-cat="frontend">
+          <div class="proj-img">
+            <img src="https://228burger228.github.io/burgerCreate/scrintrial.png" alt="Triathlon" onerror="this.parentElement.innerHTML='<div class=proj-ph>🏊</div>'" />
+            <div class="proj-ov"><a href="https://228burger228.github.io/triatlon/" target="_blank">Открыть →</a></div>
+          </div>
+          <div class="proj-body">
+            <div class="proj-cats"><span class="pcat">HTML/CSS</span><span class="pcat">Frontend</span></div>
+            <h3>Спортшкола Триатлон</h3>
+            <p>Многостраничный сайт. Адаптив, галерея, инфоблоки.</p>
+          </div>
+        </div>
+
+        <div class="proj-card" data-cat="frontend">
+          <div class="proj-img">
+            <img src="https://228burger228.github.io/burgerCreate/web2026.png" alt="NY 2026" onerror="this.parentElement.innerHTML='<div class=proj-ph>🎄</div>'" />
+            <div class="proj-ov"><a href="https://228burger228.github.io/New2026/" target="_blank">Открыть →</a></div>
+          </div>
+          <div class="proj-body">
+            <div class="proj-cats"><span class="pcat">JS</span><span class="pcat">Animation</span></div>
+            <h3>New Year 2026 Card</h3>
+            <p>Интерактивная открытка с анимациями и генерацией поздравлений.</p>
+          </div>
+        </div>
+
+        <div class="proj-card" data-cat="frontend">
+          <div class="proj-img">
+            <img src="Porfolscr.png" alt="Portfolio v1" onerror="this.parentElement.innerHTML='<div class=proj-ph>💼</div>'" />
+            <div class="proj-ov"><a href="https://228burger228.github.io/burgerCreate/index.html" target="_blank">Открыть →</a></div>
+          </div>
+          <div class="proj-body">
+            <div class="proj-cats"><span class="pcat">HTML/CSS</span><span class="pcat">Frontend</span></div>
+            <h3>Портфолио v1</h3>
+            <p>Первая версия портфолио. Адаптив, галерея, многостраничный.</p>
+          </div>
+        </div>
 
         <div class="proj-card" data-cat="ui">
           <div class="proj-img">
@@ -1025,30 +1112,6 @@
           </div>
         </div>
 
-        <div class="proj-card" data-cat="frontend">
-          <div class="proj-img">
-            <img src="https://228burger228.github.io/burgerCreate/scrintrial.png" alt="Triathlon" onerror="this.parentElement.innerHTML='<div class=proj-ph>🏊</div>'" />
-            <div class="proj-ov"><a href="https://228burger228.github.io/triatlon/" target="_blank">Открыть →</a></div>
-          </div>
-          <div class="proj-body">
-            <div class="proj-cats"><span class="pcat">HTML/CSS</span><span class="pcat">Frontend</span></div>
-            <h3>Спортшкола Триатлон</h3>
-            <p>Многостраничный сайт. Адаптив, галерея, инфоблоки.</p>
-          </div>
-        </div>
-
-        <div class="proj-card" data-cat="frontend">
-          <div class="proj-img">
-            <img src="https://228burger228.github.io/burgerCreate/web2026.png" alt="NY 2026" onerror="this.parentElement.innerHTML='<div class=proj-ph>🎄</div>'" />
-            <div class="proj-ov"><a href="https://228burger228.github.io/New2026/" target="_blank">Открыть →</a></div>
-          </div>
-          <div class="proj-body">
-            <div class="proj-cats"><span class="pcat">JS</span><span class="pcat">Animation</span></div>
-            <h3>New Year 2026 Card</h3>
-            <p>Интерактивная открытка с анимациями и генерацией поздравлений.</p>
-          </div>
-        </div>
-
         <div class="proj-card" data-cat="ui">
           <div class="proj-img">
             <img src="stromaz.png" alt="Stroy" onerror="this.parentElement.innerHTML='<div class=proj-ph>🏗️</div>'" />
@@ -1091,34 +1154,76 @@
           </div>
         </div>
 
-        <div class="proj-card" data-cat="frontend">
-          <div class="proj-img">
-            <img src="https://228burger228.github.io/Dorybim/pixel_cafe.jpg" alt="DoryBim" onerror="this.parentElement.innerHTML='<div class=proj-ph>🎨</div>'" />
-            <div class="proj-ov"><a href="https://228burger228.github.io/Dorybim/index.html" target="_blank">Открыть →</a></div>
+      </div>
+    </div><!-- /page-projects -->
+
+    <!-- ══════════════════════════════════════════
+         PACKAGING
+    ══════════════════════════════════════════ -->
+    <div class="page" id="page-packaging">
+      <div class="sh">
+        <h2>Упаковка & Печать</h2>
+        <p>Дизайн упаковки, этикеток и полиграфии</p>
+      </div>
+
+      <div class="pack-grid">
+
+        <!-- Пример карточки — замени src на свои файлы -->
+        <div class="pack-card">
+          <div class="pack-preview">
+            <div class="pack-ph">📦</div>
+            <div class="pack-type-badge">PNG</div>
           </div>
-          <div class="proj-body">
-            <div class="proj-cats"><span class="pcat">Frontend</span><span class="pcat">HTML/CSS/JS</span></div>
-            <h3>DoryBim — Иллюстратор</h3>
-            <p>Сайт-портфолио для цифрового иллюстратора. Галерея, прайс, форма заказа арта.</p>
+          <div class="pack-body">
+            <h4>Упаковка #1</h4>
+            <p>Добавь своё описание — название продукта, бренд, задача</p>
+            <div class="pack-actions">
+              <span class="pack-btn"><i class="ph ph-image"></i> PNG</span>
+            </div>
           </div>
         </div>
 
-        <div class="proj-card" data-cat="frontend">
-          <div class="proj-img">
-            <img src="Porfolscr.png" alt="Portfolio v1" onerror="this.parentElement.innerHTML='<div class=proj-ph>💼</div>'" />
-            <div class="proj-ov"><a href="https://228burger228.github.io/burgerCreate/index.html" target="_blank">Открыть →</a></div>
+        <div class="pack-card">
+          <div class="pack-preview">
+            <div class="pack-ph">📦</div>
+            <div class="pack-type-badge">PDF</div>
           </div>
-          <div class="proj-body">
-            <div class="proj-cats"><span class="pcat">HTML/CSS</span><span class="pcat">Frontend</span></div>
-            <h3>Портфолио v1</h3>
-            <p>Первая версия портфолио. Адаптив, галерея, многостраничный.</p>
+          <div class="pack-body">
+            <h4>Упаковка #2</h4>
+            <p>Добавь своё описание — название продукта, бренд, задача</p>
+            <div class="pack-actions">
+              <span class="pack-btn"><i class="ph ph-file-pdf"></i> PDF</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="pack-card">
+          <div class="pack-preview">
+            <div class="pack-ph">🏷️</div>
+            <div class="pack-type-badge">PNG</div>
+          </div>
+          <div class="pack-body">
+            <h4>Этикетка</h4>
+            <p>Добавь своё описание — название продукта, бренд, задача</p>
+            <div class="pack-actions">
+              <span class="pack-btn"><i class="ph ph-image"></i> PNG</span>
+            </div>
           </div>
         </div>
 
       </div>
-    </div>
 
-    <!-- YOUTUBE -->
+      <!-- Подсказка — убери когда добавишь реальные файлы -->
+      <div class="upload-hint">
+        <i class="ph ph-upload-simple"></i>
+        Загрузи свои файлы упаковки в репозиторий и замени <strong>заглушки</strong> на реальные изображения.<br>
+        Поддерживаются <strong>PNG, JPG</strong> (превью) и <strong>PDF</strong> (для скачивания).
+      </div>
+    </div><!-- /page-packaging -->
+
+    <!-- ══════════════════════════════════════════
+         YOUTUBE
+    ══════════════════════════════════════════ -->
     <div class="page" id="page-youtube">
       <div class="sh">
         <h2>YouTube</h2>
@@ -1131,9 +1236,11 @@
         <div class="video-wrap"><iframe src="https://www.youtube.com/embed/Xy1UkZrxkrY" allowfullscreen></iframe></div>
         <div class="video-wrap"><iframe src="https://www.youtube.com/embed/JACgDDwLJ9k" allowfullscreen></iframe></div>
       </div>
-    </div>
+    </div><!-- /page-youtube -->
 
-    <!-- GALLERY -->
+    <!-- ══════════════════════════════════════════
+         GALLERY
+    ══════════════════════════════════════════ -->
     <div class="page" id="page-gallery">
       <div class="sh">
         <h2>Gallery</h2>
@@ -1159,10 +1266,10 @@
           <div class="gal-ov"><span>#Setup</span></div>
         </div>
       </div>
-    </div>
+    </div><!-- /page-gallery -->
 
   </main>
-</div>
+</div><!-- /app-wrap -->
 
 <script>
 // ── NAVIGATION ──
@@ -1192,7 +1299,7 @@ document.getElementById('see-all-btn').addEventListener('click', () => {
   document.querySelector('[data-page="projects"]').click();
 });
 
-
+// ── PROJECT FILTER ──
 document.querySelectorAll('.proj-filter .filt').forEach(btn => {
   btn.addEventListener('click', () => {
     document.querySelectorAll('.proj-filter .filt').forEach(b => b.classList.remove('active'));
@@ -1287,8 +1394,7 @@ document.getElementById('tg-form').addEventListener('submit', async e => {
   }
 
   function setSeason(s) {
-    season = s;
-    particles = [];
+    season = s; particles = [];
     applyTheme(s);
     if (s !== 'summer' || burger) initParticles();
   }
@@ -1310,15 +1416,10 @@ document.getElementById('tg-form').addEventListener('submit', async e => {
       } else if (season === 'autumn') {
         ctx.strokeStyle = 'rgba(255,180,60,0.3)';
         ctx.lineWidth = 1;
-        ctx.beginPath();
-        ctx.moveTo(p.x, p.y);
-        ctx.lineTo(p.x + 2, p.y + 10);
-        ctx.stroke();
+        ctx.beginPath(); ctx.moveTo(p.x, p.y); ctx.lineTo(p.x + 2, p.y + 10); ctx.stroke();
       } else {
         ctx.fillStyle = 'rgba(255,255,255,0.45)';
-        ctx.beginPath();
-        ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
-        ctx.fill();
+        ctx.beginPath(); ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2); ctx.fill();
       }
       p.y += p.speed;
       if (p.y > canvas.height + 20) { p.y = -20; p.x = Math.random() * canvas.width; }
@@ -1326,13 +1427,10 @@ document.getElementById('tg-form').addEventListener('submit', async e => {
     requestAnimationFrame(draw);
   }
 
-  // Easter egg
   document.getElementById('logo-trigger').addEventListener('click', () => {
     clicks++;
     if (clicks >= 5) {
-      burger = !burger;
-      clicks = 0;
-      particles = [];
+      burger = !burger; clicks = 0; particles = [];
       if (burger || season !== 'summer') initParticles();
       alert(burger ? '🍔 BURGER MODE ACTIVATED!' : '😐 Back to normal');
     }
