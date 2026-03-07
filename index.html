@@ -8,6 +8,10 @@
   <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet" />
   <script src="https://unpkg.com/@phosphor-icons/web"></script>
   <link rel="stylesheet" href="style.css" />
+
+  <style>
+    
+  </style>
 </head>
 <body>
 
@@ -505,15 +509,94 @@
 
     <!-- YOUTUBE -->
     <div class="page" id="page-youtube">
-      <div class="sh"><h2>YouTube</h2><p>Последние видео · Burger Create</p></div>
-      <div class="video-grid">
-        <div class="video-wrap"><iframe src="https://www.youtube.com/embed/L13FJlzavbM" allowfullscreen></iframe></div>
-        <div class="video-wrap"><iframe src="https://www.youtube.com/embed/JvhISaFT1rI" allowfullscreen></iframe></div>
-        <div class="video-wrap"><iframe src="https://www.youtube.com/embed/sJJxi8jqE1A" allowfullscreen></iframe></div>
-        <div class="video-wrap"><iframe src="https://www.youtube.com/embed/Xy1UkZrxkrY" allowfullscreen></iframe></div>
-        <div class="video-wrap"><iframe src="https://www.youtube.com/embed/JACgDDwLJ9k" allowfullscreen></iframe></div>
+
+      <div class="yt-hero glass">
+        <div class="yt-hero-left">
+          <img class="yt-avatar" src="https://github.com/228burger228.png" alt="Burger" />
+          <div class="yt-hero-info">
+            <div class="yt-channel-name">Burger Create</div>
+            <div class="yt-channel-sub">@burgerdom6 · Warpath · Геймплей · Гайды</div>
+            <a class="yt-sub-btn" href="https://www.youtube.com/@burgerdom6?sub_confirmation=1" target="_blank">
+              <i class="ph ph-youtube-logo"></i> Подписаться
+            </a>
+          </div>
+        </div>
+        <a class="yt-channel-link" href="https://www.youtube.com/@burgerdom6" target="_blank">
+          Открыть канал <i class="ph ph-arrow-square-out"></i>
+        </a>
+      </div>
+
+      <div class="yt-section-label">Последние видео</div>
+      <div class="yt-grid">
+
+        <div class="yt-card" data-vid="L13FJlzavbM">
+          <div class="yt-thumb">
+            <img src="https://i.ytimg.com/vi/L13FJlzavbM/maxresdefault.jpg" onerror="this.src='https://i.ytimg.com/vi/L13FJlzavbM/hqdefault.jpg'" alt="Video" />
+            <div class="yt-play-btn"><i class="ph ph-play-circle"></i></div>
+          </div>
+          <div class="yt-card-body">
+            <div class="yt-card-title">Warpath · Видео #1</div>
+            <div class="yt-card-meta"><i class="ph ph-clock"></i> Недавно</div>
+          </div>
+        </div>
+
+        <div class="yt-card" data-vid="JvhISaFT1rI">
+          <div class="yt-thumb">
+            <img src="https://i.ytimg.com/vi/JvhISaFT1rI/maxresdefault.jpg" onerror="this.src='https://i.ytimg.com/vi/JvhISaFT1rI/hqdefault.jpg'" alt="Video" />
+            <div class="yt-play-btn"><i class="ph ph-play-circle"></i></div>
+          </div>
+          <div class="yt-card-body">
+            <div class="yt-card-title">Warpath · Видео #2</div>
+            <div class="yt-card-meta"><i class="ph ph-clock"></i> Недавно</div>
+          </div>
+        </div>
+
+        <div class="yt-card" data-vid="sJJxi8jqE1A">
+          <div class="yt-thumb">
+            <img src="https://i.ytimg.com/vi/sJJxi8jqE1A/maxresdefault.jpg" onerror="this.src='https://i.ytimg.com/vi/sJJxi8jqE1A/hqdefault.jpg'" alt="Video" />
+            <div class="yt-play-btn"><i class="ph ph-play-circle"></i></div>
+          </div>
+          <div class="yt-card-body">
+            <div class="yt-card-title">Warpath · Видео #3</div>
+            <div class="yt-card-meta"><i class="ph ph-clock"></i> Недавно</div>
+          </div>
+        </div>
+
+        <div class="yt-card" data-vid="Xy1UkZrxkrY">
+          <div class="yt-thumb">
+            <img src="https://i.ytimg.com/vi/Xy1UkZrxkrY/maxresdefault.jpg" onerror="this.src='https://i.ytimg.com/vi/Xy1UkZrxkrY/hqdefault.jpg'" alt="Video" />
+            <div class="yt-play-btn"><i class="ph ph-play-circle"></i></div>
+          </div>
+          <div class="yt-card-body">
+            <div class="yt-card-title">Warpath · Видео #4</div>
+            <div class="yt-card-meta"><i class="ph ph-clock"></i> Недавно</div>
+          </div>
+        </div>
+
+        <div class="yt-card" data-vid="JACgDDwLJ9k">
+          <div class="yt-thumb">
+            <img src="https://i.ytimg.com/vi/JACgDDwLJ9k/maxresdefault.jpg" onerror="this.src='https://i.ytimg.com/vi/JACgDDwLJ9k/hqdefault.jpg'" alt="Video" />
+            <div class="yt-play-btn"><i class="ph ph-play-circle"></i></div>
+          </div>
+          <div class="yt-card-body">
+            <div class="yt-card-title">Warpath · Видео #5</div>
+            <div class="yt-card-meta"><i class="ph ph-clock"></i> Недавно</div>
+          </div>
+        </div>
+
       </div>
     </div><!-- /page-youtube -->
+
+    <!-- VIDEO MODAL -->
+    <div class="yt-modal" id="ytModal">
+      <div class="yt-modal-backdrop" id="ytModalBackdrop"></div>
+      <div class="yt-modal-box">
+        <button class="yt-modal-close" id="ytModalClose"><i class="ph ph-x"></i></button>
+        <div class="yt-modal-player">
+          <iframe id="ytModalFrame" src="" allowfullscreen allow="autoplay"></iframe>
+        </div>
+      </div>
+    </div>
 
     <!-- GALLERY -->
     <div class="page" id="page-gallery">
@@ -728,5 +811,35 @@ document.getElementById('tg-form').addEventListener('submit', async e => {
   draw();
 })();
 </script>
+
+  <script>
+    // ── YOUTUBE MODAL ──
+    (function() {
+      const modal    = document.getElementById('ytModal');
+      const frame    = document.getElementById('ytModalFrame');
+      const closeBtn = document.getElementById('ytModalClose');
+      const backdrop = document.getElementById('ytModalBackdrop');
+
+      function openModal(vid) {
+        frame.src = 'https://www.youtube.com/embed/' + vid + '?autoplay=1&rel=0';
+        modal.classList.add('open');
+        document.body.style.overflow = 'hidden';
+      }
+
+      function closeModal() {
+        modal.classList.remove('open');
+        frame.src = '';
+        document.body.style.overflow = '';
+      }
+
+      document.querySelectorAll('.yt-card').forEach(card => {
+        card.addEventListener('click', () => openModal(card.dataset.vid));
+      });
+
+      closeBtn.addEventListener('click', closeModal);
+      backdrop.addEventListener('click', closeModal);
+      document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+    })();
+  </script>
 </body>
 </html>
