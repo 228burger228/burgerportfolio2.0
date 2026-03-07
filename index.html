@@ -92,13 +92,13 @@
             <h3>Связаться со мной</h3>
             <div class="avail"><div class="avail-dot"></div>Открыт к работе</div>
           </div>
-          <form id="tg-form">
+          <form id="tg-form" action="https://formspree.io/f/xlgpeagn" method="POST">
             <div class="form-row">
-              <input type="text" id="tg-name" placeholder="Имя" required />
-              <input type="text" id="tg-contact" placeholder="Telegram / Email" required />
+              <input type="text" name="name" id="tg-name" placeholder="Имя" required />
+              <input type="text" name="contact" id="tg-contact" placeholder="Telegram / Email" required />
             </div>
             <div class="form-bottom">
-              <textarea class="form-msg" id="tg-msg" placeholder="Детали проекта..." required></textarea>
+              <textarea class="form-msg" name="message" id="tg-msg" placeholder="Детали проекта..." required></textarea>
               <button type="submit" class="send-btn"><i class="ph ph-paper-plane-right"></i></button>
             </div>
           </form>
@@ -602,29 +602,27 @@ document.querySelectorAll('[data-gf]').forEach(btn => {
   });
 });
 
-// ── TELEGRAM FORM ──
+// ── FORMSPREE FORM ──
 document.getElementById('tg-form').addEventListener('submit', async e => {
   e.preventDefault();
   const btn    = e.target.querySelector('.send-btn');
   const status = document.getElementById('form-status');
-  const name    = document.getElementById('tg-name').value;
-  const contact = document.getElementById('tg-contact').value;
-  const msg     = document.getElementById('tg-msg').value;
-  const BOT_TOKEN = '8467633783:AAHkaNcFFCz6fn8AYEUbIjBXLB8uMLsdKH0';
-  const CHAT_ID   = '1577660217';
-  const text = '🍔 Portfolio Contact\n👤 ' + name + '\n📩 ' + contact + '\n💬 ' + msg;
   btn.innerHTML = '<i class="ph ph-circle-notch"></i>';
   try {
-    await fetch('https://api.telegram.org/bot' + BOT_TOKEN + '/sendMessage', {
+    const res = await fetch(e.target.action, {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ chat_id: CHAT_ID, text })
+      body: new FormData(e.target),
+      headers: { 'Accept': 'application/json' }
     });
-    status.textContent = '✓ Отправлено!';
-    status.style.color = '#71b280';
-    e.target.reset();
+    if (res.ok) {
+      status.textContent = '✓ Отправлено!';
+      status.style.color = '#71b280';
+      e.target.reset();
+    } else {
+      throw new Error();
+    }
   } catch {
-    status.textContent = '✕ Ошибка';
+    status.textContent = '✕ Ошибка, попробуй снова';
     status.style.color = '#ff6b6b';
   } finally {
     btn.innerHTML = '<i class="ph ph-paper-plane-right"></i>';
