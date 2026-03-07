@@ -595,7 +595,29 @@
     <div class="yt-card-meta"><i class="ph ph-clock"></i> Недавно</div>
   </div>
 </div>
-       
+       Из ссылки https://youtu.be/yJ6uTqb0sFU нужно взять только ID — это часть после последнего /, то есть yJ6uTqb0sFU.
+Вставляешь его в три места:
+html<div class="yt-card" data-vid="yJ6uTqb0sFU">
+  <div class="yt-thumb">
+    <img src="https://i.ytimg.com/vi/yJ6uTqb0sFU/maxresdefault.jpg" onerror="this.src='https://i.ytimg.com/vi/yJ6uTqb0sFU/hqdefault.jpg'" alt="Video" />
+    <div class="yt-play-btn"><i class="ph ph-play-circle"></i></div>
+  </div>
+  <div class="yt-card-body">
+    <div class="yt-card-title">НАЗВАНИЕ ВИДЕО</div>
+    <div class="yt-card-meta"><i class="ph ph-clock"></i> Недавно</div>
+  </div>
+</div>
+        
+<!--Правило простое: из любой ссылки YouTube берёшь только ID и вставляешь вместо JACgDDwLJ9k во всех трёх местах:
+data-vid="ВОТ_СЮДА"
+https://i.ytimg.com/vi/ВОТ_СЮДА/maxresdefault.jpg
+https://i.ytimg.com/vi/ВОТ_СЮДА/hqdefault.jpg
+Форматы ссылок и где брать ID:
+youtu.be/yJ6uTqb0sFU → ID = yJ6uTqb0sFU
+youtube.com/watch?v=yJ6uTqb0sFU → ID = yJ6uTqb0sFU
+youtube.com/embed/yJ6uTqb0sFU → ID = yJ6uTqb0sFU
+
+Всё что после ?si=... и прочие параметры — игнорируешь.-->
       </div>
     </div><!-- /page-youtube -->
 
