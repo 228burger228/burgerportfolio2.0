@@ -1,0 +1,214 @@
+{
+  "projects": [
+    {
+      "id": 1,
+      "title": "Город Мастеров",
+      "desc": "Образовательная игровая платформа Департамента образования Москвы. Авторизация, профили пользователей, достижения, тёмная тема, выбор шрифта, канбан-доска, техподдержка. Верстал макет и писал весь код — от дизайна до деплоя.",
+      "cat": "frontend",
+      "link": "https://masterscitygame.ru",
+      "emoji": "🏛️",
+      "tags": ["HTML/CSS/JS", "Figma", "Авторизация", "LocalStorage", "Адаптив", "Тёмная тема", "Канбан"],
+      "featured": true,
+      "badge": "Гос. проект"
+    },
+    {
+      "id": 2,
+      "title": "HgStroy — Комплексный сайт строительной компании",
+      "desc": "Полный редизайн и разработка сайта строительной компании 'Хаус Гард'. Работал с вторым разработчиком на архитектуре, дизайне и коде. Реализовал: шапку сайта для всех подсайтов, адаптивный дизайн, карусели портфолио, формы захвата, интеграцию с CRM. Также создал полную техническую документацию и рекомендации по миграции на Next.js.",
+      "cat": "frontend",
+      "link": "https://smr.hgstroy.ru/index.html",
+      "emoji": "🏗️",
+      "tags": ["HTML/CSS/JS", "Bootstrap 5", "Figma", "Swiper", "Responsive", "Team Project", "Architecture"],
+      "featured": true,
+      "company": "HgStroy"
+    },
+    {
+      "id": 3,
+      "title": "Warpath: Ace Shooter Wiki",
+      "desc": "Справочник для русскоязычного комьюнити мобильной стратегии. Юниты, офицеры, снаряжение, механики. Официальное партнёрство с игрой — закрывает нишу, которую не покрывают ни EN, ни CN ресурсы.",
+      "cat": "frontend",
+      "link": "https://228burger228.github.io/WarpathYTwiki/index.html",
+      "emoji": "⚔️",
+      "tags": ["Vue 3", "Vite", "GitHub Pages", "Community", "Content"]
+    },
+    {
+      "id": 4,
+      "title": "docFrost — сайт для мастера ремонта холодильников",
+      "desc": "Лид магнит для быстрого вызова мастера, заказа доставки деталей и повышение доверия. Цель — ловить клиентов на сайт и преобразовывать в заказы.",
+      "cat": "frontend",
+      "link": "https://228burger228.github.io/docFrost/",
+      "emoji": "❄️",
+      "tags": ["HTML/CSS/JS", "Landing Page", "Lead Magnet", "Conversion"]
+    },
+    {
+      "id": 5,
+      "title": "Amakids — Детский центр",
+      "desc": "Лендинг для центра ментальной арифметики. Курсы, запись на урок, раздел для педагогов.",
+      "cat": "frontend",
+      "link": "https://228burger228.github.io/Amakids/",
+      "emoji": "🧮",
+      "tags": ["HTML/CSS", "Frontend", "Landing Page"]
+    },
+    {
+      "id": 6,
+      "title": "DoryBim — Иллюстратор",
+      "desc": "Сайт-портфолио для цифрового иллюстратора. Галерея, прайс, форма заказа арта.",
+      "cat": "frontend",
+      "link": "https://228burger228.github.io/Dorybim/index.html",
+      "emoji": "🎨",
+      "tags": ["HTML/CSS/JS", "Portfolio", "Gallery"]
+    },
+    {
+      "id": 7,
+      "title": "Спортшкола Триатлон",
+      "desc": "Многостраничный сайт. Адаптив, галерея, инфоблоки.",
+      "cat": "frontend",
+      "link": "https://228burger228.github.io/triatlon/",
+      "emoji": "🏊",
+      "tags": ["HTML/CSS", "Frontend", "Responsive"]
+    },
+    {
+      "id": 8,
+      "title": "New Year 2026 Card",
+      "desc": "Интерактивная открытка с анимациями и генерацией поздравлений.",
+      "cat": "frontend",
+      "link": "https://228burger228.github.io/New2026/",
+      "emoji": "🎄",
+      "tags": ["JavaScript", "Animation", "Interactive"]
+    },
+    {
+      "id": 9,
+      "title": "Портфолио v1",
+      "desc": "Первая версия портфолио. Адаптив, галерея, многостраничный.",
+      "cat": "frontend",
+      "link": "https://228burger228.github.io/burgerCreate/index.html",
+      "emoji": "💼",
+      "tags": ["HTML/CSS", "Frontend", "Portfolio"]
+    },
+    {
+      "id": 10,
+      "title": "Music Label Concept",
+      "desc": "Дизайн сайта лейбла. Тёмная эстетика, неон, акцент на артистах.",
+      "cat": "ui",
+      "link": "https://www.figma.com/design/vynb9Q4A1K2rJ09Q4kRRvy/",
+      "emoji": "🎵",
+      "tags": ["UI/UX", "Figma", "Dark Theme"]
+    },
+    {
+      "id": 11,
+      "title": "E-Scooter Rental",
+      "desc": "Интерфейс аренды самокатов. Карта, профиль, система оплаты.",
+      "cat": "ui",
+      "link": "https://www.figma.com/design/3FyaRye7LEPnBvXM7jOVsr/",
+      "emoji": "🛴",
+      "tags": ["Mobile", "Interface", "UI/UX"]
+    },
+    {
+      "id": 12,
+      "title": "Eco-Step App",
+      "desc": "Экоприложение для велосипедистов: маршруты, трекер, сообщество.",
+      "cat": "ui",
+      "link": "https://www.figma.com/design/2u0JYeK7QvPeYxCvcYyHtL/ecostep",
+      "emoji": "🌱",
+      "tags": ["Mobile", "Interface", "App Design"]
+    },
+    {
+      "id": 13,
+      "title": "Midnight Choice",
+      "desc": "Квест-сайт выбора кино по настроению и темам.",
+      "cat": "ui",
+      "link": "https://www.figma.com/design/zcN1ZENeexrt7Re0UzFFOS/",
+      "emoji": "🎬",
+      "tags": ["Web", "Concept", "Interactive"]
+    },
+    {
+      "id": 14,
+      "title": "Редизайн стройкомпании",
+      "desc": "Редизайн шапки для роста конверсии и функциональности.",
+      "cat": "ui",
+      "link": "https://www.figma.com/design/IeIQQCUhqWNWFuZfymvviR/",
+      "emoji": "🏗️",
+      "tags": ["Redesign", "UX/UI", "Header"]
+    },
+    {
+      "id": 15,
+      "title": "EcoVolt Pulse",
+      "desc": "Билборд 3×6м для запуска электрокара. Экология и динамика.",
+      "cat": "content",
+      "link": "https://www.figma.com/design/fvr4rOpbbFhIbScrTiCqLp/",
+      "emoji": "⚡",
+      "tags": ["Advertising", "Figma", "Billboard"]
+    },
+    {
+      "id": 16,
+      "title": "Wildberries Rich Content",
+      "desc": "Инфографика для карточек GoPro и зимней рыбалки. Рост CTR.",
+      "cat": "content",
+      "emoji": "🛍️",
+      "tags": ["E-commerce", "Figma", "Infographic"]
+    },
+    {
+      "id": 17,
+      "title": "Hybrid Pass",
+      "desc": "Дизайн презентации для стартапа (10 слайдов) + скрипт.",
+      "cat": "content",
+      "emoji": "📊",
+      "tags": ["PowerPoint", "Storytelling", "Presentation"]
+    }
+  ],
+  "videos": [
+    {
+      "id": 1,
+      "vidId": "L13FJlzavbM",
+      "title": "ROAD MAP 2026 WARPATH! ОБЗОР НА ДОРОЖНУЮ КАРТУ"
+    },
+    {
+      "id": 2,
+      "vidId": "JvhISaFT1rI",
+      "title": "20K+ KILLS IN DESERT BATTLE | WARPATH ACE SHOOTER MADNESS"
+    },
+    {
+      "id": 3,
+      "vidId": "sJJxi8jqE1A",
+      "title": "ОБЗОР АККАУНТА ЛИДЕРА .MU. ЭПИК II"
+    },
+    {
+      "id": 4,
+      "vidId": "Xy1UkZrxkrY",
+      "title": "ТЕСТЫ LT Vs HELI С НОВЫМ ОФИЦЕРОМ HAYMEKER"
+    },
+    {
+      "id": 5,
+      "vidId": "JACgDDwLJ9k",
+      "title": "Warpath · Видео #5"
+    },
+    {
+      "id": 6,
+      "vidId": "yJ6uTqb0sFU",
+      "title": "ТЕСТЫ LT Vs HELI С НОВЫМ ОФИЦЕРОМ HAYMEKER"
+    }
+  ],
+  "packaging": [
+    {
+      "id": 1,
+      "title": "Упаковка · Мармелад Еремин",
+      "desc": "Дизайн упаковки кондитерской продукции",
+      "link": "Ypakovka1.png",
+      "type": "PNG"
+    },
+    {
+      "id": 2,
+      "title": "Упаковка · Мармелад Еремин",
+      "desc": "Финальный макет с вылетами для печати",
+      "link": "упаковка мармелад Еремин.pdf",
+      "type": "PDF"
+    },
+    {
+      "id": 3,
+      "title": "Упаковка · Малинка",
+      "desc": "Финальный макет с вылетами для печати",
+      "link": "упоковка 2 малинка итог.pdf",
+      "type": "PDF"
+    }
+  ]
+}
