@@ -34,7 +34,12 @@ class PortfolioApp {
         this.setupEasterEgg();
         this.setupGalleryFilters();
         this.setupHeroButton();
-        this.loadPortfolioData();
+        
+        // Загрузить данные после небольшой задержки, чтобы DOM был готов
+        setTimeout(() => {
+            this.loadPortfolioData();
+        }, 100);
+        
         this.setupAdminAccess();
     }
 
@@ -520,30 +525,8 @@ class PortfolioApp {
         
         adminLink.addEventListener('click', (e) => {
             e.preventDefault();
-            const password = prompt('Введи пароль для доступа к админ-панели:');
-            if (password) {
-                // Простой хеш пароля (SHA-256 было бы лучше, но для простоты используем простую проверку)
-                const hash = this.simpleHash(password);
-                const correctHash = '7c4a8d09ca3762af61e59520943dc26494f8941b'; // хеш пароля 'burger2024'
-                
-                if (hash === correctHash) {
-                    window.location.href = 'admin.html';
-                } else {
-                    alert('❌ Неверный пароль');
-                }
-            }
+            window.location.href = 'admin.html';
         });
-    }
-
-    simpleHash(str) {
-        // Простая функция хеширования (не криптографическая, но достаточно для базовой защиты)
-        let hash = 0;
-        for (let i = 0; i < str.length; i++) {
-            const char = str.charCodeAt(i);
-            hash = ((hash << 5) - hash) + char;
-            hash = hash & hash;
-        }
-        return Math.abs(hash).toString(16);
     }
 
     setupTelegram() {
