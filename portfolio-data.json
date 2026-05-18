@@ -2,25 +2,25 @@
   "projects": [
     {
       "id": 1,
+      "title": "HgStroy — Комплексный редизайн",
+      "desc": "Полный редизайн и разработка сайта строительной компании. Работал с вторым разработчиком на архитектуре, дизайне и коде. Реализовал: шапку сайта для всех подсайтов, адаптивный дизайн, карусели портфолио, формы захвата, интеграцию с CRM. Создал полную техническую документацию и рекомендации по миграции на Next.js. Lighthouse 95+.",
+      "cat": "frontend",
+      "link": "https://smr.hgstroy.ru/index.html",
+      "emoji": "🏗️",
+      "tags": ["HTML/CSS/JS", "Bootstrap 5", "Figma", "Swiper", "Team Project", "Architecture"],
+      "featured": true,
+      "badge": "Масштабный проект"
+    },
+    {
+      "id": 2,
       "title": "Город Мастеров",
       "desc": "Образовательная игровая платформа Департамента образования Москвы. Авторизация, профили пользователей, достижения, тёмная тема, выбор шрифта, канбан-доска, техподдержка. Верстал макет и писал весь код — от дизайна до деплоя.",
       "cat": "frontend",
       "link": "https://masterscitygame.ru",
       "emoji": "🏛️",
-      "tags": ["HTML/CSS/JS", "Figma", "Авторизация", "LocalStorage", "Адаптив", "Тёмная тема", "Канбан"],
+      "tags": ["HTML/CSS/JS", "Figma", "Авторизация", "LocalStorage", "Адаптив", "Тёмная тема"],
       "featured": true,
       "badge": "Гос. проект"
-    },
-    {
-      "id": 2,
-      "title": "HgStroy — Комплексный сайт строительной компании",
-      "desc": "Полный редизайн и разработка сайта строительной компании 'Хаус Гард'. Работал с вторым разработчиком на архитектуре, дизайне и коде. Реализовал: шапку сайта для всех подсайтов, адаптивный дизайн, карусели портфолио, формы захвата, интеграцию с CRM. Также создал полную техническую документацию и рекомендации по миграции на Next.js.",
-      "cat": "frontend",
-      "link": "https://smr.hgstroy.ru/index.html",
-      "emoji": "🏗️",
-      "tags": ["HTML/CSS/JS", "Bootstrap 5", "Figma", "Swiper", "Responsive", "Team Project", "Architecture"],
-      "featured": true,
-      "company": "HgStroy"
     },
     {
       "id": 3,
@@ -29,28 +29,19 @@
       "cat": "frontend",
       "link": "https://228burger228.github.io/WarpathYTwiki/index.html",
       "emoji": "⚔️",
-      "tags": ["Vue 3", "Vite", "GitHub Pages", "Community", "Content"]
+      "tags": ["Vue 3", "Vite", "GitHub Pages", "Community"]
     },
     {
       "id": 4,
-      "title": "docFrost — сайт для мастера ремонта холодильников",
-      "desc": "Лид магнит для быстрого вызова мастера, заказа доставки деталей и повышение доверия. Цель — ловить клиентов на сайт и преобразовывать в заказы.",
-      "cat": "frontend",
-      "link": "https://228burger228.github.io/docFrost/",
-      "emoji": "❄️",
-      "tags": ["HTML/CSS/JS", "Landing Page", "Lead Magnet", "Conversion"]
-    },
-    {
-      "id": 5,
       "title": "Amakids — Детский центр",
       "desc": "Лендинг для центра ментальной арифметики. Курсы, запись на урок, раздел для педагогов.",
       "cat": "frontend",
       "link": "https://228burger228.github.io/Amakids/",
       "emoji": "🧮",
-      "tags": ["HTML/CSS", "Frontend", "Landing Page"]
+      "tags": ["HTML/CSS/JS", "Landing Page", "Responsive"]
     },
     {
-      "id": 6,
+      "id": 5,
       "title": "DoryBim — Иллюстратор",
       "desc": "Сайт-портфолио для цифрового иллюстратора. Галерея, прайс, форма заказа арта.",
       "cat": "frontend",
@@ -59,7 +50,7 @@
       "tags": ["HTML/CSS/JS", "Portfolio", "Gallery"]
     },
     {
-      "id": 7,
+      "id": 6,
       "title": "Спортшкола Триатлон",
       "desc": "Многостраничный сайт. Адаптив, галерея, инфоблоки.",
       "cat": "frontend",
@@ -68,7 +59,7 @@
       "tags": ["HTML/CSS", "Frontend", "Responsive"]
     },
     {
-      "id": 8,
+      "id": 7,
       "title": "New Year 2026 Card",
       "desc": "Интерактивная открытка с анимациями и генерацией поздравлений.",
       "cat": "frontend",
@@ -77,7 +68,7 @@
       "tags": ["JavaScript", "Animation", "Interactive"]
     },
     {
-      "id": 9,
+      "id": 8,
       "title": "Портфолио v1",
       "desc": "Первая версия портфолио. Адаптив, галерея, многостраничный.",
       "cat": "frontend",
@@ -86,7 +77,7 @@
       "tags": ["HTML/CSS", "Frontend", "Portfolio"]
     },
     {
-      "id": 10,
+      "id": 9,
       "title": "Music Label Concept",
       "desc": "Дизайн сайта лейбла. Тёмная эстетика, неон, акцент на артистах.",
       "cat": "ui",
@@ -95,7 +86,7 @@
       "tags": ["UI/UX", "Figma", "Dark Theme"]
     },
     {
-      "id": 11,
+      "id": 10,
       "title": "E-Scooter Rental",
       "desc": "Интерфейс аренды самокатов. Карта, профиль, система оплаты.",
       "cat": "ui",
@@ -104,7 +95,7 @@
       "tags": ["Mobile", "Interface", "UI/UX"]
     },
     {
-      "id": 12,
+      "id": 11,
       "title": "Eco-Step App",
       "desc": "Экоприложение для велосипедистов: маршруты, трекер, сообщество.",
       "cat": "ui",
@@ -113,7 +104,7 @@
       "tags": ["Mobile", "Interface", "App Design"]
     },
     {
-      "id": 13,
+      "id": 12,
       "title": "Midnight Choice",
       "desc": "Квест-сайт выбора кино по настроению и темам.",
       "cat": "ui",
@@ -122,7 +113,7 @@
       "tags": ["Web", "Concept", "Interactive"]
     },
     {
-      "id": 14,
+      "id": 13,
       "title": "Редизайн стройкомпании",
       "desc": "Редизайн шапки для роста конверсии и функциональности.",
       "cat": "ui",
@@ -131,7 +122,7 @@
       "tags": ["Redesign", "UX/UI", "Header"]
     },
     {
-      "id": 15,
+      "id": 14,
       "title": "EcoVolt Pulse",
       "desc": "Билборд 3×6м для запуска электрокара. Экология и динамика.",
       "cat": "content",
@@ -140,7 +131,7 @@
       "tags": ["Advertising", "Figma", "Billboard"]
     },
     {
-      "id": 16,
+      "id": 15,
       "title": "Wildberries Rich Content",
       "desc": "Инфографика для карточек GoPro и зимней рыбалки. Рост CTR.",
       "cat": "content",
@@ -148,7 +139,7 @@
       "tags": ["E-commerce", "Figma", "Infographic"]
     },
     {
-      "id": 17,
+      "id": 16,
       "title": "Hybrid Pass",
       "desc": "Дизайн презентации для стартапа (10 слайдов) + скрипт.",
       "cat": "content",
@@ -209,6 +200,56 @@
       "desc": "Финальный макет с вылетами для печати",
       "link": "упоковка 2 малинка итог.pdf",
       "type": "PDF"
+    }
+  ],
+  "certificates": [
+    {
+      "id": 1,
+      "title": "Яндекс Практикум",
+      "course": "UI/UX Design",
+      "desc": "Полный курс по дизайну интерфейсов. Ожидаю электронный сертификат.",
+      "date": "2026",
+      "icon": "certificate"
+    },
+    {
+      "id": 2,
+      "title": "МГКЭИТ",
+      "course": "Графический дизайн",
+      "desc": "Специальность: полный профессиональный цикл дизайна",
+      "date": "2027",
+      "icon": "graduation-cap"
+    },
+    {
+      "id": 3,
+      "title": "Архитектурный конкурс",
+      "course": "Проектирование",
+      "desc": "Участие в конкурсе колледжей, работа в Revit",
+      "date": "2026",
+      "icon": "medal"
+    },
+    {
+      "id": 4,
+      "title": "Официальное партнёрство",
+      "course": "Warpath: Ace Shooter",
+      "desc": "Официальный блогер и разработчик для мобильной стратегии",
+      "date": "2025 — 2026",
+      "icon": "handshake"
+    },
+    {
+      "id": 5,
+      "title": "Государственный проект",
+      "course": "Город Мастеров",
+      "desc": "Официальный заказ Департамента образования Москвы",
+      "date": "2025",
+      "icon": "seal-check"
+    },
+    {
+      "id": 6,
+      "title": "Масштабный проект",
+      "course": "HgStroy",
+      "desc": "Полный редизайн и разработка сайта строительной компании",
+      "date": "2026",
+      "icon": "star"
     }
   ]
 }
