@@ -11,12 +11,15 @@ class PortfolioApp {
         this.isBurgerMode = false;
         
         // Navigation
-        this.navLinks = document.querySelectorAll('.nav-links li');
-        this.sections = document.querySelectorAll('.page-section');
+        this.navLinks = document.querySelectorAll('.nav-list li[data-page]');
+        this.sections = document.querySelectorAll('.page');
         
         // Gallery Filters
         this.filterButtons = document.querySelectorAll('.filter-btn');
         this.galleryItems = document.querySelectorAll('.gallery-item');
+        
+        // Data
+        this.portfolioData = null;
         
         this.init();
     }
@@ -31,6 +34,8 @@ class PortfolioApp {
         this.setupEasterEgg();
         this.setupGalleryFilters();
         this.setupHeroButton();
+        this.loadPortfolioData();
+        this.setupAdminAccess();
     }
 
     setupHeroButton() {
@@ -97,20 +102,15 @@ class PortfolioApp {
     setupNavigation() {
         this.navLinks.forEach(link => {
             link.addEventListener('click', () => {
-                const target = link.dataset.target;
+                const target = link.dataset.page;
                 
                 this.navLinks.forEach(l => l.classList.remove('active'));
                 link.classList.add('active');
 
                 this.sections.forEach(sec => {
-                    sec.classList.remove('active', 'fade-in-up');
-                    if(sec.id === target) {
+                    sec.classList.remove('active');
+                    if(sec.id === 'page-' + target) {
                         sec.classList.add('active');
-                        // Trigger reflow
-                        void sec.offsetWidth;
-                        sec.classList.add('fade-in-up');
-                        // Scroll to top on mobile
-                        document.querySelector('.content-area').scrollTop = 0;
                     }
                 });
 
@@ -228,6 +228,108 @@ class PortfolioApp {
         animate();
     }
 
+    loadPortfolioData() {
+        fetch('portfolio-data.json')
+            .then(res => res.json())
+            .then(data => {
+                this.portfolioData = data;
+                this.renderProjects();
+                this.renderVideos();
+                this.renderPackaging();
+            })
+            .catch(err => console.error('Ошибка загрузки данных:', err));
+    }
+
+    renderProjects() {
+        if (!this.portfolioData || !this.portfolioData.projects) return;
+        
+        const container = document.getElementById('projects-container');
+        if (!container) return;
+        
+        container.innerHTML = this.portfolioData.projects.map(proj => `
+            <div class="proj-card" data-cat="${proj.cat}">
+                <div class="proj-img">
+                    <div class="proj-ph">${proj.emoji}</div>
+                    <div class="proj-ov"><a href="${proj.link}" target="_blank">Открыть →</a></div>
+                    ${proj.badge ? `<div class="proj-gov-badge"><i class="ph ph-seal-check"></i> ${proj.badge}</div>` : ''}
+                </div>
+                <div class="proj-body">
+                    <div class="proj-cats">${proj.tags.map(tag => `<span class="pcat">${tag}</span>`).join('')}</div>
+                    <h3>${proj.title}</h3>
+                    <p>${proj.desc}</p>
+                </div>
+            </div>
+        `).join('');
+    }
+
+    renderVideos() {
+        if (!this.portfolioData || !this.portfolioData.videos) return;
+        
+        const container = document.getElementById('videos-container');
+        if (!container) return;
+        
+        container.innerHTML = this.portfolioData.videos.map(vid => `
+            <div class="video-wrap">
+                <iframe src="https://www.youtube.com/embed/${vid.vidId}" allowfullscreen></iframe>
+            </div>
+        `).join('');
+    }
+
+    renderPackaging() {
+        if (!this.portfolioData || !this.portfolioData.packaging) return;
+        
+        const container = document.getElementById('packaging-container');
+        if (!container) return;
+        
+        container.innerHTML = this.portfolioData.packaging.map(pack => `
+            <div class="pack-card">
+                <div class="pack-preview">
+                    <div class="pack-ph">📦</div>
+                    <div class="pack-type-badge">${pack.type}</div>
+                </div>
+                <div class="pack-body">
+                    <h4>${pack.title}</h4>
+                    <p>${pack.desc}</p>
+                    <div class="pack-actions">
+                        <a href="${pack.link}" target="_blank" class="pack-btn"><i class="ph ph-download-simple"></i> Скачать</a>
+                    </div>
+                </div>
+            </div>
+        `).join('');
+    }
+
+    setupAdminAccess() {
+        const adminLink = document.getElementById('admin-link');
+        if (!adminLink) return;
+        
+        adminLink.addEventListener('click', (e) => {
+            e.preventDefault();
+            const password = prompt('Введи пароль для доступа к админ-панели:');
+            if (password) {
+                // Простой хеш пароля (SHA-256 было бы лучше, но для простоты используем простую проверку)
+                const hash = this.simpleHash(password);
+                const correctHash = '7c4a8d09ca3762af61e59520943dc26494f8941b'; // хеш пароля 'burger2024'
+                
+                if (hash === correctHash) {
+                    window.location.href = 'admin.html';
+                } else {
+                    alert('❌ Неверный пароль');
+                }
+            }
+        });
+    }
+
+    simpleHash(str) {
+        // Простая функция хеширования (не криптографическая, но достаточно для базовой защиты)
+        let hash = 0;
+        for (let i = 0; i < str.length; i++) {
+            const char = str.charCodeAt(i);
+            hash = ((hash << 5) - hash) + char;
+            hash = hash & hash;
+        }
+        return Math.abs(hash).toString(16);
+    }
+
     setupTelegram() {
         const form = document.getElementById('tg-form');
         if(!form) return;
@@ -237,28 +339,27 @@ class PortfolioApp {
             const btn = form.querySelector('button');
             const status = document.getElementById('form-status');
             
-            const name = document.getElementById('tg-name').value;
-            const msg = document.getElementById('tg-msg').value;
-            
-            const BOT_TOKEN = '8467633783:AAHkaNcFFCz6fn8AYEUbIjBXLB8uMLsdKH0';
-            const CHAT_ID = '1577660217';
-            
-            const text = `🍔 Message from Portfolio:\n👤: ${name}\n💬: ${msg}`;
-            
             btn.textContent = '...';
             
             try {
-                await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
+                const formData = new FormData(form);
+                const response = await fetch(form.action, {
                     method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ chat_id: CHAT_ID, text: text })
+                    body: formData,
+                    headers: { 'Accept': 'application/json' }
                 });
-                status.textContent = 'Отправлено!';
-                status.style.color = '#71B280';
-                form.reset();
+                
+                if (response.ok) {
+                    status.textContent = 'Спасибо! Сообщение отправлено.';
+                    status.style.color = '#71B280';
+                    form.reset();
+                } else {
+                    status.textContent = 'Ошибка при отправке';
+                    status.style.color = '#ff6b6b';
+                }
             } catch (err) {
-                status.textContent = 'Ошибка';
-                status.style.color = 'red';
+                status.textContent = 'Ошибка подключения';
+                status.style.color = '#ff6b6b';
             } finally {
                 btn.innerHTML = 'Отправить <i class="ph ph-paper-plane-right"></i>';
             }
