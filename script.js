@@ -115,8 +115,43 @@ class PortfolioApp {
                 });
 
                 this.updateThemeForSection(target);
+                
+                // Закрыть мобильное меню после клика
+                if (window.innerWidth <= 768) {
+                    this.closeMobileMenu();
+                }
             });
         });
+        
+        // Добавить обработчик для открытия/закрытия мобильного меню
+        this.setupMobileMenu();
+    }
+
+    setupMobileMenu() {
+        const sidebar = document.querySelector('.sidebar');
+        if (!sidebar) return;
+        
+        // Клик на логотип открывает/закрывает меню на мобилке
+        const logo = document.querySelector('.s-logo');
+        if (logo && window.innerWidth <= 768) {
+            logo.addEventListener('click', () => {
+                sidebar.classList.toggle('open');
+            });
+        }
+        
+        // Закрыть меню при клике вне его
+        document.addEventListener('click', (e) => {
+            if (window.innerWidth <= 768 && !sidebar.contains(e.target) && sidebar.classList.contains('open')) {
+                this.closeMobileMenu();
+            }
+        });
+    }
+
+    closeMobileMenu() {
+        const sidebar = document.querySelector('.sidebar');
+        if (sidebar) {
+            sidebar.classList.remove('open');
+        }
     }
 
     updateThemeForSection(section) {
