@@ -5,726 +5,570 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Admin | Burger Portfolio</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=DM+Sans:opsz,wght@9..40,400;9..40,500&display=swap" rel="stylesheet" />
   <script src="https://unpkg.com/@phosphor-icons/web"></script>
   <style>
-    * { box-sizing: border-box; margin: 0; padding: 0; }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     :root {
-      --bg-top: #0f1117;
-      --bg-bottom: #151820;
-      --surface: rgba(18,19,26,0.85);
-      --border: rgba(255,255,255,0.07);
+      --bg: #0f1117;
+      --surface: #1a1b23;
+      --border: rgba(255,255,255,0.08);
       --accent: #e8ff47;
       --text: #eeeef2;
       --muted: #666680;
-      --font-display: 'Inter', sans-serif;
-      --font-body: 'DM Sans', sans-serif;
+      --green: #71b280;
+      --red: #ff6b6b;
+      --font: 'Inter', sans-serif;
     }
     body {
-      font-family: var(--font-body);
+      font-family: var(--font);
       color: var(--text);
-      background: linear-gradient(160deg, var(--bg-top), var(--bg-bottom));
+      background: var(--bg);
       min-height: 100vh;
     }
-    .admin-container {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 28px;
+
+    /* ── LOGIN ── */
+    #login-screen {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
+    .login-box {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 40px;
+      width: min(400px, 90vw);
+      text-align: center;
+    }
+    .login-box h1 {
+      font-size: 22px;
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+    .login-box p {
+      font-size: 13px;
+      color: var(--muted);
+      margin-bottom: 28px;
+    }
+    .login-box input {
+      width: 100%;
+      background: rgba(0,0,0,.4);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 12px 14px;
+      color: var(--text);
+      font-family: var(--font);
+      font-size: 14px;
+      margin-bottom: 12px;
+      text-align: center;
+      letter-spacing: 0.1em;
+    }
+    .login-box input:focus { outline: none; border-color: rgba(232,255,71,.4); }
+    .login-btn {
+      width: 100%;
+      background: var(--accent);
+      color: #0a0a0c;
+      font-family: var(--font);
+      font-weight: 700;
+      font-size: 13px;
+      padding: 12px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      transition: opacity 0.2s;
+    }
+    .login-btn:hover { opacity: 0.9; }
+    .login-error {
+      color: var(--red);
+      font-size: 12px;
+      margin-top: 10px;
+      display: none;
+    }
+
+    /* ── ADMIN PANEL ── */
+    #admin-panel { display: none; }
+
+    .admin-wrap {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 28px 20px 80px;
+    }
+
     .admin-header {
       display: flex;
       align-items: center;
       justify-content: space-between;
       margin-bottom: 28px;
       flex-wrap: wrap;
-      gap: 16px;
+      gap: 12px;
     }
-    .admin-header h1 {
-      font-family: var(--font-display);
-      font-weight: 800;
-      font-size: 32px;
-      letter-spacing: -0.02em;
-    }
-    .admin-header-actions {
-      display: flex;
-      gap: 10px;
-      flex-wrap: wrap;
-    }
+    .admin-header h1 { font-size: 22px; font-weight: 700; }
+
     .btn {
       display: inline-flex;
       align-items: center;
-      gap: 8px;
+      gap: 7px;
       background: var(--accent);
       color: #0a0a0c;
-      font-family: var(--font-display);
+      font-family: var(--font);
       font-weight: 700;
       font-size: 12px;
-      letter-spacing: 0.05em;
+      letter-spacing: 0.04em;
       text-transform: uppercase;
-      padding: 10px 20px;
+      padding: 9px 18px;
       border-radius: 8px;
       border: none;
       cursor: pointer;
       text-decoration: none;
-      transition: transform 0.15s, box-shadow 0.2s;
+      transition: opacity 0.2s;
     }
-    .btn:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 8px 20px rgba(232,255,71,.28);
-    }
-    .btn-secondary {
-      background: var(--surface);
+    .btn:hover { opacity: 0.85; }
+    .btn-ghost {
+      background: none;
       border: 1px solid var(--border);
       color: var(--muted);
     }
-    .btn-secondary:hover {
-      border-color: rgba(232,255,71,.4);
-      color: var(--text);
-      box-shadow: none;
-    }
+    .btn-ghost:hover { border-color: rgba(232,255,71,.3); color: var(--text); opacity: 1; }
+
+    /* Tabs */
     .tabs {
       display: flex;
-      gap: 4px;
-      margin-bottom: 20px;
+      gap: 2px;
       border-bottom: 1px solid var(--border);
-      flex-wrap: wrap;
+      margin-bottom: 24px;
+      overflow-x: auto;
     }
-    .tab-btn {
+    .tab {
       background: none;
       border: none;
       color: var(--muted);
-      font-family: var(--font-body);
+      font-family: var(--font);
       font-size: 13px;
       font-weight: 600;
-      padding: 12px 18px;
+      padding: 10px 16px;
       cursor: pointer;
       border-bottom: 2px solid transparent;
-      transition: color 0.2s, border-color 0.2s;
+      white-space: nowrap;
+      transition: color 0.2s;
     }
-    .tab-btn.active {
+    .tab.active { color: var(--accent); border-color: var(--accent); }
+    .tab:hover { color: var(--text); }
+
+    .tab-pane { display: none; }
+    .tab-pane.active { display: block; }
+
+    /* Form */
+    .form-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 22px;
+      margin-bottom: 20px;
+    }
+    .form-card h3 {
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
       color: var(--accent);
-      border-color: var(--accent);
-    }
-    .tab-btn:hover { color: var(--text); }
-
-    .tab-content { display: none; }
-    .tab-content.active { display: block; animation: fadeIn 0.25s ease; }
-    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-
-    .form-group {
       margin-bottom: 16px;
     }
-    .form-group label {
+    .fg { margin-bottom: 14px; }
+    .fg label {
       display: block;
-      font-size: 12px;
+      font-size: 11px;
       font-weight: 600;
       color: var(--muted);
-      margin-bottom: 6px;
       text-transform: uppercase;
       letter-spacing: 0.04em;
+      margin-bottom: 5px;
     }
-    .form-group input,
-    .form-group textarea,
-    .form-group select {
+    .fg input, .fg textarea, .fg select {
       width: 100%;
-      background: rgba(0,0,0,.3);
+      background: rgba(0,0,0,.35);
       border: 1px solid var(--border);
       border-radius: 8px;
-      padding: 10px 12px;
+      padding: 9px 12px;
       color: var(--text);
-      font-family: var(--font-body);
+      font-family: var(--font);
       font-size: 13px;
     }
-    .form-group input:focus,
-    .form-group textarea:focus,
-    .form-group select:focus {
+    .fg input:focus, .fg textarea:focus, .fg select:focus {
       outline: none;
-      border-color: rgba(232,255,71,.4);
-      box-shadow: 0 0 12px rgba(232,255,71,.1);
+      border-color: rgba(232,255,71,.35);
     }
-    .form-group textarea {
-      resize: vertical;
-      min-height: 80px;
-    }
+    .fg textarea { resize: vertical; min-height: 70px; }
+    .fg select option { background: #1a1b23; }
+    .row2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
 
-    .form-row {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 16px;
-    }
-
-    .form-section {
-      background: var(--surface);
+    /* Output */
+    .output-box {
+      background: #0a0a0c;
       border: 1px solid var(--border);
-      border-radius: 14px;
-      padding: 20px;
-      margin-bottom: 20px;
-    }
-
-    .form-section h3 {
-      font-family: var(--font-display);
-      font-weight: 700;
-      font-size: 14px;
-      margin-bottom: 14px;
-      text-transform: uppercase;
-      letter-spacing: 0.06em;
-      color: var(--accent);
-    }
-
-    .items-list {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-      gap: 12px;
-      margin-bottom: 20px;
-    }
-
-    .item-card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 12px;
+      border-radius: 10px;
       padding: 16px;
+      font-family: 'Courier New', monospace;
+      font-size: 12px;
+      color: #a8ff78;
+      white-space: pre-wrap;
+      word-break: break-all;
+      max-height: 320px;
+      overflow-y: auto;
+      margin-top: 14px;
+      display: none;
+    }
+    .output-box.visible { display: block; }
+
+    .copy-row {
       display: flex;
-      flex-direction: column;
+      align-items: center;
       gap: 10px;
+      margin-top: 10px;
     }
-
-    .item-card h4 {
-      font-family: var(--font-display);
-      font-weight: 700;
-      font-size: 13px;
-      color: var(--accent);
-      margin: 0;
-    }
-
-    .item-card p {
+    .copy-hint {
       font-size: 12px;
       color: var(--muted);
-      margin: 0;
-      line-height: 1.5;
     }
+    .copy-hint strong { color: var(--accent); }
 
-    .item-actions {
-      display: flex;
-      gap: 6px;
-    }
-
-    .item-actions button {
-      flex: 1;
-      background: none;
-      border: 1px solid var(--border);
-      color: var(--muted);
-      font-size: 11px;
-      padding: 6px 8px;
-      border-radius: 6px;
-      cursor: pointer;
-      transition: border-color 0.2s, color 0.2s;
-    }
-
-    .item-actions button:hover {
-      border-color: rgba(232,255,71,.35);
-      color: var(--accent);
-    }
-
-    .item-actions .delete-btn:hover {
-      border-color: #ff6b6b;
-      color: #ff6b6b;
-    }
-
-    .modal {
-      display: none;
-      position: fixed;
-      inset: 0;
-      z-index: 1000;
-      background: rgba(0,0,0,.6);
-      backdrop-filter: blur(8px);
-      align-items: center;
-      justify-content: center;
-    }
-
-    .modal.open {
-      display: flex;
-    }
-
-    .modal-box {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 14px;
-      padding: 28px;
-      width: min(600px, 90vw);
-      max-height: 85vh;
-      overflow-y: auto;
-    }
-
-    .modal-header {
-      font-family: var(--font-display);
-      font-weight: 700;
-      font-size: 18px;
-      margin-bottom: 20px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-
-    .modal-close {
-      background: none;
-      border: none;
-      color: var(--muted);
-      font-size: 20px;
-      cursor: pointer;
-    }
-
-    .modal-close:hover { color: var(--text); }
-
-    .success-msg {
-      background: rgba(113,178,128,.15);
-      border: 1px solid rgba(113,178,128,.3);
-      color: #71b280;
-      padding: 12px 14px;
-      border-radius: 8px;
-      font-size: 13px;
-      margin-bottom: 16px;
-    }
-
-    .error-msg {
-      background: rgba(255,107,107,.15);
-      border: 1px solid rgba(255,107,107,.3);
-      color: #ff6b6b;
-      padding: 12px 14px;
-      border-radius: 8px;
-      font-size: 13px;
-      margin-bottom: 16px;
-    }
-
-    .stats-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 12px;
-      margin-bottom: 20px;
-    }
-
-    .stat-box {
-      background: var(--surface);
-      border: 1px solid var(--border);
+    /* Instruction */
+    .instruction {
+      background: rgba(232,255,71,.05);
+      border: 1px solid rgba(232,255,71,.15);
       border-radius: 12px;
-      padding: 16px;
-      text-align: center;
+      padding: 16px 18px;
+      font-size: 13px;
+      color: rgba(238,238,242,.8);
+      line-height: 1.7;
+      margin-bottom: 20px;
     }
-
-    .stat-num {
-      font-family: var(--font-display);
-      font-weight: 800;
-      font-size: 24px;
-      color: var(--accent);
-    }
-
-    .stat-label {
+    .instruction strong { color: var(--accent); }
+    .instruction code {
+      background: rgba(0,0,0,.4);
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-family: monospace;
       font-size: 11px;
-      color: var(--muted);
-      margin-top: 4px;
-      text-transform: uppercase;
-      letter-spacing: 0.04em;
+      color: #a8ff78;
     }
 
-    @media (max-width: 768px) {
-      .form-row { grid-template-columns: 1fr; }
-      .items-list { grid-template-columns: 1fr; }
-      .admin-header { flex-direction: column; align-items: flex-start; }
+    @media (max-width: 600px) {
+      .row2 { grid-template-columns: 1fr; }
     }
   </style>
 </head>
 <body>
 
-<div class="admin-container">
-
-  <!-- HEADER -->
-  <div class="admin-header">
-    <h1>⚙️ Portfolio Admin</h1>
-    <div class="admin-header-actions">
-      <a href="index.html" class="btn btn-secondary"><i class="ph ph-arrow-left"></i> К портфолио</a>
-      <button class="btn btn-secondary" onclick="exportData()"><i class="ph ph-download-simple"></i> Экспорт</button>
-      <button class="btn btn-secondary" onclick="importData()"><i class="ph ph-upload-simple"></i> Импорт</button>
-    </div>
+<!-- LOGIN -->
+<div id="login-screen">
+  <div class="login-box">
+    <h1>⚙️ Admin Panel</h1>
+    <p>Введи пароль для доступа</p>
+    <input type="password" id="pwd-input" placeholder="••••••••" onkeydown="if(event.key==='Enter')checkPwd()" />
+    <button class="login-btn" onclick="checkPwd()">Войти</button>
+    <p class="login-error" id="login-error">Неверный пароль</p>
   </div>
-
-  <!-- TABS -->
-  <div class="tabs">
-    <button class="tab-btn active" onclick="switchTab('projects')"><i class="ph ph-briefcase"></i> Проекты</button>
-    <button class="tab-btn" onclick="switchTab('youtube')"><i class="ph ph-youtube-logo"></i> YouTube</button>
-    <button class="tab-btn" onclick="switchTab('packaging')"><i class="ph ph-package"></i> Упаковка</button>
-    <button class="tab-btn" onclick="switchTab('stats')"><i class="ph ph-chart-bar"></i> Статистика</button>
-  </div>
-
-  <!-- PROJECTS TAB -->
-  <div id="projects" class="tab-content active">
-    <div class="form-section">
-      <h3>Добавить проект</h3>
-      <div class="form-group">
-        <label>Название</label>
-        <input type="text" id="projTitle" placeholder="Название проекта">
-      </div>
-      <div class="form-group">
-        <label>Описание</label>
-        <textarea id="projDesc" placeholder="Описание проекта"></textarea>
-      </div>
-      <div class="form-row">
-        <div class="form-group">
-          <label>Категория</label>
-          <select id="projCat">
-            <option value="frontend">Frontend</option>
-            <option value="ui">UI/UX</option>
-            <option value="content">Контент</option>
-          </select>
-        </div>
-        <div class="form-group">
-          <label>Ссылка</label>
-          <input type="text" id="projLink" placeholder="https://example.com">
-        </div>
-      </div>
-      <div class="form-row">
-        <div class="form-group">
-          <label>Иконка/Эмодзи</label>
-          <input type="text" id="projEmoji" placeholder="🎨" value="💼">
-        </div>
-        <div class="form-group">
-          <label>Теги (через запятую)</label>
-          <input type="text" id="projTags" placeholder="HTML, CSS, JS">
-        </div>
-      </div>
-      <button class="btn" onclick="addProject()" style="width: 100%;"><i class="ph ph-plus"></i> Добавить проект</button>
-    </div>
-
-    <div id="projectsList" class="items-list"></div>
-  </div>
-
-  <!-- YOUTUBE TAB -->
-  <div id="youtube" class="tab-content">
-    <div class="form-section">
-      <h3>Добавить видео</h3>
-      <div class="form-group">
-        <label>ID видео YouTube</label>
-        <input type="text" id="vidId" placeholder="yJ6uTqb0sFU">
-      </div>
-      <div class="form-group">
-        <label>Название видео</label>
-        <input type="text" id="vidTitle" placeholder="Название видео">
-      </div>
-      <button class="btn" onclick="addVideo()" style="width: 100%;"><i class="ph ph-plus"></i> Добавить видео</button>
-    </div>
-
-    <div id="videosList" class="items-list"></div>
-  </div>
-
-  <!-- PACKAGING TAB -->
-  <div id="packaging" class="tab-content">
-    <div class="form-section">
-      <h3>Добавить упаковку</h3>
-      <div class="form-group">
-        <label>Название</label>
-        <input type="text" id="packTitle" placeholder="Название работы">
-      </div>
-      <div class="form-group">
-        <label>Описание</label>
-        <textarea id="packDesc" placeholder="Описание упаковки"></textarea>
-      </div>
-      <div class="form-row">
-        <div class="form-group">
-          <label>Ссылка на файл</label>
-          <input type="text" id="packLink" placeholder="упаковка.pdf">
-        </div>
-        <div class="form-group">
-          <label>Тип файла</label>
-          <select id="packType">
-            <option value="PDF">PDF</option>
-            <option value="PNG">PNG</option>
-            <option value="JPG">JPG</option>
-          </select>
-        </div>
-      </div>
-      <button class="btn" onclick="addPackaging()" style="width: 100%;"><i class="ph ph-plus"></i> Добавить упаковку</button>
-    </div>
-
-    <div id="packagingList" class="items-list"></div>
-  </div>
-
-  <!-- STATS TAB -->
-  <div id="stats" class="tab-content">
-    <div class="stats-grid">
-      <div class="stat-box">
-        <div class="stat-num" id="projCount">0</div>
-        <div class="stat-label">Проектов</div>
-      </div>
-      <div class="stat-box">
-        <div class="stat-num" id="vidCount">0</div>
-        <div class="stat-label">Видео</div>
-      </div>
-      <div class="stat-box">
-        <div class="stat-num" id="packCount">0</div>
-        <div class="stat-label">Упаковок</div>
-      </div>
-    </div>
-
-    <div class="form-section">
-      <h3>Действия</h3>
-      <button class="btn btn-secondary" onclick="clearAll()" style="width: 100%; margin-bottom: 10px;">
-        <i class="ph ph-trash"></i> Очистить все данные
-      </button>
-      <button class="btn" onclick="syncWithHTML()" style="width: 100%;">
-        <i class="ph ph-check"></i> Синхронизировать с HTML
-      </button>
-    </div>
-  </div>
-
 </div>
 
-<!-- MODALS -->
-<div id="editModal" class="modal">
-  <div class="modal-box">
-    <div class="modal-header">
-      Редактировать проект
-      <button class="modal-close" onclick="closeModal()"><i class="ph ph-x"></i></button>
+<!-- ADMIN PANEL -->
+<div id="admin-panel">
+  <div class="admin-wrap">
+
+    <div class="admin-header">
+      <h1>⚙️ Portfolio Admin</h1>
+      <div style="display:flex;gap:8px;flex-wrap:wrap">
+        <a href="index.html" class="btn btn-ghost"><i class="ph ph-arrow-left"></i> К портфолио</a>
+        <button class="btn btn-ghost" onclick="logout()"><i class="ph ph-sign-out"></i> Выйти</button>
+      </div>
     </div>
-    <div id="editModalContent"></div>
+
+    <div class="tabs">
+      <button class="tab active" onclick="switchTab('projects', this)"><i class="ph ph-briefcase"></i> Проект</button>
+      <button class="tab" onclick="switchTab('packaging', this)"><i class="ph ph-package"></i> Упаковка</button>
+      <button class="tab" onclick="switchTab('video', this)"><i class="ph ph-youtube-logo"></i> Видео</button>
+      <button class="tab" onclick="switchTab('cert', this)"><i class="ph ph-certificate"></i> Сертификат</button>
+    </div>
+
+    <!-- PROJECTS -->
+    <div id="tab-projects" class="tab-pane active">
+      <div class="instruction">
+        Заполни форму → нажми <strong>Сгенерировать HTML</strong> → скопируй код → вставь в <code>index.html</code> внутрь блока <code>id="projects-container"</code>
+      </div>
+      <div class="form-card">
+        <h3>Новый проект</h3>
+        <div class="fg"><label>Название</label><input id="p-title" placeholder="Название проекта" /></div>
+        <div class="fg"><label>Описание</label><textarea id="p-desc" placeholder="Краткое описание проекта"></textarea></div>
+        <div class="row2">
+          <div class="fg">
+            <label>Категория</label>
+            <select id="p-cat">
+              <option value="frontend">Frontend</option>
+              <option value="ui">UI/UX</option>
+              <option value="content">Контент</option>
+            </select>
+          </div>
+          <div class="fg"><label>Эмодзи</label><input id="p-emoji" placeholder="🎨" value="💼" /></div>
+        </div>
+        <div class="fg"><label>Ссылка</label><input id="p-link" placeholder="https://example.com" /></div>
+        <div class="fg"><label>Теги (через запятую)</label><input id="p-tags" placeholder="HTML, CSS, JS" /></div>
+        <div class="fg">
+          <label>Бейдж (необязательно)</label>
+          <input id="p-badge" placeholder="Гос. проект / Командный / оставь пустым" />
+        </div>
+        <button class="btn" onclick="genProject()" style="width:100%"><i class="ph ph-code"></i> Сгенерировать HTML</button>
+        <div class="output-box" id="p-output"></div>
+        <div class="copy-row" id="p-copy-row" style="display:none">
+          <button class="btn" onclick="copyOutput('p-output')"><i class="ph ph-copy"></i> Копировать</button>
+          <span class="copy-hint">Вставь в <strong>index.html</strong> внутрь <strong>id="projects-container"</strong></span>
+        </div>
+      </div>
+    </div>
+
+    <!-- PACKAGING -->
+    <div id="tab-packaging" class="tab-pane">
+      <div class="instruction">
+        Заполни форму → нажми <strong>Сгенерировать HTML</strong> → скопируй код → вставь в <code>index.html</code> внутрь блока <code>id="packaging-container"</code>
+      </div>
+      <div class="form-card">
+        <h3>Новая упаковка</h3>
+        <div class="fg"><label>Название</label><input id="pk-title" placeholder="Упаковка · Название" /></div>
+        <div class="fg"><label>Описание</label><textarea id="pk-desc" placeholder="Описание работы"></textarea></div>
+        <div class="row2">
+          <div class="fg"><label>Файл (имя файла)</label><input id="pk-link" placeholder="myfile.pdf" /></div>
+          <div class="fg">
+            <label>Тип</label>
+            <select id="pk-type">
+              <option value="PDF">PDF</option>
+              <option value="PNG">PNG</option>
+              <option value="JPG">JPG</option>
+            </select>
+          </div>
+        </div>
+        <button class="btn" onclick="genPackaging()" style="width:100%"><i class="ph ph-code"></i> Сгенерировать HTML</button>
+        <div class="output-box" id="pk-output"></div>
+        <div class="copy-row" id="pk-copy-row" style="display:none">
+          <button class="btn" onclick="copyOutput('pk-output')"><i class="ph ph-copy"></i> Копировать</button>
+          <span class="copy-hint">Вставь в <strong>index.html</strong> внутрь <strong>id="packaging-container"</strong></span>
+        </div>
+      </div>
+    </div>
+
+    <!-- VIDEO -->
+    <div id="tab-video" class="tab-pane">
+      <div class="instruction">
+        Заполни форму → нажми <strong>Сгенерировать HTML</strong> → скопируй код → вставь в <code>index.html</code> внутрь блока <code>id="videos-container"</code>
+      </div>
+      <div class="form-card">
+        <h3>Новое видео</h3>
+        <div class="fg"><label>YouTube Video ID</label><input id="v-id" placeholder="yJ6uTqb0sFU (из ссылки youtube.com/watch?v=...)" /></div>
+        <div class="fg"><label>Название видео</label><input id="v-title" placeholder="Название видео" /></div>
+        <button class="btn" onclick="genVideo()" style="width:100%"><i class="ph ph-code"></i> Сгенерировать HTML</button>
+        <div class="output-box" id="v-output"></div>
+        <div class="copy-row" id="v-copy-row" style="display:none">
+          <button class="btn" onclick="copyOutput('v-output')"><i class="ph ph-copy"></i> Копировать</button>
+          <span class="copy-hint">Вставь в <strong>index.html</strong> внутрь <strong>id="videos-container"</strong></span>
+        </div>
+      </div>
+    </div>
+
+    <!-- CERT -->
+    <div id="tab-cert" class="tab-pane">
+      <div class="instruction">
+        Заполни форму → нажми <strong>Сгенерировать HTML</strong> → скопируй код → вставь в <code>index.html</code> внутрь блока <code>id="page-certificates"</code> → внутрь <code>.cert-grid</code>
+      </div>
+      <div class="form-card">
+        <h3>Новый сертификат</h3>
+        <div class="fg"><label>Организация / Название</label><input id="c-title" placeholder="Яндекс Практикум" /></div>
+        <div class="fg"><label>Курс / Тема</label><input id="c-course" placeholder="UI/UX Design" /></div>
+        <div class="fg"><label>Описание</label><textarea id="c-desc" placeholder="Краткое описание"></textarea></div>
+        <div class="fg"><label>Год / Дата</label><input id="c-date" placeholder="2025" /></div>
+        <button class="btn" onclick="genCert()" style="width:100%"><i class="ph ph-code"></i> Сгенерировать HTML</button>
+        <div class="output-box" id="c-output"></div>
+        <div class="copy-row" id="c-copy-row" style="display:none">
+          <button class="btn" onclick="copyOutput('c-output')"><i class="ph ph-copy"></i> Копировать</button>
+          <span class="copy-hint">Вставь в <strong>index.html</strong> внутрь <strong>.cert-grid</strong></span>
+        </div>
+      </div>
+    </div>
+
   </div>
 </div>
 
 <script>
-  const STORAGE_KEY = 'portfolio_admin_data';
+  // ── AUTH ──
+  const PASS = 'burger2024';
 
-  const defaultData = {
-    projects: [],
-    videos: [],
-    packaging: []
-  };
-
-  // Load data from localStorage
-  function loadData() {
-    const saved = localStorage.getItem(STORAGE_KEY);
-    return saved ? JSON.parse(saved) : defaultData;
-  }
-
-  // Save data to localStorage
-  function saveData(data) {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
-    renderAll();
-  }
-
-  // Add Project
-  function addProject() {
-    const data = loadData();
-    const title = document.getElementById('projTitle').value;
-    const desc = document.getElementById('projDesc').value;
-    const cat = document.getElementById('projCat').value;
-    const link = document.getElementById('projLink').value;
-    const emoji = document.getElementById('projEmoji').value;
-    const tags = document.getElementById('projTags').value.split(',').map(t => t.trim());
-
-    if (!title || !desc || !link) {
-      alert('Заполни все обязательные поля');
-      return;
+  function checkPwd() {
+    const val = document.getElementById('pwd-input').value;
+    if (val === PASS) {
+      document.getElementById('login-screen').style.display = 'none';
+      document.getElementById('admin-panel').style.display = 'block';
+      sessionStorage.setItem('admin_ok', '1');
+    } else {
+      document.getElementById('login-error').style.display = 'block';
+      document.getElementById('pwd-input').value = '';
     }
+  }
 
-    data.projects.push({
-      id: Date.now(),
-      title,
-      desc,
-      cat,
-      link,
-      emoji,
-      tags
+  function logout() {
+    sessionStorage.removeItem('admin_ok');
+    document.getElementById('login-screen').style.display = 'flex';
+    document.getElementById('admin-panel').style.display = 'none';
+  }
+
+  // Автологин если уже авторизован в этой сессии
+  if (sessionStorage.getItem('admin_ok') === '1') {
+    document.getElementById('login-screen').style.display = 'none';
+    document.getElementById('admin-panel').style.display = 'block';
+  }
+
+  // ── TABS ──
+  function switchTab(name, btn) {
+    document.querySelectorAll('.tab-pane').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('.tab').forEach(b => b.classList.remove('active'));
+    document.getElementById('tab-' + name).classList.add('active');
+    btn.classList.add('active');
+  }
+
+  // ── GENERATORS ──
+  function esc(str) {
+    return str.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+  }
+
+  function showOutput(id, html, copyRowId) {
+    const box = document.getElementById(id);
+    box.textContent = html;
+    box.classList.add('visible');
+    document.getElementById(copyRowId).style.display = 'flex';
+  }
+
+  function copyOutput(id) {
+    const text = document.getElementById(id).textContent;
+    navigator.clipboard.writeText(text).then(() => {
+      alert('✅ Скопировано! Вставь в index.html');
+    }).catch(() => {
+      // Fallback для старых браузеров
+      const ta = document.createElement('textarea');
+      ta.value = text;
+      document.body.appendChild(ta);
+      ta.select();
+      document.execCommand('copy');
+      document.body.removeChild(ta);
+      alert('✅ Скопировано!');
     });
-
-    saveData(data);
-    document.getElementById('projTitle').value = '';
-    document.getElementById('projDesc').value = '';
-    document.getElementById('projLink').value = '';
-    document.getElementById('projTags').value = '';
   }
 
-  // Add Video
-  function addVideo() {
-    const data = loadData();
-    const id = document.getElementById('vidId').value;
-    const title = document.getElementById('vidTitle').value;
+  function genProject() {
+    const title = document.getElementById('p-title').value.trim();
+    const desc  = document.getElementById('p-desc').value.trim();
+    const cat   = document.getElementById('p-cat').value;
+    const emoji = document.getElementById('p-emoji').value.trim() || '💼';
+    const link  = document.getElementById('p-link').value.trim();
+    const tags  = document.getElementById('p-tags').value.split(',').map(t => t.trim()).filter(Boolean);
+    const badge = document.getElementById('p-badge').value.trim();
 
-    if (!id || !title) {
-      alert('Заполни ID видео и название');
-      return;
-    }
+    if (!title || !desc || !link) { alert('Заполни название, описание и ссылку'); return; }
 
-    data.videos.push({
-      id: Date.now(),
-      vidId: id,
-      title
-    });
+    const badgeHtml = badge
+      ? `\n            <div class="proj-gov-badge"><i class="ph ph-seal-check"></i> ${esc(badge)}</div>`
+      : '';
 
-    saveData(data);
-    document.getElementById('vidId').value = '';
-    document.getElementById('vidTitle').value = '';
+    const tagsHtml = tags.map(t => `<span class="pcat">${esc(t)}</span>`).join('');
+
+    const html =
+`<div class="proj-card" data-cat="${cat}">
+  <div class="proj-img">
+    <div class="proj-ph">${emoji}</div>
+    <div class="proj-ov"><a href="${esc(link)}" target="_blank">Открыть →</a></div>${badgeHtml}
+  </div>
+  <div class="proj-body">
+    <div class="proj-cats">${tagsHtml}</div>
+    <h3>${esc(title)}</h3>
+    <p>${esc(desc)}</p>
+  </div>
+</div>`;
+
+    showOutput('p-output', html, 'p-copy-row');
   }
 
-  // Add Packaging
-  function addPackaging() {
-    const data = loadData();
-    const title = document.getElementById('packTitle').value;
-    const desc = document.getElementById('packDesc').value;
-    const link = document.getElementById('packLink').value;
-    const type = document.getElementById('packType').value;
+  function genPackaging() {
+    const title = document.getElementById('pk-title').value.trim();
+    const desc  = document.getElementById('pk-desc').value.trim();
+    const link  = document.getElementById('pk-link').value.trim();
+    const type  = document.getElementById('pk-type').value;
 
-    if (!title || !link) {
-      alert('Заполни название и ссылку');
-      return;
-    }
+    if (!title || !link) { alert('Заполни название и файл'); return; }
 
-    data.packaging.push({
-      id: Date.now(),
-      title,
-      desc,
-      link,
-      type
-    });
+    const isImg = type === 'PNG' || type === 'JPG';
+    const previewHtml = isImg
+      ? `<img src="${esc(link)}" alt="${esc(title)}" onerror="this.style.display='none'" />\n            <div class="pack-ph">📦</div>`
+      : `<div class="pack-ph">${type === 'PDF' ? '📄' : '📦'}</div>`;
 
-    saveData(data);
-    document.getElementById('packTitle').value = '';
-    document.getElementById('packDesc').value = '';
-    document.getElementById('packLink').value = '';
+    const html =
+`<div class="pack-card">
+  <div class="pack-preview">
+    ${previewHtml}
+    <div class="pack-type-badge">${type}</div>
+  </div>
+  <div class="pack-body">
+    <h4>${esc(title)}</h4>
+    <p>${esc(desc)}</p>
+    <div class="pack-actions">
+      <a class="pack-btn" href="${esc(link)}" target="_blank"><i class="ph ph-arrows-out"></i> Открыть</a>
+      <a class="pack-btn" href="${esc(link)}" download><i class="ph ph-download-simple"></i> Скачать</a>
+    </div>
+  </div>
+</div>`;
+
+    showOutput('pk-output', html, 'pk-copy-row');
   }
 
-  // Render Projects
-  function renderProjects() {
-    const data = loadData();
-    const container = document.getElementById('projectsList');
-    container.innerHTML = data.projects.map(proj => `
-      <div class="item-card">
-        <div style="font-size: 32px;">${proj.emoji}</div>
-        <h4>${proj.title}</h4>
-        <p>${proj.desc}</p>
-        <p style="color: var(--accent); font-size: 11px;"><strong>Категория:</strong> ${proj.cat}</p>
-        <div class="item-actions">
-          <button onclick="editProject(${proj.id})"><i class="ph ph-pencil"></i> Редактировать</button>
-          <button class="delete-btn" onclick="deleteProject(${proj.id})"><i class="ph ph-trash"></i> Удалить</button>
-        </div>
-      </div>
-    `).join('');
-    document.getElementById('projCount').textContent = data.projects.length;
+  function genVideo() {
+    const vidId = document.getElementById('v-id').value.trim();
+    const title = document.getElementById('v-title').value.trim();
+
+    if (!vidId) { alert('Введи ID видео'); return; }
+
+    const html =
+`<div class="yt-card" data-vid="${esc(vidId)}">
+  <div class="yt-thumb">
+    <img src="https://i.ytimg.com/vi/${esc(vidId)}/hqdefault.jpg" alt="${esc(title)}" />
+    <div class="yt-play-btn"><i class="ph ph-play-circle"></i></div>
+  </div>
+  <div class="yt-card-body">
+    <div class="yt-card-title">${esc(title)}</div>
+    <div class="yt-card-meta"><i class="ph ph-clock"></i> Недавно</div>
+  </div>
+</div>`;
+
+    showOutput('v-output', html, 'v-copy-row');
   }
 
-  // Render Videos
-  function renderVideos() {
-    const data = loadData();
-    const container = document.getElementById('videosList');
-    container.innerHTML = data.videos.map(vid => `
-      <div class="item-card">
-        <div style="font-size: 32px;">▶️</div>
-        <h4>${vid.title}</h4>
-        <p style="color: var(--muted); font-size: 11px;">ID: ${vid.vidId}</p>
-        <div class="item-actions">
-          <button onclick="deleteVideo(${vid.id})"><i class="ph ph-trash"></i> Удалить</button>
-        </div>
-      </div>
-    `).join('');
-    document.getElementById('vidCount').textContent = data.videos.length;
-  }
+  function genCert() {
+    const title  = document.getElementById('c-title').value.trim();
+    const course = document.getElementById('c-course').value.trim();
+    const desc   = document.getElementById('c-desc').value.trim();
+    const date   = document.getElementById('c-date').value.trim();
 
-  // Render Packaging
-  function renderPackaging() {
-    const data = loadData();
-    const container = document.getElementById('packagingList');
-    container.innerHTML = data.packaging.map(pack => `
-      <div class="item-card">
-        <div style="font-size: 32px;">📦</div>
-        <h4>${pack.title}</h4>
-        <p>${pack.desc}</p>
-        <p style="color: var(--accent); font-size: 11px;"><strong>Тип:</strong> ${pack.type}</p>
-        <div class="item-actions">
-          <button onclick="deletePackaging(${pack.id})"><i class="ph ph-trash"></i> Удалить</button>
-        </div>
-      </div>
-    `).join('');
-    document.getElementById('packCount').textContent = data.packaging.length;
-  }
+    if (!title || !course) { alert('Заполни название и курс'); return; }
 
-  // Delete functions
-  function deleteProject(id) {
-    if (!confirm('Удалить этот проект?')) return;
-    const data = loadData();
-    data.projects = data.projects.filter(p => p.id !== id);
-    saveData(data);
-  }
+    const html =
+`<div class="cert-card">
+  <div class="cert-icon"><i class="ph ph-certificate"></i></div>
+  <div class="cert-body">
+    <h4>${esc(title)}</h4>
+    <p class="cert-course">${esc(course)}</p>
+    <p class="cert-desc">${esc(desc)}</p>
+    <p class="cert-date">${esc(date)}</p>
+  </div>
+</div>`;
 
-  function deleteVideo(id) {
-    if (!confirm('Удалить это видео?')) return;
-    const data = loadData();
-    data.videos = data.videos.filter(v => v.id !== id);
-    saveData(data);
+    showOutput('c-output', html, 'c-copy-row');
   }
-
-  function deletePackaging(id) {
-    if (!confirm('Удалить эту упаковку?')) return;
-    const data = loadData();
-    data.packaging = data.packaging.filter(p => p.id !== id);
-    saveData(data);
-  }
-
-  // Tab switching
-  function switchTab(tabName) {
-    document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
-    document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
-    document.getElementById(tabName).classList.add('active');
-    event.target.classList.add('active');
-  }
-
-  // Export data
-  function exportData() {
-    const data = loadData();
-    const json = JSON.stringify(data, null, 2);
-    const blob = new Blob([json], { type: 'application/json' });
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement('a');
-    a.href = url;
-    a.download = 'portfolio-data.json';
-    a.click();
-  }
-
-  // Import data
-  function importData() {
-    const input = document.createElement('input');
-    input.type = 'file';
-    input.accept = '.json';
-    input.onchange = (e) => {
-      const file = e.target.files[0];
-      const reader = new FileReader();
-      reader.onload = (event) => {
-        try {
-          const imported = JSON.parse(event.target.result);
-          localStorage.setItem(STORAGE_KEY, JSON.stringify(imported));
-          renderAll();
-          alert('Данные импортированы!');
-        } catch {
-          alert('Ошибка при импорте файла');
-        }
-      };
-      reader.readAsText(file);
-    };
-    input.click();
-  }
-
-  // Clear all
-  function clearAll() {
-    if (!confirm('Это удалит ВСЕ данные! Ты уверен?')) return;
-    localStorage.removeItem(STORAGE_KEY);
-    renderAll();
-    alert('Все данные очищены');
-  }
-
-  // Render all
-  function renderAll() {
-    renderProjects();
-    renderVideos();
-    renderPackaging();
-  }
-
-  // Init
-  window.addEventListener('load', renderAll);
 </script>
 
 </body>
