@@ -90,17 +90,19 @@ class PortfolioApp {
     }
 
     setupEasterEgg() {
-        const logo = document.getElementById('logo-trigger');
-        if(!logo) return;
-        logo.addEventListener('click', () => {
-            this.clickCount++;
-            if(this.clickCount === 5) {
-                this.isBurgerMode = !this.isBurgerMode;
-                this.clickCount = 0;
-                this.particles = [];
-                alert(this.isBurgerMode ? "🍔 BURGER MODE ACTIVATED!" : "Mode Normal");
-                this.setSeason(this.season);
-            }
+        // Пасхалка: 5 кликов на любой элемент с классом .avatar
+        const avatars = document.querySelectorAll('.avatar');
+        avatars.forEach(avatar => {
+            avatar.addEventListener('click', () => {
+                this.clickCount++;
+                if(this.clickCount === 5) {
+                    this.isBurgerMode = !this.isBurgerMode;
+                    this.clickCount = 0;
+                    this.particles = [];
+                    alert(this.isBurgerMode ? "🍔 BURGER MODE ACTIVATED!" : "Mode Normal");
+                    this.setSeason(this.season);
+                }
+            });
         });
     }
 
@@ -134,33 +136,30 @@ class PortfolioApp {
 
     setupMobileMenu() {
         const sidebar = document.querySelector('.sidebar');
-        if (!sidebar) return;
+        const navList = document.querySelector('.nav-list');
+        const menuToggle = document.getElementById('menu-toggle');
         
-        // Клик на логотип открывает/закрывает меню на мобилке
-        const logo = document.querySelector('.s-logo');
-        if (logo && window.innerWidth <= 768) {
-            const toggleMenu = () => {
-                sidebar.classList.toggle('open');
-            };
-            logo.addEventListener('click', toggleMenu);
-            logo.addEventListener('touchend', toggleMenu);
-        }
+        if (!menuToggle || !navList) return;
+        
+        // Открыть/закрыть меню по клику на кнопку
+        menuToggle.addEventListener('click', (e) => {
+            e.stopPropagation();
+            navList.classList.toggle('open');
+        });
+        
+        // Закрыть меню при клике на пункт
+        this.navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                navList.classList.remove('open');
+            });
+        });
         
         // Закрыть меню при клике вне его
-        const closeMenuOutside = (e) => {
-            if (window.innerWidth <= 768 && !sidebar.contains(e.target) && sidebar.classList.contains('open')) {
-                this.closeMobileMenu();
+        document.addEventListener('click', (e) => {
+            if (window.innerWidth <= 768 && !sidebar.contains(e.target) && navList.classList.contains('open')) {
+                navList.classList.remove('open');
             }
-        };
-        document.addEventListener('click', closeMenuOutside);
-        document.addEventListener('touchend', closeMenuOutside);
-    }
-
-    closeMobileMenu() {
-        const sidebar = document.querySelector('.sidebar');
-        if (sidebar) {
-            sidebar.classList.remove('open');
-        }
+        });
     }
 
     updateThemeForSection(section) {
