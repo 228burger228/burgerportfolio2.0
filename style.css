@@ -363,6 +363,50 @@
     .send-btn:hover { transform: scale(1.06); }
     #form-status { font-size: 12px; margin-top: 6px; }
 
+    .contact-divider {
+      height: 1px;
+      background: var(--border);
+      margin: 14px 0;
+    }
+
+    .contact-telegram {
+      text-align: center;
+    }
+
+    .tg-label {
+      font-size: 11px;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      margin-bottom: 10px;
+      display: block;
+    }
+
+    .tg-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: linear-gradient(135deg, rgba(0,136,204,.1), rgba(0,136,204,.05));
+      border: 1px solid rgba(0,136,204,.25);
+      color: #0088cc;
+      font-weight: 600;
+      font-size: 13px;
+      padding: 10px 16px;
+      border-radius: 8px;
+      text-decoration: none;
+      transition: all 0.2s;
+    }
+
+    .tg-link:hover {
+      background: linear-gradient(135deg, rgba(0,136,204,.2), rgba(0,136,204,.1));
+      border-color: rgba(0,136,204,.4);
+      transform: translateY(-2px);
+    }
+
+    .tg-link i {
+      font-size: 16px;
+    }
+
     /* ── HOME EXTRAS ── */
     .home-stats {
       display: flex;
@@ -826,11 +870,13 @@
         overflow: hidden;
         transition: max-height 0.3s ease;
         z-index: 299;
+        list-style: none;
       }
 
       .nav-list.open {
-        max-height: 400px;
+        max-height: calc(100vh - 56px);
         overflow-y: auto;
+        -webkit-overflow-scrolling: touch;
       }
 
       .nav-list li {
