@@ -147,19 +147,44 @@ class PortfolioApp {
             navList.classList.toggle('open');
         });
         
+        // Поддержка touchend для iOS
+        menuToggle.addEventListener('touchend', (e) => {
+            e.stopPropagation();
+            navList.classList.toggle('open');
+        });
+        
         // Закрыть меню при клике на пункт
         this.navLinks.forEach(link => {
             link.addEventListener('click', () => {
-                navList.classList.remove('open');
+                this.closeMobileMenu();
+            });
+            
+            // Поддержка touchend для iOS
+            link.addEventListener('touchend', () => {
+                this.closeMobileMenu();
             });
         });
         
         // Закрыть меню при клике вне его
         document.addEventListener('click', (e) => {
             if (window.innerWidth <= 768 && !sidebar.contains(e.target) && navList.classList.contains('open')) {
-                navList.classList.remove('open');
+                this.closeMobileMenu();
             }
         });
+        
+        // Поддержка touchend для закрытия меню при клике вне
+        document.addEventListener('touchend', (e) => {
+            if (window.innerWidth <= 768 && !sidebar.contains(e.target) && navList.classList.contains('open')) {
+                this.closeMobileMenu();
+            }
+        });
+    }
+
+    closeMobileMenu() {
+        const navList = document.querySelector('.nav-list');
+        if (navList) {
+            navList.classList.remove('open');
+        }
     }
 
     updateThemeForSection(section) {
