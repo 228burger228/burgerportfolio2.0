@@ -34,6 +34,7 @@ class PortfolioApp {
         this.setupEasterEgg();
         this.setupGalleryFilters();
         this.setupHeroButton();
+        this.setupSkillsInteractivity();
         
         // Загрузить данные после небольшой задержки, чтобы DOM был готов
         setTimeout(() => {
@@ -227,7 +228,10 @@ class PortfolioApp {
         this.applySeasonTheme(season);
         
         this.particles = [];
-        if(season !== 'summer' || this.isBurgerMode) this.initParticles(season);
+        // Инициализировать частицы для всех сезонов кроме лета (если не пасхалка)
+        if(season !== 'summer' || this.isBurgerMode) {
+            this.initParticles(season);
+        }
     }
 
     applySeasonTheme(season) {
@@ -250,14 +254,17 @@ class PortfolioApp {
     }
 
     initParticles(season) {
-        const count = season === 'autumn' ? 100 : 60;
+        const count = season === 'autumn' ? 100 : season === 'spring' ? 80 : 60;
         for(let i=0; i<count; i++) {
             this.particles.push({
                 x: Math.random() * this.weatherCanvas.width,
                 y: Math.random() * this.weatherCanvas.height,
                 speed: Math.random() * 2 + 1,
                 size: Math.random() * 2,
-                burgerEmoji: ['🍔', '🍟', '🥤'][Math.floor(Math.random() * 3)]
+                rotation: Math.random() * Math.PI * 2,
+                rotationSpeed: (Math.random() - 0.5) * 0.1,
+                burgerEmoji: ['🍔', '🍟', '🥤'][Math.floor(Math.random() * 3)],
+                springEmoji: ['🌸', '🌺', '🌼', '🌻'][Math.floor(Math.random() * 4)]
             });
         }
     }
@@ -269,14 +276,30 @@ class PortfolioApp {
             if (this.isBurgerMode) {
                 this.ctx.font = '20px serif';
                 this.ctx.fillText(p.burgerEmoji, p.x, p.y);
+            } else if (this.season === 'spring') {
+                // Весенняя анимация - сакура с вращением
+                this.ctx.save();
+                this.ctx.translate(p.x, p.y);
+                this.ctx.rotate(p.rotation);
+                this.ctx.font = '18px serif';
+                this.ctx.fillText(p.springEmoji, -9, 9);
+                this.ctx.restore();
+                p.rotation += p.rotationSpeed;
             } else {
                 this.ctx.fillStyle = 'rgba(255,255,255,0.6)';
                 this.ctx.strokeStyle = 'rgba(255,255,255,0.3)';
                 
                 if (this.season === 'autumn') {
-                    this.ctx.beginPath(); this.ctx.moveTo(p.x, p.y); this.ctx.lineTo(p.x, p.y + 10); this.ctx.stroke();
+                    // Осенние листья
+                    this.ctx.beginPath(); 
+                    this.ctx.moveTo(p.x, p.y); 
+                    this.ctx.lineTo(p.x, p.y + 10); 
+                    this.ctx.stroke();
                 } else {
-                    this.ctx.beginPath(); this.ctx.arc(p.x, p.y, p.size, 0, Math.PI*2); this.ctx.fill();
+                    // Зимние снежинки
+                    this.ctx.beginPath(); 
+                    this.ctx.arc(p.x, p.y, p.size, 0, Math.PI*2); 
+                    this.ctx.fill();
                 }
             }
 
@@ -550,6 +573,41 @@ class PortfolioApp {
         adminLink.addEventListener('click', (e) => {
             e.preventDefault();
             window.location.href = 'admin.html';
+        });
+    }
+
+    setupSkillsInteractivity() {
+        // Интерактивность для инструментов
+        const toolChips = document.querySelectorAll('.tool-chip');
+        toolChips.forEach(chip => {
+            chip.addEventListener('click', () => {
+                chip.style.animation = 'none';
+                setTimeout(() => {
+                    chip.style.animation = '';
+                }, 10);
+            });
+        });
+
+        // Интерактивность для навыков на главной
+        const skillsListItems = document.querySelectorAll('.skills-list li');
+        skillsListItems.forEach(item => {
+            item.addEventListener('click', () => {
+                item.style.animation = 'none';
+                setTimeout(() => {
+                    item.style.animation = '';
+                }, 10);
+            });
+        });
+
+        // Интерактивность для блоков навыков на странице "Обо мне"
+        const skillBlocks = document.querySelectorAll('.skill-block');
+        skillBlocks.forEach(block => {
+            block.addEventListener('click', () => {
+                block.style.animation = 'none';
+                setTimeout(() => {
+                    block.style.animation = '';
+                }, 10);
+            });
         });
     }
 
