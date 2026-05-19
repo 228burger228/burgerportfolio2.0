@@ -20,6 +20,7 @@
       background: linear-gradient(160deg, var(--bg-top), var(--bg-bottom));
       min-height: 100vh;
       transition: background 1.5s ease;
+      overflow-x: hidden;
     }
 
     ::-webkit-scrollbar { width: 3px; }
@@ -776,69 +777,81 @@
 
     /* ── MOBILE ── */
     @media (max-width: 768px) {
-      /* ── Компактный таббар снизу ── */
+      /* ── Мобильное меню ── */
       .sidebar {
         position: fixed;
         top: auto; bottom: 0; left: 0; right: 0;
-        width: 100%; height: 56px;
+        width: 100%; height: auto;
         transform: translateY(0);
-        transition: transform 0.3s ease, width 0.3s ease;
-        border-radius: 16px 16px 0 0;
+        border-radius: 0;
         flex-direction: row;
         align-items: center;
-        padding: 0 8px;
+        padding: 0;
         border-left: none; border-right: none; border-bottom: none;
         border-top: 1px solid var(--border);
-        background: rgba(12,13,18,0.97);
+        background: rgba(12,13,18,0.98);
         backdrop-filter: blur(20px);
         -webkit-backdrop-filter: blur(20px);
         overflow: visible;
         z-index: 300;
+        display: flex;
       }
 
-      /* Скрывается при скролле вниз */
-      .sidebar.hidden { transform: translateY(100%); }
-
-      .sidebar:hover { width: 100%; }
-      .s-logo { 
+      .menu-toggle {
         display: flex;
         align-items: center;
         justify-content: center;
         width: 44px;
-        height: 44px;
+        height: 56px;
+        background: none;
+        border: none;
+        color: var(--accent);
+        font-size: 20px;
         cursor: pointer;
         flex-shrink: 0;
         margin-right: auto;
       }
-      .s-footer { display: none; }
 
       .nav-list {
-        flex-direction: row;
-        justify-content: space-around;
-        align-items: center;
+        position: fixed;
+        bottom: 56px;
+        left: 0;
+        right: 0;
         width: 100%;
-        height: 100%;
+        background: rgba(12,13,18,0.98);
+        backdrop-filter: blur(20px);
+        border-top: 1px solid var(--border);
+        flex-direction: column;
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.3s ease;
+        z-index: 299;
+      }
+
+      .nav-list.open {
+        max-height: 400px;
+        overflow-y: auto;
       }
 
       .nav-list li {
-        flex: 1;
-        flex-direction: column;
+        flex: none;
+        flex-direction: row;
         align-items: center;
-        justify-content: center;
-        padding: 6px 4px;
-        border-radius: 10px;
-        gap: 3px;
-        height: 44px;
+        justify-content: flex-start;
+        padding: 14px 16px;
+        border-radius: 0;
+        gap: 12px;
+        height: auto;
+        border-bottom: 1px solid rgba(255,255,255,0.02);
       }
 
       .nav-list li::before { display: none; }
 
-      /* Короткие подписи */
       .nav-list li span {
         display: block !important;
         opacity: 1 !important;
-        font-size: 9px;
-        font-weight: 600;
+        font-size: 13px;
+        font-weight: 500;
         margin-left: 0;
         color: var(--muted);
         line-height: 1;
@@ -847,6 +860,22 @@
       .nav-list li i { font-size: 18px; margin: 0; }
       .nav-list li.active span { color: var(--accent); }
       .nav-list li.active i { color: var(--accent); }
+
+      .s-footer {
+        display: flex;
+        gap: 12px;
+        padding: 0 12px;
+        margin: 0;
+      }
+
+      .s-footer a {
+        width: 40px;
+        height: 56px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 18px;
+      }
 
       .main { margin-left: 0; padding: 14px 14px 72px; }
       .bento { grid-template-columns: 1fr; }
@@ -858,6 +887,20 @@
       .hstat { min-width: 45%; }
       .hstat-div { display: none; }
       .form-row { flex-direction: column; }
+
+      /* Улучшенный адаптив */
+      .profile-text h1 { font-size: 20px; }
+      .sh h2 { font-size: 24px; }
+      .proj-grid { grid-template-columns: 1fr; }
+      .pack-grid { grid-template-columns: 1fr; }
+      .yt-grid { grid-template-columns: 1fr; }
+      .cert-grid { grid-template-columns: 1fr; }
+      .about-hero { flex-direction: column; padding: 20px; }
+      .about-avatar { width: 80px; height: 80px; }
+      .about-name-row { justify-content: center; }
+      .skills-blocks { grid-template-columns: 1fr; }
+      .team-section { padding: 16px; }
+      .team-card { flex-direction: column; }
     }
 
     /* ── ABOUT PAGE ── */
