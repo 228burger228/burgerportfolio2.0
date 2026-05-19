@@ -109,7 +109,8 @@ class PortfolioApp {
 
     setupNavigation() {
         this.navLinks.forEach(link => {
-            link.addEventListener('click', () => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
                 const target = link.dataset.page;
                 
                 this.navLinks.forEach(l => l.classList.remove('active'));
@@ -140,45 +141,42 @@ class PortfolioApp {
         const navList = document.querySelector('.nav-list');
         const menuToggle = document.getElementById('menu-toggle');
         
-        if (!menuToggle || !navList) return;
+        if (!menuToggle || !navList) {
+            console.warn('Menu elements not found');
+            return;
+        }
+        
+        // Функция для переключения меню
+        const toggleMenu = (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            const isOpen = navList.classList.contains('open');
+            if (isOpen) {
+                navList.classList.remove('open');
+            } else {
+                navList.classList.add('open');
+            }
+        };
         
         // Открыть/закрыть меню по клику на кнопку
-        menuToggle.addEventListener('click', (e) => {
-            e.stopPropagation();
-            navList.classList.toggle('open');
-        });
-        
-        // Поддержка touchend для iOS
-        menuToggle.addEventListener('touchend', (e) => {
-            e.stopPropagation();
-            navList.classList.toggle('open');
-        });
+        menuToggle.addEventListener('click', toggleMenu, false);
+        menuToggle.addEventListener('touchstart', toggleMenu, false);
         
         // Закрыть меню при клике на пункт
         this.navLinks.forEach(link => {
-            link.addEventListener('click', () => {
+            link.addEventListener('click', (e) => {
                 this.closeMobileMenu();
-            });
-            
-            // Поддержка touchend для iOS
-            link.addEventListener('touchend', () => {
-                this.closeMobileMenu();
-            });
+            }, false);
         });
         
         // Закрыть меню при клике вне его
         document.addEventListener('click', (e) => {
-            if (window.innerWidth <= 768 && !sidebar.contains(e.target) && navList.classList.contains('open')) {
-                this.closeMobileMenu();
+            if (window.innerWidth <= 768 && navList.classList.contains('open')) {
+                if (!sidebar.contains(e.target) && !menuToggle.contains(e.target)) {
+                    this.closeMobileMenu();
+                }
             }
-        });
-        
-        // Поддержка touchend для закрытия меню при клике вне
-        document.addEventListener('touchend', (e) => {
-            if (window.innerWidth <= 768 && !sidebar.contains(e.target) && navList.classList.contains('open')) {
-                this.closeMobileMenu();
-            }
-        });
+        }, false);
     }
 
     closeMobileMenu() {
