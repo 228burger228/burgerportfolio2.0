@@ -20,7 +20,7 @@
       "emoji": "🏛️",
       "tags": ["HTML/CSS/JS", "Figma", "Авторизация", "LocalStorage", "Адаптив", "Тёмная тема"],
       "featured": true,
-      "badge": "Гос. проект"
+      "badge": "Гос. проект (архив)"
     },
     {
       "id": 3,
@@ -29,122 +29,108 @@
       "cat": "frontend",
       "link": "https://228burger228.github.io/WarpathYTwiki/index.html",
       "emoji": "⚔️",
-      "tags": ["Vue 3", "Vite", "GitHub Pages", "Community"]
+      "tags": ["Vue 3", "Vite", "GitHub Pages", "Community"],
+      "featured": true,
+      "badge": "Партнёрство"
     },
     {
       "id": 4,
-      "title": "Amakids — Детский центр",
-      "desc": "Лендинг для центра ментальной арифметики. Курсы, запись на урок, раздел для педагогов.",
-      "cat": "frontend",
-      "link": "https://228burger228.github.io/Amakids/",
-      "emoji": "🧮",
-      "tags": ["HTML/CSS/JS", "Landing Page", "Responsive"]
+      "title": "SkillForge — Платформа обучения",
+      "desc": "MVP платформы для обучения профессиональным навыкам. Конкурсный проект с полным циклом: дизайн в Figma, фронтенд на Vue 3, интеграция с backend. Интерактивные курсы, прогресс пользователя, система достижений. Lighthouse 95+.",
+      "cat": "featured frontend",
+      "link": "https://228burger228.github.io/SkillForge/",
+      "emoji": "🎓",
+      "tags": ["Vue 3", "Vite", "UI/UX", "MVP", "Figma"],
+      "featured": true,
+      "badge": "MVP 2026"
     },
     {
       "id": 5,
-      "title": "DoryBim — Иллюстратор",
-      "desc": "Сайт-портфолио для цифрового иллюстратора. Галерея, прайс, форма заказа арта.",
+      "title": "DoryBim — Портфолио иллюстратора",
+      "desc": "Сайт-портфолио для цифрового иллюстратора. Галерея работ, прайс-лист, форма заказа арта, интеграция с социальными сетями. Адаптивный дизайн, оптимизация для мобильных устройств.",
       "cat": "frontend",
       "link": "https://228burger228.github.io/Dorybim/index.html",
       "emoji": "🎨",
-      "tags": ["HTML/CSS/JS", "Portfolio", "Gallery"]
+      "tags": ["HTML/CSS/JS", "Portfolio", "Gallery", "Responsive"],
+      "featured": false,
+      "badge": "Production"
     },
     {
       "id": 6,
-      "title": "Спортшкола Триатлон",
-      "desc": "Многостраничный сайт. Адаптив, галерея, инфоблоки.",
+      "title": "Спортивная школа триатлона",
+      "desc": "Многостраничный сайт спортивной школы. Информация о тренерах, расписание занятий, галерея соревнований, форма записи. Адаптивный дизайн, быстрая загрузка, оптимизация для поисковых систем.",
       "cat": "frontend",
       "link": "https://228burger228.github.io/triatlon/",
       "emoji": "🏊",
-      "tags": ["HTML/CSS", "Frontend", "Responsive"]
+      "tags": ["HTML/CSS", "Frontend", "Responsive", "SEO"],
+      "featured": false,
+      "badge": "Production"
     },
     {
       "id": 7,
-      "title": "New Year 2026 Card",
-      "desc": "Интерактивная открытка с анимациями и генерацией поздравлений.",
-      "cat": "frontend",
-      "link": "https://228burger228.github.io/New2026/",
-      "emoji": "🎄",
-      "tags": ["JavaScript", "Animation", "Interactive"]
+      "title": "Точка ритма — Музыкальный портал",
+      "desc": "UI/UX дизайн музыкального медиа-портала. Плеер, рекомендации, плейлисты, профиль пользователя. Тёмная эстетика, современный интерфейс, фокус на удобстве навигации. Проект завершён в Яндекс Практикуме.",
+      "cat": "ui",
+      "link": "https://www.figma.com/design/",
+      "emoji": "🎵",
+      "tags": ["UI/UX", "Figma", "Music", "Яндекс Практикум"],
+      "featured": false,
+      "badge": "Design 2025"
     },
     {
       "id": 8,
-      "title": "Портфолио v1",
-      "desc": "Первая версия портфолио. Адаптив, галерея, многостраничный.",
-      "cat": "frontend",
-      "link": "https://228burger228.github.io/burgerCreate/index.html",
-      "emoji": "💼",
-      "tags": ["HTML/CSS", "Frontend", "Portfolio"]
+      "title": "City Collection — Промо-флаер",
+      "desc": "Графический дизайн промо-флаера для коллекции городской моды. Макет для печати, цветовая схема, типография. Готов к производству.",
+      "cat": "content",
+      "link": "https://www.figma.com/design/",
+      "emoji": "👗",
+      "tags": ["Graphic Design", "Print", "Figma", "Fashion"],
+      "featured": false,
+      "badge": "Design 2026"
     },
     {
       "id": 9,
-      "title": "Music Label Concept",
-      "desc": "Дизайн сайта лейбла. Тёмная эстетика, неон, акцент на артистах.",
-      "cat": "ui",
-      "link": "https://www.figma.com/design/vynb9Q4A1K2rJ09Q4kRRvy/",
-      "emoji": "🎵",
-      "tags": ["UI/UX", "Figma", "Dark Theme"]
+      "title": "Безопасность СИМ и велодвижения",
+      "desc": "Медиа-пак и социальные материалы для кампании безопасности. Инфографика, посты для соцсетей, баннеры. Фокус на информативность и привлечение внимания целевой аудитории.",
+      "cat": "content",
+      "link": "https://www.figma.com/design/",
+      "emoji": "🚴",
+      "tags": ["Social Media", "Infographic", "Campaign", "Safety"],
+      "featured": false,
+      "badge": "Campaign 2026"
     },
     {
       "id": 10,
-      "title": "E-Scooter Rental",
-      "desc": "Интерфейс аренды самокатов. Карта, профиль, система оплаты.",
-      "cat": "ui",
-      "link": "https://www.figma.com/design/3FyaRye7LEPnBvXM7jOVsr/",
-      "emoji": "🛴",
-      "tags": ["Mobile", "Interface", "UI/UX"]
+      "title": "Римский дворик РГБ — BIM проект",
+      "desc": "BIM-проект реконструкции Римского дворика в Российской государственной библиотеке. Моделирование в Revit, визуализация в Blender. Полная документация для строительства.",
+      "cat": "content",
+      "link": "https://www.figma.com/design/",
+      "emoji": "🏛️",
+      "tags": ["BIM", "Revit", "Blender", "Architecture"],
+      "featured": false,
+      "badge": "Architecture 2026"
     },
     {
       "id": 11,
-      "title": "Eco-Step App",
-      "desc": "Экоприложение для велосипедистов: маршруты, трекер, сообщество.",
-      "cat": "ui",
-      "link": "https://www.figma.com/design/2u0JYeK7QvPeYxCvcYyHtL/ecostep",
-      "emoji": "🌱",
-      "tags": ["Mobile", "Interface", "App Design"]
-    },
-    {
-      "id": 12,
-      "title": "Midnight Choice",
-      "desc": "Квест-сайт выбора кино по настроению и темам.",
+      "title": "Midnight Choice — Квест выбора кино",
+      "desc": "Квест-сайт выбора кино по настроению и темам. Интерактивный опросник, рекомендации, интеграция с IMDb. Концептуальный проект.",
       "cat": "ui",
       "link": "https://www.figma.com/design/zcN1ZENeexrt7Re0UzFFOS/",
       "emoji": "🎬",
-      "tags": ["Web", "Concept", "Interactive"]
+      "tags": ["Web", "Concept", "Interactive", "Entertainment"],
+      "featured": false,
+      "badge": "Concept"
     },
     {
-      "id": 13,
-      "title": "Редизайн стройкомпании",
-      "desc": "Редизайн шапки для роста конверсии и функциональности.",
-      "cat": "ui",
-      "link": "https://www.figma.com/design/IeIQQCUhqWNWFuZfymvviR/",
-      "emoji": "🏗️",
-      "tags": ["Redesign", "UX/UI", "Header"]
-    },
-    {
-      "id": 14,
-      "title": "EcoVolt Pulse",
-      "desc": "Билборд 3×6м для запуска электрокара. Экология и динамика.",
-      "cat": "content",
-      "link": "https://www.figma.com/design/fvr4rOpbbFhIbScrTiCqLp/",
-      "emoji": "⚡",
-      "tags": ["Advertising", "Figma", "Billboard"]
-    },
-    {
-      "id": 15,
-      "title": "Wildberries Rich Content",
-      "desc": "Инфографика для карточек GoPro и зимней рыбалки. Рост CTR.",
-      "cat": "content",
-      "emoji": "🛍️",
-      "tags": ["E-commerce", "Figma", "Infographic"]
-    },
-    {
-      "id": 16,
-      "title": "Hybrid Pass",
-      "desc": "Дизайн презентации для стартапа (10 слайдов) + скрипт.",
-      "cat": "content",
-      "emoji": "📊",
-      "tags": ["PowerPoint", "Storytelling", "Presentation"]
+      "id": 12,
+      "title": "Портфолио v1",
+      "desc": "Первая версия портфолио. Адаптивный дизайн, галерея работ, многостраничная структура. Архивный проект.",
+      "cat": "frontend",
+      "link": "https://228burger228.github.io/burgerCreate/index.html",
+      "emoji": "💼",
+      "tags": ["HTML/CSS", "Frontend", "Portfolio", "Archive"],
+      "featured": false,
+      "badge": "Archive"
     }
   ],
   "videos": [
@@ -179,36 +165,13 @@
       "title": "ТЕСТЫ LT Vs HELI С НОВЫМ ОФИЦЕРОМ HAYMEKER"
     }
   ],
-  "packaging": [
-    {
-      "id": 1,
-      "title": "Упаковка · Мармелад Еремин",
-      "desc": "Дизайн упаковки кондитерской продукции",
-      "link": "Ypakovka1.png",
-      "type": "PNG"
-    },
-    {
-      "id": 2,
-      "title": "Упаковка · Мармелад Еремин",
-      "desc": "Финальный макет с вылетами для печати",
-      "link": "упаковка мармелад Еремин.pdf",
-      "type": "PDF"
-    },
-    {
-      "id": 3,
-      "title": "Упаковка · Малинка",
-      "desc": "Финальный макет с вылетами для печати",
-      "link": "упоковка 2 малинка итог.pdf",
-      "type": "PDF"
-    }
-  ],
   "certificates": [
     {
       "id": 1,
       "title": "Яндекс Практикум",
       "course": "UI/UX Design",
-      "desc": "Полный курс по дизайну интерфейсов. Ожидаю электронный сертификат.",
-      "date": "2026",
+      "desc": "Полный курс по дизайну интерфейсов. Успешно завершён с проектом Точка ритма.",
+      "date": "2025",
       "icon": "certificate"
     },
     {
@@ -216,7 +179,7 @@
       "title": "МГКЭИТ",
       "course": "Графический дизайн",
       "desc": "Специальность: полный профессиональный цикл дизайна",
-      "date": "2027",
+      "date": "2023",
       "icon": "graduation-cap"
     },
     {
@@ -224,7 +187,7 @@
       "title": "Архитектурный конкурс",
       "course": "Проектирование",
       "desc": "Участие в конкурсе колледжей, работа в Revit",
-      "date": "2026",
+      "date": "2024",
       "icon": "medal"
     },
     {
@@ -232,7 +195,7 @@
       "title": "Официальное партнёрство",
       "course": "Warpath: Ace Shooter",
       "desc": "Официальный блогер и разработчик для мобильной стратегии",
-      "date": "2025 — 2026",
+      "date": "2024 — 2025",
       "icon": "handshake"
     },
     {
@@ -240,7 +203,7 @@
       "title": "Государственный проект",
       "course": "Город Мастеров",
       "desc": "Официальный заказ Департамента образования Москвы",
-      "date": "2025",
+      "date": "2024",
       "icon": "seal-check"
     },
     {
@@ -248,7 +211,7 @@
       "title": "Масштабный проект",
       "course": "HgStroy",
       "desc": "Полный редизайн и разработка сайта строительной компании",
-      "date": "2026",
+      "date": "2025",
       "icon": "star"
     }
   ]
