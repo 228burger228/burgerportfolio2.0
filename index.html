@@ -16,7 +16,7 @@
   <link rel="stylesheet" href="css/responsive.css" />
 </head>
 <body>
-  <a href="#main-content" class="skip-link">Перейти к основному контенту</a>
+  <a href="#main-content" class="skip-link" id="skip-link">Перейти к основному контенту</a>
 
   <!-- NAVIGATION -->
   <nav class="navbar" role="navigation" aria-label="Главная навигация">
@@ -174,7 +174,7 @@
           <!-- HgStroy -->
           <article class="proj-card reveal" data-filter="featured frontend" aria-label="Проект HgStroy">
             <div class="proj-img">
-              <img src="stromaz.png" alt="HgStroy — корпоративный портал строительной компании" loading="lazy" />
+              <img src="hgstroy.png" alt="HgStroy — редизайн корпоративного портала строительной компании" loading="lazy" />
               <div class="proj-overlay">
                 <a href="https://smr.hgstroy.ru/index.html" target="_blank" rel="noopener noreferrer" class="proj-overlay-btn">
                   Открыть проект ↗
@@ -252,24 +252,156 @@
             </div>
           </article>
 
-          <!-- Eco-Step -->
-          <article class="proj-card reveal" data-filter="ui" aria-label="Проект Eco-Step App">
+          <!-- SkillForge -->
+          <article class="proj-card reveal" data-filter="featured frontend" aria-label="Проект SkillForge">
             <div class="proj-img">
-              <img src="ecostep.png" alt="Eco-Step — мобильное приложение для велосипедистов" loading="lazy" />
+              <img src="skillforge.png" alt="SkillForge — платформа обучения профессиональным навыкам" loading="lazy" />
               <div class="proj-overlay">
-                <a href="https://www.figma.com/design/2u0JYeK7QvPeYxCvcYyHtL/ecostep" target="_blank" rel="noopener noreferrer" class="proj-overlay-btn">
+                <a href="https://228burger228.github.io/SkillForge/" target="_blank" rel="noopener noreferrer" class="proj-overlay-btn">
+                  Открыть проект ↗
+                </a>
+              </div>
+              <div class="proj-badge">MVP 2026</div>
+            </div>
+            <div class="proj-body">
+              <div class="proj-tags">
+                <span class="proj-tag">Vue 3</span>
+                <span class="proj-tag">Vite</span>
+                <span class="proj-tag">UI/UX</span>
+                <span class="proj-tag">MVP</span>
+              </div>
+              <h3 class="proj-title">SkillForge — Платформа обучения</h3>
+              <p class="proj-desc">MVP платформы для обучения профессиональным навыкам. Конкурсный проект с полным циклом: дизайн в Figma, фронтенд на Vue 3. Интерактивные курсы, прогресс пользователя, система достижений. Lighthouse 95+.</p>
+              <div class="proj-meta">
+                <span class="proj-year">2026</span>
+                <span class="proj-role">Frontend Developer & Designer</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- Точка ритма / Яндекс Практикум -->
+          <article class="proj-card reveal" data-filter="ui" aria-label="Проект Точка ритма">
+            <div class="proj-img">
+              <img src="шапкаЯ1.png" alt="Точка ритма — музыкальный медиа-портал UI/UX дизайн" loading="lazy" />
+              <div class="proj-overlay">
+                <a href="https://www.figma.com/design/" target="_blank" rel="noopener noreferrer" class="proj-overlay-btn">
+                  Открыть в Figma ↗
+                </a>
+              </div>
+              <div class="proj-badge">Design 2026</div>
+            </div>
+            <div class="proj-body">
+              <div class="proj-tags">
+                <span class="proj-tag">UI/UX</span>
+                <span class="proj-tag">Figma</span>
+                <span class="proj-tag">Music</span>
+                <span class="proj-tag">Яндекс Практикум</span>
+              </div>
+              <h3 class="proj-title">Точка ритма — Музыкальный портал</h3>
+              <p class="proj-desc">UI/UX дизайн музыкального медиа-портала. Плеер, рекомендации, плейлисты, профиль пользователя. Тёмная эстетика, современный интерфейс, фокус на удобстве навигации. Проект завершён в Яндекс Практикуме.</p>
+              <div class="proj-meta">
+                <span class="proj-year">2025</span>
+                <span class="proj-role">UI/UX Designer</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- Безопасность СИМ и велодвижения -->
+          <article class="proj-card reveal" data-filter="content" aria-label="Проект Безопасность СИМ и велодвижения">
+            <div class="proj-img">
+              <img src="постер ппд.png" alt="Безопасность СИМ и велодвижения — медиа-пак и социальные материалы" loading="lazy" />
+              <div class="proj-overlay">
+                <a href="https://www.figma.com/design/" target="_blank" rel="noopener noreferrer" class="proj-overlay-btn">
+                  Открыть в Figma ↗
+                </a>
+              </div>
+              <div class="proj-badge">Campaign 2026</div>
+            </div>
+            <div class="proj-body">
+              <div class="proj-tags">
+                <span class="proj-tag">Social Media</span>
+                <span class="proj-tag">Infographic</span>
+                <span class="proj-tag">Campaign</span>
+              </div>
+              <h3 class="proj-title">Безопасность СИМ и велодвижения</h3>
+              <p class="proj-desc">Медиа-пак и социальные материалы для кампании безопасности. Инфографика, посты для соцсетей, баннеры. Фокус на информативность и привлечение внимания целевой аудитории.</p>
+              <div class="proj-meta">
+                <span class="proj-year">2026</span>
+                <span class="proj-role">Graphic Designer</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- City Collection -->
+          <article class="proj-card reveal" data-filter="content" aria-label="Проект City Collection">
+            <div class="proj-img">
+              <img src="sitikol1.png" alt="City Collection — промо-флаер для коллекции городской моды" loading="lazy" />
+              <div class="proj-overlay">
+                <a href="https://www.figma.com/design/" target="_blank" rel="noopener noreferrer" class="proj-overlay-btn">
+                  Открыть в Figma ↗
+                </a>
+              </div>
+              <div class="proj-badge">Design 2026</div>
+            </div>
+            <div class="proj-body">
+              <div class="proj-tags">
+                <span class="proj-tag">Graphic Design</span>
+                <span class="proj-tag">Print</span>
+                <span class="proj-tag">Fashion</span>
+              </div>
+              <h3 class="proj-title">City Collection — Промо-флаер</h3>
+              <p class="proj-desc">Графический дизайн промо-флаера для коллекции городской моды. Макет для печати, цветовая схема, типография. Готов к производству.</p>
+              <div class="proj-meta">
+                <span class="proj-year">2026</span>
+                <span class="proj-role">Graphic Designer</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- Римский дворик РГБ -->
+          <article class="proj-card reveal" data-filter="content" aria-label="Проект Римский дворик РГБ">
+            <div class="proj-img">
+              <img src="rimdvor1.jpg" alt="Римский дворик РГБ — BIM проект реконструкции" loading="lazy" />
+              <div class="proj-overlay">
+                <a href="https://www.figma.com/design/" target="_blank" rel="noopener noreferrer" class="proj-overlay-btn">
+                  Открыть в Figma ↗
+                </a>
+              </div>
+              <div class="proj-badge">Architecture 2026</div>
+            </div>
+            <div class="proj-body">
+              <div class="proj-tags">
+                <span class="proj-tag">BIM</span>
+                <span class="proj-tag">Revit</span>
+                <span class="proj-tag">Blender</span>
+              </div>
+              <h3 class="proj-title">Римский дворик РГБ — BIM проект</h3>
+              <p class="proj-desc">BIM-проект реконструкции Римского дворика в Российской государственной библиотеке. Моделирование в Revit, визуализация в Blender. Полная документация для строительства.</p>
+              <div class="proj-meta">
+                <span class="proj-year">2026</span>
+                <span class="proj-role">BIM Specialist & Architect</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- Midnight Choice -->
+          <article class="proj-card reveal" data-filter="ui" aria-label="Проект Midnight Choice">
+            <div class="proj-img">
+              <img src="midquest.png" alt="Midnight Choice — квест-сайт выбора кино по настроению" loading="lazy" />
+              <div class="proj-overlay">
+                <a href="https://www.figma.com/design/zcN1ZENeexrt7Re0UzFFOS/" target="_blank" rel="noopener noreferrer" class="proj-overlay-btn">
                   Открыть в Figma ↗
                 </a>
               </div>
             </div>
             <div class="proj-body">
               <div class="proj-tags">
-                <span class="proj-tag">UI/UX</span>
-                <span class="proj-tag">Figma</span>
-                <span class="proj-tag">Mobile</span>
+                <span class="proj-tag">Web</span>
+                <span class="proj-tag">Concept</span>
+                <span class="proj-tag">Interactive</span>
               </div>
-              <h3 class="proj-title">Eco-Step — Мобильное приложение</h3>
-              <p class="proj-desc">Экоприложение для велосипедистов: маршруты, трекер, сообщество. Полный UI/UX дизайн в Figma.</p>
+              <h3 class="proj-title">Midnight Choice — Квест выбора кино</h3>
+              <p class="proj-desc">Квест-сайт выбора кино по настроению и темам. Интерактивный опросник, рекомендации, интеграция с IMDb. Концептуальный проект.</p>
               <div class="proj-meta">
                 <span class="proj-year">2024</span>
                 <span class="proj-role">UI/UX Designer</span>
@@ -297,31 +429,6 @@
               <div class="proj-meta">
                 <span class="proj-year">2023</span>
                 <span class="proj-role">Frontend Developer</span>
-              </div>
-            </div>
-          </article>
-
-          <!-- FrostScrin / другой проект -->
-          <article class="proj-card reveal" data-filter="frontend" aria-label="Проект Упаковка">
-            <div class="proj-img">
-              <img src="Ypakovka1.png" alt="Дизайн упаковки — Мармелад Еремин" loading="lazy" />
-              <div class="proj-overlay">
-                <a href="упаковка мармелад Еремин.pdf" target="_blank" rel="noopener noreferrer" class="proj-overlay-btn">
-                  Скачать PDF ↗
-                </a>
-              </div>
-            </div>
-            <div class="proj-body">
-              <div class="proj-tags">
-                <span class="proj-tag">Packaging</span>
-                <span class="proj-tag">Print</span>
-                <span class="proj-tag">Figma</span>
-              </div>
-              <h3 class="proj-title">Упаковка — Мармелад Еремин</h3>
-              <p class="proj-desc">Дизайн упаковки кондитерской продукции с вылетами для печати. Финальный макет готов к производству.</p>
-              <div class="proj-meta">
-                <span class="proj-year">2024</span>
-                <span class="proj-role">Graphic Designer</span>
               </div>
             </div>
           </article>
@@ -486,26 +593,10 @@
           <article class="document-card reveal">
             <div class="document-icon" aria-hidden="true">📄</div>
             <h3 class="document-card-title">Благодарственное письмо</h3>
-            <p class="document-card-description">Благодарность от команды разработки за вклад в проект</p>
-            <a href="Благодарственное_письмо_команде_разработки.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">
-              Скачать PDF <span aria-label="открывается в новом окне">(↗)</span>
-            </a>
-          </article>
-          <article class="document-card reveal">
-            <div class="document-icon" aria-hidden="true">📦</div>
-            <h3 class="document-card-title">Упаковка: Мармелад Еремин</h3>
-            <p class="document-card-description">Дизайн упаковки кондитерской продукции с вылетами для печати</p>
-            <a href="упаковка мармелад Еремин.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">
-              Скачать PDF <span aria-label="открывается в новом окне">(↗)</span>
-            </a>
-          </article>
-          <article class="document-card reveal">
-            <div class="document-icon" aria-hidden="true">📦</div>
-            <h3 class="document-card-title">Упаковка: Малинка</h3>
-            <p class="document-card-description">Финальный макет упаковки с вылетами для печати</p>
-            <a href="упоковка 2 малинка итог.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">
-              Скачать PDF <span aria-label="открывается в новом окне">(↗)</span>
-            </a>
+            <p class="document-card-description">Благодарность от ООО «Хаус Гард» за качественную работу по созданию корпоративного сайта smr.hgstroy.ru</p>
+            <button class="btn btn-secondary modal-trigger" data-modal="hgstroyblag.png" aria-label="Открыть благодарственное письмо">
+              Просмотреть
+            </button>
           </article>
         </div>
       </div>
@@ -523,11 +614,34 @@
           <p class="contact-description">
             Есть проект в голове? Давайте поговорим о том, как я могу помочь его реализовать.
           </p>
+          
+          <!-- Contact Form -->
+          <form id="contact-form" class="contact-form" action="https://formspree.io/f/xlgpeagn" method="POST">
+            <div class="form-group">
+              <label for="contact-name">Ваше имя</label>
+              <input type="text" id="contact-name" name="name" placeholder="Дмитрий" required aria-label="Ваше имя" />
+            </div>
+            <div class="form-group">
+              <label for="contact-email">Ваш email</label>
+              <input type="email" id="contact-email" name="email" placeholder="dmitry@example.com" required aria-label="Ваш email" />
+            </div>
+            <div class="form-group">
+              <label for="contact-message">Расскажите о вашем проекте</label>
+              <textarea id="contact-message" name="message" placeholder="Опишите вашу идею, задачу или проект..." required aria-label="Сообщение"></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary" aria-label="Отправить сообщение">
+              Отправить сообщение
+            </button>
+            <p id="form-status" class="form-status"></p>
+          </form>
+
+          <div class="contact-divider" aria-hidden="true"></div>
+
           <div class="contact-methods">
-            <a href="https://t.me/aimovl" target="_blank" rel="noopener noreferrer" class="btn btn-primary contact-btn">
+            <a href="https://t.me/aimovl" target="_blank" rel="noopener noreferrer" class="btn btn-secondary" aria-label="Написать в Telegram">
               Написать в Telegram
             </a>
-            <a href="https://github.com/228burger228" target="_blank" rel="noopener noreferrer" class="btn btn-secondary contact-btn">
+            <a href="https://github.com/228burger228" target="_blank" rel="noopener noreferrer" class="btn btn-secondary" aria-label="Открыть GitHub">
               GitHub
             </a>
           </div>
@@ -544,6 +658,18 @@
       </p>
     </div>
   </footer>
+
+  <!-- MODAL FOR DOCUMENTS -->
+  <div id="doc-modal" class="modal" role="dialog" aria-labelledby="modal-title" aria-hidden="true">
+    <div class="modal-overlay" id="modal-overlay"></div>
+    <div class="modal-content">
+      <button class="modal-close" id="modal-close" aria-label="Закрыть модальное окно">
+        <span aria-hidden="true">✕</span>
+      </button>
+      <h2 id="modal-title" class="modal-title">Благодарственное письмо</h2>
+      <img id="modal-image" src="" alt="Документ" class="modal-image" />
+    </div>
+  </div>
 
   <script src="js/main.js" defer></script>
 </body>
