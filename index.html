@@ -3,1317 +3,548 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Burger | UI/UX & Frontend</title>
+  <meta name="description" content="Дмитрий (Burger) — Design-Driven Product & Technical Lead. Создаю продукты от концепции до production." />
+  <meta name="theme-color" content="#09090b" />
+  <title>Дмитрий (Burger) — Design-Driven Product & Technical Lead</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet" />
-  <script src="https://unpkg.com/@phosphor-icons/web"></script>
-  <link rel="stylesheet" href="style.css" />
-
-  <style>
-    /* ── YOUTUBE REDESIGN ── */
-    .yt-hero {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 24px 28px;
-      margin-bottom: 8px;
-      gap: 20px;
-      flex-wrap: wrap;
-    }
-    .yt-hero-left { display: flex; align-items: center; gap: 18px; }
-    .yt-avatar {
-      width: 64px; height: 64px;
-      border-radius: 50%;
-      border: 2px solid var(--accent);
-      object-fit: cover;
-      flex-shrink: 0;
-      box-shadow: 0 0 20px rgba(232,255,71,.15);
-    }
-    .yt-channel-name {
-      font-family: var(--font-display);
-      font-weight: 800;
-      font-size: 20px;
-      letter-spacing: -0.01em;
-      margin-bottom: 3px;
-    }
-    .yt-channel-sub { font-size: 12px; color: var(--muted); margin-bottom: 12px; }
-    .yt-sub-btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 7px;
-      background: #ff0000;
-      color: #fff;
-      font-family: var(--font-display);
-      font-weight: 700;
-      font-size: 12px;
-      letter-spacing: 0.04em;
-      text-transform: uppercase;
-      padding: 8px 16px;
-      border-radius: 6px;
-      text-decoration: none;
-      transition: transform 0.15s, box-shadow 0.2s;
-    }
-    .yt-sub-btn:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 6px 18px rgba(255,0,0,.35);
-    }
-    .yt-channel-link {
-      display: inline-flex;
-      align-items: center;
-      gap: 7px;
-      color: var(--muted);
-      font-size: 12px;
-      font-weight: 600;
-      text-decoration: none;
-      border: 1px solid var(--border);
-      padding: 8px 16px;
-      border-radius: 8px;
-      transition: color 0.2s, border-color 0.2s;
-      white-space: nowrap;
-    }
-    .yt-channel-link:hover { color: var(--accent); border-color: rgba(232,255,71,.35); }
-
-    .yt-section-label {
-      font-family: var(--font-display);
-      font-size: 11px;
-      font-weight: 700;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: var(--muted);
-      margin: 20px 0 12px;
-      display: flex;
-      align-items: center;
-    }
-    .yt-section-label::after {
-      content: '';
-      flex: 1;
-      height: 1px;
-      background: var(--border);
-      margin-left: 14px;
-    }
-
-    .yt-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-      gap: 14px;
-    }
-
-    .yt-card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 14px;
-      overflow: hidden;
-      cursor: pointer;
-      transition: border-color 0.2s, transform 0.3s;
-    }
-    .yt-card:hover { border-color: rgba(255,0,0,.4); transform: translateY(-5px); }
-
-    .yt-thumb {
-      position: relative;
-      padding-bottom: 56.25%;
-      background: #0a0a0c;
-      overflow: hidden;
-    }
-    .yt-thumb img {
-      position: absolute; inset: 0;
-      width: 100%; height: 100%;
-      object-fit: cover;
-      transition: transform 0.5s, filter 0.3s;
-    }
-    .yt-card:hover .yt-thumb img { transform: scale(1.05); filter: brightness(.65); }
-
-    .yt-play-btn {
-      position: absolute; inset: 0;
-      display: flex; align-items: center; justify-content: center;
-      opacity: 0;
-      transition: opacity 0.25s;
-      font-size: 54px;
-      color: white;
-      filter: drop-shadow(0 2px 12px rgba(0,0,0,.6));
-    }
-    .yt-card:hover .yt-play-btn { opacity: 1; }
-
-    .yt-card-body { padding: 12px 14px 14px; }
-    .yt-card-title {
-      font-family: var(--font-display);
-      font-weight: 700;
-      font-size: 13px;
-      margin-bottom: 5px;
-      line-height: 1.35;
-    }
-    .yt-card-meta {
-      display: flex; align-items: center; gap: 5px;
-      font-size: 11px; color: var(--muted);
-    }
-    .yt-card-meta i { font-size: 13px; }
-
-    /* ── MODAL ── */
-    .yt-modal {
-      position: fixed; inset: 0;
-      z-index: 1000;
-      display: flex; align-items: center; justify-content: center;
-      pointer-events: none;
-      opacity: 0;
-      transition: opacity 0.25s;
-    }
-    .yt-modal.open { opacity: 1; pointer-events: all; }
-
-    .yt-modal-backdrop {
-      position: absolute; inset: 0;
-      background: rgba(0,0,0,.82);
-      backdrop-filter: blur(8px);
-    }
-
-    .yt-modal-box {
-      position: relative;
-      z-index: 1;
-      width: min(900px, 94vw);
-      transform: scale(0.92);
-      transition: transform 0.28s cubic-bezier(0.34,1.56,0.64,1);
-    }
-    .yt-modal.open .yt-modal-box { transform: scale(1); }
-
-    .yt-modal-close {
-      position: absolute;
-      top: -40px; right: 0;
-      background: none;
-      border: 1px solid rgba(255,255,255,.2);
-      color: white;
-      font-size: 18px;
-      width: 34px; height: 34px;
-      border-radius: 8px;
-      cursor: pointer;
-      display: flex; align-items: center; justify-content: center;
-      transition: background 0.2s;
-    }
-    .yt-modal-close:hover { background: rgba(255,255,255,.1); }
-
-    .yt-modal-player {
-      position: relative;
-      padding-bottom: 56.25%;
-      border-radius: 14px;
-      overflow: hidden;
-      border: 1px solid rgba(255,255,255,.08);
-      box-shadow: 0 32px 80px rgba(0,0,0,.6);
-    }
-    .yt-modal-player iframe {
-      position: absolute; inset: 0;
-      width: 100%; height: 100%;
-      border: none;
-    }
-
-    @media (max-width: 768px) {
-      .yt-hero { flex-direction: column; align-items: flex-start; }
-      .yt-grid { grid-template-columns: 1fr 1fr; }
-    }
-    @media (max-width: 480px) {
-      .yt-grid { grid-template-columns: 1fr; }
-    }
-  </style>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/tokens.css" />
+  <link rel="stylesheet" href="css/base.css" />
+  <link rel="stylesheet" href="css/layout.css" />
+  <link rel="stylesheet" href="css/components.css" />
+  <link rel="stylesheet" href="css/responsive.css" />
 </head>
 <body>
+  <a href="#main-content" class="skip-link">Перейти к основному контенту</a>
 
-<canvas id="weatherCanvas"></canvas>
-<div class="noise"></div>
-
-<div class="app-wrap">
-
-  <!-- SIDEBAR -->
-  <nav class="sidebar">
-    <button class="menu-toggle" id="menu-toggle"><i class="ph ph-list"></i></button>
-    <ul class="nav-list" id="navList">
-      <li class="active" data-page="home"><i class="ph ph-house"></i><span>Главная</span></li>
-      <li data-page="about"><i class="ph ph-user"></i><span>Обо мне</span></li>
-      <li data-page="projects"><i class="ph ph-briefcase"></i><span>Проекты</span></li>
-      <li data-page="packaging"><i class="ph ph-package"></i><span>Упаковка</span></li>
-      <li data-page="certificates"><i class="ph ph-certificate"></i><span>Сертификаты</span></li>
-      <li data-page="youtube"><i class="ph ph-youtube-logo"></i><span>YouTube</span></li>
-      <li data-page="gallery"><i class="ph ph-camera"></i><span>Gallery</span></li>
-      <li data-page="hobbies" id="hobbies-nav"><i class="ph ph-game-controller"></i><span>Хобби</span></li>
-    </ul>
-    <div class="s-footer">
-      <a href="https://t.me/aimovl" target="_blank"><i class="ph ph-telegram-logo"></i></a>
-      <a href="admin.html" title="Admin Panel"><i class="ph ph-gear"></i></a>
+  <!-- NAVIGATION -->
+  <nav class="navbar" role="navigation" aria-label="Главная навигация">
+    <div class="navbar-container">
+      <a href="#" class="navbar-brand" aria-label="Дмитрий - Главная">
+        <span class="brand-text">Dmitry</span>
+      </a>
+      <button class="navbar-toggle" id="navbar-toggle" aria-label="Открыть меню" aria-expanded="false" aria-controls="navbar-menu">
+        <span class="toggle-icon"></span>
+        <span class="toggle-icon"></span>
+        <span class="toggle-icon"></span>
+      </button>
+      <ul class="navbar-menu" id="navbar-menu" role="menubar">
+        <li role="none"><a href="#hero" class="nav-link" role="menuitem">Главная</a></li>
+        <li role="none"><a href="#case-studies" class="nav-link" role="menuitem">Работы</a></li>
+        <li role="none"><a href="#expertise" class="nav-link" role="menuitem">Навыки</a></li>
+        <li role="none"><a href="#about" class="nav-link" role="menuitem">Обо мне</a></li>
+        <li role="none"><a href="#contact" class="nav-link" role="menuitem">Контакты</a></li>
+      </ul>
+      <a href="#contact" class="btn btn-primary navbar-cta" aria-label="Связаться">Связаться</a>
     </div>
   </nav>
 
-  <main class="main">
+  <main id="main-content">
 
-    <!-- HOME -->
-    <div class="page active" id="page-home">
-      <div class="marquee-wrap">
-        <div class="mtrack">
-          <span>UI/UX Design</span><span>•</span><span>Figma</span><span>•</span>
-          <span>Frontend Dev</span><span>•</span><span>HTML / CSS / JS</span><span>•</span>
-          <span>Motion Design</span><span>•</span><span>Content Creation</span><span>•</span>
-          <span>Video Editing</span><span>•</span><span>Упаковка & Печать</span><span>•</span>
-          <span>UI/UX Design</span><span>•</span><span>Figma</span><span>•</span>
-          <span>Frontend Dev</span><span>•</span><span>HTML / CSS / JS</span><span>•</span>
-          <span>Motion Design</span><span>•</span><span>Content Creation</span><span>•</span>
-          <span>Video Editing</span><span>•</span><span>Упаковка & Печать</span><span>•</span>
-        </div>
-      </div>
-
-      <div class="bento">
-        <div class="glass card-profile">
-          <img class="avatar" src="https://github.com/228burger228.png" alt="Burger" />
-          <div class="profile-text">
-            <h1>Dmitry (Burger)</h1>
-            <p class="role-tag">UI/UX Designer · Frontend Developer · Content Creator</p>
-            <p class="profile-subtitle">Справлюсь с проектом без вазелина. Дизайн + код в одном лице.</p>
-            <div class="tech-stack">
-              <i class="ph ph-figma-logo" title="Figma"></i>
-              <i class="ph ph-paint-brush-broad" title="Photoshop"></i>
-              <i class="ph ph-film-strip" title="Premiere / After Effects"></i>
-              <i class="ph ph-code" title="HTML / CSS / JS"></i>
-              <i class="ph ph-lightning" title="Motion Design"></i>
-            </div>
-            <button class="btn-accent" id="to-projects">
-              Смотреть работы <i class="ph ph-arrow-right"></i>
-            </button>
+    <!-- ═══ SECTION 1: HERO ═══ -->
+    <section id="hero" class="section section-hero" aria-labelledby="hero-title">
+      <div class="container">
+        <div class="hero-content">
+          <div class="hero-badge animate-fade-up" aria-label="Статус">
+            <span class="avail-dot" aria-hidden="true"></span>
+            Открыт к новым проектам
           </div>
-        </div>
-
-        <div class="glass card-skills">
-          <h3>Что умею</h3>
-          <ul class="skills-list">
-            <li><i class="ph ph-pen-nib"></i><div><strong>Design</strong><span>Web, UI/UX, Print</span></div></li>
-            <li><i class="ph ph-brackets-curly"></i><div><strong>Code</strong><span>HTML, CSS, JS, Vue 3</span></div></li>
-            <li><i class="ph ph-video-camera"></i><div><strong>Content</strong><span>YouTube, Motion</span></div></li>
-            <li><i class="ph ph-package"></i><div><strong>Packaging</strong><span>Упаковка, Печать</span></div></li>
-            <li><i class="ph ph-buildings"></i><div><strong>Architecture</strong><span>Revit, Проектирование</span></div></li>
-            <li><i class="ph ph-handshake"></i><div><strong>Teamwork</strong><span>Лидерство, Коммуникация</span></div></li>
+          <p class="hero-role animate-fade-up" aria-label="Роль">
+            Design-Driven Product & Technical Lead
+          </p>
+          <h1 id="hero-title" class="hero-title animate-fade-up">
+            Создаю продукты<br>от концепции до production.
+          </h1>
+          <p class="hero-description animate-fade-up">
+            Работаю на стыке дизайна, инженерии, product thinking и коммуникации.<br>
+            Создаю масштабируемые цифровые решения и решаю сложные задачи.
+          </p>
+          <ul class="hero-proof animate-fade-up" aria-label="Ключевые компетенции">
+            <li>Государственные и корпоративные проекты</li>
+            <li>Полный цикл: дизайн + инженерия</li>
+            <li>Production-ready результаты</li>
           </ul>
-          <div class="stat-row">
-            <div class="stat-mini" onclick="window.open('https://github.com/228burger228','_blank')">
-              <i class="ph ph-github-logo"></i><span class="num">GitHub</span>
-            </div>
-            <div class="stat-mini" onclick="window.open('https://www.youtube.com/@burgerdom6','_blank')">
-              <i class="ph ph-youtube-logo"></i><span class="num">YouTube</span>
-            </div>
-          </div>
-        </div>
-
-        <div class="glass card-contact">
-          <div class="contact-top">
-            <h3>Связаться со мной</h3>
-            <div class="avail"><div class="avail-dot"></div>Открыт к работе</div>
-          </div>
-          <form id="tg-form" action="https://formspree.io/f/xlgpeagn" method="POST">
-            <div class="form-row">
-              <input type="text" name="name" id="tg-name" placeholder="Имя" required />
-              <input type="text" name="contact" id="tg-contact" placeholder="Telegram / Email" required />
-            </div>
-            <div class="form-bottom">
-              <textarea class="form-msg" name="message" id="tg-msg" placeholder="Детали проекта..." required></textarea>
-              <button type="submit" class="send-btn"><i class="ph ph-paper-plane-right"></i></button>
-            </div>
-          </form>
-          <p id="form-status"></p>
-          
-          <div class="contact-divider"></div>
-          
-          <div class="contact-telegram">
-            <div class="tg-label">Или напиши в Telegram</div>
-            <a href="https://t.me/aimovl" target="_blank" class="tg-link">
-              <i class="ph ph-telegram-logo"></i>
-              <span>@aimovl</span>
-            </a>
+          <div class="hero-cta animate-fade-up">
+            <a href="#case-studies" class="btn btn-primary">Смотреть работы</a>
+            <a href="#contact" class="btn btn-secondary">Давайте создадим что-то</a>
           </div>
         </div>
       </div>
+    </section>
 
-      <div class="home-stats">
-        <div class="hstat"><div class="hstat-num">15<span>+</span></div><div class="hstat-label">Проектов</div></div>
-        <div class="hstat-div"></div>
-        <div class="hstat"><div class="hstat-num">3<span>+</span></div><div class="hstat-label">Года опыта</div></div>
-        <div class="hstat-div"></div>
-        <div class="hstat"><div class="hstat-num">5</div><div class="hstat-label">Направления</div></div>
-        <div class="hstat-div"></div>
-        <div class="hstat"><div class="hstat-num">∞</div><div class="hstat-label">Кофе выпито</div></div>
-      </div>
-
-      <div class="home-section-label">Инструменты</div>
-      <div class="tools-grid">
-        <div class="tool-chip"><i class="ph ph-figma-logo"></i> Figma</div>
-        <div class="tool-chip"><i class="ph ph-code"></i> HTML / CSS</div>
-        <div class="tool-chip"><i class="ph ph-brackets-curly"></i> JavaScript</div>
-        <div class="tool-chip"><i class="ph ph-paint-brush-broad"></i> Photoshop</div>
-        <div class="tool-chip"><i class="ph ph-film-strip"></i> Premiere Pro</div>
-        <div class="tool-chip"><i class="ph ph-lightning"></i> After Effects</div>
-        <div class="tool-chip"><i class="ph ph-github-logo"></i> GitHub</div>
-        <div class="tool-chip"><i class="ph ph-monitor"></i> VS Code</div>
-        <div class="tool-chip"><i class="ph ph-package"></i> Revit</div>
-        <div class="tool-chip"><i class="ph ph-package"></i> Упаковка & Печать</div>
-      </div>
-
-      <div class="home-section-label" style="margin-top:28px">
-        Избранные проекты
-        <button class="see-all-btn" id="see-all-btn">Все проекты →</button>
-      </div>
-      <div class="featured-grid">
-        <div class="feat-card feat-card--gov" onclick="window.open('https://masterscitygame.ru','_blank')">
-          <div class="feat-img">
-            <div class="feat-ph">🏛️</div>
-            <div class="feat-tag feat-tag--gov"><i class="ph ph-seal-check"></i> Гос. проект</div>
-          </div>
-          <div class="feat-body"><h4>Город Мастеров</h4><p>Платформа Деп. образования Москвы · авторизация · профили · достижения</p></div>
-        </div>
-        <div class="feat-card" onclick="window.open('https://228burger228.github.io/triatlon/','_blank')">
-          <div class="feat-img">
-            <img src="https://228burger228.github.io/burgerCreate/scrintrial.png" alt="Triathlon" onerror="this.parentElement.innerHTML='<div class=feat-ph>🏊</div>'" />
-            <div class="feat-tag">Frontend</div>
-          </div>
-          <div class="feat-body"><h4>Спортшкола Триатлон</h4><p>Многостраничный сайт · адаптив · галерея</p></div>
-        </div>
-        <div class="feat-card" onclick="window.open('https://228burger228.github.io/Dorybim/index.html','_blank')">
-          <div class="feat-img">
-            <img src="https://228burger228.github.io/Dorybim/pixel_cafe.jpg" alt="DoryBim" onerror="this.parentElement.innerHTML='<div class=feat-ph>🎨</div>'" />
-            <div class="feat-tag">Frontend</div>
-          </div>
-          <div class="feat-body"><h4>DoryBim — Иллюстратор</h4><p>Сайт-портфолио · галерея · прайс</p></div>
-        </div>
-        <div class="feat-card" onclick="window.open('https://228burger228.github.io/Amakids/','_blank')">
-          <div class="feat-img">
-            <div class="feat-ph">🧮</div>
-            <div class="feat-tag">Frontend</div>
-          </div>
-          <div class="feat-body"><h4>Amakids — Детский центр</h4><p>Лендинг · курсы · запись · педагогам</p></div>
-        </div>
-        <div class="feat-card feat-card--gov" onclick="window.open('https://smr.hgstroy.ru/index.html','_blank')">
-          <div class="feat-img">
-            <div class="feat-ph">🏗️</div>
-            <div class="feat-tag feat-tag--gov"><i class="ph ph-users-three"></i> Командный проект</div>
-          </div>
-          <div class="feat-body"><h4>ХГ Строй</h4><p>Портал строительной компании · каталог · расчеты · команда</p></div>
-        </div>
-
-        <!-- ✅ НОВЫЙ ПРОЕКТ: Warpath Wiki -->
-        <div class="feat-card" onclick="window.open('https://228burger228.github.io/WarpathYTwiki/wiki.html','_blank')">
-          <div class="feat-img">
-            <div class="feat-ph">⚔️</div>
-            <div class="feat-tag">Frontend</div>
-          </div>
-          <div class="feat-body"><h4>Warpath Wiki</h4><p>Справочник для русскоязычного комьюнити · юниты · офицеры · Vue 3</p></div>
-        </div>
-
-      </div>
-    </div><!-- /page-home -->
-
-    <!-- ABOUT -->
-    <div class="page" id="page-about">
-
-      <!-- HERO -->
-      <div class="about-hero">
-        <img class="about-avatar" src="https://github.com/228burger228.png" alt="Dmitry" />
-        <div class="about-intro">
-          <div class="about-name-row">
-            <h1>Дмитрий <span class="about-nick">(Burger)</span></h1>
-            <div class="avail"><div class="avail-dot"></div>Открыт к работе</div>
-          </div>
-          <p class="about-tagline">UI/UX Designer · Frontend Developer · Content Creator · Москва</p>
-          <p class="about-bio">Делаю интерфейсы, которые хочется трогать, и сайты, которые работают. 2+ года в дизайне и фронтенде — от учебных проектов до государственных заказов и масштабных корпоративных сайтов. Умею закрыть задачу целиком: от архитектуры и дизайна в Figma до задеплоенного кода и техдокументации. Дизайнер, который понимает код — и разработчик, которому не надо объяснять про эстетику.</p>
-          <div class="about-cta-row">
-            <button class="btn-accent" id="about-contact-btn"><i class="ph ph-telegram-logo"></i> Написать</button>
-            <a class="about-link-btn" href="https://t.me/aimovl" target="_blank"><i class="ph ph-arrow-square-out"></i> Telegram</a>
-            <a class="about-link-btn" href="https://github.com/228burger228" target="_blank"><i class="ph ph-github-logo"></i> GitHub</a>
-          </div>
-        </div>
-      </div>
-
-      <!-- QUICK STATS -->
-      <div class="about-stats-row">
-        <div class="about-stat"><div class="about-stat-num">3<span>+</span></div><div class="about-stat-label">Года в профессии</div></div>
-        <div class="about-stat-div"></div>
-        <div class="about-stat"><div class="about-stat-num">15<span>+</span></div><div class="about-stat-label">Завершённых проектов</div></div>
-        <div class="about-stat-div"></div>
-        <div class="about-stat"><div class="about-stat-num">2</div><div class="about-stat-label">Гос. проекта</div></div>
-        <div class="about-stat-div"></div>
-        <div class="about-stat"><div class="about-stat-num">5</div><div class="about-stat-label">Направления</div></div>
-      </div>
-
-      <!-- EXPERIENCE TIMELINE -->
-      <div class="about-section-label">Опыт</div>
-      <div class="timeline">
-
-        <div class="tl-item tl-featured">
-          <div class="tl-dot"></div>
-          <div class="tl-card">
-            <div class="tl-head">
-              <div class="tl-icon"><i class="ph ph-buildings"></i></div>
-              <div class="tl-meta">
-                <div class="tl-title">Lead Frontend Developer & Designer</div>
-                <div class="tl-company"><a href="https://smr.hgstroy.ru/index.html" target="_blank">HgStroy — Комплексный сайт строительной компании <i class="ph ph-arrow-square-out"></i></a></div>
-                <div class="tl-period">2025 · Командный проект · Архитектура, дизайн и разработка</div>
-              </div>
-              <div class="exp-badge">Масштабный проект</div>
-            </div>
-            <p class="tl-desc">Полный редизайн и разработка корпоративного сайта строительной компании. Работал с вторым разработчиком на архитектуре, дизайне и коде. Реализовал: адаптивный дизайн всех подсайтов, шапку сайта для единого брендинга, карусели портфолио на Swiper, формы захвата лидов с защитой от спама, интеграцию с CRM. Создал полную техническую документацию (40+ страниц) и рекомендации по миграции на Next.js. Сайт получил 95+ баллов на Lighthouse.</p>
-            <div class="tl-stack">
-              <span>HTML/CSS/JS</span><span>Bootstrap 5</span><span>Figma</span><span>Swiper</span><span>Responsive Design</span><span>Team Leadership</span><span>Architecture</span><span>Documentation</span>
-            </div>
-          </div>
-        </div>
-
-        <div class="tl-item">
-          <div class="tl-dot tl-dot--small"></div>
-          <div class="tl-card">
-            <div class="tl-head">
-              <div class="tl-icon"><i class="ph ph-buildings"></i></div>
-              <div class="tl-meta">
-                <div class="tl-title">Frontend Developer & Designer</div>
-                <div class="tl-company"><a href="https://masterscitygame.ru" target="_blank">Город Мастеров — masterscitygame.ru <i class="ph ph-arrow-square-out"></i></a></div>
-                <div class="tl-period">2024 · Официальный заказ · Департамент образования Москвы</div>
-              </div>
-              <div class="exp-badge">Гос. проект</div>
-            </div>
-            <p class="tl-desc">Образовательная игровая платформа для московских колледжей. Разработал сайт с нуля: система авторизации и регистрации с email-верификацией, личные профили с выбором аватара, система достижений, тёмная тема, настройка шрифтов, канбан-доска, модуль техподдержки. Работал как единственный фронтенд-разработчик — от макета в Figma до рабочего продакшна.</p>
-            <div class="tl-stack">
-              <span>HTML/CSS/JS</span><span>Figma</span><span>Авторизация</span><span>LocalStorage</span><span>Адаптив</span><span>Тёмная тема</span><span>Канбан</span>
-            </div>
-          </div>
-        </div>
-
-        <div class="tl-item">
-          <div class="tl-dot tl-dot--small"></div>
-          <div class="tl-card">
-            <div class="tl-head">
-              <div class="tl-icon"><i class="ph ph-crosshair"></i></div>
-              <div class="tl-meta">
-                <div class="tl-title">Frontend Developer & Official Content Creator</div>
-                <div class="tl-company">Warpath: Ace Shooter <span class="exp-official">· Официальное партнёрство</span></div>
-                <div class="tl-period">2024 — настоящее время</div>
-              </div>
-            </div>
-            <p class="tl-desc">Официальный блогер и разработчик для одной из крупнейших мобильных стратегий. Создаю справочный сайт для русскоязычного комьюнити на Vue 3 — закрываю нишу, которую не покрывают ни английские, ни китайские ресурсы. Снимаю видео и веду канал на YouTube.</p>
-            <div class="tl-stack">
-              <span>Vue 3</span><span>Vite</span><span>GitHub Pages</span><span>Supabase</span><span>YouTube</span><span>Сценарий</span>
-            </div>
-          </div>
-        </div>
-
-        <div class="tl-item">
-          <div class="tl-dot tl-dot--small"></div>
-          <div class="tl-card">
-            <div class="tl-head">
-              <div class="tl-icon"><i class="ph ph-briefcase"></i></div>
-              <div class="tl-meta">
-                <div class="tl-title">Freelance Designer & Frontend Developer</div>
-                <div class="tl-company">Коммерческие проекты · Фриланс</div>
-                <div class="tl-period">2023 — настоящее время</div>
-              </div>
-            </div>
-            <p class="tl-desc">Разработка сайтов и дизайн под ключ: спортшкола триатлона, портфолио иллюстратора, детский образовательный центр, лендинги, UI/UX концепты. Каждый проект — от брифа до готового задеплоенного сайта.</p>
-            <div class="tl-stack">
-              <span>HTML/CSS/JS</span><span>Figma</span><span>GitHub Pages</span><span>UI/UX</span>
-            </div>
-          </div>
-        </div>
-
-      </div>
-
-      <!-- EDUCATION -->
-      <div class="about-section-label" style="margin-top:32px">Образование</div>
-      <div class="edu-grid">
-        <div class="edu-card">
-          <div class="edu-icon"><i class="ph ph-graduation-cap"></i></div>
-          <div class="edu-body">
-            <div class="edu-title">Графический дизайн</div>
-            <div class="edu-place">МГКЭИТ · Специальность</div>
-            <p class="edu-desc">Полный профессиональный цикл: традиционный и цифровой рисунок, постеры, карточки товара, визитки, баннеры, брендбук, фирменные стили, редизайны интерфейсов. Большой объём работы в Figma и Photoshop.</p>
-          </div>
-        </div>
-        <div class="edu-card">
-          <div class="edu-icon"><i class="ph ph-certificate"></i></div>
-          <div class="edu-body">
-            <div class="edu-title">UI/UX Design</div>
-            <div class="edu-place">Яндекс Практикум · Завершено</div>
-            <p class="edu-desc">Полный курс по дизайну интерфейсов. Ожидаю электронный сертификат.</p>
-          </div>
-        </div>
-        <div class="edu-card">
-          <div class="edu-icon"><i class="ph ph-code"></i></div>
-          <div class="edu-body">
-            <div class="edu-title">Frontend Development</div>
-            <div class="edu-place">Self-taught · 2+ года практики</div>
-            <p class="edu-desc">HTML5, CSS3, JavaScript ES6+ — чистый код без фреймворков. Изучаю Vue 3 и React. Всё подтверждено реальными проектами в разделе "Проекты".</p>
-          </div>
-        </div>
-      </div>
-
-      <!-- SKILLS -->
-      <div class="about-section-label" style="margin-top:32px">Навыки</div>
-      <div class="skills-blocks">
-        <div class="skill-block">
-          <div class="skill-block-title"><i class="ph ph-pen-nib"></i> Дизайн</div>
-          <div class="skill-tags">
-            <span>Figma</span><span>UI/UX</span><span>Photoshop</span><span>Брендбук</span><span>Фирменный стиль</span><span>Упаковка</span><span>Баннеры</span><span>Редизайн</span><span>Прототипирование</span>
-          </div>
-        </div>
-        <div class="skill-block">
-          <div class="skill-block-title"><i class="ph ph-brackets-curly"></i> Разработка</div>
-          <div class="skill-tags">
-            <span>HTML5</span><span>CSS3</span><span>JavaScript</span><span>Vue 3</span><span>React (изучаю)</span><span>Vite</span><span>GitHub Pages</span><span>Адаптивная вёрстка</span><span>Git</span>
-          </div>
-        </div>
-        <div class="skill-block">
-          <div class="skill-block-title"><i class="ph ph-video-camera"></i> Контент</div>
-          <div class="skill-tags">
-            <span>Premiere Pro</span><span>After Effects</span><span>Motion Design</span><span>YouTube</span><span>Сценарий</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- WHY ME -->
-      <div class="about-section-label" style="margin-top:32px">Почему я</div>
-      <div class="about-why-grid">
-        <div class="about-why-card">
-          <div class="about-why-icon"><i class="ph ph-intersect"></i></div>
-          <div class="about-why-title">Дизайн + код в одном</div>
-          <p>Не нужно объяснять, как макет должен работать в браузере. Я проектирую с пониманием ограничений вёрстки и верстаю с пониманием дизайна.</p>
-        </div>
-        <div class="about-why-card">
-          <div class="about-why-icon"><i class="ph ph-check-fat"></i></div>
-          <div class="about-why-title">Довожу до конца</div>
-          <p>Все проекты в портфолио реально задеплоены и работают. Государственный проект masterscitygame.ru и масштабный проект HgStroy — от архитектуры до продакшна.</p>
-        </div>
-        <div class="about-why-card">
-          <div class="about-why-icon"><i class="ph ph-rocket-launch"></i></div>
-          <div class="about-why-title">Закрываю несколько ролей</div>
-          <p>Дизайнер, верстальщик, архитектор. Веду проекты с нуля, создаю техдокументацию, работаю в команде и один. Для небольших команд это значит меньше коммуникации и быстрее результат.</p>
-        </div>
-        <div class="about-why-card">
-          <div class="about-why-icon"><i class="ph ph-trend-up"></i></div>
-          <div class="about-why-title">Постоянно расту</div>
-          <p>Параллельно веду несколько активных проектов, прохожу курс Яндекса, работал в Revit и практикуюсь в Figma. Участвовал в архитектурном конкурсе колледжей. Не жду задач — нахожу их сам.</p>
-        </div>
-      </div>
-
-      <!-- TEAM -->
-      <div class="about-section-label" style="margin-top:32px">Работаю в команде</div>
-      <div class="team-section">
-        <div class="team-card">
-          <div class="team-icon"><i class="ph ph-users"></i></div>
-          <div class="team-body">
-            <h4>HgStroy — Комплексный редизайн</h4>
-            <p class="team-role">Lead Frontend Developer & Designer</p>
-            <p>Работал с опытным разработчиком на архитектуре и реализации масштабного проекта для строительной компании. Вместе мы создали единую систему для всех подсайтов, интегрировали CRM и подняли Lighthouse до 95+ баллов.</p>
-            <p class="team-skills"><strong>Роль в команде:</strong> Дизайн, фронтенд-архитектура, вёрстка, техдокументация</p>
-          </div>
-        </div>
-      </div>
-
-      <!-- MEDIA & ACHIEVEMENTS -->
-      <div class="about-section-label" style="margin-top:32px">Статьи и достижения</div>
-      <div class="about-why-grid">
-        <div class="about-why-card">
-          <div class="about-why-icon"><i class="ph ph-newspaper"></i></div>
-          <div class="about-why-title">Публикации в СМИ</div>
-          <p>Мои проекты и опыт были упомянуты в различных публикациях. Работаю над тем, чтобы делиться знаниями и опытом с сообществом.</p>
-        </div>
-        <div class="about-why-card">
-          <div class="about-why-icon"><i class="ph ph-building"></i></div>
-          <div class="about-why-title">Архитектурный конкурс</div>
-          <p>Участвовал в архитектурном конкурсе колледжей. Работал в Revit, изучал проектирование и пространственное мышление. Это помогает мне лучше понимать пользовательские интерфейсы и пространство.</p>
-        </div>
-        <div class="about-why-card">
-          <div class="about-why-icon"><i class="ph ph-presentations"></i></div>
-          <div class="about-why-title">Комплексные проекты</div>
-          <p>Создал шапку сайта для всех подсайтов компании и общую презентацию. Работал на полный цикл: от архитектуры и дизайна в Figma до кода и техдокументации.</p>
-        </div>
-        <div class="about-why-card">
-          <div class="about-why-icon"><i class="ph ph-figma-logo"></i></div>
-          <div class="about-why-title">Практика в дизайне</div>
-          <p>Активно практикуюсь в создании дизайнов в Figma — от концептов до high-fidelity макетов. Изучаю лучшие практики UI/UX и применяю их в своих проектах.</p>
-        </div>
-      </div>
-
-    </div><!-- /page-about -->
-
-    <!-- PROJECTS -->
-    <div class="page" id="page-projects">
-      <div class="sh">
-        <h2>Проекты</h2>
-        <p>UI/UX дизайн и фронтенд · коммерческие работы и концепты</p>
-      </div>
-      <div class="proj-filter">
-        <button class="filt active" data-f="all">Все</button>
-        <button class="filt" data-f="frontend">Frontend</button>
-        <button class="filt" data-f="ui">UI/UX</button>
-        <button class="filt" data-f="content">Контент</button>
-      </div>
-      <div class="proj-grid" id="projects-container">
-
-        <div class="proj-card" data-cat="frontend">
-          <div class="proj-img">
-            <div class="proj-ph">🏗️</div>
-            <div class="proj-ov"><a href="https://smr.hgstroy.ru/index.html" target="_blank">Открыть →</a></div>
-            <div class="proj-gov-badge"><i class="ph ph-users"></i> Командный</div>
-          </div>
-          <div class="proj-body">
-            <div class="proj-cats"><span class="pcat">Frontend</span><span class="pcat">Bootstrap 5</span><span class="pcat">Team</span></div>
-            <h3>HgStroy — Комплексный редизайн</h3>
-            <p>Полный редизайн и разработка сайта строительной компании. Работал с вторым разработчиком на архитектуре, дизайне и коде. Lighthouse 95+.</p>
-          </div>
-        </div>
-
-        <div class="proj-card" data-cat="frontend">
-          <div class="proj-img">
-            <div class="proj-ph">🏛️</div>
-            <div class="proj-ov"><a href="https://masterscitygame.ru" target="_blank">Открыть →</a></div>
-            <div class="proj-gov-badge"><i class="ph ph-seal-check"></i> Гос. проект</div>
-          </div>
-          <div class="proj-body">
-            <div class="proj-cats"><span class="pcat">Frontend</span><span class="pcat">Full-cycle</span><span class="pcat">Коммерческий</span></div>
-            <h3>Город Мастеров</h3>
-            <p>Образовательная игровая платформа Департамента образования Москвы. Авторизация, профили, достижения, тёмная тема, канбан-доска.</p>
-          </div>
-        </div>
-
-        <div class="proj-card" data-cat="frontend">
-          <div class="proj-img">
-            <div class="proj-ph">⚔️</div>
-            <div class="proj-ov"><a href="https://228burger228.github.io/WarpathYTwiki/index.html" target="_blank">Открыть →</a></div>
-          </div>
-          <div class="proj-body">
-            <div class="proj-cats"><span class="pcat">Vue 3</span><span class="pcat">Vite</span><span class="pcat">Community</span></div>
-            <h3>Warpath: Ace Shooter Wiki</h3>
-            <p>Справочник для русскоязычного комьюнити мобильной стратегии. Официальное партнёрство с игрой.</p>
-          </div>
-        </div>
-
-        <div class="proj-card" data-cat="frontend">
-          <div class="proj-img">
-            <div class="proj-ph">🧮</div>
-            <div class="proj-ov"><a href="https://228burger228.github.io/Amakids/" target="_blank">Открыть →</a></div>
-          </div>
-          <div class="proj-body">
-            <div class="proj-cats"><span class="pcat">Frontend</span><span class="pcat">Landing</span></div>
-            <h3>Amakids — Детский центр</h3>
-            <p>Лендинг для центра ментальной арифметики. Курсы, запись на урок, раздел для педагогов.</p>
-          </div>
-        </div>
-
-        <div class="proj-card" data-cat="frontend">
-          <div class="proj-img">
-            <img src="https://228burger228.github.io/Dorybim/pixel_cafe.jpg" alt="DoryBim" onerror="this.style.display='none'" />
-            <div class="proj-ph" style="display:none">🎨</div>
-            <div class="proj-ov"><a href="https://228burger228.github.io/Dorybim/index.html" target="_blank">Открыть →</a></div>
-          </div>
-          <div class="proj-body">
-            <div class="proj-cats"><span class="pcat">Frontend</span><span class="pcat">Portfolio</span></div>
-            <h3>DoryBim — Иллюстратор</h3>
-            <p>Сайт-портфолио для цифрового иллюстратора. Галерея, прайс, форма заказа арта.</p>
-          </div>
-        </div>
-
-        <div class="proj-card" data-cat="frontend">
-          <div class="proj-img">
-            <div class="proj-ph">🏊</div>
-            <div class="proj-ov"><a href="https://228burger228.github.io/triatlon/" target="_blank">Открыть →</a></div>
-          </div>
-          <div class="proj-body">
-            <div class="proj-cats"><span class="pcat">HTML/CSS</span><span class="pcat">Responsive</span></div>
-            <h3>Спортшкола Триатлон</h3>
-            <p>Многостраничный сайт. Адаптив, галерея, инфоблоки.</p>
-          </div>
-        </div>
-
-        <div class="proj-card" data-cat="frontend">
-          <div class="proj-img">
-            <div class="proj-ph">🎄</div>
-            <div class="proj-ov"><a href="https://228burger228.github.io/New2026/" target="_blank">Открыть →</a></div>
-          </div>
-          <div class="proj-body">
-            <div class="proj-cats"><span class="pcat">JavaScript</span><span class="pcat">Animation</span></div>
-            <h3>New Year 2026 Card</h3>
-            <p>Интерактивная открытка с анимациями и генерацией поздравлений.</p>
-          </div>
-        </div>
-
-        <div class="proj-card" data-cat="frontend">
-          <div class="proj-img">
-            <img src="Porfolscr.png" alt="Portfolio v1" onerror="this.style.display='none'" />
-            <div class="proj-ph">💼</div>
-            <div class="proj-ov"><a href="https://228burger228.github.io/burgerCreate/index.html" target="_blank">Открыть →</a></div>
-          </div>
-          <div class="proj-body">
-            <div class="proj-cats"><span class="pcat">HTML/CSS</span><span class="pcat">Portfolio</span></div>
-            <h3>Портфолио v1</h3>
-            <p>Первая версия портфолио. Адаптив, галерея, многостраничный.</p>
-          </div>
-        </div>
-
-        <div class="proj-card" data-cat="ui">
-          <div class="proj-img">
-            <div class="proj-ph">🎵</div>
-            <div class="proj-ov"><a href="https://www.figma.com/design/vynb9Q4A1K2rJ09Q4kRRvy/" target="_blank">Figma →</a></div>
-          </div>
-          <div class="proj-body">
-            <div class="proj-cats"><span class="pcat">UI/UX</span><span class="pcat">Figma</span></div>
-            <h3>Music Label Concept</h3>
-            <p>Дизайн сайта лейбла. Тёмная эстетика, неон, акцент на артистах.</p>
-          </div>
-        </div>
-
-        <div class="proj-card" data-cat="ui">
-          <div class="proj-img">
-            <div class="proj-ph">🛴</div>
-            <div class="proj-ov"><a href="https://www.figma.com/design/3FyaRye7LEPnBvXM7jOVsr/" target="_blank">Figma →</a></div>
-          </div>
-          <div class="proj-body">
-            <div class="proj-cats"><span class="pcat">Mobile</span><span class="pcat">UI/UX</span></div>
-            <h3>E-Scooter Rental</h3>
-            <p>Интерфейс аренды самокатов. Карта, профиль, система оплаты.</p>
-          </div>
-        </div>
-
-        <div class="proj-card" data-cat="ui">
-          <div class="proj-img">
-            <img src="ecostep.png" alt="Ecostep" onerror="this.style.display='none'" />
-            <div class="proj-ph">🌱</div>
-            <div class="proj-ov"><a href="https://www.figma.com/design/2u0JYeK7QvPeYxCvcYyHtL/ecostep" target="_blank">Figma →</a></div>
-          </div>
-          <div class="proj-body">
-            <div class="proj-cats"><span class="pcat">Mobile</span><span class="pcat">App Design</span></div>
-            <h3>Eco-Step App</h3>
-            <p>Экоприложение для велосипедистов: маршруты, трекер, сообщество.</p>
-          </div>
-        </div>
-
-        <div class="proj-card" data-cat="ui">
-          <div class="proj-img">
-            <img src="midquest.png" alt="Midnight Choice" onerror="this.style.display='none'" />
-            <div class="proj-ph">🎬</div>
-            <div class="proj-ov"><a href="https://www.figma.com/design/zcN1ZENeexrt7Re0UzFFOS/" target="_blank">Figma →</a></div>
-          </div>
-          <div class="proj-body">
-            <div class="proj-cats"><span class="pcat">Web</span><span class="pcat">Concept</span></div>
-            <h3>Midnight Choice</h3>
-            <p>Квест-сайт выбора кино по настроению и темам.</p>
-          </div>
-        </div>
-
-        <div class="proj-card" data-cat="ui">
-          <div class="proj-img">
-            <img src="stromaz.png" alt="Stroy" onerror="this.style.display='none'" />
-            <div class="proj-ph">🏗️</div>
-            <div class="proj-ov"><a href="https://www.figma.com/design/IeIQQCUhqWNWFuZfymvviR/" target="_blank">Figma →</a></div>
-          </div>
-          <div class="proj-body">
-            <div class="proj-cats"><span class="pcat">Redesign</span><span class="pcat">UX/UI</span></div>
-            <h3>Редизайн стройкомпании</h3>
-            <p>Редизайн шапки для роста конверсии и функциональности.</p>
-          </div>
-        </div>
-
-        <div class="proj-card" data-cat="content">
-          <div class="proj-img">
-            <div class="proj-ph">⚡</div>
-            <div class="proj-ov"><a href="https://www.figma.com/design/fvr4rOpbbFhIbScrTiCqLp/" target="_blank">Figma →</a></div>
-          </div>
-          <div class="proj-body">
-            <div class="proj-cats"><span class="pcat">Реклама</span><span class="pcat">Billboard</span></div>
-            <h3>EcoVolt Pulse</h3>
-            <p>Билборд 3×6м для запуска электрокара. Экология и динамика.</p>
-          </div>
-        </div>
-
-        <div class="proj-card" data-cat="content">
-          <div class="proj-img"><div class="proj-ph">🛍️</div></div>
-          <div class="proj-body">
-            <div class="proj-cats"><span class="pcat">E-commerce</span><span class="pcat">Infographic</span></div>
-            <h3>Wildberries Rich Content</h3>
-            <p>Инфографика для карточек GoPro и зимней рыбалки. Рост CTR.</p>
-          </div>
-        </div>
-
-        <div class="proj-card" data-cat="content">
-          <div class="proj-img"><div class="proj-ph">📊</div></div>
-          <div class="proj-body">
-            <div class="proj-cats"><span class="pcat">Presentation</span><span class="pcat">Storytelling</span></div>
-            <h3>Hybrid Pass</h3>
-            <p>Дизайн презентации для стартапа (10 слайдов) + скрипт.</p>
-          </div>
-        </div>
-
-      </div>
-    </div><!-- /page-projects -->
-
-    <!-- PACKAGING -->
-    <div class="page" id="page-packaging">
-      <div class="sh"><h2>Упаковка & Печать</h2><p>Дизайн упаковки, этикеток и полиграфии</p></div>
-      <div class="pack-grid" id="packaging-container">
-        <div class="pack-card">
-          <div class="pack-preview">
-            <img src="Ypakovka1.png" alt="Упаковка" onerror="this.style.display='none'" />
-            <div class="pack-ph">📦</div>
-            <div class="pack-type-badge">PNG</div>
-          </div>
-          <div class="pack-body">
-            <h4>Упаковка · Мармелад Еремин</h4>
-            <p>Дизайн упаковки кондитерской продукции</p>
-            <div class="pack-actions">
-              <a class="pack-btn" href="Ypakovka1.png" target="_blank"><i class="ph ph-arrows-out"></i> Открыть</a>
-              <a class="pack-btn" href="Ypakovka1.png" download><i class="ph ph-download-simple"></i> Скачать</a>
-            </div>
-          </div>
-        </div>
-        <div class="pack-card">
-          <div class="pack-preview">
-            <div class="pack-ph">📄</div>
-            <div class="pack-type-badge">PDF</div>
-          </div>
-          <div class="pack-body">
-            <h4>Упаковка · Мармелад Еремин</h4>
-            <p>Финальный макет с вылетами для печати</p>
-            <div class="pack-actions">
-              <a class="pack-btn" href="упаковка мармелад Еремин.pdf" target="_blank"><i class="ph ph-arrows-out"></i> Открыть</a>
-              <a class="pack-btn" href="упаковка мармелад Еремин.pdf" download><i class="ph ph-download-simple"></i> Скачать</a>
-            </div>
-          </div>
-        </div>
-        <div class="pack-card">
-          <div class="pack-preview">
-            <div class="pack-ph">🍓</div>
-            <div class="pack-type-badge">PDF</div>
-          </div>
-          <div class="pack-body">
-            <h4>Упаковка · Малинка</h4>
-            <p>Финальный макет с вылетами для печати</p>
-            <div class="pack-actions">
-              <a class="pack-btn" href="упоковка 2 малинка итог.pdf" target="_blank"><i class="ph ph-arrows-out"></i> Открыть</a>
-              <a class="pack-btn" href="упоковка 2 малинка итог.pdf" download><i class="ph ph-download-simple"></i> Скачать</a>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="upload-hint">
-        <i class="ph ph-plus-circle"></i>
-        Новые работы добавляются через админ-панель или редактированием portfolio-data.json
-      </div>
-    </div><!-- /page-packaging -->
-
-    <!-- CERTIFICATES -->
-    <div class="page" id="page-certificates">
-      <div class="sh">
-        <h2>Сертификаты & Благодарности</h2>
-        <p>Подтверждение квалификации и признание работы</p>
-      </div>
-      <div class="cert-grid">
-        <div class="cert-card">
-          <div class="cert-icon"><i class="ph ph-certificate"></i></div>
-          <div class="cert-body">
-            <h4>Яндекс Практикум</h4>
-            <p class="cert-course">UI/UX Design</p>
-            <p class="cert-desc">Систематизация практических знаний в дизайне интерфейсов</p>
-            <p class="cert-date">В процессе обучения</p>
-          </div>
-        </div>
-
-        <div class="cert-card">
-          <div class="cert-icon"><i class="ph ph-graduation-cap"></i></div>
-          <div class="cert-body">
-            <h4>МГКЭИТ</h4>
-            <p class="cert-course">Графический дизайн</p>
-            <p class="cert-desc">Специальность: полный профессиональный цикл дизайна</p>
-            <p class="cert-date">Завершено</p>
-          </div>
-        </div>
-
-        <div class="cert-card">
-          <div class="cert-icon"><i class="ph ph-medal"></i></div>
-          <div class="cert-body">
-            <h4>Архитектурный конкурс</h4>
-            <p class="cert-course">Проектирование</p>
-            <p class="cert-desc">Участие в конкурсе колледжей, работа в Revit</p>
-            <p class="cert-date">2024</p>
-          </div>
-        </div>
-
-        <div class="cert-card">
-          <div class="cert-icon"><i class="ph ph-handshake"></i></div>
-          <div class="cert-body">
-            <h4>Официальное партнёрство</h4>
-            <p class="cert-course">Warpath: Ace Shooter</p>
-            <p class="cert-desc">Официальный блогер и разработчик для мобильной стратегии</p>
-            <p class="cert-date">2024 — настоящее время</p>
-          </div>
-        </div>
-
-        <div class="cert-card">
-          <div class="cert-icon"><i class="ph ph-seal-check"></i></div>
-          <div class="cert-body">
-            <h4>Государственный проект</h4>
-            <p class="cert-course">Город Мастеров</p>
-            <p class="cert-desc">Официальный заказ Департамента образования Москвы</p>
-            <p class="cert-date">2024</p>
-          </div>
-        </div>
-
-        <div class="cert-card">
-          <div class="cert-icon"><i class="ph ph-star"></i></div>
-          <div class="cert-body">
-            <h4>Публикации в СМИ</h4>
-            <p class="cert-course">Медиа & Пресса</p>
-            <p class="cert-desc">Упоминание проектов и опыта в различных изданиях</p>
-            <p class="cert-date">2024</p>
-          </div>
-        </div>
-      </div>
-
-      <div class="cert-note">
-        <i class="ph ph-info"></i>
-        <p>Полные сертификаты и документы доступны по запросу. Свяжись со мной через форму контакта.</p>
-      </div>
-    </div><!-- /page-certificates -->
-
-    <!-- YOUTUBE -->
-    <div class="page" id="page-youtube">
-
-      <div class="yt-hero glass">
-        <div class="yt-hero-left">
-          <img class="yt-avatar" src="https://github.com/228burger228.png" alt="Burger" />
-          <div class="yt-hero-info">
-            <div class="yt-channel-name">Burger Create</div>
-            <div class="yt-channel-sub">@burgerdom6 · Warpath · Геймплей · Гайды</div>
-            <a class="yt-sub-btn" href="https://www.youtube.com/@burgerdom6?sub_confirmation=1" target="_blank">
-              <i class="ph ph-youtube-logo"></i> Подписаться
-            </a>
-          </div>
-        </div>
-        <a class="yt-channel-link" href="https://www.youtube.com/@burgerdom6" target="_blank">
-          Открыть канал <i class="ph ph-arrow-square-out"></i>
-        </a>
-      </div>
-
-      <div class="yt-section-label">Последние видео</div>
-      <div class="yt-grid" id="videos-container">
-
-        <div class="yt-card" data-vid="L13FJlzavbM">
-          <div class="yt-thumb">
-            <img src="https://i.ytimg.com/vi/L13FJlzavbM/hqdefault.jpg" alt="Video" />
-            <div class="yt-play-btn"><i class="ph ph-play-circle"></i></div>
-          </div>
-          <div class="yt-card-body">
-            <div class="yt-card-title">ROAD MAP 2026 WARPATH! ОБЗОР НА ДОРОЖНУЮ КАРТУ</div>
-            <div class="yt-card-meta"><i class="ph ph-clock"></i> Недавно</div>
-          </div>
-        </div>
-
-        <div class="yt-card" data-vid="JvhISaFT1rI">
-          <div class="yt-thumb">
-            <img src="https://i.ytimg.com/vi/JvhISaFT1rI/hqdefault.jpg" alt="Video" />
-            <div class="yt-play-btn"><i class="ph ph-play-circle"></i></div>
-          </div>
-          <div class="yt-card-body">
-            <div class="yt-card-title">20K+ KILLS IN DESERT BATTLE | WARPATH ACE SHOOTER</div>
-            <div class="yt-card-meta"><i class="ph ph-clock"></i> Недавно</div>
-          </div>
-        </div>
-
-        <div class="yt-card" data-vid="sJJxi8jqE1A">
-          <div class="yt-thumb">
-            <img src="https://i.ytimg.com/vi/sJJxi8jqE1A/hqdefault.jpg" alt="Video" />
-            <div class="yt-play-btn"><i class="ph ph-play-circle"></i></div>
-          </div>
-          <div class="yt-card-body">
-            <div class="yt-card-title">ОБЗОР АККАУНТА ЛИДЕРА .MU. ЭПИК II</div>
-            <div class="yt-card-meta"><i class="ph ph-clock"></i> Недавно</div>
-          </div>
-        </div>
-
-        <div class="yt-card" data-vid="Xy1UkZrxkrY">
-          <div class="yt-thumb">
-            <img src="https://i.ytimg.com/vi/Xy1UkZrxkrY/hqdefault.jpg" alt="Video" />
-            <div class="yt-play-btn"><i class="ph ph-play-circle"></i></div>
-          </div>
-          <div class="yt-card-body">
-            <div class="yt-card-title">ТЕСТЫ LT Vs HELI С НОВЫМ ОФИЦЕРОМ HAYMEKER</div>
-            <div class="yt-card-meta"><i class="ph ph-clock"></i> Недавно</div>
-          </div>
-        </div>
-
-        <div class="yt-card" data-vid="JACgDDwLJ9k">
-          <div class="yt-thumb">
-            <img src="https://i.ytimg.com/vi/JACgDDwLJ9k/hqdefault.jpg" alt="Video" />
-            <div class="yt-play-btn"><i class="ph ph-play-circle"></i></div>
-          </div>
-          <div class="yt-card-body">
-            <div class="yt-card-title">Warpath · Видео #5</div>
-            <div class="yt-card-meta"><i class="ph ph-clock"></i> Недавно</div>
-          </div>
-        </div>
-
-        <div class="yt-card" data-vid="yJ6uTqb0sFU">
-          <div class="yt-thumb">
-            <img src="https://i.ytimg.com/vi/yJ6uTqb0sFU/hqdefault.jpg" alt="Video" />
-            <div class="yt-play-btn"><i class="ph ph-play-circle"></i></div>
-          </div>
-          <div class="yt-card-body">
-            <div class="yt-card-title">ТЕСТЫ LT Vs HELI С НОВЫМ ОФИЦЕРОМ HAYMEKER #2</div>
-            <div class="yt-card-meta"><i class="ph ph-clock"></i> Недавно</div>
-          </div>
-        </div>
-
-      </div>
-
-      </div>
-    </div><!-- /page-youtube -->
-
-    <!-- VIDEO MODAL -->
-    <div class="yt-modal" id="ytModal">
-      <div class="yt-modal-backdrop" id="ytModalBackdrop"></div>
-      <div class="yt-modal-box">
-        <button class="yt-modal-close" id="ytModalClose"><i class="ph ph-x"></i></button>
-        <div class="yt-modal-player">
-          <iframe id="ytModalFrame" src="" allowfullscreen allow="autoplay"></iframe>
+    <!-- ═══ MARQUEE ═══ -->
+    <div class="marquee-section" aria-hidden="true">
+      <div class="marquee-track">
+        <div class="marquee-content">
+          <span>Frontend Engineering</span><span class="marquee-dot">·</span>
+          <span>Design Systems</span><span class="marquee-dot">·</span>
+          <span>Product Thinking</span><span class="marquee-dot">·</span>
+          <span>Technical Leadership</span><span class="marquee-dot">·</span>
+          <span>Lighthouse 95+</span><span class="marquee-dot">·</span>
+          <span>WCAG 2.1 AA</span><span class="marquee-dot">·</span>
+          <span>Vue 3</span><span class="marquee-dot">·</span>
+          <span>Figma</span><span class="marquee-dot">·</span>
+          <span>Semantic HTML5</span><span class="marquee-dot">·</span>
+          <span>CSS Architecture</span><span class="marquee-dot">·</span>
+          <span>Frontend Engineering</span><span class="marquee-dot">·</span>
+          <span>Design Systems</span><span class="marquee-dot">·</span>
+          <span>Product Thinking</span><span class="marquee-dot">·</span>
+          <span>Technical Leadership</span><span class="marquee-dot">·</span>
+          <span>Lighthouse 95+</span><span class="marquee-dot">·</span>
+          <span>WCAG 2.1 AA</span><span class="marquee-dot">·</span>
+          <span>Vue 3</span><span class="marquee-dot">·</span>
+          <span>Figma</span><span class="marquee-dot">·</span>
+          <span>Semantic HTML5</span><span class="marquee-dot">·</span>
+          <span>CSS Architecture</span><span class="marquee-dot">·</span>
         </div>
       </div>
     </div>
 
-    <!-- GALLERY -->
-    <div class="page" id="page-gallery">
-      <div class="sh"><h2>Gallery</h2><p>Фото из жизни</p></div>
-      <div class="gal-filters">
-        <button class="filt active" data-gf="all">All</button>
-        <button class="filt" data-gf="moto">Moto</button>
-        <button class="filt" data-gf="travel">Travel</button>
-        <button class="filt" data-gf="setup">Setup</button>
+    <!-- ═══ SECTION 2: STATS / TRUST ═══ -->
+    <section id="trust" class="section section-trust" aria-labelledby="trust-title">
+      <div class="container">
+        <div class="stats-row reveal">
+          <div class="stat-item">
+            <span class="stat-num" data-count="15">0</span><span class="stat-suffix">+</span>
+            <span class="stat-label">Проектов в production</span>
+          </div>
+          <div class="stat-divider" aria-hidden="true"></div>
+          <div class="stat-item">
+            <span class="stat-num" data-count="95">0</span><span class="stat-suffix">+</span>
+            <span class="stat-label">Lighthouse score</span>
+          </div>
+          <div class="stat-divider" aria-hidden="true"></div>
+          <div class="stat-item">
+            <span class="stat-num" data-count="3">0</span>
+            <span class="stat-label">Роли в одном лице</span>
+          </div>
+          <div class="stat-divider" aria-hidden="true"></div>
+          <div class="stat-item">
+            <span class="stat-num" data-count="2">0</span>
+            <span class="stat-label">Гос. проекта</span>
+          </div>
+        </div>
+
+        <h2 id="trust-title" class="section-title reveal">Почему работать со мной</h2>
+        <div class="trust-grid">
+          <article class="trust-card reveal">
+            <div class="trust-card-icon" aria-hidden="true">🚀</div>
+            <h3 class="trust-card-title">Реальные проекты</h3>
+            <p class="trust-card-description">15+ проектов в production. Государственные платформы, корпоративные сайты, инструменты для сообществ. Всё работает.</p>
+          </article>
+          <article class="trust-card reveal">
+            <div class="trust-card-icon" aria-hidden="true">⚡</div>
+            <h3 class="trust-card-title">Полный цикл</h3>
+            <p class="trust-card-description">От архитектуры и дизайна в Figma до production кода и техдокументации. Без потерь информации между этапами.</p>
+          </article>
+          <article class="trust-card reveal">
+            <div class="trust-card-icon" aria-hidden="true">🎯</div>
+            <h3 class="trust-card-title">Production excellence</h3>
+            <p class="trust-card-description">Lighthouse 95+. Семантический HTML. Доступные интерфейсы. Performance-first подход. Чистый, поддерживаемый код.</p>
+          </article>
+          <article class="trust-card reveal">
+            <div class="trust-card-icon" aria-hidden="true">🔗</div>
+            <h3 class="trust-card-title">Кросс-функциональное лидерство</h3>
+            <p class="trust-card-description">Дизайнер, инженер, product лидер. Работаю один или координирую команды. Фокус на delivery.</p>
+          </article>
+        </div>
       </div>
-      <div class="gal-grid">
-        <div class="gal-item" data-gc="moto">
-          <img src="https://images.unsplash.com/photo-1558981806-ec527fa84c3d?auto=format&fit=crop&w=800&q=80" alt="Moto"/>
-          <div class="gal-ov"><span>#MotoLife</span></div>
+    </section>
+
+    <!-- ═══ SECTION 3: CASE STUDIES (CARDS) ═══ -->
+    <section id="case-studies" class="section section-case-studies" aria-labelledby="case-studies-title">
+      <div class="container">
+        <div class="section-header reveal">
+          <h2 id="case-studies-title" class="section-title">Избранные работы</h2>
+          <p class="section-subtitle">Реальные проекты с реальными результатами</p>
         </div>
-        <div class="gal-item" data-gc="travel">
-          <img src="https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?auto=format&fit=crop&w=800&q=80" alt="Travel"/>
-          <div class="gal-ov"><span>#Travel</span></div>
+
+        <!-- Filter tabs -->
+        <div class="proj-filter reveal" role="tablist" aria-label="Фильтр проектов">
+          <button class="filt-btn active" data-filter="all" role="tab" aria-selected="true">Все</button>
+          <button class="filt-btn" data-filter="featured" role="tab" aria-selected="false">Ключевые</button>
+          <button class="filt-btn" data-filter="frontend" role="tab" aria-selected="false">Frontend</button>
+          <button class="filt-btn" data-filter="ui" role="tab" aria-selected="false">UI/UX</button>
         </div>
-        <div class="gal-item" data-gc="setup">
-          <img src="https://images.unsplash.com/photo-1511512578047-dfb367046420?auto=format&fit=crop&w=800&q=80" alt="Setup"/>
-          <div class="gal-ov"><span>#Setup</span></div>
+
+        <!-- Projects grid -->
+        <div class="proj-grid" id="projects-grid">
+
+          <!-- HgStroy -->
+          <article class="proj-card reveal" data-filter="featured frontend" aria-label="Проект HgStroy">
+            <div class="proj-img">
+              <img src="stromaz.png" alt="HgStroy — корпоративный портал строительной компании" loading="lazy" />
+              <div class="proj-overlay">
+                <a href="https://smr.hgstroy.ru/index.html" target="_blank" rel="noopener noreferrer" class="proj-overlay-btn">
+                  Открыть проект ↗
+                </a>
+              </div>
+              <div class="proj-badge">Lead Dev</div>
+            </div>
+            <div class="proj-body">
+              <div class="proj-tags">
+                <span class="proj-tag">HTML/CSS/JS</span>
+                <span class="proj-tag">Bootstrap 5</span>
+                <span class="proj-tag">Figma</span>
+                <span class="proj-tag">Team</span>
+              </div>
+              <h3 class="proj-title">HgStroy — Редизайн корпоративного портала</h3>
+              <p class="proj-desc">Полный редизайн строительной компании. Архитектура, дизайн-система, фронтенд, техдокументация. Lighthouse 95+.</p>
+              <div class="proj-meta">
+                <span class="proj-year">2025</span>
+                <span class="proj-role">Lead Frontend Developer & Designer</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- Город Мастеров -->
+          <article class="proj-card reveal" data-filter="featured frontend" aria-label="Проект Город Мастеров">
+            <div class="proj-img">
+              <img src="midquest.png" alt="Город Мастеров — государственная образовательная платформа" loading="lazy" />
+              <div class="proj-overlay">
+                <a href="https://masterscitygame.ru" target="_blank" rel="noopener noreferrer" class="proj-overlay-btn">
+                  Открыть проект ↗
+                </a>
+              </div>
+              <div class="proj-badge proj-badge-gov">Гос. проект</div>
+            </div>
+            <div class="proj-body">
+              <div class="proj-tags">
+                <span class="proj-tag">HTML/CSS/JS</span>
+                <span class="proj-tag">LocalStorage</span>
+                <span class="proj-tag">WCAG 2.1</span>
+                <span class="proj-tag">Solo</span>
+              </div>
+              <h3 class="proj-title">Город Мастеров — Государственная платформа</h3>
+              <p class="proj-desc">Геймифицированная образовательная платформа Департамента образования Москвы. Авторизация, достижения, тёмная тема, канбан.</p>
+              <div class="proj-meta">
+                <span class="proj-year">2024</span>
+                <span class="proj-role">Solo Frontend Developer & Designer</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- Warpath Wiki -->
+          <article class="proj-card reveal" data-filter="featured frontend" aria-label="Проект Warpath Wiki">
+            <div class="proj-img">
+              <img src="warpathwikiscrin.png" alt="Warpath Wiki — справочник сообщества" loading="lazy" />
+              <div class="proj-overlay">
+                <a href="https://228burger228.github.io/WarpathYTwiki/index.html" target="_blank" rel="noopener noreferrer" class="proj-overlay-btn">
+                  Открыть проект ↗
+                </a>
+              </div>
+              <div class="proj-badge proj-badge-partner">Партнёрство</div>
+            </div>
+            <div class="proj-body">
+              <div class="proj-tags">
+                <span class="proj-tag">Vue 3</span>
+                <span class="proj-tag">Vite</span>
+                <span class="proj-tag">Supabase</span>
+                <span class="proj-tag">SEO</span>
+              </div>
+              <h3 class="proj-title">Warpath Wiki — Справочник сообщества</h3>
+              <p class="proj-desc">Официальный ресурс русскоязычного сообщества. Vue 3 + Supabase. Растущая аудитория, официальное партнёрство с игрой.</p>
+              <div class="proj-meta">
+                <span class="proj-year">2024 — сейчас</span>
+                <span class="proj-role">Frontend Developer & Content Creator</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- Eco-Step -->
+          <article class="proj-card reveal" data-filter="ui" aria-label="Проект Eco-Step App">
+            <div class="proj-img">
+              <img src="ecostep.png" alt="Eco-Step — мобильное приложение для велосипедистов" loading="lazy" />
+              <div class="proj-overlay">
+                <a href="https://www.figma.com/design/2u0JYeK7QvPeYxCvcYyHtL/ecostep" target="_blank" rel="noopener noreferrer" class="proj-overlay-btn">
+                  Открыть в Figma ↗
+                </a>
+              </div>
+            </div>
+            <div class="proj-body">
+              <div class="proj-tags">
+                <span class="proj-tag">UI/UX</span>
+                <span class="proj-tag">Figma</span>
+                <span class="proj-tag">Mobile</span>
+              </div>
+              <h3 class="proj-title">Eco-Step — Мобильное приложение</h3>
+              <p class="proj-desc">Экоприложение для велосипедистов: маршруты, трекер, сообщество. Полный UI/UX дизайн в Figma.</p>
+              <div class="proj-meta">
+                <span class="proj-year">2024</span>
+                <span class="proj-role">UI/UX Designer</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- Portfolio v1 -->
+          <article class="proj-card reveal" data-filter="frontend" aria-label="Проект Портфолио v1">
+            <div class="proj-img">
+              <img src="Porfolscr.png" alt="Портфолио v1 — первая версия" loading="lazy" />
+              <div class="proj-overlay">
+                <a href="https://228burger228.github.io/burgerCreate/index.html" target="_blank" rel="noopener noreferrer" class="proj-overlay-btn">
+                  Открыть проект ↗
+                </a>
+              </div>
+            </div>
+            <div class="proj-body">
+              <div class="proj-tags">
+                <span class="proj-tag">HTML/CSS/JS</span>
+                <span class="proj-tag">Responsive</span>
+              </div>
+              <h3 class="proj-title">Портфолио v1</h3>
+              <p class="proj-desc">Первая версия портфолио. Адаптивный дизайн, галерея работ, многостраничная структура.</p>
+              <div class="proj-meta">
+                <span class="proj-year">2023</span>
+                <span class="proj-role">Frontend Developer</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- FrostScrin / другой проект -->
+          <article class="proj-card reveal" data-filter="frontend" aria-label="Проект Упаковка">
+            <div class="proj-img">
+              <img src="Ypakovka1.png" alt="Дизайн упаковки — Мармелад Еремин" loading="lazy" />
+              <div class="proj-overlay">
+                <a href="упаковка мармелад Еремин.pdf" target="_blank" rel="noopener noreferrer" class="proj-overlay-btn">
+                  Скачать PDF ↗
+                </a>
+              </div>
+            </div>
+            <div class="proj-body">
+              <div class="proj-tags">
+                <span class="proj-tag">Packaging</span>
+                <span class="proj-tag">Print</span>
+                <span class="proj-tag">Figma</span>
+              </div>
+              <h3 class="proj-title">Упаковка — Мармелад Еремин</h3>
+              <p class="proj-desc">Дизайн упаковки кондитерской продукции с вылетами для печати. Финальный макет готов к производству.</p>
+              <div class="proj-meta">
+                <span class="proj-year">2024</span>
+                <span class="proj-role">Graphic Designer</span>
+              </div>
+            </div>
+          </article>
+
         </div>
       </div>
-    </div><!-- /page-gallery -->
+    </section>
+
+    <!-- ═══ SECTION 4: EXPERTISE (CARDS) ═══ -->
+    <section id="expertise" class="section section-expertise" aria-labelledby="expertise-title">
+      <div class="container">
+        <div class="section-header reveal">
+          <h2 id="expertise-title" class="section-title">Как я думаю и работаю</h2>
+          <p class="section-subtitle">Не список технологий — подход к работе</p>
+        </div>
+        <div class="expertise-grid">
+          <article class="expertise-card reveal">
+            <div class="expertise-card-num" aria-hidden="true">01</div>
+            <h3 class="expertise-card-title">Product Thinking</h3>
+            <p class="expertise-card-description">Решение проблем. UX reasoning. Системное мышление.</p>
+            <ul class="expertise-card-list">
+              <li>Исследование пользователей</li>
+              <li>Problem-first подход</li>
+              <li>Архитектура систем</li>
+              <li>Масштабируемые решения</li>
+            </ul>
+          </article>
+          <article class="expertise-card reveal">
+            <div class="expertise-card-num" aria-hidden="true">02</div>
+            <h3 class="expertise-card-title">Design Systems</h3>
+            <p class="expertise-card-description">Интерфейсы. Визуальные системы. Масштабируемый UI.</p>
+            <ul class="expertise-card-list">
+              <li>Архитектура компонентов</li>
+              <li>Design токены</li>
+              <li>Доступность-first дизайн</li>
+              <li>Figma workflows</li>
+            </ul>
+          </article>
+          <article class="expertise-card reveal">
+            <div class="expertise-card-num" aria-hidden="true">03</div>
+            <h3 class="expertise-card-title">Frontend Engineering</h3>
+            <p class="expertise-card-description">Production UI. Производительность. Реализация.</p>
+            <ul class="expertise-card-list">
+              <li>Семантический HTML5</li>
+              <li>CSS архитектура</li>
+              <li>JavaScript ES6+</li>
+              <li>Оптимизация производительности</li>
+            </ul>
+          </article>
+          <article class="expertise-card reveal">
+            <div class="expertise-card-num" aria-hidden="true">04</div>
+            <h3 class="expertise-card-title">Technical Leadership</h3>
+            <p class="expertise-card-description">Ownership. Архитектура. Координация.</p>
+            <ul class="expertise-card-list">
+              <li>Архитектура проектов</li>
+              <li>Координация команды</li>
+              <li>Техническая документация</li>
+              <li>Ownership delivery</li>
+            </ul>
+          </article>
+        </div>
+
+        <!-- Tool chips -->
+        <div class="tools-section reveal">
+          <p class="tools-label">Инструменты</p>
+          <div class="tools-grid" role="list" aria-label="Технологии и инструменты">
+            <span class="tool-chip" role="listitem">HTML5</span>
+            <span class="tool-chip" role="listitem">CSS3</span>
+            <span class="tool-chip" role="listitem">JavaScript ES6+</span>
+            <span class="tool-chip" role="listitem">Vue 3</span>
+            <span class="tool-chip" role="listitem">Vite</span>
+            <span class="tool-chip" role="listitem">Figma</span>
+            <span class="tool-chip" role="listitem">Supabase</span>
+            <span class="tool-chip" role="listitem">Git</span>
+            <span class="tool-chip" role="listitem">GitHub Pages</span>
+            <span class="tool-chip" role="listitem">Bootstrap 5</span>
+            <span class="tool-chip" role="listitem">Swiper.js</span>
+            <span class="tool-chip" role="listitem">Lighthouse</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ SECTION 5: SERVICES ═══ -->
+    <section id="services" class="section section-services" aria-labelledby="services-title">
+      <div class="container">
+        <div class="section-header reveal">
+          <h2 id="services-title" class="section-title">Услуги и форматы сотрудничества</h2>
+        </div>
+        <div class="services-grid">
+          <article class="service-card reveal">
+            <div class="service-card-icon" aria-hidden="true">🎨</div>
+            <h3 class="service-card-title">Дизайн</h3>
+            <ul class="service-card-list">
+              <li>UI/UX Design</li>
+              <li>Product Interfaces</li>
+              <li>Design Systems</li>
+              <li>Figma Prototypes</li>
+            </ul>
+          </article>
+          <article class="service-card reveal">
+            <div class="service-card-icon" aria-hidden="true">⚙️</div>
+            <h3 class="service-card-title">Разработка</h3>
+            <ul class="service-card-list">
+              <li>Frontend Development</li>
+              <li>Interactive Systems</li>
+              <li>Performance Optimization</li>
+              <li>Accessibility Implementation</li>
+            </ul>
+          </article>
+          <article class="service-card reveal">
+            <div class="service-card-icon" aria-hidden="true">🧭</div>
+            <h3 class="service-card-title">Product & Leadership</h3>
+            <ul class="service-card-list">
+              <li>Cross-functional Workflows</li>
+              <li>Product Ownership</li>
+              <li>Delivery Coordination</li>
+              <li>Technical Documentation</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ SECTION 6: ABOUT ═══ -->
+    <section id="about" class="section section-about" aria-labelledby="about-title">
+      <div class="container">
+        <h2 id="about-title" class="section-title reveal">Мой подход</h2>
+        <div class="about-content">
+          <article class="about-narrative reveal">
+            <h3 class="about-section-title">Как я думаю</h3>
+            <p>Я не разделяю дизайн и инженерию. Я думаю в системах. Каждое решение принимаю с учётом production ограничений. Я спрашиваю: "Это масштабируется? Это доступно? Мы сможем это поддерживать?"</p>
+            <p>Я верю, что clarity бьёт visual effects. Hierarchy бьёт decoration. Usability бьёт Dribbble эстетику. Если есть конфликт между красивым и понятным, я выбираю понятное.</p>
+          </article>
+          <article class="about-narrative reveal">
+            <h3 class="about-section-title">Как я работаю</h3>
+            <p>Я начинаю с проблемы, не с решения. Я исследую, валидирую, итерирую. Я работаю через дизайн и код без потерь информации. Я документирую всё. Я думаю о доступности с первого дня.</p>
+            <p>Я могу работать один или вести команды. Я могу быть дизайнером, инженером или product лидером. Что важно — это delivery production-ready результатов, которые решают реальные проблемы.</p>
+          </article>
+          <article class="about-narrative reveal">
+            <h3 class="about-section-title">Что я ценю</h3>
+            <ul class="about-values">
+              <li><strong>Clarity:</strong> Над визуальной сложностью</li>
+              <li><strong>Accessibility:</strong> С первого дня, не как afterthought</li>
+              <li><strong>Performance:</strong> Lighthouse 95+ — это baseline</li>
+              <li><strong>Ownership:</strong> Полный цикл, от концепции до production</li>
+              <li><strong>Communication:</strong> Ясная документация и alignment со стейкхолдерами</li>
+              <li><strong>Delivery:</strong> Рабочие продукты, не концепты</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ SECTION 7: DOCUMENTS ═══ -->
+    <section id="documents" class="section section-documents" aria-labelledby="documents-title">
+      <div class="container">
+        <div class="section-header reveal">
+          <h2 id="documents-title" class="section-title">Документы и признание</h2>
+        </div>
+        <div class="documents-grid">
+          <article class="document-card reveal">
+            <div class="document-icon" aria-hidden="true">📄</div>
+            <h3 class="document-card-title">Благодарственное письмо</h3>
+            <p class="document-card-description">Благодарность от команды разработки за вклад в проект</p>
+            <a href="Благодарственное_письмо_команде_разработки.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">
+              Скачать PDF <span aria-label="открывается в новом окне">(↗)</span>
+            </a>
+          </article>
+          <article class="document-card reveal">
+            <div class="document-icon" aria-hidden="true">📦</div>
+            <h3 class="document-card-title">Упаковка: Мармелад Еремин</h3>
+            <p class="document-card-description">Дизайн упаковки кондитерской продукции с вылетами для печати</p>
+            <a href="упаковка мармелад Еремин.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">
+              Скачать PDF <span aria-label="открывается в новом окне">(↗)</span>
+            </a>
+          </article>
+          <article class="document-card reveal">
+            <div class="document-icon" aria-hidden="true">📦</div>
+            <h3 class="document-card-title">Упаковка: Малинка</h3>
+            <p class="document-card-description">Финальный макет упаковки с вылетами для печати</p>
+            <a href="упоковка 2 малинка итог.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">
+              Скачать PDF <span aria-label="открывается в новом окне">(↗)</span>
+            </a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ SECTION 8: CONTACT ═══ -->
+    <section id="contact" class="section section-contact" aria-labelledby="contact-title">
+      <div class="container">
+        <div class="contact-inner reveal">
+          <div class="contact-badge">
+            <span class="avail-dot" aria-hidden="true"></span>
+            Открыт к новым проектам
+          </div>
+          <h2 id="contact-title" class="contact-title">Давайте работать вместе</h2>
+          <p class="contact-description">
+            Есть проект в голове? Давайте поговорим о том, как я могу помочь его реализовать.
+          </p>
+          <div class="contact-methods">
+            <a href="https://t.me/aimovl" target="_blank" rel="noopener noreferrer" class="btn btn-primary contact-btn">
+              Написать в Telegram
+            </a>
+            <a href="https://github.com/228burger228" target="_blank" rel="noopener noreferrer" class="btn btn-secondary contact-btn">
+              GitHub
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
 
   </main>
-</div><!-- /app-wrap -->
 
-<script>
-// ── NAVIGATION ──
-const navItems = document.querySelectorAll('#navList li[data-page]');
-const pages    = document.querySelectorAll('.page');
+  <footer class="footer" role="contentinfo">
+    <div class="container">
+      <p class="footer-text">
+        © 2026 Дмитрий (Burger). Design-Driven Product & Technical Lead.
+      </p>
+    </div>
+  </footer>
 
-navItems.forEach(item => {
-  item.addEventListener('click', () => {
-    navItems.forEach(n => n.classList.remove('active'));
-    item.classList.add('active');
-    const main = document.querySelector('.main');
-    if (main) main.scrollTop = 0;
-    pages.forEach(p => {
-      p.classList.remove('active');
-      if (p.id === 'page-' + item.dataset.page) p.classList.add('active');
-    });
-  });
-});
-
-document.getElementById('hobbies-nav').addEventListener('click', () => {
-  window.location.href = 'hobbies.html';
-});
-
-document.getElementById('to-projects').addEventListener('click', () => {
-  document.querySelector('[data-page="projects"]').click();
-});
-
-document.getElementById('see-all-btn').addEventListener('click', () => {
-  document.querySelector('[data-page="projects"]').click();
-});
-
-document.getElementById('about-contact-btn').addEventListener('click', () => {
-  document.querySelector('[data-page="home"]').click();
-  setTimeout(() => { document.getElementById('tg-name').focus(); }, 400);
-});
-
-// ── PROJECT FILTER ──
-document.querySelectorAll('.proj-filter .filt').forEach(btn => {
-  btn.addEventListener('click', () => {
-    document.querySelectorAll('.proj-filter .filt').forEach(b => b.classList.remove('active'));
-    btn.classList.add('active');
-    const f = btn.dataset.f;
-    document.querySelectorAll('.proj-card').forEach(card => {
-      card.style.display = (f === 'all' || card.dataset.cat === f) ? '' : 'none';
-    });
-  });
-});
-
-// ── GALLERY FILTER ──
-document.querySelectorAll('[data-gf]').forEach(btn => {
-  btn.addEventListener('click', () => {
-    document.querySelectorAll('[data-gf]').forEach(b => b.classList.remove('active'));
-    btn.classList.add('active');
-    const f = btn.dataset.gf;
-    document.querySelectorAll('.gal-item').forEach(item => {
-      item.style.display = (f === 'all' || item.dataset.gc === f) ? '' : 'none';
-    });
-  });
-});
-
-// ── FORMSPREE FORM ──
-document.getElementById('tg-form').addEventListener('submit', async e => {
-  e.preventDefault();
-  const btn    = e.target.querySelector('.send-btn');
-  const status = document.getElementById('form-status');
-  btn.innerHTML = '<i class="ph ph-circle-notch"></i>';
-  try {
-    const res = await fetch(e.target.action, {
-      method: 'POST',
-      body: new FormData(e.target),
-      headers: { 'Accept': 'application/json' }
-    });
-    if (res.ok) {
-      status.textContent = '✓ Отправлено!';
-      status.style.color = '#71b280';
-      e.target.reset();
-    } else {
-      throw new Error();
-    }
-  } catch {
-    status.textContent = '✕ Ошибка, попробуй снова';
-    status.style.color = '#ff6b6b';
-  } finally {
-    btn.innerHTML = '<i class="ph ph-paper-plane-right"></i>';
-  }
-});
-
-// ── MOBILE: скрывать таббар при скролле вниз ──
-(function() {
-  const sidebar = document.querySelector('.sidebar');
-  const mainEl  = document.querySelector('.main');
-  let lastY = 0;
-  mainEl.addEventListener('scroll', () => {
-    if (window.innerWidth > 768) return;
-    const y = mainEl.scrollTop;
-    if (y > lastY + 4)      sidebar.classList.add('hidden');
-    else if (y < lastY - 4) sidebar.classList.remove('hidden');
-    lastY = y;
-  }, { passive: true });
-})();
-
-// ── CANVAS WEATHER ──
-(function () {
-  const canvas = document.getElementById('weatherCanvas');
-  const ctx    = canvas.getContext('2d');
-  let particles = [];
-  let season    = 'winter';
-  let burger    = false;
-  let clicks    = 0;
-
-  function resize() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
-  resize();
-  window.addEventListener('resize', resize);
-
-  function initParticles() {
-    const count = season === 'autumn' ? 90 : 55;
-    for (let i = 0; i < count; i++) {
-      particles.push({
-        x: Math.random() * canvas.width,
-        y: Math.random() * canvas.height,
-        speed: Math.random() * 1.4 + 0.4,
-        size: Math.random() * 2,
-        emoji: ['🍔','🍟','🥤'][Math.floor(Math.random() * 3)]
-      });
-    }
-  }
-
-  function applyTheme(s) {
-    const map = {
-      winter: ['#0f1117','#151820'],
-      spring: ['#0d1f14','#152a1a'],
-      summer: ['#1f140a','#261c0c'],
-      autumn: ['#1a0e08','#2a1508']
-    };
-    const [t, b] = map[s] || map.winter;
-    document.documentElement.style.setProperty('--bg-top', t);
-    document.documentElement.style.setProperty('--bg-bottom', b);
-  }
-
-  function setSeason(s) {
-    season = s; particles = [];
-    applyTheme(s);
-    if (s !== 'summer' || burger) initParticles();
-  }
-
-  function detect() {
-    const m = new Date().getMonth();
-    if (m >= 2 && m <= 4) setSeason('spring');
-    else if (m >= 5 && m <= 7) setSeason('summer');
-    else if (m >= 8 && m <= 10) setSeason('autumn');
-    else setSeason('winter');
-  }
-
-  function draw() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    particles.forEach(p => {
-      if (burger) {
-        ctx.font = '18px serif';
-        ctx.fillText(p.emoji, p.x, p.y);
-      } else if (season === 'autumn') {
-        ctx.strokeStyle = 'rgba(255,180,60,0.3)';
-        ctx.lineWidth = 1;
-        ctx.beginPath(); ctx.moveTo(p.x, p.y); ctx.lineTo(p.x + 2, p.y + 10); ctx.stroke();
-      } else {
-        ctx.fillStyle = 'rgba(255,255,255,0.45)';
-        ctx.beginPath(); ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2); ctx.fill();
-      }
-      p.y += p.speed;
-      if (p.y > canvas.height + 20) { p.y = -20; p.x = Math.random() * canvas.width; }
-    });
-    requestAnimationFrame(draw);
-  }
-
-  document.getElementById('logo-trigger').addEventListener('click', () => {
-    clicks++;
-    if (clicks >= 5) {
-      burger = !burger; clicks = 0; particles = [];
-      if (burger || season !== 'summer') initParticles();
-      alert(burger ? '🍔 BURGER MODE ACTIVATED!' : '😐 Back to normal');
-    }
-  });
-
-  detect();
-  draw();
-})();
-</script>
-
-  <script>
-    // ── YOUTUBE MODAL ──
-    (function() {
-      const modal    = document.getElementById('ytModal');
-      const frame    = document.getElementById('ytModalFrame');
-      const closeBtn = document.getElementById('ytModalClose');
-      const backdrop = document.getElementById('ytModalBackdrop');
-
-      function openModal(vid) {
-        frame.src = 'https://www.youtube.com/embed/' + vid + '?autoplay=1&rel=0';
-        modal.classList.add('open');
-        document.body.style.overflow = 'hidden';
-      }
-
-      function closeModal() {
-        modal.classList.remove('open');
-        frame.src = '';
-        document.body.style.overflow = '';
-      }
-
-      document.querySelectorAll('.yt-card').forEach(card => {
-        card.addEventListener('click', () => openModal(card.dataset.vid));
-      });
-
-      closeBtn.addEventListener('click', closeModal);
-      backdrop.addEventListener('click', closeModal);
-      document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
-    })();
-  </script>
+  <script src="js/main.js" defer></script>
 </body>
 </html>
