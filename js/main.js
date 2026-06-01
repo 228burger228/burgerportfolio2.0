@@ -11,6 +11,11 @@ class Portfolio {
     this.filtBtns    = document.querySelectorAll('.filt-btn');
     this.projCards   = document.querySelectorAll('.proj-card');
     this.statNums    = document.querySelectorAll('.stat-num');
+    this.modal       = document.getElementById('doc-modal');
+    this.modalImage  = document.getElementById('modal-image');
+    this.modalClose  = document.getElementById('modal-close');
+    this.modalOverlay = document.getElementById('modal-overlay');
+    this.skipLink    = document.getElementById('skip-link');
 
     this.countersStarted = false;
 
@@ -26,6 +31,9 @@ class Portfolio {
     this.setupProjectFilter();
     this.setupCounters();
     this.setupAccessibility();
+    this.setupModal();
+    this.setupSkipLink();
+    this.setupContactForm();
   }
 
   /* ─────────────────────────────────────────────────────────────────────
@@ -282,6 +290,120 @@ class Portfolio {
       });
       document.querySelectorAll('img[data-src]').forEach(img => imgObserver.observe(img));
     }
+  }
+
+  /* ─────────────────────────────────────────────────────────────────────
+     MODAL
+     ───────────────────────────────────────────────────────────────────── */
+
+  setupModal() {
+    if (!this.modal) return;
+
+    // Open modal on button click
+    document.querySelectorAll('.modal-trigger').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        e.preventDefault();
+        const imageSrc = btn.dataset.modal;
+        this.openModal(imageSrc);
+      });
+    });
+
+    // Close modal on close button
+    if (this.modalClose) {
+      this.modalClose.addEventListener('click', () => this.closeModal());
+    }
+
+    // Close modal on overlay click
+    if (this.modalOverlay) {
+      this.modalOverlay.addEventListener('click', () => this.closeModal());
+    }
+
+    // Close modal on Escape key
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && this.modal.classList.contains('active')) {
+        this.closeModal();
+      }
+    });
+  }
+
+  openModal(imageSrc) {
+    if (!this.modal || !this.modalImage) return;
+    this.modalImage.src = imageSrc;
+    this.modal.classList.add('active');
+    this.modal.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+  }
+
+  closeModal() {
+    if (!this.modal) return;
+    this.modal.classList.remove('active');
+    this.modal.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+  }
+
+  /* ─────────────────────────────────────────────────────────────────────
+     SKIP LINK
+     ───────────────────────────────────────────────────────────────────── */
+
+  setupSkipLink() {
+    if (!this.skipLink) return;
+    this.skipLink.addEventListener('click', (e) => {
+      e.preventDefault();
+      const mainContent = document.getElementById('main-content');
+      if (mainContent) {
+        mainContent.focus();
+        mainContent.scrollIntoView({ behavior: 'smooth' });
+      }
+    });
+  }
+
+  /* ─────────────────────────────────────────────────────────────────────
+     CONTACT FORM
+     ───────────────────────────────────────────────────────────────────── */
+
+  setupContactForm() {
+    const form = document.getElementById('contact-form');
+    const statusEl = document.getElementById('form-status');
+    if (!form || !statusEl) return;
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      
+      const formData = new FormData(form);
+      const submitBtn = form.querySelector('button[type="submit"]');
+      const originalText = submitBtn.textContent;
+      
+      try {
+        submitBtn.disabled = true;
+        submitBtn.textContent = 'Отправка...';
+        
+        const response = await fetch(form.action, {
+          method: 'POST',
+          body: formData,
+          headers: {
+            'Accept': 'application/json'
+          }
+        });
+
+        if (response.ok) {
+          statusEl.textContent = '✓ Спасибо! Ваше сообщение отправлено. Я свяжусь с вами в ближайшее время.';
+          statusEl.classList.remove('error');
+          statusEl.classList.add('success');
+          form.reset();
+        } else {
+          statusEl.textContent = '✗ Ошибка при отправке. Пожалуйста, попробуйте позже или напишите в Telegram.';
+          statusEl.classList.remove('success');
+          statusEl.classList.add('error');
+        }
+      } catch (error) {
+        statusEl.textContent = '✗ Ошибка подключения. Пожалуйста, напишите в Telegram.';
+        statusEl.classList.remove('success');
+        statusEl.classList.add('error');
+      } finally {
+        submitBtn.disabled = false;
+        submitBtn.textContent = originalText;
+      }
+    });
   }
 }
 
