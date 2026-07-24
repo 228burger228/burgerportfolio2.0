@@ -16,6 +16,7 @@ class Portfolio {
     this.modalClose  = document.getElementById('modal-close');
     this.modalOverlay = document.getElementById('modal-overlay');
     this.skipLink    = document.getElementById('skip-link');
+    this.scrollToTopBtn = document.getElementById('scroll-to-top');
 
     this.countersStarted = false;
 
@@ -34,6 +35,7 @@ class Portfolio {
     this.setupModal();
     this.setupSkipLink();
     this.setupContactForm();
+    this.setupScrollToTop();
   }
 
   /* ─────────────────────────────────────────────────────────────────────
@@ -402,6 +404,42 @@ class Portfolio {
       } finally {
         submitBtn.disabled = false;
         submitBtn.textContent = originalText;
+      }
+    });
+  }
+
+  /* ─────────────────────────────────────────────────────────────────────
+     SCROLL TO TOP BUTTON
+     ───────────────────────────────────────────────────────────────────── */
+
+  setupScrollToTop() {
+    if (!this.scrollToTopBtn) return;
+
+    // Show/hide button on scroll
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 300) {
+        this.scrollToTopBtn.classList.add('visible');
+      } else {
+        this.scrollToTopBtn.classList.remove('visible');
+      }
+    }, { passive: true });
+
+    // Scroll to top on click
+    this.scrollToTopBtn.addEventListener('click', () => {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    });
+
+    // Keyboard support
+    this.scrollToTopBtn.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        window.scrollTo({
+          top: 0,
+          behavior: 'smooth'
+        });
       }
     });
   }
