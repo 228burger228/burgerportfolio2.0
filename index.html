@@ -164,6 +164,7 @@
           <button class="filt-btn" data-filter="featured" role="tab" aria-selected="false">Ключевые</button>
           <button class="filt-btn" data-filter="frontend" role="tab" aria-selected="false">Frontend</button>
           <button class="filt-btn" data-filter="ui" role="tab" aria-selected="false">UI/UX</button>
+          <button class="filt-btn" data-filter="content" role="tab" aria-selected="false">Дизайн</button>
         </div>
 
         <!-- Projects grid -->
@@ -381,14 +382,41 @@
             </div>
           </article>
 
-          <!-- City Collection -->
-          <article class="proj-card reveal" data-filter="content" aria-label="Проект City Collection">
+          <!-- BOYS 100% — Мерч -->
+          <article class="proj-card reveal" data-filter="content" aria-label="Проект BOYS 100% Мерч">
             <div class="proj-img">
-              <img src="sitikol1.png" alt="City Collection — промо-флаер для коллекции городской моды" loading="lazy" />
+              <img src="100%BOYS.jpg" alt="BOYS 100% — мерч и наклейки для мото-братства" loading="lazy" />
               <div class="proj-overlay">
-                <a href="https://www.figma.com/design/" target="_blank" rel="noopener noreferrer" class="proj-overlay-btn">
-                  Открыть в Figma ↗
-                </a>
+                <button class="proj-overlay-btn gallery-trigger" data-gallery="boys-gallery">
+                  Открыть галерею ↗
+                </button>
+              </div>
+              <div class="proj-badge">🏍️ Merch 2026</div>
+            </div>
+            <div class="proj-body">
+              <div class="proj-tags">
+                <span class="proj-tag">Merch Design</span>
+                <span class="proj-tag">Stickers</span>
+                <span class="proj-tag">Branding</span>
+                <span class="proj-tag">Print</span>
+              </div>
+              <h3 class="proj-title">BOYS 100% — Мерч для мото-братства</h3>
+              <p class="proj-desc">Дизайн наклеек и мерча для сообщества мотоциклистов в Туле. Брендовые стикеры с крутыми мотивами — от логотипа до текстовых фраз. Готово к производству на печать.</p>
+              <div class="proj-meta">
+                <span class="proj-year">2026</span>
+                <span class="proj-role">Merch Designer</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- Графический дизайн — Галерея постеров и кампаний -->
+          <article class="proj-card reveal" data-filter="content" aria-label="Графический дизайн">
+            <div class="proj-img">
+              <img src="sitikol1.png" alt="Графический дизайн — постеры и кампании" loading="lazy" />
+              <div class="proj-overlay">
+                <button class="proj-overlay-btn gallery-trigger" data-gallery="graphic-gallery">
+                  Открыть галерею ↗
+                </button>
               </div>
               <div class="proj-badge">Design 2026</div>
             </div>
@@ -396,10 +424,11 @@
               <div class="proj-tags">
                 <span class="proj-tag">Graphic Design</span>
                 <span class="proj-tag">Print</span>
-                <span class="proj-tag">Fashion</span>
+                <span class="proj-tag">Campaigns</span>
+                <span class="proj-tag">Figma</span>
               </div>
-              <h3 class="proj-title">City Collection — Промо-флаер</h3>
-              <p class="proj-desc">Графический дизайн промо-флаера для коллекции городской моды. Макет для печати, цветовая схема, типография. Готов к производству.</p>
+              <h3 class="proj-title">Графический дизайн — Постеры и кампании</h3>
+              <p class="proj-desc">Коллекция графических работ: промо-флаеры для моды, медиа-пак кампаний, социальные материалы. Дизайн для печати, типография, цветовые схемы. Готовы к производству.</p>
               <div class="proj-meta">
                 <span class="proj-year">2026</span>
                 <span class="proj-role">Graphic Designer</span>
@@ -717,6 +746,36 @@
       </button>
       <h2 id="modal-title" class="modal-title">Благодарственное письмо</h2>
       <img id="modal-image" src="" alt="Документ" class="modal-image" />
+    </div>
+  </div>
+
+  <!-- GALLERY MODAL FOR BOYS 100% -->
+  <div id="boys-gallery" class="gallery-modal" role="dialog" aria-hidden="true">
+    <div class="gallery-overlay"></div>
+    <div class="gallery-content">
+      <button class="gallery-close" aria-label="Закрыть галерею">✕</button>
+      <div class="gallery-viewer">
+        <img id="boys-gallery-img" src="100%BOYS.jpg" alt="BOYS 100% Merch" />
+      </div>
+    </div>
+  </div>
+
+  <!-- GALLERY MODAL FOR GRAPHIC DESIGNS -->
+  <div id="graphic-gallery" class="gallery-modal" role="dialog" aria-hidden="true">
+    <div class="gallery-overlay"></div>
+    <div class="gallery-content">
+      <button class="gallery-close" aria-label="Закрыть галерею">✕</button>
+      <div class="gallery-viewer">
+        <div class="gallery-slider">
+          <img src="sitikol1.png" alt="City Collection Флаер" />
+          <img src="постер ппд.png" alt="Безопасность и велодвижение" />
+        </div>
+        <div class="gallery-controls">
+          <button class="gallery-prev" aria-label="Предыдущее">‹</button>
+          <span class="gallery-counter"><span class="current">1</span> / <span class="total">2</span></span>
+          <button class="gallery-next" aria-label="Следующее">›</button>
+        </div>
+      </div>
     </div>
   </div>
 
