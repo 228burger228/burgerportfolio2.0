@@ -36,6 +36,7 @@ class Portfolio {
     this.setupSkipLink();
     this.setupContactForm();
     this.setupScrollToTop();
+    this.setupGalleries();
   }
 
   /* ─────────────────────────────────────────────────────────────────────
@@ -442,6 +443,93 @@ class Portfolio {
         });
       }
     });
+  }
+
+  /* ─────────────────────────────────────────────────────────────────────
+     GALLERY MODALS
+     ───────────────────────────────────────────────────────────────────── */
+
+  setupGalleries() {
+    // Gallery triggers
+    document.querySelectorAll('.gallery-trigger').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        e.preventDefault();
+        const galleryId = btn.dataset.gallery;
+        this.openGallery(galleryId);
+      });
+    });
+
+    // Gallery close buttons
+    document.querySelectorAll('.gallery-close').forEach(btn => {
+      btn.addEventListener('click', () => {
+        btn.closest('.gallery-modal').classList.remove('active');
+        btn.closest('.gallery-modal').setAttribute('aria-hidden', 'true');
+        document.body.style.overflow = '';
+      });
+    });
+
+    // Close gallery on overlay click
+    document.querySelectorAll('.gallery-overlay').forEach(overlay => {
+      overlay.addEventListener('click', () => {
+        overlay.closest('.gallery-modal').classList.remove('active');
+        overlay.closest('.gallery-modal').setAttribute('aria-hidden', 'true');
+        document.body.style.overflow = '';
+      });
+    });
+
+    // Close gallery on Escape
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        document.querySelectorAll('.gallery-modal.active').forEach(modal => {
+          modal.classList.remove('active');
+          modal.setAttribute('aria-hidden', 'true');
+          document.body.style.overflow = '';
+        });
+      }
+    });
+
+    // Gallery navigation (for graphic-gallery with multiple images)
+    document.querySelectorAll('.gallery-next').forEach(btn => {
+      btn.addEventListener('click', () => this.nextGalleryImage(btn));
+    });
+
+    document.querySelectorAll('.gallery-prev').forEach(btn => {
+      btn.addEventListener('click', () => this.prevGalleryImage(btn));
+    });
+  }
+
+  openGallery(galleryId) {
+    const gallery = document.getElementById(galleryId);
+    if (!gallery) return;
+    gallery.classList.add('active');
+    gallery.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+  }
+
+  nextGalleryImage(btn) {
+    const gallery = btn.closest('.gallery-modal');
+    const slider = gallery.querySelector('.gallery-slider');
+    if (!slider) return;
+
+    const images = slider.querySelectorAll('img');
+    const current = parseInt(gallery.querySelector('.current').textContent, 10);
+    const next = current % images.length + 1;
+
+    slider.style.transform = `translateX(-${(next - 1) * 100}%)`;
+    gallery.querySelector('.current').textContent = next;
+  }
+
+  prevGalleryImage(btn) {
+    const gallery = btn.closest('.gallery-modal');
+    const slider = gallery.querySelector('.gallery-slider');
+    if (!slider) return;
+
+    const images = slider.querySelectorAll('img');
+    const current = parseInt(gallery.querySelector('.current').textContent, 10);
+    const prev = current === 1 ? images.length : current - 1;
+
+    slider.style.transform = `translateX(-${(prev - 1) * 100}%)`;
+    gallery.querySelector('.current').textContent = prev;
   }
 }
 
