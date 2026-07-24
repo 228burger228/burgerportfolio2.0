@@ -611,6 +611,10 @@
   border-radius: var(--radius-lg);
   overflow: hidden;
   border: 1px solid var(--color-border);
+  max-height: 70vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .gallery-viewer img {
@@ -618,6 +622,8 @@
   height: auto;
   display: block;
   border-radius: var(--radius-lg);
+  object-fit: contain;
+  max-height: 70vh;
 }
 
 .gallery-slider {
@@ -626,6 +632,7 @@
   overflow: hidden;
   display: flex;
   transition: transform var(--transition-base);
+  max-height: 70vh;
 }
 
 .gallery-slider img {
@@ -633,6 +640,8 @@
   height: auto;
   display: block;
   flex-shrink: 0;
+  object-fit: contain;
+  max-height: 70vh;
 }
 
 .gallery-controls {
