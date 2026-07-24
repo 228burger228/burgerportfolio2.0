@@ -79,25 +79,27 @@
     },
     {
       "id": 8,
-      "title": "City Collection — Промо-флаер",
-      "desc": "Графический дизайн промо-флаера для коллекции городской моды. Макет для печати, цветовая схема, типография. Готов к производству.",
+      "title": "BOYS 100% — Мерч для мото-братства",
+      "desc": "Дизайн наклеек и мерча для сообщества мотоциклистов в Туле. Брендовые стикеры с крутыми мотивами — от логотипа до текстовых фраз. Готово к производству на печать.",
       "cat": "content",
-      "link": "https://www.figma.com/design/",
-      "emoji": "👗",
-      "tags": ["Graphic Design", "Print", "Figma", "Fashion"],
+      "emoji": "🏍️",
+      "tags": ["Merch Design", "Stickers", "Branding", "Print"],
       "featured": false,
-      "badge": "Design 2026"
+      "badge": "Merch 2026",
+      "isGallery": true,
+      "gallery": ["100%BOYS.jpg"]
     },
     {
       "id": 9,
-      "title": "Безопасность СИМ и велодвижения",
-      "desc": "Медиа-пак и социальные материалы для кампании безопасности. Инфографика, посты для соцсетей, баннеры. Фокус на информативность и привлечение внимания целевой аудитории.",
+      "title": "Графический дизайн — Постеры и кампании",
+      "desc": "Коллекция графических работ: промо-флаеры для моды, медиа-пак кампаний, социальные материалы. Дизайн для печати, типография, цветовые схемы. Готовы к производству.",
       "cat": "content",
-      "link": "https://www.figma.com/design/",
-      "emoji": "🚴",
-      "tags": ["Social Media", "Infographic", "Campaign", "Safety"],
+      "emoji": "🎨",
+      "tags": ["Graphic Design", "Print", "Figma", "Campaigns"],
       "featured": false,
-      "badge": "Campaign 2026"
+      "badge": "Design 2026",
+      "isGallery": true,
+      "gallery": ["sitikol1.png", "постер ппд.png"]
     },
     {
       "id": 10,
