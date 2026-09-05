@@ -462,18 +462,24 @@ class Portfolio {
     // Gallery close buttons
     document.querySelectorAll('.gallery-close').forEach(btn => {
       btn.addEventListener('click', () => {
-        btn.closest('.gallery-modal').classList.remove('active');
-        btn.closest('.gallery-modal').setAttribute('aria-hidden', 'true');
-        document.body.style.overflow = '';
+        const modal = btn.closest('.gallery-modal');
+        if (modal) {
+          modal.classList.remove('active');
+          modal.setAttribute('aria-hidden', 'true');
+          document.body.style.overflow = '';
+        }
       });
     });
 
     // Close gallery on overlay click
     document.querySelectorAll('.gallery-overlay').forEach(overlay => {
       overlay.addEventListener('click', () => {
-        overlay.closest('.gallery-modal').classList.remove('active');
-        overlay.closest('.gallery-modal').setAttribute('aria-hidden', 'true');
-        document.body.style.overflow = '';
+        const modal = overlay.closest('.gallery-modal');
+        if (modal) {
+          modal.classList.remove('active');
+          modal.setAttribute('aria-hidden', 'true');
+          document.body.style.overflow = '';
+        }
       });
     });
 
@@ -488,48 +494,106 @@ class Portfolio {
       }
     });
 
-    // Gallery navigation (for graphic-gallery with multiple images)
+    // Gallery navigation
     document.querySelectorAll('.gallery-next').forEach(btn => {
-      btn.addEventListener('click', () => this.nextGalleryImage(btn));
+      btn.addEventListener('click', (e) => {
+        e.preventDefault();
+        this.nextGalleryImage(btn);
+      });
     });
 
     document.querySelectorAll('.gallery-prev').forEach(btn => {
-      btn.addEventListener('click', () => this.prevGalleryImage(btn));
+      btn.addEventListener('click', (e) => {
+        e.preventDefault();
+        this.prevGalleryImage(btn);
+      });
+    });
+
+    // Keyboard navigation in gallery
+    document.addEventListener('keydown', (e) => {
+      const activeGallery = document.querySelector('.gallery-modal.active');
+      if (!activeGallery) return;
+      
+      if (e.key === 'ArrowRight') {
+        const nextBtn = activeGallery.querySelector('.gallery-next');
+        if (nextBtn) nextBtn.click();
+      } else if (e.key === 'ArrowLeft') {
+        const prevBtn = activeGallery.querySelector('.gallery-prev');
+        if (prevBtn) prevBtn.click();
+      }
     });
   }
 
   openGallery(galleryId) {
     const gallery = document.getElementById(galleryId);
     if (!gallery) return;
+    
+    // Reset slider position if exists
+    const slider = gallery.querySelector('.gallery-slider');
+    if (slider) {
+      slider.style.transform = 'translateX(0)';
+    }
+    
+    // Reset counter if exists
+    const currentEl = gallery.querySelector('.current');
+    if (currentEl) {
+      currentEl.textContent = '1';
+    }
+    
+    // Update total if exists
+    const totalEl = gallery.querySelector('.total');
+    if (totalEl && slider) {
+      const images = slider.querySelectorAll('img');
+      totalEl.textContent = images.length;
+    }
+    
     gallery.classList.add('active');
     gallery.setAttribute('aria-hidden', 'false');
     document.body.style.overflow = 'hidden';
   }
 
   nextGalleryImage(btn) {
-    const gallery = btn.closest('.gallery-modal');
-    const slider = gallery.querySelector('.gallery-slider');
+    const modal = btn.closest('.gallery-modal');
+    if (!modal) return;
+    
+    const slider = modal.querySelector('.gallery-slider');
     if (!slider) return;
 
     const images = slider.querySelectorAll('img');
-    const current = parseInt(gallery.querySelector('.current').textContent, 10);
-    const next = current % images.length + 1;
+    if (images.length === 0) return;
+    if (images.length === 1) return; // Не листаем если одна картинка
 
-    slider.style.transform = `translateX(-${(next - 1) * 100}%)`;
-    gallery.querySelector('.current').textContent = next;
+    const currentEl = modal.querySelector('.current');
+    let current = parseInt(currentEl.textContent, 10) || 1;
+    const next = current >= images.length ? 1 : current + 1;
+
+    // Calculate transform с плавностью
+    const offset = (next - 1) * 100;
+    slider.style.transition = 'transform 0.4s cubic-bezier(0.16, 0.84, 0.44, 1)';
+    slider.style.transform = `translateX(-${offset}%)`;
+    currentEl.textContent = next;
   }
 
   prevGalleryImage(btn) {
-    const gallery = btn.closest('.gallery-modal');
-    const slider = gallery.querySelector('.gallery-slider');
+    const modal = btn.closest('.gallery-modal');
+    if (!modal) return;
+    
+    const slider = modal.querySelector('.gallery-slider');
     if (!slider) return;
 
     const images = slider.querySelectorAll('img');
-    const current = parseInt(gallery.querySelector('.current').textContent, 10);
+    if (images.length === 0) return;
+    if (images.length === 1) return; // Не листаем если одна картинка
+
+    const currentEl = modal.querySelector('.current');
+    let current = parseInt(currentEl.textContent, 10) || 1;
     const prev = current === 1 ? images.length : current - 1;
 
-    slider.style.transform = `translateX(-${(prev - 1) * 100}%)`;
-    gallery.querySelector('.current').textContent = prev;
+    // Calculate transform с плавностью
+    const offset = (prev - 1) * 100;
+    slider.style.transition = 'transform 0.4s cubic-bezier(0.16, 0.84, 0.44, 1)';
+    slider.style.transform = `translateX(-${offset}%)`;
+    currentEl.textContent = prev;
   }
 }
 
