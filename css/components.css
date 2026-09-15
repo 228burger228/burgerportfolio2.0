@@ -89,6 +89,13 @@
   background-color: var(--color-bg-surface);
 }
 
+/* Navbar CTA Button */
+.navbar-cta {
+  flex-shrink: 0;
+  min-width: fit-content;
+  padding: var(--space-md) var(--space-xl);
+}
+
 /* ─────────────────────────────────────────────────────────────────────────
    NAVIGATION BAR
    ───────────────────────────────────────────────────────────────────────── */
