@@ -18,6 +18,13 @@ class Portfolio {
     this.skipLink    = document.getElementById('skip-link');
     this.scrollToTopBtn = document.getElementById('scroll-to-top');
 
+    this.searchInput     = document.getElementById('project-search');
+    this.searchClear     = document.getElementById('project-search-clear');
+    this.emptyState      = document.getElementById('projects-empty-state');
+    this.emptyStateReset = document.getElementById('empty-state-reset');
+    this.currentCategory = 'all';
+    this.currentSearch   = '';
+
     this.countersStarted = false;
 
     this.init();
@@ -30,6 +37,8 @@ class Portfolio {
     this.setupScrollReveal();
     this.setupActiveNavLink();
     this.setupProjectFilter();
+    this.setupProjectSearch();
+    this.setupCalculator();
     this.setupCounters();
     this.setupAccessibility();
     this.setupModal();
@@ -166,7 +175,7 @@ class Portfolio {
   }
 
   /* ─────────────────────────────────────────────────────────────────────
-     PROJECT FILTER
+     PROJECT FILTER & LIVE SEARCH
      ───────────────────────────────────────────────────────────────────── */
 
   setupProjectFilter() {
@@ -174,7 +183,6 @@ class Portfolio {
 
     this.filtBtns.forEach(btn => {
       btn.addEventListener('click', () => {
-        // Update active button
         this.filtBtns.forEach(b => {
           b.classList.remove('active');
           b.setAttribute('aria-selected', 'false');
@@ -182,37 +190,235 @@ class Portfolio {
         btn.classList.add('active');
         btn.setAttribute('aria-selected', 'true');
 
-        const filter = btn.dataset.filter;
+        this.currentCategory = btn.dataset.filter || 'all';
+        this.applyProjectFilters();
+      });
+    });
+  }
 
-        this.projCards.forEach(card => {
-          const cats = card.dataset.filter || '';
-          const show = filter === 'all' || cats.includes(filter);
+  setupProjectSearch() {
+    if (!this.searchInput) return;
 
-          if (show) {
-            card.style.opacity = '0';
-            card.style.transform = 'translateY(16px)';
-            card.classList.remove('hidden');
-            // Trigger reflow then animate in
-            requestAnimationFrame(() => {
-              requestAnimationFrame(() => {
-                card.style.transition = 'opacity 0.35s ease, transform 0.35s ease';
-                card.style.opacity = '1';
-                card.style.transform = 'translateY(0)';
-              });
-            });
-          } else {
-            card.style.transition = 'opacity 0.2s ease, transform 0.2s ease';
-            card.style.opacity = '0';
-            card.style.transform = 'translateY(8px)';
-            setTimeout(() => {
-              if (!card.dataset.filter.includes(filter) && filter !== 'all') {
-                card.classList.add('hidden');
-              }
-            }, 200);
+    this.searchInput.addEventListener('input', () => {
+      this.currentSearch = this.searchInput.value.trim().toLowerCase();
+      if (this.searchClear) {
+        this.searchClear.style.display = this.currentSearch ? 'inline-block' : 'none';
+      }
+      this.applyProjectFilters();
+    });
+
+    if (this.searchClear) {
+      this.searchClear.addEventListener('click', () => {
+        this.searchInput.value = '';
+        this.currentSearch = '';
+        this.searchClear.style.display = 'none';
+        this.searchInput.focus();
+        this.applyProjectFilters();
+      });
+    }
+
+    if (this.emptyStateReset) {
+      this.emptyStateReset.addEventListener('click', () => {
+        if (this.searchInput) {
+          this.searchInput.value = '';
+          this.currentSearch = '';
+        }
+        if (this.searchClear) {
+          this.searchClear.style.display = 'none';
+        }
+        this.filtBtns.forEach(b => {
+          const isAll = b.dataset.filter === 'all';
+          b.classList.toggle('active', isAll);
+          b.setAttribute('aria-selected', String(isAll));
+        });
+        this.currentCategory = 'all';
+        this.applyProjectFilters();
+      });
+    }
+  }
+
+  applyProjectFilters() {
+    let visibleCount = 0;
+    const filter = this.currentCategory;
+    const search = this.currentSearch;
+
+    this.projCards.forEach(card => {
+      const cats = card.dataset.filter || '';
+      const text = card.textContent.toLowerCase();
+      
+      const catMatch = filter === 'all' || cats.includes(filter);
+      const searchMatch = !search || text.includes(search);
+      const show = catMatch && searchMatch;
+
+      if (show) {
+        visibleCount++;
+        card.classList.remove('hidden');
+        card.style.display = '';
+        card.style.opacity = '1';
+        card.style.transform = 'translateY(0)';
+      } else {
+        card.classList.add('hidden');
+        card.style.display = 'none';
+      }
+    });
+
+    if (this.emptyState) {
+      this.emptyState.style.display = visibleCount === 0 ? 'block' : 'none';
+    }
+  }
+
+  /* ─────────────────────────────────────────────────────────────────────
+     MVP CALCULATOR
+     ───────────────────────────────────────────────────────────────────── */
+
+  setupCalculator() {
+    const calcSection = document.getElementById('calculator');
+    if (!calcSection) return;
+
+    const state = {
+      task: 'mvp',
+      state: 'idea',
+      timeline: 'optimal'
+    };
+
+    const taskPresets = {
+      landing: {
+        title: 'Лендинг / Промо-сайт',
+        stack: ['HTML5 / CSS Tokens', 'Modern Vanilla JS', 'Motion UI', 'Formspree / Webhooks', 'Lighthouse 100'],
+        steps: [
+          'Анализ целевой аудитории и CJM конверсии',
+          'Проектирование адаптивного прототипа в Figma',
+          'Чистая верстка без раздутых библиотек',
+          'Тестирование скорости на смартфонах и деплой'
+        ],
+        briefTask: 'конверсионный промо-лендинг'
+      },
+      mvp: {
+        title: 'Веб-сервис / MVP под ключ',
+        stack: ['Figma', 'Vue 3 / Vite', 'REST API / Supabase', 'Pinia', 'Cloudflare Workers'],
+        steps: [
+          'Проектирование пользовательских сценариев и архитектуры',
+          'Дизайн-система компонентов и UI-кит в Figma',
+          'Разработка SPA на Vue 3 с чистым кодом',
+          'Тестирование ключевых путей и передача в продакшен'
+        ],
+        briefTask: 'веб-сервис / MVP под ключ'
+      },
+      bot: {
+        title: 'Telegram-бот / AI-агент',
+        stack: ['Cloudflare Workers', 'Telegram Bot API', 'Gemini API', 'TypeScript / Serverless', '$0 за сервер'],
+        steps: [
+          'Проектирование диалоговых веток и логики ассистента',
+          'Развертывание Serverless-воркера на Cloudflare',
+          'Подключение Gemini API и системных промптов',
+          'Тестирование сценариев в Telegram и запуск'
+        ],
+        briefTask: 'интеллектуальный Telegram-бот / AI-агент'
+      },
+      design: {
+        title: 'UI/UX & Дизайн-система',
+        stack: ['Figma', 'Design Tokens', 'Auto Layout', 'Interactive Prototype', 'WCAG AA'],
+        steps: [
+          'UX-исследование потребностей и аудит аналогов',
+          'Сетка, типографика и система токенов',
+          'Библиотека интерактивных компонентов (80+ состояний)',
+          'Подготовка спецификации и хэндофф для разработчиков'
+        ],
+        briefTask: 'UI/UX проектирование и дизайн-система в Figma'
+      }
+    };
+
+    const stateDescriptions = {
+      idea: 'есть общее видение и идея, нужно спроектировать с нуля',
+      spec: 'есть готовое ТЗ / дизайн в Figma, нужна чистая разработка',
+      redesign: 'нужен редизайн и ускорение текущего сайта'
+    };
+
+    const timelinePresets = {
+      fast: { label: '~1–2 недели (спринт)', brief: 'срочно за 1–2 недели' },
+      optimal: { label: '~3–4 недели', brief: 'в темпе ~3–4 недели' },
+      flexible: { label: 'Сроки гибкие', brief: 'сроки гибкие, готов обсудить' }
+    };
+
+    const elTitle = document.getElementById('summary-task-title');
+    const elStack = document.getElementById('summary-stack');
+    const elTimeline = document.getElementById('summary-timeline');
+    const elSteps = document.getElementById('summary-steps');
+    const elBrief = document.getElementById('summary-brief');
+    const elTgBtn = document.getElementById('calc-tg-btn');
+    const elCopyBtn = document.getElementById('calc-copy-btn');
+
+    const updateSummary = () => {
+      const taskData = taskPresets[state.task] || taskPresets.mvp;
+      const timeData = timelinePresets[state.timeline] || timelinePresets.optimal;
+      const stateText = stateDescriptions[state.state] || stateDescriptions.idea;
+
+      if (elTitle) elTitle.textContent = taskData.title;
+
+      if (elStack) {
+        elStack.innerHTML = taskData.stack
+          .map(tag => `<span class="summary-stack-tag">${tag}</span>`)
+          .join('');
+      }
+
+      if (elTimeline) elTimeline.textContent = timeData.label;
+
+      if (elSteps) {
+        elSteps.innerHTML = taskData.steps
+          .map(step => `<li>${step}</li>`)
+          .join('');
+      }
+
+      const message = `Привет, Дмитрий! Интересует ${taskData.briefTask}. Исходные данные: ${stateText}, ориентир по срокам: ${timeData.brief}. Хочу обсудить реализацию!`;
+
+      if (elBrief) {
+        elBrief.textContent = `«${message}»`;
+      }
+
+      if (elTgBtn) {
+        elTgBtn.href = `https://t.me/aimovl?text=${encodeURIComponent(message)}`;
+      }
+    };
+
+    // Bind Option Clicks
+    calcSection.querySelectorAll('.calc-options-grid, .calc-options-row').forEach(container => {
+      const group = container.dataset.group;
+      const buttons = container.querySelectorAll('.calc-opt-btn, .calc-opt-pill');
+
+      buttons.forEach(btn => {
+        btn.addEventListener('click', () => {
+          buttons.forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+          if (group && btn.dataset.value) {
+            state[group] = btn.dataset.value;
+            updateSummary();
           }
         });
       });
     });
+
+    // Copy Button Handler
+    if (elCopyBtn) {
+      elCopyBtn.addEventListener('click', () => {
+        const text = elBrief ? elBrief.textContent.replace(/^«|»$/g, '').trim() : '';
+        if (navigator.clipboard && text) {
+          navigator.clipboard.writeText(text).then(() => {
+            const orig = elCopyBtn.textContent;
+            elCopyBtn.textContent = '✓ Скопировано!';
+            elCopyBtn.style.color = 'var(--color-success)';
+            setTimeout(() => {
+              elCopyBtn.textContent = orig;
+              elCopyBtn.style.color = '';
+            }, 2000);
+          }).catch(() => {
+            prompt('Скопируйте текст сообщения:', text);
+          });
+        }
+      });
+    }
+
+    // Initial render
+    updateSummary();
   }
 
   /* ─────────────────────────────────────────────────────────────────────
