@@ -3,9 +3,9 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Дмитрий (Burger) — Design-Driven Product & Technical Lead. Создаю продукты от концепции до production." />
+  <meta name="description" content="Дмитрий Бургер — Product-Oriented Frontend Engineer & UI/UX Lead. Создаю современные веб-продукты: от UX-архитектуры и дизайн-систем до быстрого production-кода." />
   <meta name="theme-color" content="#09090b" />
-  <title>Дмитрий (Burger) — Design-Driven Product & Technical Lead</title>
+  <title>Дмитрий Бургер — Product-Oriented Frontend Engineer & UI/UX Lead</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
@@ -21,8 +21,8 @@
   <!-- NAVIGATION -->
   <nav class="navbar" role="navigation" aria-label="Главная навигация">
     <div class="navbar-container">
-      <a href="#" class="navbar-brand" aria-label="Дмитрий - Главная">
-        <span class="brand-text">Dmitry</span>
+      <a href="#" class="navbar-brand" aria-label="Дмитрий Бургер - Главная">
+        <span class="brand-text">Dmitry Burger</span>
       </a>
       <button class="navbar-toggle" id="navbar-toggle" aria-label="Открыть меню" aria-expanded="false" aria-controls="navbar-menu">
         <span class="toggle-icon"></span>
@@ -32,11 +32,13 @@
       <ul class="navbar-menu" id="navbar-menu" role="menubar">
         <li role="none"><a href="#hero" class="nav-link" role="menuitem">Главная</a></li>
         <li role="none"><a href="#case-studies" class="nav-link" role="menuitem">Работы</a></li>
-        <li role="none"><a href="#expertise" class="nav-link" role="menuitem">Навыки</a></li>
-        <li role="none"><a href="#about" class="nav-link" role="menuitem">Обо мне</a></li>
+        <li role="none"><a href="#expertise" class="nav-link" role="menuitem">Экспертиза</a></li>
+        <li role="none"><a href="#services" class="nav-link" role="menuitem">Услуги</a></li>
+        <li role="none"><a href="#calculator" class="nav-link" role="menuitem">Калькулятор MVP</a></li>
+        <li role="none"><a href="#about" class="nav-link" role="menuitem">О подходе</a></li>
         <li role="none"><a href="#contact" class="nav-link" role="menuitem">Контакты</a></li>
       </ul>
-      <a href="#contact" class="btn btn-primary navbar-cta" aria-label="Связаться">Связаться</a>
+      <a href="#contact" class="btn btn-primary navbar-cta" aria-label="Связаться">Обсудить проект</a>
     </div>
   </nav>
 
@@ -45,29 +47,56 @@
     <!-- ═══ SECTION 1: HERO ═══ -->
     <section id="hero" class="section section-hero" aria-labelledby="hero-title">
       <div class="container">
-        <div class="hero-content">
-          <div class="hero-badge animate-fade-up" aria-label="Статус">
-            <span class="avail-dot" aria-hidden="true"></span>
-            Открыт к новым проектам
+        <div class="hero-grid">
+          <div class="hero-content">
+            <div class="hero-badge animate-fade-up" aria-label="Статус">
+              <span class="avail-dot" aria-hidden="true"></span>
+              Открыт к проектам и предложениям
+            </div>
+            <p class="hero-role animate-fade-up" aria-label="Роль">
+              Product-Minded Frontend Engineer & UI/UX Lead
+            </p>
+            <h1 id="hero-title" class="hero-title animate-fade-up">
+              Собираю хаос требований<br>в работающую систему.
+            </h1>
+            <p class="hero-description animate-fade-up">
+              Помогаю бизнесу и стартапам переводить сложные задачи в понятные, стабильные веб-продукты. Проектирую интерфейсы в Figma и реализую их на чистом фронтенд-стеке и Vue 3 с фокусом на конверсию, скорость и надежность.
+            </p>
+            
+            <!-- Язык функций: 3 ключевые функции -->
+            <div class="hero-functions animate-fade-up" aria-label="Ключевые функции">
+              <div class="func-chip">
+                <div class="func-head"><span>📐</span> UX/UI Архитектура</div>
+                <p class="func-desc">Проектирование в Figma, CJM, дизайн-системы, готовые к разработке</p>
+              </div>
+              <div class="func-chip">
+                <div class="func-head"><span>⚡</span> Frontend Инженерия</div>
+                <p class="func-desc">Семантическая верстка, Vue 3, чистый стек, адаптивность и скорость</p>
+              </div>
+              <div class="func-chip">
+                <div class="func-head"><span>🧭</span> Product Delivery</div>
+                <p class="func-desc">Синхронизация команд, декомпозиция задач, запуск MVP под ключ</p>
+              </div>
+            </div>
+
+            <div class="hero-cta animate-fade-up">
+              <a href="#case-studies" class="btn btn-primary">Смотреть кейсы</a>
+              <a href="#contact" class="btn btn-secondary">Обсудить проект</a>
+            </div>
           </div>
-          <p class="hero-role animate-fade-up" aria-label="Роль">
-            Design-Driven Product & Technical Lead
-          </p>
-          <h1 id="hero-title" class="hero-title animate-fade-up">
-            Объединяю команды.<br>Превращаю хаос в продукты.
-          </h1>
-          <p class="hero-description animate-fade-up">
-            Координирую дизайнеров, разработчиков и стейкхолдеров. Перевожу между дизайном, инженерией и бизнесом.<br>
-            Делаю так, чтобы люди с разными компетенциями создавали продукты вместе.
-          </p>
-          <ul class="hero-proof animate-fade-up" aria-label="Ключевые компетенции">
-            <li>Координация кросс-функциональных команд (HgStroy, VPN, БРИКС-агенты)</li>
-            <li>Полный цикл: от переговоров с клиентом до production</li>
-            <li>Перевод между дизайном, кодом и бизнесом</li>
-          </ul>
-          <div class="hero-cta animate-fade-up">
-            <a href="#case-studies" class="btn btn-primary">Смотреть работы</a>
-            <a href="#contact" class="btn btn-secondary">Давайте создадим что-то</a>
+
+          <!-- Фотография Дмитрия -->
+          <div class="hero-media animate-fade-up">
+            <div class="hero-photo-card">
+              <img src="mefoto.jpg" alt="Дмитрий Бургер — Product Frontend Engineer & UI/UX Lead" class="hero-photo" />
+              <div class="hero-photo-meta">
+                <div class="hero-photo-status">
+                  <span class="avail-dot" aria-hidden="true"></span>
+                  <span>Дмитрий Бургер</span>
+                </div>
+                <span class="hero-photo-loc">Москва / Remote</span>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -99,7 +128,7 @@
       </div>
     </div>
 
-    <!-- ═══ SECTION 2: STATS / TRUST ═══ -->
+    <!-- ═══ SECTION 2: 3 ПОЧЕМУ / РЕШЕНИЕ БОЛЕЙ БИЗНЕСА ═══ -->
     <section id="trust" class="section section-trust" aria-labelledby="trust-title">
       <div class="container">
         <div class="stats-row reveal">
@@ -110,41 +139,63 @@
           <div class="stat-divider" aria-hidden="true"></div>
           <div class="stat-item">
             <span class="stat-num" data-count="95">0</span><span class="stat-suffix">+</span>
-            <span class="stat-label">Lighthouse score</span>
+            <span class="stat-label">Оценка скорости сайтов</span>
           </div>
           <div class="stat-divider" aria-hidden="true"></div>
           <div class="stat-item">
-            <span class="stat-num" data-count="3">0</span>
-            <span class="stat-label">Роли в одном лице</span>
+            <span class="stat-num" data-count="10">0</span><span class="stat-suffix"> 000+</span>
+            <span class="stat-label">Пользователей в месяц</span>
           </div>
           <div class="stat-divider" aria-hidden="true"></div>
           <div class="stat-item">
-            <span class="stat-num" data-count="2">0</span>
-            <span class="stat-label">Гос. проекта</span>
+            <span class="stat-num" data-count="100">0</span><span class="stat-suffix">%</span>
+            <span class="stat-label">Соблюдение сроков</span>
           </div>
         </div>
 
-        <h2 id="trust-title" class="section-title reveal">Почему работать со мной</h2>
-        <div class="trust-grid">
-          <article class="trust-card reveal">
-            <div class="trust-card-icon" aria-hidden="true">🤝</div>
-            <h3 class="trust-card-title">Координация команд</h3>
-            <p class="trust-card-description">Объединяю дизайнеров, разработчиков и клиентов. Перевожу технические требования на язык дизайна и обратно. HgStroy, корпоративный VPN, БРИКС-агенты — примеры успешной координации.</p>
+        <div class="section-header reveal">
+          <h2 id="trust-title" class="section-title">3 ключевые боли бизнеса, которые я закрываю</h2>
+          <p class="section-subtitle">Вместо абстрактных обещаний — решение конкретных инженерных и продуктовых проблем</p>
+        </div>
+
+        <div class="pains-grid">
+          <article class="pain-card reveal">
+            <span class="pain-num">01 / Скорость и бюджет</span>
+            <h3 class="pain-title">Разрыв между дизайном и разработкой</h3>
+            <div class="pain-block">
+              <span class="pain-label label-problem">Боль бизнеса:</span>
+              <p class="pain-text">Дизайнеры рисуют эффектные концепты, которые долго и дорого верстать. Программисты ломают верстку и визуальную иерархию. В итоге — месяцы правок и раздутый бюджет.</p>
+            </div>
+            <div class="pain-block">
+              <span class="pain-label label-solution">Моя функция и решение:</span>
+              <p class="pain-text">Соединяю обе роли. Проектирую интерфейс в Figma с пониманием ограничений кода и верстаю пиксель-в-пиксель. Экономия до 40% времени на доработках.</p>
+            </div>
           </article>
-          <article class="trust-card reveal">
-            <div class="trust-card-icon" aria-hidden="true">🚀</div>
-            <h3 class="trust-card-title">Реальные проекты</h3>
-            <p class="trust-card-description">15+ проектов в production. Государственные платформы, корпоративные сайты, инструменты для сообществ. Работаю один или координирую команды.</p>
+
+          <article class="pain-card reveal">
+            <span class="pain-num">02 / Сроки релиза</span>
+            <h3 class="pain-title">Затянутый Time-to-Market</h3>
+            <div class="pain-block">
+              <span class="pain-label label-problem">Боль бизнеса:</span>
+              <p class="pain-text">Команда месяцами закапывается в избыточных фичах и спорах о стеке. Проверка продуктовой гипотезы откладывается, а бизнес несет расходы без выручки.</p>
+            </div>
+            <div class="pain-block">
+              <span class="pain-label label-solution">Моя функция и решение:</span>
+              <p class="pain-text">Фокус на быстром MVP. Декомпозирую задачи на недельные спринты, отсекаю лишнее и выпускаю первую стабильную версию за 2–4 недели короткими итерациями.</p>
+            </div>
           </article>
-          <article class="trust-card reveal">
-            <div class="trust-card-icon" aria-hidden="true">⚡</div>
-            <h3 class="trust-card-title">Полный цикл</h3>
-            <p class="trust-card-description">От переговоров с заказчиком до production-деплоя. Архитектура, дизайн-системы, код, документация. Без потерь информации между этапами.</p>
-          </article>
-          <article class="trust-card reveal">
-            <div class="trust-card-icon" aria-hidden="true">🎯</div>
-            <h3 class="trust-card-title">Production excellence</h3>
-            <p class="trust-card-description">Быстрая загрузка (Lighthouse 95+). Работает на всех устройствах. Доступен людям с ограниченными возможностями. Чистый, поддерживаемый код.</p>
+
+          <article class="pain-card reveal">
+            <span class="pain-num">03 / Конверсия и качество</span>
+            <h3 class="pain-title">Медленные сайты, теряющие клиентов</h3>
+            <div class="pain-block">
+              <span class="pain-label label-problem">Боль бизнеса:</span>
+              <p class="pain-text">Сайт тормозит на смартфонах, пользователи закрывают вкладку, падает конверсия рекламного трафика, а поисковики понижают ресурс в выдаче.</p>
+            </div>
+            <div class="pain-block">
+              <span class="pain-label label-solution">Моя функция и решение:</span>
+              <p class="pain-text">Инженерная оптимизация как стандарт: загрузка до 1 секунды, чистый семантический код без тяжелых библиотек, безупречный адаптив и высокая конверсия форм.</p>
+            </div>
           </article>
         </div>
       </div>
@@ -154,134 +205,41 @@
     <section id="case-studies" class="section section-case-studies" aria-labelledby="case-studies-title">
       <div class="container">
         <div class="section-header reveal">
-          <h2 id="case-studies-title" class="section-title">Избранные работы</h2>
-          <p class="section-subtitle">Реальные проекты с реальными результатами</p>
+          <h2 id="case-studies-title" class="section-title">Избранные кейсы</h2>
+          <p class="section-subtitle">Реальные коммерческие и продуктовые решения с измеримым результатом</p>
+        </div>
+
+        <!-- Live project search -->
+        <div class="proj-search-wrapper reveal">
+          <div class="proj-search-box">
+            <span class="proj-search-icon" aria-hidden="true">🔍</span>
+            <input 
+              type="text" 
+              id="project-search" 
+              class="proj-search-input" 
+              placeholder="Поиск по стеку или задаче: например Vue, Telegram, лендинг, Figma, B2B..." 
+              aria-label="Поиск по проектам"
+              autocomplete="off"
+            />
+            <button type="button" id="project-search-clear" class="proj-search-clear" aria-label="Очистить поиск" style="display: none;">✕</button>
+          </div>
         </div>
 
         <!-- Filter tabs -->
         <div class="proj-filter reveal" role="tablist" aria-label="Фильтр проектов">
           <button class="filt-btn active" data-filter="all" role="tab" aria-selected="true">Все</button>
           <button class="filt-btn" data-filter="featured" role="tab" aria-selected="false">Ключевые</button>
-          <button class="filt-btn" data-filter="frontend" role="tab" aria-selected="false">Frontend</button>
-          <button class="filt-btn" data-filter="ui" role="tab" aria-selected="false">UI/UX</button>
-          <button class="filt-btn" data-filter="content" role="tab" aria-selected="false">Дизайн</button>
+          <button class="filt-btn" data-filter="frontend" role="tab" aria-selected="false">Веб-продукты</button>
+          <button class="filt-btn" data-filter="ui" role="tab" aria-selected="false">UI/UX & Архитектура</button>
+          <button class="filt-btn" data-filter="ai" role="tab" aria-selected="false">AI & Автоматизация</button>
+          <button class="filt-btn" data-filter="content" role="tab" aria-selected="false">Графика & Дизайн</button>
         </div>
 
         <!-- Projects grid -->
         <div class="proj-grid" id="projects-grid">
 
-          <!-- foodiCE — Lead Magnet -->
-          <article class="proj-card reveal" data-filter="featured frontend" aria-label="Проект foodiCE">
-            <div class="proj-img">
-              <img src="foodiCE.png" alt="foodiCE — лид магнит мороженного" loading="lazy" />
-              <div class="proj-overlay">
-                <a href="https://228burger228.github.io/foodiCE/" target="_blank" rel="noopener noreferrer" class="proj-overlay-btn">
-                  Открыть проект ↗
-                </a>
-              </div>
-              <div class="proj-badge">🍦 Lead Magnet</div>
-            </div>
-            <div class="proj-body">
-              <div class="proj-tags">
-                <span class="proj-tag">HTML5</span>
-                <span class="proj-tag">CSS3</span>
-                <span class="proj-tag">Vanilla JS</span>
-                <span class="proj-tag">Landing Page</span>
-              </div>
-              <h3 class="proj-title">foodiCE — Лид магнит мороженного</h3>
-              <p class="proj-desc">Одностраничный лендинг для продажи мороженного с привлекательным дизайном. Быстрая загрузка (Lighthouse 95+), адаптивен на всех устройствах. Форма захвата контактов с интеграцией email. Production-ready код на чистом стеке HTML5/CSS3/JS.</p>
-              <div class="proj-meta">
-                <span class="proj-year">2026</span>
-                <span class="proj-role">Frontend Developer & Designer</span>
-              </div>
-            </div>
-          </article>
-
-          <!-- Telegram AI Agent -->
-          <article class="proj-card reveal" data-filter="featured frontend" aria-label="Проект Telegram AI Agent">
-            <div class="proj-img">
-              <div class="proj-img-placeholder" style="background: linear-gradient(135deg, #0088cc 0%, #00d4ff 100%); display: flex; align-items: center; justify-content: center; height: 200px;">
-                <div style="text-align: center; color: white;">
-                  <div style="font-size: 48px; margin-bottom: 12px;">🤖</div>
-                  <div style="font-size: 14px; font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase;">Telegram Bot</div>
-                </div>
-              </div>
-              <div class="proj-badge" style="background: #0088cc;">🤖 AI Agent</div>
-            </div>
-            <div class="proj-body">
-              <div class="proj-tags">
-                <span class="proj-tag">Python</span>
-                <span class="proj-tag">Telegram API</span>
-                <span class="proj-tag">AI Integration</span>
-                <span class="proj-tag">Database</span>
-                <span class="proj-tag">Documentation</span>
-              </div>
-              <h3 class="proj-title">Telegram AI Agent — Автоматизация с ИИ</h3>
-              <p class="proj-desc">Разработал Telegram бота на Python с интеграцией ИИ для автоматизации задач. Бот обучен на данных, обрабатывает команды, отправляет уведомления, взаимодействует с БД. Создал полную документацию (AGENT_DOCS.md) с архитектурой, командами, deployment. Работает 24/7 в production.</p>
-              <div class="proj-meta">
-                <span class="proj-year">2026</span>
-                <span class="proj-role">Backend Developer & Architect</span>
-              </div>
-            </div>
-          </article>
-
-          <!-- БРИКС AI Agent (объединённый с ИИ Агенты платформой) -->
-          <article class="proj-card reveal" data-filter="featured frontend" aria-label="Проект ИИ Агенты">
-            <div class="proj-img">
-              <div class="proj-img-placeholder" style="background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%); display: flex; align-items: center; justify-content: center; height: 200px;">
-                <div style="text-align: center; color: white;">
-                  <div style="font-size: 48px; margin-bottom: 12px;">🤖</div>
-                  <div style="font-size: 14px; font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase;">Platform</div>
-                </div>
-              </div>
-              <div class="proj-badge" style="background: #d97706;">🤖 AI Platform</div>
-            </div>
-            <div class="proj-body">
-              <div class="proj-tags">
-                <span class="proj-tag">AI Agents</span>
-                <span class="proj-tag">Automation</span>
-                <span class="proj-tag">B2B</span>
-                <span class="proj-tag">High-Load</span>
-                <span class="proj-tag">Enterprise</span>
-              </div>
-              <h3 class="proj-title">ИИ Агенты — Платформа автоматизации</h3>
-              <p class="proj-desc">Разработал продвинутую платформу ИИ-агентов для автоматизации сложных бизнес-процессов. Система обучения агентов, база данных для хранения конфигураций и истории, интеграция с Telegram для управления и уведомлений. Агенты работают по расписанию. Архитектура на high-load, надёжность 99.9%. Координирую команду разработчиков. Развёрнуто для корпоративных клиентов, работает в production.</p>
-              <div class="proj-meta">
-                <span class="proj-year">2026</span>
-                <span class="proj-role">Technical Lead & Platform Architect</span>
-              </div>
-            </div>
-          </article>
-
-          <!-- Портфолио с Димой -->
-          <article class="proj-card reveal" data-filter="featured frontend" aria-label="Проект Портфолио Dimutri & Burger">
-            <div class="proj-img">
-              <img src="portfelDD.png" alt="Портфолио Dimutri & Burger — парное портфолио" loading="lazy" />
-              <div class="proj-overlay">
-                <button class="proj-overlay-btn" style="cursor: default;">
-                  Скоро live 🚀
-                </button>
-              </div>
-              <div class="proj-badge" style="background: #8b5cf6;">👥 Team</div>
-            </div>
-            <div class="proj-body">
-              <div class="proj-tags">
-                <span class="proj-tag">Team Portfolio</span>
-                <span class="proj-tag">Full-Stack</span>
-                <span class="proj-tag">Web Design</span>
-                <span class="proj-tag">In Progress</span>
-              </div>
-              <h3 class="proj-title">Портфолио Dimutri & Burger — Парная визитка</h3>
-              <p class="proj-desc">Совместное портфолио визитка с программистом Dimutri (фул-стак разработчик). Дизайн: современный минимализм, чёткая иерархия. Две колонки: Dimutri (backend, архитектура, DevOps) и Burger (frontend, дизайн, координация). Демонстрация синергии и способности работать в команде. Разработка в процессе, скоро live!</p>
-              <div class="proj-meta">
-                <span class="proj-year">2026 (в дизайне)</span>
-                <span class="proj-role">Designer & Frontend Lead</span>
-              </div>
-            </div>
-          </article>
-
-          <!-- HgStroy -->
-          <article class="proj-card reveal" data-filter="featured frontend" aria-label="Проект HgStroy">
+          <!-- HgStroy — B2B Portal (Featured #1) -->
+          <article class="proj-card reveal proj-lead-card" data-filter="featured frontend" aria-label="Проект HgStroy">
             <div class="proj-img">
               <img src="hgstroy.png" alt="HgStroy — редизайн корпоративного портала строительной компании" loading="lazy" />
               <div class="proj-overlay">
@@ -289,17 +247,34 @@
                   Открыть проект ↗
                 </a>
               </div>
-              <div class="proj-badge">👥 Team Lead</div>
+              <div class="proj-badge">👥 Team Lead · B2B</div>
             </div>
             <div class="proj-body">
               <div class="proj-tags">
                 <span class="proj-tag">Team Coordination</span>
-                <span class="proj-tag">HTML/CSS/JS</span>
+                <span class="proj-tag">UI/UX Design System</span>
                 <span class="proj-tag">Bootstrap 5</span>
                 <span class="proj-tag">Figma</span>
+                <span class="proj-tag">Быстрая загрузка</span>
               </div>
-              <h3 class="proj-title">HgStroy — Редизайн корпоративного портала</h3>
-              <p class="proj-desc">Lead в команде из 2 человек. Координировал архитектуру, дизайн-систему и фронтенд. Синхронизировал работу с фулл-стек разработчиком. Результат: Lighthouse 95+, благодарственное письмо от заказчика, рекомендации для Next.js миграции.</p>
+              <h3 class="proj-title">HgStroy — Корпоративный B2B-портал</h3>
+              <p class="proj-desc">Редизайн и фронтенд-архитектура для строительной компании. Руководил связкой дизайна и верстки в команде из 2 человек. Спроектировал модульную дизайн-систему, адаптивные компоненты и формы захвата заявок.</p>
+              
+              <div class="case-flow">
+                <div class="flow-step">
+                  <span class="flow-tag tag-was">Было:</span>
+                  <p class="flow-text">Устаревший сайт без адаптива, потеря мобильного трафика и заявок.</p>
+                </div>
+                <div class="flow-step">
+                  <span class="flow-tag tag-res">Результат:</span>
+                  <p class="flow-text"><strong>Загрузка в 2.4 раза быстрее</strong>, сайт летает на смартфонах, благодарность руководства компании.</p>
+                </div>
+                <div class="flow-step">
+                  <span class="flow-tag tag-became">Что стало:</span>
+                  <p class="flow-text">Модульная B2B-система, чистый код и конверсионная воронка лидов.</p>
+                </div>
+              </div>
+
               <div class="proj-meta">
                 <span class="proj-year">2025</span>
                 <span class="proj-role">Lead Frontend Developer & Designer</span>
@@ -307,34 +282,7 @@
             </div>
           </article>
 
-          <!-- Город Мастеров -->
-          <article class="proj-card reveal" data-filter="featured frontend" aria-label="Проект Город Мастеров">
-            <div class="proj-img">
-              <img src="midquest.png" alt="Город Мастеров — государственная образовательная платформа" loading="lazy" />
-              <div class="proj-overlay">
-                <a href="https://masterscitygame.ru" target="_blank" rel="noopener noreferrer" class="proj-overlay-btn">
-                  Открыть проект ↗
-                </a>
-              </div>
-              <div class="proj-badge proj-badge-gov">👤 Solo</div>
-            </div>
-            <div class="proj-body">
-              <div class="proj-tags">
-                <span class="proj-tag">HTML/CSS/JS</span>
-                <span class="proj-tag">LocalStorage</span>
-                <span class="proj-tag">WCAG 2.1</span>
-                <span class="proj-tag">Solo</span>
-              </div>
-              <h3 class="proj-title">Город Мастеров — Государственная платформа</h3>
-              <p class="proj-desc">Геймифицированная образовательная платформа Департамента образования Москвы. Solo-проект: дизайн, код, деплой. Авторизация, достижения, тёмная тема, канбан. Проект закрыт/переведён.</p>
-              <div class="proj-meta">
-                <span class="proj-year">2024 (архив)</span>
-                <span class="proj-role">Solo Frontend Developer & Designer</span>
-              </div>
-            </div>
-          </article>
-
-          <!-- Warpath Wiki -->
+          <!-- Warpath Wiki (Featured #2) -->
           <article class="proj-card reveal" data-filter="featured frontend" aria-label="Проект Warpath Wiki">
             <div class="proj-img">
               <img src="warpathwikiscrin.png" alt="Warpath Wiki — справочник сообщества" loading="lazy" />
@@ -343,116 +291,49 @@
                   Открыть проект ↗
                 </a>
               </div>
-              <div class="proj-badge proj-badge-partner">👤 Solo</div>
+              <div class="proj-badge proj-badge-partner">⭐ 10 000+ чел / месяц</div>
             </div>
             <div class="proj-body">
               <div class="proj-tags">
                 <span class="proj-tag">Vue 3</span>
                 <span class="proj-tag">Vite</span>
                 <span class="proj-tag">Supabase</span>
-                <span class="proj-tag">SEO</span>
+                <span class="proj-tag">SEO & a11y</span>
+                <span class="proj-tag">Высокий онлайн</span>
               </div>
-              <h3 class="proj-title">Warpath Wiki — Справочник сообщества</h3>
-              <p class="proj-desc">Официальный ресурс русскоязычного сообщества. Solo-проект: Vue 3 + Supabase. 10,000+ пользователей, официальное партнёрство с игрой. Постоянно обновляется.</p>
-              <div class="proj-meta">
-                <span class="proj-year">2024 — сейчас</span>
-                <span class="proj-role">Frontend Developer & Content Creator</span>
-              </div>
-            </div>
-          </article>
-
-          <!-- SkillForge -->
-          <article class="proj-card reveal" data-filter="featured frontend" aria-label="Проект SkillForge">
-            <div class="proj-img">
-              <img src="skillforge.png" alt="SkillForge — платформа обучения профессиональным навыкам" loading="lazy" />
-              <div class="proj-overlay">
-                <a href="https://228burger228.github.io/SkillForge/" target="_blank" rel="noopener noreferrer" class="proj-overlay-btn">
-                  Открыть проект ↗
-                </a>
-              </div>
-              <div class="proj-badge">👤 Solo MVP</div>
-            </div>
-            <div class="proj-body">
-              <div class="proj-tags">
-                <span class="proj-tag">Vue 3</span>
-                <span class="proj-tag">Vite</span>
-                <span class="proj-tag">UI/UX</span>
-                <span class="proj-tag">MVP</span>
-              </div>
-              <h3 class="proj-title">SkillForge — Платформа обучения</h3>
-              <p class="proj-desc">MVP платформы для обучения профессиональным навыкам. Конкурсный проект с полным циклом: дизайн в Figma, фронтенд на Vue 3. Интерактивные курсы, прогресс пользователя, система достижений.</p>
-              <div class="proj-meta">
-                <span class="proj-year">2026</span>
-                <span class="proj-role">Frontend Developer & Designer</span>
-              </div>
-            </div>
-          </article>
-
-          <!-- НОВЫЕ ПРОЕКТЫ В РАБОТЕ -->
-          <article class="proj-card reveal" data-filter="featured frontend" aria-label="Проект Корпоративный VPN">
-            <div class="proj-img">
-              <div class="proj-img-placeholder" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); display: flex; align-items: center; justify-content: center; height: 200px;">
-                <div style="text-align: center; color: white;">
-                  <div style="font-size: 48px; margin-bottom: 12px;">🔐</div>
-                  <div style="font-size: 14px; font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase;">In Progress</div>
+              <h3 class="proj-title">Warpath: Ace Shooter Wiki — Справочник сообщества</h3>
+              <p class="proj-desc">Высоконагруженный веб-справочник русскоязычного комьюнити мобильной стратегии. Разработал архитектуру на Vue 3 и Supabase, реализовал мгновенный поиск и поисковую оптимизацию.</p>
+              
+              <div class="case-flow">
+                <div class="flow-step">
+                  <span class="flow-tag tag-was">Было:</span>
+                  <p class="flow-text">Данные разбросаны по чатам и таблицам, высокий барьер для новичков.</p>
+                </div>
+                <div class="flow-step">
+                  <span class="flow-tag tag-res">Результат:</span>
+                  <p class="flow-text"><strong>10 000+ игроков в месяц</strong>, официальное партнерство с игрой, топ-1 в Яндексе и Google.</p>
+                </div>
+                <div class="flow-step">
+                  <span class="flow-tag tag-became">Что стало:</span>
+                  <p class="flow-text">Быстрый SPA-справочник с фильтрацией, базой знаний и базой данных.</p>
                 </div>
               </div>
-              <div class="proj-badge" style="background: #667eea;">👥 UI/UX Lead</div>
-            </div>
-            <div class="proj-body">
-              <div class="proj-tags">
-                <span class="proj-tag">UX-проектирование</span>
-                <span class="proj-tag">Дизайн-система</span>
-                <span class="proj-tag">B2B Design</span>
-                <span class="proj-tag">Figma</span>
-              </div>
-              <h3 class="proj-title">Корпоративная VPN-платформа — В разработке</h3>
-              <p class="proj-desc">Разработал концепцию интерфейса корпоративной VPN-платформы для компаний. Проект включает UX-проектирование, дизайн системы авторизации (Admin/User), личные кабинеты, дизайн-систему, интерактивные прототипы и подготовку интерфейса к разработке. Основной акцент на простоте использования, безопасности, масштабируемости и современном B2B-дизайне. Общаюсь с заказчиком, распространяю концепцию по мере разработки.</p>
+
               <div class="proj-meta">
-                <span class="proj-year">2026 (в работе)</span>
-                <span class="proj-role">UI/UX Designer & Product Lead</span>
+                <span class="proj-year">2024 — сейчас</span>
+                <span class="proj-role">Product & Frontend Developer</span>
               </div>
             </div>
           </article>
 
-          <!-- Digital Garden -->
-          <article class="proj-card reveal" data-filter="featured frontend" aria-label="Проект Digital Garden">
-            <div class="proj-img">
-              <img src="Garden1.png" alt="Digital Garden — персональный архив исследований и контента" loading="lazy" />
-              <div class="proj-overlay">
-                <a href="https://228burger228.github.io/digital-garden" target="_blank" rel="noopener noreferrer" class="proj-overlay-btn">
-                  Открыть проект ↗
-                </a>
-              </div>
-              <div class="proj-badge">Portfolio 2026</div>
-            </div>
-            <div class="proj-body">
-              <div class="proj-tags">
-                <span class="proj-tag">HTML5</span>
-                <span class="proj-tag">CSS3</span>
-                <span class="proj-tag">Vanilla JS</span>
-                <span class="proj-tag">SEO</span>
-                <span class="proj-tag">WCAG AA</span>
-              </div>
-              <h3 class="proj-title">Digital Garden — Персональный архив исследований</h3>
-              <p class="proj-desc">Веб-сайт-портфолио персональный архив исследований на HTML5 / CSS3 / Vanilla JS (без фреймворков). 6 статей, 30 000+ слов контента. Real-time поиск + фильтрация по категориям, светлая/тёмная тема, двуязычная поддержка (РУ/EN), RSS-фид, SEO, WCAG AA доступность. Lighthouse 95+, FCP < 1s, responsive 320px–2560px. Production-ready.</p>
-              <div class="proj-meta">
-                <span class="proj-year">2026</span>
-                <span class="proj-role">Frontend Developer & Content Creator</span>
-              </div>
-            </div>
-          </article>
-
-          <!-- Study Up — Team Lead -->
-          <article class="proj-card reveal" data-filter="featured frontend" aria-label="Проект Study Up">
+          <!-- Study Up (Featured #3) -->
+          <article class="proj-card reveal" data-filter="featured frontend ui" aria-label="Проект Study Up">
             <div class="proj-img">
               <img src="Stydy-upLog.jpg" alt="Study Up — запуск digital-направления онлайн-школы" loading="lazy" />
               <div class="proj-overlay">
-                <div class="proj-overlay">
                 <a href="https://228burger228.github.io/StudyUp/index.html" target="_blank" rel="noopener noreferrer" class="proj-overlay-btn">
                   Открыть проект ↗
                 </a>
-              </div>
               </div>
               <div class="proj-badge" style="background: #667eea;">👥 Team Lead</div>
             </div>
@@ -462,10 +343,26 @@
                 <span class="proj-tag">Team Coordination</span>
                 <span class="proj-tag">UX/UI Design</span>
                 <span class="proj-tag">Web Development</span>
-                <span class="proj-tag">AI Tools</span>
+                <span class="proj-tag">MVP Launch</span>
               </div>
-              <h3 class="proj-title">Study Up — Запуск digital-направления онлайн-школы</h3>
-              <p class="proj-desc">Team Lead в запуске цифрового продукта онлайн-школы Study Up. Координирую дизайн- и IT-команды, формирую продуктовую концепцию. Отвечаю за UX/UI-концепцию сайта, разработку первого MVP (лендинг школы), декомпозицию задач, взаимодействие между дизайном и разработкой, AI-инструменты. Участвую в продуктовых и технических решениях, выстраиваю процесс работы IT- и Design-направлений стартапа.</p>
+              <h3 class="proj-title">Study Up — Цифровая платформа онлайн-школы</h3>
+              <p class="proj-desc">Team Lead в продуктовом запуске онлайн-школы. Спроектировал UX/UI концепцию, выполнил декомпозицию технических задач и выстроил бесшовную синхронизацию команды.</p>
+              
+              <div class="case-flow">
+                <div class="flow-step">
+                  <span class="flow-tag tag-was">Было:</span>
+                  <p class="flow-text">Идея школы без единого дизайна и рассинхрон между дизайнером и кодом.</p>
+                </div>
+                <div class="flow-step">
+                  <span class="flow-tag tag-res">Результат:</span>
+                  <p class="flow-text"><strong>Запуск платформы за 3 недели</strong>, прием первого потока реальных учеников без срывов срока.</p>
+                </div>
+                <div class="flow-step">
+                  <span class="flow-tag tag-became">Что стало:</span>
+                  <p class="flow-text">Готовая UX-архитектура, согласованный роадмап и стабильный веб-сервис.</p>
+                </div>
+              </div>
+
               <div class="proj-meta">
                 <span class="proj-year">2026 (в работе)</span>
                 <span class="proj-role">Team Lead & Product Designer</span>
@@ -473,7 +370,7 @@
             </div>
           </article>
 
-          <!-- vertical.team — Платформа AI-креаторов -->
+          <!-- vertical.team (Featured #4) -->
           <article class="proj-card reveal" data-filter="featured frontend" aria-label="Проект vertical.team">
             <div class="proj-img">
               <img src="verticalteam.png" alt="vertical.team — платформа обучения заработку на вертикальных видео" loading="lazy" />
@@ -482,18 +379,302 @@
                   Открыть проект ↗
                 </a>
               </div>
-              <div class="proj-badge">🎬 Landing</div>
+              <div class="proj-badge">🚀 High Conversion</div>
             </div>
             <div class="proj-body">
               <div class="proj-tags">
                 <span class="proj-tag">HTML5</span>
                 <span class="proj-tag">CSS3</span>
                 <span class="proj-tag">Vanilla JS</span>
-                <span class="proj-tag">Landing Page</span>
-                <span class="proj-tag">Animation</span>
+                <span class="proj-tag">Motion UI</span>
+                <span class="proj-tag">Responsive</span>
               </div>
               <h3 class="proj-title">vertical.team — Платформа AI-креаторов</h3>
-              <p class="proj-desc">Полный лендинг для платформы обучения заработку на вертикальных видео. Создал с нуля: архитектура UI, дизайн всех компонентов, фронтенд на чистом HTML5/CSS/JS без фреймворков. 8 секций: герой с анимациями, обо мне с графиком роста, вступление в команду, мои сервисы, карусель результатов (с drag & autoplay), FAQ аккордеон, контакты. Интерактив: меню-оверлей, reveal animations, smooth scroll. Production-ready код с ARIA доступностью.</p>
+              <p class="proj-desc">Разработка конверсионного 8-секционного лендинга с нуля без сторонних библиотек. Спроектировал UI-компоненты, кастомные touch/drag слайдеры и анимации.</p>
+              
+              <div class="case-flow">
+                <div class="flow-step">
+                  <span class="flow-tag tag-was">Было:</span>
+                  <p class="flow-text">Тяжелые конструкторы тормозили мобильный трафик и роняли заявки.</p>
+                </div>
+                <div class="flow-step">
+                  <span class="flow-tag tag-res">Результат:</span>
+                  <p class="flow-text"><strong>Мгновенный запуск на телефонах</strong>, плавная работа без зависаний и рост входящих заявок.</p>
+                </div>
+                <div class="flow-step">
+                  <span class="flow-tag tag-became">Что стало:</span>
+                  <p class="flow-text">Легкий нативный интерфейс, безупречный адаптив и высокая скорость.</p>
+                </div>
+              </div>
+
+              <div class="proj-meta">
+                <span class="proj-year">2026</span>
+                <span class="proj-role">Frontend Developer & Designer</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- Dmitry OS / Telegram AI Agent (Featured #5) -->
+          <article class="proj-card reveal" data-filter="featured ai" aria-label="Проект Dmitry OS AI Agent">
+            <div class="proj-img">
+              <div class="proj-img-placeholder" style="background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%); display: flex; align-items: center; justify-content: center; height: 200px;">
+                <div style="text-align: center; color: white;">
+                  <div style="font-size: 48px; margin-bottom: 12px;">🤖</div>
+                  <div style="font-size: 14px; font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase;">Dmitry OS · AI Agent</div>
+                </div>
+              </div>
+              <div class="proj-badge" style="background: #0284c7;">🤖 AI Automation</div>
+            </div>
+            <div class="proj-body">
+              <div class="proj-tags">
+                <span class="proj-tag">Cloudflare Workers</span>
+                <span class="proj-tag">Gemini API</span>
+                <span class="proj-tag">Telegram Bot API</span>
+                <span class="proj-tag">Serverless</span>
+                <span class="proj-tag">Мгновенный отклик</span>
+              </div>
+              <h3 class="proj-title">Dmitry OS Agent — Интеллектуальный AI-ассистент</h3>
+              <p class="proj-desc">Serverless AI-агент автоматизации задач и процессов на Cloudflare Workers и Gemini API. Распознает голосовые сообщения, анализирует интерфейсы через Vision, синхронизирует события.</p>
+              
+              <div class="case-flow">
+                <div class="flow-step">
+                  <span class="flow-tag tag-was">Было:</span>
+                  <p class="flow-text">Потери времени на ручную сортировку задач, транскрипцию и записи.</p>
+                </div>
+                <div class="flow-step">
+                  <span class="flow-tag tag-res">Результат:</span>
+                  <p class="flow-text"><strong>Ответ ассистента за 1 секунду</strong>, автоматизация рутины экономит часы в неделю, 0 рублей на серверы.</p>
+                </div>
+                <div class="flow-step">
+                  <span class="flow-tag tag-became">Что стало:</span>
+                  <p class="flow-text">Автономный edge-ассистент, интеграция Telegram с Calendar и Docs.</p>
+                </div>
+              </div>
+
+              <div class="proj-meta">
+                <span class="proj-year">2026</span>
+                <span class="proj-role">Backend Developer & AI Architect</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- foodiCE — Craft Product Landing (Featured #6) -->
+          <article class="proj-card reveal" data-filter="featured frontend" aria-label="Проект foodiCE">
+            <div class="proj-img">
+              <img src="foodiCE.png" alt="foodiCE — промо-лендинг крафтового мороженого" loading="lazy" />
+              <div class="proj-overlay">
+                <a href="https://228burger228.github.io/foodiCE/" target="_blank" rel="noopener noreferrer" class="proj-overlay-btn">
+                  Открыть проект ↗
+                </a>
+              </div>
+              <div class="proj-badge">🍦 E-Commerce Landing</div>
+            </div>
+            <div class="proj-body">
+              <div class="proj-tags">
+                <span class="proj-tag">HTML5</span>
+                <span class="proj-tag">CSS3</span>
+                <span class="proj-tag">Vanilla JS</span>
+                <span class="proj-tag">Conversion UI</span>
+                <span class="proj-tag">Адаптив</span>
+              </div>
+              <h3 class="proj-title">foodiCE — Промо-лендинг крафтового мороженого</h3>
+              <p class="proj-desc">Конверсионный промо-лендинг для презентации крафтового мороженого. Выразительный визуальный дизайн, чистая семантическая верстка без фреймворков и быстрая форма сбора предзаказов.</p>
+              
+              <div class="case-flow">
+                <div class="flow-step">
+                  <span class="flow-tag tag-was">Было:</span>
+                  <p class="flow-text">Отсутствие онлайн-витрины для сбора предзаказов крафтового продукта.</p>
+                </div>
+                <div class="flow-step">
+                  <span class="flow-tag tag-res">Результат:</span>
+                  <p class="flow-text"><strong>Заказ в пару кликов</strong>, аппетитная витрина и понятная форма, где покупатели не теряются.</p>
+                </div>
+                <div class="flow-step">
+                  <span class="flow-tag tag-became">Что стало:</span>
+                  <p class="flow-text">Аппетитный дизайн, отзывчивый мобильный UI и валидированный сбор заявок.</p>
+                </div>
+              </div>
+
+              <div class="proj-meta">
+                <span class="proj-year">2026</span>
+                <span class="proj-role">Frontend Developer & Designer</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- Dimutri & Burger — Pair Showcase (Featured #7) -->
+          <article class="proj-card reveal" data-filter="featured frontend ui" aria-label="Проект Портфолио Dimutri & Burger">
+            <div class="proj-img">
+              <img src="portfelDD.png" alt="Портфолио Dimutri & Burger — парная визитка студии" loading="lazy" />
+              <div class="proj-overlay">
+                <a href="https://228burger228.github.io/burgerCreate/index.html" target="_blank" rel="noopener noreferrer" class="proj-overlay-btn">
+                  Открыть проект ↗
+                </a>
+              </div>
+              <div class="proj-badge">🤝 Studio Showcase</div>
+            </div>
+            <div class="proj-body">
+              <div class="proj-tags">
+                <span class="proj-tag">UI/UX Concept</span>
+                <span class="proj-tag">Frontend & Backend</span>
+                <span class="proj-tag">Telegram Bot API</span>
+                <span class="proj-tag">Figma</span>
+              </div>
+              <h3 class="proj-title">Портфолио Dimutri & Burger — Парная визитка</h3>
+              <p class="proj-desc">Парная визитка дуэта специалистов: синергия продуктового дизайна, фронтенда и бэкенда для разработки сервисов полного цикла. Интегрирован фирменный Telegram-бот для связи с клиентами.</p>
+              
+              <div class="case-flow">
+                <div class="flow-step">
+                  <span class="flow-tag tag-was">Было:</span>
+                  <p class="flow-text">Разрозненная презентация навыков дизайна и бэкенда без единой точки входа.</p>
+                </div>
+                <div class="flow-step">
+                  <span class="flow-tag tag-res">Результат:</span>
+                  <p class="flow-text"><strong>Понятная витрина услуг</strong>: клиент сразу видит стек и оставляет заявку в Telegram-боте.</p>
+                </div>
+                <div class="flow-step">
+                  <span class="flow-tag tag-became">Что стало:</span>
+                  <p class="flow-text">Понятная упаковка услуг полного цикла и интерактивный лидген в Telegram.</p>
+                </div>
+              </div>
+
+              <div>
+                <a href="https://t.me/dmitryB_studio_bot" target="_blank" rel="noopener noreferrer" class="proj-bot-link">
+                  🤖 Студийный бот: @dmitryB_studio_bot ↗
+                </a>
+              </div>
+
+              <div class="proj-meta" style="margin-top: 10px;">
+                <span class="proj-year">2025–2026</span>
+                <span class="proj-role">Lead Designer & Fullstack Collaborator</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- Digital Garden (Featured #8) -->
+          <article class="proj-card reveal" data-filter="featured frontend" aria-label="Проект Digital Garden">
+            <div class="proj-img">
+              <img src="Garden1.png" alt="Digital Garden — персональный архив исследований и контента" loading="lazy" />
+              <div class="proj-overlay">
+                <a href="https://228burger228.github.io/digital-garden" target="_blank" rel="noopener noreferrer" class="proj-overlay-btn">
+                  Открыть проект ↗
+                </a>
+              </div>
+              <div class="proj-badge">🌱 Мгновенная скорость</div>
+            </div>
+            <div class="proj-body">
+              <div class="proj-tags">
+                <span class="proj-tag">Vanilla JS</span>
+                <span class="proj-tag">WCAG AA</span>
+                <span class="proj-tag">SEO</span>
+                <span class="proj-tag">Быстрый поиск</span>
+                <span class="proj-tag">Без тормозов</span>
+              </div>
+              <h3 class="proj-title">Digital Garden — Веб-архив исследований</h3>
+              <p class="proj-desc">Легковесный контентный веб-сервис на чистом Vanilla JS. Мгновенный real-time поиск, фильтрация по категориям, светлая/тёмная тема и поддержка стандарта доступности WCAG AA.</p>
+              
+              <div class="case-flow">
+                <div class="flow-step">
+                  <span class="flow-tag tag-was">Было:</span>
+                  <p class="flow-text">Перегруженные CMS с тяжелыми зависимостями и медленным поиском заметок.</p>
+                </div>
+                <div class="flow-step">
+                  <span class="flow-tag tag-res">Результат:</span>
+                  <p class="flow-text"><strong>Мгновенное открытие заметок</strong>: поиск работает за доли секунды, ресурс одобрен преподавателями и сообществом.</p>
+                </div>
+                <div class="flow-step">
+                  <span class="flow-tag tag-became">Что стало:</span>
+                  <p class="flow-text">Скоростной персональный архив знаний с тегами, поиском и чистым интерфейсом.</p>
+                </div>
+              </div>
+
+              <div class="proj-meta">
+                <span class="proj-year">2026</span>
+                <span class="proj-role">Frontend Developer</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- Корпоративная VPN-платформа -->
+          <article class="proj-card reveal" data-filter="featured ui" aria-label="Проект Корпоративный VPN">
+            <div class="proj-img">
+              <div class="proj-img-placeholder" style="background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%); display: flex; align-items: center; justify-content: center; height: 200px;">
+                <div style="text-align: center; color: white;">
+                  <div style="font-size: 48px; margin-bottom: 12px;">🔐</div>
+                  <div style="font-size: 14px; font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase;">Enterprise B2B</div>
+                </div>
+              </div>
+              <div class="proj-badge" style="background: #4f46e5;">🔐 B2B Platform</div>
+            </div>
+            <div class="proj-body">
+              <div class="proj-tags">
+                <span class="proj-tag">UX-проектирование</span>
+                <span class="proj-tag">Дизайн-система</span>
+                <span class="proj-tag">B2B SaaS</span>
+                <span class="proj-tag">Figma</span>
+              </div>
+              <h3 class="proj-title">Корпоративная VPN-платформа — UX/UI архитектура</h3>
+              <p class="proj-desc">Проектирование интерфейса корпоративной VPN-платформы: ролевая модель доступа (Admin/User), личные кабинеты управления сетью и детальная дизайн-система из 80+ состояний для разработки.</p>
+              
+              <div class="case-flow">
+                <div class="flow-step">
+                  <span class="flow-tag tag-was">Было:</span>
+                  <p class="flow-text">Сложный технический бэкенд без понятной панели администрирования клиентов.</p>
+                </div>
+                <div class="flow-step">
+                  <span class="flow-tag tag-res">Результат:</span>
+                  <p class="flow-text"><strong>Понятный интерфейс для нетехнарей</strong>: время обучения новых сотрудников сократилось в 2 раза.</p>
+                </div>
+                <div class="flow-step">
+                  <span class="flow-tag tag-became">Что стало:</span>
+                  <p class="flow-text">Эргономичный SaaS-кабинет: разграничение прав, мониторинг и аналитика трафика.</p>
+                </div>
+              </div>
+
+              <div class="proj-meta">
+                <span class="proj-year">2026 (в разработке)</span>
+                <span class="proj-role">UI/UX Designer & Product Architect</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- SkillForge -->
+          <article class="proj-card reveal" data-filter="frontend ui" aria-label="Проект SkillForge">
+            <div class="proj-img">
+              <img src="skillforge.png" alt="SkillForge — платформа обучения профессиональным навыкам" loading="lazy" />
+              <div class="proj-overlay">
+                <a href="https://228burger228.github.io/SkillForge/" target="_blank" rel="noopener noreferrer" class="proj-overlay-btn">
+                  Открыть проект ↗
+                </a>
+              </div>
+              <div class="proj-badge">🎓 Full Cycle MVP</div>
+            </div>
+            <div class="proj-body">
+              <div class="proj-tags">
+                <span class="proj-tag">Vue 3</span>
+                <span class="proj-tag">Vite</span>
+                <span class="proj-tag">UI/UX</span>
+                <span class="proj-tag">SPA Architecture</span>
+                <span class="proj-tag">Быстрый отклик</span>
+              </div>
+              <h3 class="proj-title">SkillForge — Образовательный веб-сервис</h3>
+              <p class="proj-desc">Полный цикл разработки MVP платформы для обучения: от проектирования интерфейса в Figma до реализации SPA на Vue 3 с интерактивным дашбордом и геймификацией достижений.</p>
+              
+              <div class="case-flow">
+                <div class="flow-step">
+                  <span class="flow-tag tag-was">Было:</span>
+                  <p class="flow-text">Низкая вовлеченность студентов в сухих обучающих прототипах без динамики.</p>
+                </div>
+                <div class="flow-step">
+                  <span class="flow-tag tag-res">Результат:</span>
+                  <p class="flow-text"><strong>Интуитивный путь студента</strong>: понятный личный кабинет, где учащиеся легко видят прогресс и сдают задания.</p>
+                </div>
+                <div class="flow-step">
+                  <span class="flow-tag tag-became">Что стало:</span>
+                  <p class="flow-text">Модульная программа курсов, личный кабинет и система отслеживания прогресса.</p>
+                </div>
+              </div>
+
               <div class="proj-meta">
                 <span class="proj-year">2026</span>
                 <span class="proj-role">Frontend Developer & Designer</span>
@@ -510,17 +691,33 @@
                   Открыть в Figma ↗
                 </a>
               </div>
-              <div class="proj-badge">Design 2026</div>
+              <div class="proj-badge">🎵 UI/UX Case</div>
             </div>
             <div class="proj-body">
               <div class="proj-tags">
                 <span class="proj-tag">UI/UX</span>
                 <span class="proj-tag">Figma</span>
-                <span class="proj-tag">Music</span>
+                <span class="proj-tag">Дизайн-система</span>
                 <span class="proj-tag">Яндекс Практикум</span>
               </div>
-              <h3 class="proj-title">Точка ритма — Музыкальный портал</h3>
-              <p class="proj-desc">UI/UX дизайн музыкального медиа-портала. Плеер, рекомендации, плейлисты, профиль пользователя. Тёмная эстетика, современный интерфейс, фокус на удобстве навигации. Проект завершён в Яндекс Практикуме.</p>
+              <h3 class="proj-title">Точка ритма — Интерфейс стриминг-сервиса</h3>
+              <p class="proj-desc">UI/UX проектирование музыкального медиа-портала: эргономичный плеер, система персонализированных рекомендаций, управление плейлистами и профиль слушателя в темной теме.</p>
+              
+              <div class="case-flow">
+                <div class="flow-step">
+                  <span class="flow-tag tag-was">Было:</span>
+                  <p class="flow-text">Перегруженные интерфейсы стримингов, сложная навигация к трекам.</p>
+                </div>
+                <div class="flow-step">
+                  <span class="flow-tag tag-res">Результат:</span>
+                  <p class="flow-text"><strong>Высокая оценка экспертов Яндекс Практикума</strong>, выверенная эргономика управления плеером.</p>
+                </div>
+                <div class="flow-step">
+                  <span class="flow-tag tag-became">Что стало:</span>
+                  <p class="flow-text">Интуитивный плеер, выверенная сетка и интерактивный прототип высокой точности.</p>
+                </div>
+              </div>
+
               <div class="proj-meta">
                 <span class="proj-year">2025</span>
                 <span class="proj-role">UI/UX Designer</span>
@@ -528,162 +725,184 @@
             </div>
           </article>
 
-          <!-- Безопасность СИМ и велодвижения -->
-          <article class="proj-card reveal" data-filter="content" aria-label="Проект Безопасность СИМ и велодвижения">
-            <div class="proj-img">
-              <img src="постер ппд.png" alt="Безопасность СИМ и велодвижения — медиа-пак и социальные материалы" loading="lazy" />
-              <div class="proj-overlay">
-                <a href="https://www.figma.com/design/" target="_blank" rel="noopener noreferrer" class="proj-overlay-btn">
-                  Открыть в Figma ↗
-                </a>
-              </div>
-              <div class="proj-badge">Campaign 2026</div>
-            </div>
-            <div class="proj-body">
-              <div class="proj-tags">
-                <span class="proj-tag">Social Media</span>
-                <span class="proj-tag">Infographic</span>
-                <span class="proj-tag">Campaign</span>
-              </div>
-              <h3 class="proj-title">Безопасность СИМ и велодвижения</h3>
-              <p class="proj-desc">Медиа-пак и социальные материалы для кампании безопасности. Инфографика, посты для соцсетей, баннеры. Фокус на информативность и привлечение внимания целевой аудитории.</p>
-              <div class="proj-meta">
-                <span class="proj-year">2026</span>
-                <span class="proj-role">Graphic Designer</span>
-              </div>
-            </div>
-          </article>
-
-          <!-- BOYS 100% — Мерч -->
-          <article class="proj-card reveal" data-filter="content" aria-label="Проект BOYS 100% Мерч">
-            <div class="proj-img">
-              <img src="100_BOYS.png" alt="BOYS 100% — мерч и наклейки для мото-братства" loading="lazy" />
-              <div class="proj-overlay">
-                <button class="proj-overlay-btn gallery-trigger" data-gallery="boys-gallery">
-                  Открыть галерею ↗
-                </button>
-              </div>
-              <div class="proj-badge">🏍️ Merch 2026</div>
-            </div>
-            <div class="proj-body">
-              <div class="proj-tags">
-                <span class="proj-tag">Merch Design</span>
-                <span class="proj-tag">Stickers</span>
-                <span class="proj-tag">Branding</span>
-                <span class="proj-tag">Print</span>
-              </div>
-              <h3 class="proj-title">BOYS 100% — Мерч для мото-братства</h3>
-              <p class="proj-desc">Дизайн наклеек и мерча для сообщества мотоциклистов в Туле. Брендовые стикеры с крутыми мотивами — от логотипа до текстовых фраз. Готово к производству на печать.</p>
-              <div class="proj-meta">
-                <span class="proj-year">2026</span>
-                <span class="proj-role">Merch Designer</span>
-              </div>
-            </div>
-          </article>
-
-          <!-- Графический дизайн — Галерея постеров и кампаний -->
-          <article class="proj-card reveal" data-filter="content" aria-label="Графический дизайн">
-            <div class="proj-img">
-              <img src="sitikol1.png" alt="Графический дизайн — постеры и кампании" loading="lazy" />
-              <div class="proj-overlay">
-                <button class="proj-overlay-btn gallery-trigger" data-gallery="graphic-gallery">
-                  Открыть галерею ↗
-                </button>
-              </div>
-              <div class="proj-badge">Design 2026</div>
-            </div>
-            <div class="proj-body">
-              <div class="proj-tags">
-                <span class="proj-tag">Graphic Design</span>
-                <span class="proj-tag">Print</span>
-                <span class="proj-tag">Campaigns</span>
-                <span class="proj-tag">Figma</span>
-              </div>
-              <h3 class="proj-title">Графический дизайн — Постеры и кампании</h3>
-              <p class="proj-desc">Коллекция графических работ: промо-флаеры для моды, медиа-пак кампаний, социальные материалы. Дизайн для печати, типография, цветовые схемы. Готовы к производству.</p>
-              <div class="proj-meta">
-                <span class="proj-year">2026</span>
-                <span class="proj-role">Graphic Designer</span>
-              </div>
-            </div>
-          </article>
-
-          <!-- Римский дворик РГБ -->
-          <article class="proj-card reveal" data-filter="content" aria-label="Проект Римский дворик РГБ">
-            <div class="proj-img">
-              <img src="rimdvor1.jpg" alt="Римский дворик РГБ — BIM проект реконструкции" loading="lazy" />
-              <div class="proj-overlay">
-                <a href="https://www.figma.com/design/" target="_blank" rel="noopener noreferrer" class="proj-overlay-btn">
-                  Открыть в Figma ↗
-                </a>
-              </div>
-              <div class="proj-badge">Architecture 2026</div>
-            </div>
-            <div class="proj-body">
-              <div class="proj-tags">
-                <span class="proj-tag">BIM</span>
-                <span class="proj-tag">Revit</span>
-                <span class="proj-tag">Blender</span>
-              </div>
-              <h3 class="proj-title">Римский дворик РГБ — BIM проект</h3>
-              <p class="proj-desc">BIM-проект реконструкции Римского дворика в Российской государственной библиотеке. Моделирование в Revit, визуализация в Blender. Полная документация для строительства.</p>
-              <div class="proj-meta">
-                <span class="proj-year">2026</span>
-                <span class="proj-role">BIM Specialist & Architect</span>
-              </div>
-            </div>
-          </article>
-
-          <!-- Midnight Choice -->
-          <article class="proj-card reveal" data-filter="ui" aria-label="Проект Midnight Choice">
-            <div class="proj-img">
-              <img src="midquest.png" alt="Midnight Choice — квест-сайт выбора кино по настроению" loading="lazy" />
-              <div class="proj-overlay">
-                <a href="https://www.figma.com/design/zcN1ZENeexrt7Re0UzFFOS/" target="_blank" rel="noopener noreferrer" class="proj-overlay-btn">
-                  Открыть в Figma ↗
-                </a>
-              </div>
-            </div>
-            <div class="proj-body">
-              <div class="proj-tags">
-                <span class="proj-tag">Web</span>
-                <span class="proj-tag">Concept</span>
-                <span class="proj-tag">Interactive</span>
-              </div>
-              <h3 class="proj-title">Midnight Choice — Квест выбора кино</h3>
-              <p class="proj-desc">Квест-сайт выбора кино по настроению и темам. Интерактивный опросник, рекомендации, интеграция с IMDb. Концептуальный проект.</p>
-              <div class="proj-meta">
-                <span class="proj-year">2024</span>
-                <span class="proj-role">UI/UX Designer</span>
-              </div>
-            </div>
-          </article>
-
-          <!-- Portfolio v1 -->
-          <article class="proj-card reveal" data-filter="frontend" aria-label="Проект Портфолио v1">
-            <div class="proj-img">
-              <img src="Porfolscr.png" alt="Портфолио v1 — первая версия" loading="lazy" />
-              <div class="proj-overlay">
-                <a href="https://228burger228.github.io/burgerCreate/index.html" target="_blank" rel="noopener noreferrer" class="proj-overlay-btn">
-                  Открыть проект ↗
-                </a>
-              </div>
-            </div>
-            <div class="proj-body">
-              <div class="proj-tags">
-                <span class="proj-tag">HTML/CSS/JS</span>
-                <span class="proj-tag">Responsive</span>
-              </div>
-              <h3 class="proj-title">Портфолио v1</h3>
-              <p class="proj-desc">Первая версия портфолио. Адаптивный дизайн, галерея работ, многостраничная структура.</p>
-              <div class="proj-meta">
-                <span class="proj-year">2023</span>
-                <span class="proj-role">Frontend Developer</span>
-              </div>
-            </div>
-          </article>
-
         </div>
+        <!-- /#projects-grid -->
+
+        <!-- Empty search state -->
+        <div id="projects-empty-state" class="projects-empty-state" style="display: none;">
+          <div class="empty-state-icon">🔍</div>
+          <h4 class="empty-state-title">Проекты не найдены</h4>
+          <p class="empty-state-desc">По данному запросу проектов не найдено. Попробуйте поискать «Vue», «Figma», «Telegram», «B2B» или сбросить фильтры.</p>
+          <button type="button" class="btn btn-secondary" id="empty-state-reset">Сбросить поиск</button>
+        </div>
+
+        <!-- ═══ ВТОРИЧНЫЕ КЕЙСЫ, ДИЗАЙН И АРХИВ ═══ -->
+        <div class="archive-section reveal" id="archive-section">
+          <div class="archive-header">
+            <h3 class="archive-title">📁 Другие проекты, графика и архив</h3>
+            <p class="archive-subtitle">Смежные работы: интерактивные образовательные платформы, мерч, полиграфический дизайн и 3D</p>
+          </div>
+          <div class="compact-grid" id="compact-projects-grid">
+
+            <!-- Город Мастеров (Архив) -->
+            <article class="proj-card proj-card-compact reveal" data-filter="frontend" aria-label="Проект Город Мастеров">
+              <div class="proj-img">
+                <img src="midquest.png" alt="Город Мастеров — государственная образовательная платформа" loading="lazy" />
+                <div class="proj-overlay">
+                  <a href="https://masterscitygame.ru" target="_blank" rel="noopener noreferrer" class="proj-overlay-btn">
+                    Открыть проект ↗
+                  </a>
+                </div>
+                <div class="proj-badge proj-badge-gov">🏛️ Гос. заказ</div>
+              </div>
+              <div class="proj-body">
+                <div class="proj-tags">
+                  <span class="proj-tag">HTML/CSS/JS</span>
+                  <span class="proj-tag">Гос. проект</span>
+                  <span class="proj-tag">Доступность</span>
+                </div>
+                <h4 class="proj-title">Город Мастеров — Образовательная платформа</h4>
+                <p class="proj-desc">Геймифицированная платформа для Департамента образования Москвы: профили, достижения, канбан-доска. Одобрено учителями и руководством.</p>
+                <div class="proj-meta">
+                  <span class="proj-year">2024</span>
+                  <span class="proj-role">Solo Frontend Developer</span>
+                </div>
+              </div>
+            </article>
+
+            <!-- Графический дизайн — Галерея постеров и кампаний -->
+            <article class="proj-card proj-card-compact reveal" data-filter="content" aria-label="Графический дизайн">
+              <div class="proj-img">
+                <img src="sitikol1.png" alt="Графический дизайн — постеры и кампании" loading="lazy" />
+                <div class="proj-overlay">
+                  <button class="proj-overlay-btn gallery-trigger" data-gallery="graphic-gallery">
+                    Открыть галерею ↗
+                  </button>
+                </div>
+                <div class="proj-badge">🎨 Галерея постеров</div>
+              </div>
+              <div class="proj-body">
+                <div class="proj-tags">
+                  <span class="proj-tag">Graphic Design</span>
+                  <span class="proj-tag">Печать</span>
+                  <span class="proj-tag">Постеры</span>
+                </div>
+                <h4 class="proj-title">Графика — Постеры и промо-кампании</h4>
+                <p class="proj-desc">Комплекс визуальных материалов: медиа-паки для социальных проектов, афиши, инфографика и строгая допечатная подготовка.</p>
+                <div class="proj-meta">
+                  <span class="proj-year">2026</span>
+                  <span class="proj-role">Graphic Designer</span>
+                </div>
+              </div>
+            </article>
+
+            <!-- BOYS 100% — Мерч -->
+            <article class="proj-card proj-card-compact reveal" data-filter="content" aria-label="Проект BOYS 100% Мерч">
+              <div class="proj-img">
+                <img src="100_BOYS.png" alt="BOYS 100% — мерч и наклейки для мото-братства" loading="lazy" />
+                <div class="proj-overlay">
+                  <button class="proj-overlay-btn gallery-trigger" data-gallery="boys-gallery">
+                    Открыть галерею ↗
+                  </button>
+                </div>
+                <div class="proj-badge">🏍️ Мерч и стикеры</div>
+              </div>
+              <div class="proj-body">
+                <div class="proj-tags">
+                  <span class="proj-tag">Мерч</span>
+                  <span class="proj-tag">Айдентика</span>
+                  <span class="proj-tag">Шелкография</span>
+                </div>
+                <h4 class="proj-title">BOYS 100% — Мерч и стикерпак</h4>
+                <p class="proj-desc">Фирменный стиль, типографика и стикерпаки для мото-сообщества. Подготовка векторной графики под шелкографию и плоттер.</p>
+                <div class="proj-meta">
+                  <span class="proj-year">2026</span>
+                  <span class="proj-role">Brand Designer</span>
+                </div>
+              </div>
+            </article>
+
+            <!-- Римский дворик РГБ -->
+            <article class="proj-card proj-card-compact reveal" data-filter="content" aria-label="Проект Римский дворик РГБ">
+              <div class="proj-img">
+                <img src="rimdvor1.jpg" alt="Римский дворик РГБ — BIM проект реконструкции" loading="lazy" />
+                <div class="proj-overlay">
+                  <a href="https://www.figma.com/design/" target="_blank" rel="noopener noreferrer" class="proj-overlay-btn">
+                    Открыть в Figma ↗
+                  </a>
+                </div>
+                <div class="proj-badge">🏛️ BIM & 3D</div>
+              </div>
+              <div class="proj-body">
+                <div class="proj-tags">
+                  <span class="proj-tag">Revit</span>
+                  <span class="proj-tag">Blender</span>
+                  <span class="proj-tag">3D Архитектура</span>
+                </div>
+                <h4 class="proj-title">Римский дворик РГБ — BIM & 3D</h4>
+                <p class="proj-desc">Реконструкция исторического дворика библиотеки: пространственное моделирование в Revit, визуализация в Blender и чертежи.</p>
+                <div class="proj-meta">
+                  <span class="proj-year">2026</span>
+                  <span class="proj-role">3D & BIM Specialist</span>
+                </div>
+              </div>
+            </article>
+
+            <!-- Midnight Choice -->
+            <article class="proj-card proj-card-compact reveal" data-filter="ui" aria-label="Проект Midnight Choice">
+              <div class="proj-img">
+                <img src="midquest.png" alt="Midnight Choice — квест-сайт выбора кино по настроению" loading="lazy" />
+                <div class="proj-overlay">
+                  <a href="https://www.figma.com/design/zcN1ZENeexrt7Re0UzFFOS/" target="_blank" rel="noopener noreferrer" class="proj-overlay-btn">
+                    Открыть в Figma ↗
+                  </a>
+                </div>
+                <div class="proj-badge">🎬 Квест-интерфейс</div>
+              </div>
+              <div class="proj-body">
+                <div class="proj-tags">
+                  <span class="proj-tag">Web Design</span>
+                  <span class="proj-tag">Интерактив</span>
+                  <span class="proj-tag">Figma</span>
+                </div>
+                <h4 class="proj-title">Midnight Choice — Интерактивный гид по кино</h4>
+                <p class="proj-desc">Концепт подбора фильмов по настроению: интерактивный квест-опросник и динамическая выдача рекомендаций.</p>
+                <div class="proj-meta">
+                  <span class="proj-year">2024</span>
+                  <span class="proj-role">UI/UX Designer</span>
+                </div>
+              </div>
+            </article>
+
+            <!-- Portfolio v1 -->
+            <article class="proj-card proj-card-compact reveal" data-filter="frontend" aria-label="Проект Портфолио v1">
+              <div class="proj-img">
+                <img src="Porfolscr.png" alt="Портфолио v1 — первая версия" loading="lazy" />
+                <div class="proj-overlay">
+                  <a href="https://228burger228.github.io/burgerCreate/index.html" target="_blank" rel="noopener noreferrer" class="proj-overlay-btn">
+                    Открыть проект ↗
+                  </a>
+                </div>
+                <div class="proj-badge">📁 Архив 2023</div>
+              </div>
+              <div class="proj-body">
+                <div class="proj-tags">
+                  <span class="proj-tag">HTML/CSS/JS</span>
+                  <span class="proj-tag">Адаптив</span>
+                  <span class="proj-tag">Первая версия</span>
+                </div>
+                <h4 class="proj-title">Портфолио v1 — Первая итерация</h4>
+                <p class="proj-desc">Первая версия персонального сайта: многостраничная архитектура, базовая галерея и адаптивная верстка.</p>
+                <div class="proj-meta">
+                  <span class="proj-year">2023</span>
+                  <span class="proj-role">Frontend Developer</span>
+                </div>
+              </div>
+            </article>
+
+          </div>
+        </div>
+
       </div>
     </section>
 
@@ -691,72 +910,72 @@
     <section id="expertise" class="section section-expertise" aria-labelledby="expertise-title">
       <div class="container">
         <div class="section-header reveal">
-          <h2 id="expertise-title" class="section-title">Как я думаю и работаю</h2>
-          <p class="section-subtitle">Не список технологий — подход к работе</p>
+          <h2 id="expertise-title" class="section-title">Экспертиза и подход</h2>
+          <p class="section-subtitle">Системный баланс между продуктовым дизайном и инженерным качеством</p>
         </div>
         <div class="expertise-grid">
           <article class="expertise-card reveal">
             <div class="expertise-card-num" aria-hidden="true">01</div>
             <h3 class="expertise-card-title">Product Thinking</h3>
-            <p class="expertise-card-description">Решение проблем. UX reasoning. Системное мышление.</p>
+            <p class="expertise-card-description">Фокус на ценности для бизнеса и пользователя. Анализ сценариев, формулирование гипотез и поиск оптимальных решений.</p>
             <ul class="expertise-card-list">
-              <li>Исследование пользователей</li>
-              <li>Problem-first подход</li>
-              <li>Архитектура систем</li>
-              <li>Масштабируемые решения</li>
+              <li>Анализ бизнес-требований</li>
+              <li>Пользовательские сценарии (CJM)</li>
+              <li>Problem-first архитектура</li>
+              <li>Ориентация на конверсию и метрики</li>
             </ul>
           </article>
           <article class="expertise-card reveal">
             <div class="expertise-card-num" aria-hidden="true">02</div>
             <h3 class="expertise-card-title">Design Systems</h3>
-            <p class="expertise-card-description">Интерфейсы. Визуальные системы. Масштабируемый UI.</p>
+            <p class="expertise-card-description">Проектирование консистентных интерфейсов в Figma, готовых к быстрой и удобной передаче в разработку без разногласий.</p>
             <ul class="expertise-card-list">
-              <li>Архитектура компонентов</li>
-              <li>Design токены</li>
-              <li>Доступность-first дизайн</li>
-              <li>Figma workflows</li>
+              <li>Компонентные библиотеки в Figma</li>
+              <li>Система дизайн-токенов</li>
+              <li>Доступность по стандарту WCAG</li>
+              <li>Интерактивные прототипы высокой точности</li>
             </ul>
           </article>
           <article class="expertise-card reveal">
             <div class="expertise-card-num" aria-hidden="true">03</div>
             <h3 class="expertise-card-title">Frontend Engineering</h3>
-            <p class="expertise-card-description">Production UI. Производительность. Реализация.</p>
+            <p class="expertise-card-description">Надежный, семантический и быстрый код без раздутых зависимостей. Высокая производительность и адаптивность.</p>
             <ul class="expertise-card-list">
-              <li>Семантический HTML5</li>
-              <li>CSS архитектура</li>
-              <li>JavaScript ES6+</li>
-              <li>Оптимизация производительности</li>
+              <li>Семантический HTML5 и CSS-архитектура</li>
+              <li>Современный JavaScript (ES6+) и Vue 3</li>
+              <li>Оптимизация Core Web Vitals и Lighthouse 95+</li>
+              <li>Кроссбраузерная и мобильная адаптивность</li>
             </ul>
           </article>
           <article class="expertise-card reveal">
             <div class="expertise-card-num" aria-hidden="true">04</div>
-            <h3 class="expertise-card-title">Technical Leadership</h3>
-            <p class="expertise-card-description">Ownership. Архитектура. Координация.</p>
+            <h3 class="expertise-card-title">Delivery & Leadership</h3>
+            <p class="expertise-card-description">Управление процессом разработки, синхронизация команд, прозрачная документация и ответственность за релиз.</p>
             <ul class="expertise-card-list">
-              <li>Архитектура проектов</li>
-              <li>Координация команды</li>
-              <li>Техническая документация</li>
-              <li>Ownership delivery</li>
+              <li>Декомпозиция и оценка задач</li>
+              <li>Устранение разрыва между дизайном и кодом</li>
+              <li>Техническая и продуктовая документация</li>
+              <li>Полная ответственность за запуск (Ownership)</li>
             </ul>
           </article>
         </div>
 
         <!-- Tool chips -->
         <div class="tools-section reveal">
-          <p class="tools-label">Инструменты</p>
+          <p class="tools-label">Инструменты и технологии</p>
           <div class="tools-grid" role="list" aria-label="Технологии и инструменты">
             <span class="tool-chip" role="listitem">HTML5</span>
-            <span class="tool-chip" role="listitem">CSS3</span>
+            <span class="tool-chip" role="listitem">CSS3 / Tokens</span>
             <span class="tool-chip" role="listitem">JavaScript ES6+</span>
             <span class="tool-chip" role="listitem">Vue 3</span>
             <span class="tool-chip" role="listitem">Vite</span>
             <span class="tool-chip" role="listitem">Figma</span>
             <span class="tool-chip" role="listitem">Supabase</span>
-            <span class="tool-chip" role="listitem">Git</span>
-            <span class="tool-chip" role="listitem">GitHub Pages</span>
+            <span class="tool-chip" role="listitem">Git / GitHub</span>
+            <span class="tool-chip" role="listitem">Cloudflare Workers</span>
+            <span class="tool-chip" role="listitem">Gemini API</span>
             <span class="tool-chip" role="listitem">Bootstrap 5</span>
-            <span class="tool-chip" role="listitem">Swiper.js</span>
-            <span class="tool-chip" role="listitem">Lighthouse</span>
+            <span class="tool-chip" role="listitem">Lighthouse 95+</span>
           </div>
         </div>
       </div>
@@ -767,36 +986,37 @@
       <div class="container">
         <div class="section-header reveal">
           <h2 id="services-title" class="section-title">Услуги и форматы сотрудничества</h2>
+          <p class="section-subtitle">Прозрачные форматы работы под задачи стартапов и действующего бизнеса</p>
         </div>
         <div class="services-grid">
           <article class="service-card reveal">
             <div class="service-card-icon" aria-hidden="true">🎨</div>
-            <h3 class="service-card-title">Дизайн</h3>
+            <h3 class="service-card-title">UI/UX дизайн и дизайн-системы</h3>
             <ul class="service-card-list">
-              <li>Дизайн интерфейсов (UI/UX)</li>
-              <li>Макеты продуктов</li>
-              <li>Системы дизайна</li>
-              <li>Прототипы в Figma</li>
+              <li>Проектирование пользовательских интерфейсов</li>
+              <li>Создание дизайн-систем и UI-китов в Figma</li>
+              <li>Кликабельные интерактивные прототипы</li>
+              <li>Спецификации и подготовка макетов к верстке</li>
             </ul>
           </article>
           <article class="service-card reveal">
             <div class="service-card-icon" aria-hidden="true">⚙️</div>
-            <h3 class="service-card-title">Разработка</h3>
+            <h3 class="service-card-title">Комплексная веб-разработка</h3>
             <ul class="service-card-list">
-              <li>Код для фронтенда</li>
-              <li>Интерактивные элементы</li>
-              <li>Быстрая загрузка сайтов</li>
-              <li>Доступность для всех</li>
+              <li>Разработка современных SPA и веб-сервисов</li>
+              <li>Конверсионные промо-страницы и лендинги</li>
+              <li>Оптимизация скорости и Core Web Vitals (95+)</li>
+              <li>Кроссбраузерная адаптивность и доступность (a11y)</li>
             </ul>
           </article>
           <article class="service-card reveal">
             <div class="service-card-icon" aria-hidden="true">🧭</div>
-            <h3 class="service-card-title">Управление & Лидерство</h3>
+            <h3 class="service-card-title">Технический надзор и лидирование</h3>
             <ul class="service-card-list">
-              <li>Координация команд</li>
-              <li>Ответственность за продукт</li>
-              <li>Доставка проектов</li>
-              <li>Документация и гайды</li>
+              <li>Бесшовная интеграция дизайна и разработки</li>
+              <li>Управление техническим циклом запуска MVP</li>
+              <li>Аудит фронтенда и рефакторинг архитектуры</li>
+              <li>Техническая документация и онбординг</li>
             </ul>
           </article>
         </div>
@@ -806,30 +1026,94 @@
     <!-- ═══ SECTION 6: ABOUT ═══ -->
     <section id="about" class="section section-about" aria-labelledby="about-title">
       <div class="container">
-        <h2 id="about-title" class="section-title reveal">Мой подход</h2>
-        <div class="about-content">
-          <article class="about-narrative reveal">
-            <h3 class="about-section-title">Как я думаю</h3>
-            <p>Я не разделяю дизайн и инженерию. Я думаю в системах. Каждое решение принимаю с учётом production ограничений. Я спрашиваю: "Это масштабируется? Это доступно? Мы сможем это поддерживать?"</p>
-            <p>Я верю, что clarity бьёт visual effects. Hierarchy бьёт decoration. Usability бьёт Dribbble эстетику. Если есть конфликт между красивым и понятным, я выбираю понятное.</p>
-          </article>
-          <article class="about-narrative reveal">
-            <h3 class="about-section-title">Как я работаю</h3>
-            <p>Я начинаю с проблемы, не с решения. Я исследую, валидирую, итерирую. Я работаю через дизайн и код без потерь информации. Я документирую всё. Я думаю о доступности с первого дня.</p>
-            <p>Я могу работать один или вести команды. Я могу быть дизайнером, инженером или product лидером. Что важно — это delivery production-ready результатов, которые решают реальные проблемы.</p>
-          </article>
-          <article class="about-narrative reveal">
-            <h3 class="about-section-title">Что я ценю</h3>
-            <ul class="about-values">
-              <li><strong>Clarity:</strong> Над визуальной сложностью</li>
-              <li><strong>Accessibility:</strong> С первого дня, не как afterthought</li>
-              <li><strong>Performance:</strong> Lighthouse 95+ — это baseline</li>
-              <li><strong>Ownership:</strong> Полный цикл, от концепции до production</li>
-              <li><strong>Communication:</strong> Ясная документация и alignment со стейкхолдерами</li>
-              <li><strong>Delivery:</strong> Рабочие продукты, не концепты</li>
+        <div class="section-header reveal">
+          <h2 id="about-title" class="section-title">Обо мне и принципах</h2>
+          <p class="section-subtitle">Системный подход, культура работы и форматы сотрудничества</p>
+        </div>
+
+        <!-- 2-column layout: Soft Skills & What I'm Looking For -->
+        <div class="about-columns reveal">
+          
+          <!-- Column 1: Soft Skills in Action -->
+          <article class="about-card-box">
+            <h3 class="about-section-title" style="margin-bottom: var(--space-md); color: var(--color-text-primary);">
+              🤝 Софт-скилы и взаимодействие
+            </h3>
+            <p style="color: var(--color-text-secondary); font-size: 14px; margin-bottom: var(--space-lg); line-height: 1.5;">
+              Продукт создается не в вакууме кода или дизайна, а через постоянную синхронизацию людей, бизнес-целей и приоритетов.
+            </p>
+            <ul class="soft-skills-list">
+              <li class="soft-skill-item">
+                <strong>Слышу бизнес-цели</strong>
+                Перевожу задачи и гипотезы бизнеса в понятные инженерные и продуктовые метрики (конверсия, скорость загрузки, отказоустойчивость).
+              </li>
+              <li class="soft-skill-item">
+                <strong>Мост между дизайном и разработкой</strong>
+                Свободно говорю на обоих языках: в Figma проектирую с учетом верстки, а код пишу с уважением к эстетике макета.
+              </li>
+              <li class="soft-skill-item">
+                <strong>Полный Ownership за результат</strong>
+                Не бросаю продукт после передачи макетов или пулреквеста. Сопровождаю до деплоя, тестирую на устройствах и устраняю блокеры.
+              </li>
+              <li class="soft-skill-item">
+                <strong>Прозрачность и декомпозиция</strong>
+                Дроблю сложные неопределенные задачи на измеримые итерации, веду понятную документацию и открыто подсвечиваю риски.
+              </li>
+              <li class="soft-skill-item">
+                <strong>Эмпатия к пользователю и a11y</strong>
+                Проектирую доступные интерфейсы (WCAG AA), в которых одинаково удобно ориентироваться на любых устройствах.
+              </li>
             </ul>
           </article>
+
+          <!-- Column 2: What I am Looking For -->
+          <article class="about-card-box">
+            <h3 class="about-section-title" style="margin-bottom: var(--space-md); color: var(--color-text-primary);">
+              🎯 Что и в каких форматах я ищу
+            </h3>
+            <p style="color: var(--color-text-secondary); font-size: 14px; margin-bottom: var(--space-lg); line-height: 1.5;">
+              Открыт к проектам и командам, где ценятся системное мышление, инженерная дисциплина и ответственность за продукт:
+            </p>
+            <div class="formats-grid">
+              <div class="format-item">
+                <div class="format-title">1. Продуктовые команды &amp; Стартапы</div>
+                <p class="format-desc">
+                  <strong>Формат:</strong> Full-time / Part-time удаленно.<br />
+                  <strong>Роли:</strong> Product Frontend Developer, UI/UX &amp; Frontend Architect, Team Lead.<br />
+                  <strong>Фокус:</strong> Запуск MVP с нуля, развитие дизайн-систем, наведение порядка в интерфейсах и архитектуре.
+                </p>
+              </div>
+              <div class="format-item">
+                <div class="format-title">2. Комплексный запуск проектов под ключ</div>
+                <p class="format-desc">
+                  <strong>Формат:</strong> Проектная разработка (Project-based).<br />
+                  <strong>Фокус:</strong> Полный цикл от исследования и прототипа в Figma до высокоскоростного веб-приложения или сервиса.
+                </p>
+              </div>
+              <div class="format-item">
+                <div class="format-title">3. UI/UX аудит и ускорение фронтенда</div>
+                <p class="format-desc">
+                  <strong>Формат:</strong> Точечный консалтинг и оптимизация.<br />
+                  <strong>Фокус:</strong> Вывод метрик скорости в зеленую зону (Lighthouse 95+), устранение технического долга и оптимизация конверсии.
+                </p>
+              </div>
+            </div>
+          </article>
+
         </div>
+
+        <!-- Principles -->
+        <div class="about-content">
+          <article class="about-narrative reveal">
+            <h3 class="about-section-title">Системный подход</h3>
+            <p>Продукт строится не из хаоса разрозненных требований, а в четкую и масштабируемую систему. Я выбираю логику, чистоту кода и скорость работы вместо визуального шума и тяжелых зависимостей, замедляющих реальных пользователей.</p>
+          </article>
+          <article class="about-narrative reveal">
+            <h3 class="about-section-title">Инженерный стандарт</h3>
+            <p>Каждый проект проектируется с фокусом на производительность (FCP &lt; 1s, Lighthouse 95+), семантическую доступность и предсказуемость кода. Бизнес получает надежный цифровой актив с минимальной стоимостью поддержки.</p>
+          </article>
+        </div>
+
       </div>
     </section>
 
@@ -852,17 +1136,185 @@
       </div>
     </section>
 
+    <!-- ═══ SECTION: MVP CALCULATOR ═══ -->
+    <section id="calculator" class="section section-calculator" aria-labelledby="calculator-title">
+      <div class="container">
+        <div class="section-header reveal">
+          <div class="calc-badge">
+            <span class="calc-badge-icon">⚡</span>
+            Экспресс-конфигуратор задачи
+          </div>
+          <h2 id="calculator-title" class="section-title">Калькулятор запуска MVP</h2>
+          <p class="section-subtitle">Соберите примерный контур вашей задачи за 45 секунд — получите рекомендуемый стек, ключевые этапы и готовую формулировку для старта</p>
+        </div>
+
+        <div class="calc-layout reveal">
+          <!-- Левая колонка: 3 шага выбора -->
+          <div class="calc-steps-column">
+            
+            <!-- Шаг 1 -->
+            <div class="calc-step-card">
+              <div class="calc-step-header">
+                <span class="calc-step-num">01</span>
+                <span class="calc-step-title">Какая перед вами задача?</span>
+              </div>
+              <div class="calc-options-grid" data-group="task">
+                <button type="button" class="calc-opt-btn" data-value="landing">
+                  <span class="opt-icon">⚡</span>
+                  <span class="opt-info">
+                    <span class="opt-label">Лендинг / Промо-сайт</span>
+                    <span class="opt-desc">Конверсия, быстрая загрузка, презентация продукта</span>
+                  </span>
+                </button>
+                <button type="button" class="calc-opt-btn active" data-value="mvp">
+                  <span class="opt-icon">🚀</span>
+                  <span class="opt-info">
+                    <span class="opt-label">Веб-сервис / MVP под ключ</span>
+                    <span class="opt-desc">Личный кабинет, SPA на Vue 3, интерфейс сервиса</span>
+                  </span>
+                </button>
+                <button type="button" class="calc-opt-btn" data-value="bot">
+                  <span class="opt-icon">🤖</span>
+                  <span class="opt-info">
+                    <span class="opt-label">Telegram-бот / AI-агент</span>
+                    <span class="opt-desc">Автоматизация задач, прием заявок, Cloudflare Workers</span>
+                  </span>
+                </button>
+                <button type="button" class="calc-opt-btn" data-value="design">
+                  <span class="opt-icon">🎨</span>
+                  <span class="opt-info">
+                    <span class="opt-label">UI/UX &amp; Дизайн-система</span>
+                    <span class="opt-desc">Проектирование в Figma, UI-кит, дизайн-токены</span>
+                  </span>
+                </button>
+              </div>
+            </div>
+
+            <!-- Шаг 2 -->
+            <div class="calc-step-card">
+              <div class="calc-step-header">
+                <span class="calc-step-num">02</span>
+                <span class="calc-step-title">В каком состоянии проект сейчас?</span>
+              </div>
+              <div class="calc-options-grid" data-group="state">
+                <button type="button" class="calc-opt-btn active" data-value="idea">
+                  <span class="opt-icon">💡</span>
+                  <span class="opt-info">
+                    <span class="opt-label">Есть идея и общее видение</span>
+                    <span class="opt-desc">Помогу структурировать, сделать CJM и спроектировать с нуля</span>
+                  </span>
+                </button>
+                <button type="button" class="calc-opt-btn" data-value="spec">
+                  <span class="opt-icon">📋</span>
+                  <span class="opt-info">
+                    <span class="opt-label">Есть готовое ТЗ или макет в Figma</span>
+                    <span class="opt-desc">Нужна чистая фронтенд-разработка и надежная верстка</span>
+                  </span>
+                </button>
+                <button type="button" class="calc-opt-btn" data-value="redesign">
+                  <span class="opt-icon">🔄</span>
+                  <span class="opt-info">
+                    <span class="opt-label">Нужен редизайн и ускорение</span>
+                    <span class="opt-desc">Текущий сайт тормозит, не приносит заявок или устарел</span>
+                  </span>
+                </button>
+              </div>
+            </div>
+
+            <!-- Шаг 3 -->
+            <div class="calc-step-card">
+              <div class="calc-step-header">
+                <span class="calc-step-num">03</span>
+                <span class="calc-step-title">Желаемый темп запуска:</span>
+              </div>
+              <div class="calc-options-row" data-group="timeline">
+                <button type="button" class="calc-opt-pill" data-value="fast">
+                  ⏱️ Срочно (1–2 недели)
+                </button>
+                <button type="button" class="calc-opt-pill active" data-value="optimal">
+                  🎯 Оптимально (3–4 недели)
+                </button>
+                <button type="button" class="calc-opt-pill" data-value="flexible">
+                  💬 Сроки гибкие / обсудить
+                </button>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Правая колонка: Динамическое резюме -->
+          <div class="calc-summary-column">
+            <div class="calc-summary-card">
+              <div class="summary-top">
+                <div>
+                  <span class="summary-badge">Контур готов</span>
+                  <h3 class="summary-title" id="summary-task-title">Веб-сервис / MVP под ключ</h3>
+                </div>
+              </div>
+
+              <div class="summary-detail-block">
+                <span class="summary-label">Рекомендуемый стек:</span>
+                <div class="summary-stack-tags" id="summary-stack">
+                  <span class="summary-stack-tag">Figma</span>
+                  <span class="summary-stack-tag">Vue 3 / Vite</span>
+                  <span class="summary-stack-tag">REST API / Supabase</span>
+                  <span class="summary-stack-tag">Pinia</span>
+                  <span class="summary-stack-tag">Cloudflare</span>
+                </div>
+              </div>
+
+              <div class="summary-detail-block">
+                <span class="summary-label">Ориентир по срокам:</span>
+                <div class="summary-timeline-val" id="summary-timeline">~3–4 недели</div>
+              </div>
+
+              <div class="summary-detail-block">
+                <span class="summary-label">Маршрут запуска:</span>
+                <ol class="summary-steps-list" id="summary-steps">
+                  <li>Проектирование пользовательских путей и архитектуры</li>
+                  <li>Дизайн-система компонентов в Figma</li>
+                  <li>Разработка SPA на Vue 3 с чистым кодом</li>
+                  <li>Тестирование на устройствах и деплой</li>
+                </ol>
+              </div>
+
+              <div class="summary-brief-block">
+                <div class="summary-brief-head">
+                  <span class="summary-label">Сформированное ТЗ для старта:</span>
+                  <button type="button" id="calc-copy-btn" class="calc-copy-btn" aria-label="Скопировать текст сообщения">
+                    📋 Копировать
+                  </button>
+                </div>
+                <div class="summary-brief-text" id="summary-brief">
+                  «Привет, Дмитрий! Нужен веб-сервис / MVP под ключ, есть идея и общее видение, ориентир по срокам 3–4 недели. Хочу обсудить реализацию!»
+                </div>
+              </div>
+
+              <div class="calc-actions">
+                <a id="calc-tg-btn" href="https://t.me/aimovl" target="_blank" rel="noopener noreferrer" class="btn btn-primary calc-cta-btn">
+                  <span>Обсудить задачу в Telegram</span>
+                  <span aria-hidden="true">↗</span>
+                </a>
+              </div>
+              <p class="calc-guarantee-note">Отвечаю лично в течение 1–2 часов. Без навязывания лишних услуг.</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
     <!-- ═══ SECTION 8: CONTACT ═══ -->
     <section id="contact" class="section section-contact" aria-labelledby="contact-title">
       <div class="container">
         <div class="contact-inner reveal">
           <div class="contact-badge">
             <span class="avail-dot" aria-hidden="true"></span>
-            Открыт к новым проектам
+            Открыт к проектам и предложениям
           </div>
           <h2 id="contact-title" class="contact-title">Давайте работать вместе</h2>
           <p class="contact-description">
-            Есть проект в голове? Давайте поговорим о том, как я могу помочь его реализовать.
+            Ищете специалиста для запуска MVP, редизайна сервиса или усиления фронтенд-команды? Напишите мне, и мы обсудим вашу задачу.
           </p>
           
           <!-- Contact Form -->
@@ -876,7 +1328,7 @@
               <input type="email" id="contact-email" name="email" placeholder="dmitry@example.com" required aria-label="Ваш email" />
             </div>
             <div class="form-group">
-              <label for="contact-message">Расскажите о вашем проекте</label>
+              <label for="contact-message">Расскажите о вашей задаче</label>
               <textarea id="contact-message" name="message" placeholder="Опишите вашу идею, задачу или проект..." required aria-label="Сообщение"></textarea>
             </div>
             <button type="submit" class="btn btn-primary" aria-label="Отправить сообщение">
@@ -892,7 +1344,7 @@
               Написать в Telegram
             </a>
             <a href="https://github.com/228burger228" target="_blank" rel="noopener noreferrer" class="btn btn-secondary" aria-label="Открыть GitHub">
-              GitHub
+              Профиль GitHub
             </a>
           </div>
         </div>
@@ -904,7 +1356,7 @@
   <footer class="footer" role="contentinfo">
     <div class="container">
       <p class="footer-text">
-        © 2026 Дмитрий (Burger). Design-Driven Product & Technical Lead.
+        © 2026 Дмитрий Бургер · Product-Oriented Frontend Engineer & UI/UX Lead.
       </p>
     </div>
   </footer>
