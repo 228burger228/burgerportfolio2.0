@@ -180,6 +180,13 @@
   /* Marquee */
   .marquee-content span { font-size: 10px; padding: 0 var(--space-md); }
 
+  /* Calculator & Search */
+  .calc-summary-card { position: static; padding: var(--space-lg); }
+  .calc-step-card { padding: var(--space-lg); }
+  .calc-options-row { flex-direction: column; }
+  .calc-opt-pill { width: 100%; }
+  .proj-search-wrapper { max-width: 100%; }
+
   /* Footer */
   .footer { padding: var(--space-lg) var(--padding-inline-mobile); }
   .footer-text { font-size: var(--font-size-xs); }
