@@ -2,257 +2,193 @@
   "projects": [
     {
       "id": 1,
-      "title": "foodiCE — Лид магнит мороженного",
-      "desc": "Лид магнит лендинг для продажи мороженного. Одностраничный сайт с привлекательным дизайном, быстрая загрузка (Lighthouse 95+), адаптивный на всех устройствах. Форма захвата контактов, интеграция с email. Production-ready на HTML5/CSS3/Vanilla JS.",
-      "cat": "featured frontend",
-      "link": "https://228burger228.github.io/foodiCE/",
-      "emoji": "🍦",
-      "tags": ["HTML5", "CSS3", "JavaScript", "Landing Page", "Lead Magnet", "Responsive"],
-      "featured": true,
-      "badge": "Lead Magnet 2026"
-    },
-    {
-      "id": 2,
-      "title": "Telegram AI Agent — Автоматизация с ИИ",
-      "desc": "Разработал Telegram бота на Python с интеграцией ИИ для автоматизации задач. Бот обучен на данных, обрабатывает команды, отправляет уведомления, взаимодействует с БД. Создал полную документацию (AGENT_DOCS.md) с описанием архитектуры, команд, deployment. Бот работает 24/7, масштабируется. Успешно используется в production.",
-      "cat": "featured frontend",
-      "link": "javascript:void(0)",
-      "emoji": "🤖",
-      "tags": ["Python", "Telegram API", "AI", "Automation", "Database", "Documentation"],
-      "featured": true,
-      "badge": "AI Agent 2026"
-    },
-    {
-      "id": 3,
-      "title": "ИИ Агенты — Платформа автоматизации",
-      "desc": "Разработал продвинутую платформу ИИ-агентов для автоматизации сложных бизнес-процессов. Система обучения агентов, база данных для хранения конфигураций и истории, интеграция с Telegram для управления и уведомлений. Агенты работают по расписанию (ежедневные задачи, обработка запросов, анализ данных, генерация отчётов). Архитектура на high-load, надёжность 99.9%. Координирую международную команду разработчиков. Успешно развёрнуто для корпоративных клиентов (БРИКС и других), работает в production с реальными данными.",
-      "cat": "featured frontend",
-      "link": "javascript:void(0)",
-      "emoji": "🤖",
-      "tags": ["AI Agents", "Automation", "B2B", "High-Load", "Enterprise", "Telegram Bot", "Database", "Scheduling"],
-      "featured": true,
-      "badge": "Platform 2026"
-    },
-    {
-      "id": 4,
-      "title": "Портфолио Dimutri & Burger — Парная визитка",
-      "desc": "Совместное портфолио визитка с программистом Dimutri (фул-стак разработчик). Дизайн: современный минимализм, чёткая иерархия, фокус на работах. Две колонки: Dimutri (backend, архитектура, DevOps) и Burger (frontend, дизайн, координация). Демонстрация синергии и способности работать в команде. Дизайн завершён, разработка в процессе. Скоро live!",
-      "cat": "featured frontend",
-      "link": "javascript:void(0)",
-      "emoji": "👥",
-      "tags": ["Team Portfolio", "Web Design", "Full-Stack", "Team Project", "In Progress"],
-      "featured": true,
-      "badge": "Team Project 2026 (в дизайне)"
-    },
-    {
-      "id": 5,
-      "title": "vertical.team — Платформа AI-креаторов",
-      "desc": "Полный лендинг для платформы обучения заработку на вертикальных видео. Создал с нуля: архитектура UI, дизайн всех компонентов, фронтенд на чистом HTML5/CSS/JS без фреймворков. 8 секций: герой с анимациями, обо мне с графиком роста, вступление в команду, мои сервисы, карусель результатов (с drag & autoplay), FAQ аккордеон, контакты. Интерактив: меню-оверлей, reveal animations, smooth scroll. Production-ready код с ARIA доступностью.",
-      "cat": "featured frontend",
-      "link": "https://228burger228.github.io/aNdreyTT/",
-      "emoji": "🎬",
-      "tags": ["HTML5", "CSS3", "Vanilla JS", "Landing Page", "Animation", "Production"],
-      "featured": true,
-      "badge": "Landing 2026"
-    },
-    {
-      "id": 6,
-      "title": "Digital Garden — Персональный архив исследований",
-      "desc": "Веб-сайт-портфолио персональный архив исследований на HTML5 / CSS3 / Vanilla JS (без фреймворков). 6 статей, 30 000+ слов контента. Real-time поиск + фильтрация по категориям, светлая/тёмная тема, двуязычная поддержка (РУ/EN), RSS-фид, SEO (JSON-LD, Open Graph, sitemap), WCAG AA доступность. Lighthouse 95+, FCP < 1s, responsive 320px–2560px. Production-ready.",
-      "cat": "featured frontend",
-      "link": "https://228burger228.github.io/digital-garden",
-      "emoji": "🌱",
-      "tags": ["HTML5", "CSS3", "JavaScript ES6+", "SEO", "Accessibility", "Production"],
-      "featured": true,
-      "badge": "Portfolio 2026"
-    },
-    {
-      "id": 7,
-      "title": "Study Up — Запуск digital-направления онлайн-школы",
-      "desc": "Team Lead в запуске цифрового продукта онлайн-школы Study Up. Координирую дизайн- и IT-команды, формирую продуктовую концепцию. Отвечаю за: UX/UI-концепцию сайта, разработку первого MVP (лендинг школы), декомпозицию задач, взаимодействие между дизайном и разработкой, AI-инструменты. Участвую в продуктовых и технических решениях, выстраиваю процесс работы IT- и Design-направлений стартапа.",
-      "cat": "featured frontend",
-      "link": "javascript:void(0)",
-      "emoji": "🎓",
-      "tags": ["Product Lead", "Team Coordination", "UX/UI Design", "Web Development", "AI", "Startup"],
-      "featured": true,
-      "badge": "Team Lead 2026 (в работе)"
-    },
-    {
-      "id": 8,
-      "title": "HgStroy — Комплексный редизайн",
-      "desc": "Полный редизайн строительной компании. Сам делал дизайн в Figma (каждый слайд и компонент), создал дизайн-систему. Работал с программистом Dimutri на архитектуре. Результат парсили на сервер через зама. Реализовано: адаптивная шапка для подсайтов, карусели портфолио, формы захвата, интеграция с CRM. Техническая документация и рекомендации по миграции. Lighthouse 95+, благодарственное письмо от клиента.",
+      "title": "HgStroy — Корпоративный B2B-портал",
+      "desc": "Редизайн и фронтенд-архитектура для строительной компании. Руководил связкой дизайна и верстки в команде из 2 человек. Спроектировал модульную дизайн-систему, адаптивные компоненты, формы захвата заявок и провел интеграцию с корпоративным сервером заказчика. Результат: оценка Lighthouse 95+, ускорение загрузки и официальное благодарственное письмо от руководства компании.",
       "cat": "featured frontend",
       "link": "https://smr.hgstroy.ru/index.html",
       "emoji": "🏗️",
-      "tags": ["UI/UX Design", "Figma", "Bootstrap 5", "Swiper", "Team Project", "Architecture"],
+      "tags": ["Team Coordination", "UI/UX Design System", "Bootstrap 5", "Figma", "Lighthouse 95+"],
       "featured": true,
-      "badge": "Масштабный проект"
+      "badge": "Team Lead · B2B"
+    },
+    {
+      "id": 2,
+      "title": "Warpath: Ace Shooter Wiki — Справочник сообщества",
+      "desc": "Высоконагруженный веб-справочник русскоязычного комьюнити мобильной стратегии. Разработал архитектуру на Vue 3 и Supabase, реализовал поиск, фильтрацию и поисковую оптимизацию. Продукт обслуживает более 10 000 активных пользователей в месяц и имеет статус официального ресурса-партнера игры.",
+      "cat": "featured frontend",
+      "link": "https://228burger228.github.io/WarpathYTwiki/index.html",
+      "emoji": "⚔️",
+      "tags": ["Vue 3", "Vite", "Supabase", "SEO & a11y", "High-Load"],
+      "featured": true,
+      "badge": "⭐ 10 000+ MAU"
+    },
+    {
+      "id": 3,
+      "title": "Study Up — Цифровая платформа онлайн-школы",
+      "desc": "Team Lead в продуктовом запуске онлайн-школы Study Up. Спроектировал UX/UI концепцию сайта, руководил разработкой первого конверсионного MVP лендинга, выполнил декомпозицию технических задач и выстроил бесшовную синхронизацию между дизайнерами и разработчиками стартапа.",
+      "cat": "featured frontend ui",
+      "link": "https://228burger228.github.io/StudyUp/index.html",
+      "emoji": "🎓",
+      "tags": ["Product Lead", "Team Coordination", "UX/UI Design", "Web Development", "MVP Launch"],
+      "featured": true,
+      "badge": "👥 Team Lead"
+    },
+    {
+      "id": 4,
+      "title": "vertical.team — Платформа AI-креаторов",
+      "desc": "Разработка конверсионного 8-секционного лендинга с нуля без сторонних библиотек. Спроектировал UI-компоненты, реализовал кастомные touch/drag слайдеры, анимации появления контента, аккордеоны FAQ и строгую семантику. Высокая скорость загрузки, адаптив от 320px до 2560px и доступность по WCAG.",
+      "cat": "featured frontend",
+      "link": "https://228burger228.github.io/aNdreyTT/",
+      "emoji": "🎬",
+      "tags": ["HTML5", "CSS3", "Vanilla JS", "Motion UI", "Responsive"],
+      "featured": true,
+      "badge": "🚀 High Conversion"
+    },
+    {
+      "id": 5,
+      "title": "Dmitry OS Agent — Интеллектуальный AI-ассистент",
+      "desc": "Serverless AI-агент автоматизации задач и рабочих процессов на стеке Cloudflare Workers, Google Apps Script и Gemini API. Распознает голосовые сообщения, анализирует интерфейсы через Vision, синхронизирует события с Google Calendar и Docs. Нулевой cold start, сверхбыстрый отклик (300–800ms) при $0 стоимости инфраструктуры.",
+      "cat": "featured ai",
+      "link": "javascript:void(0)",
+      "emoji": "🤖",
+      "tags": ["Cloudflare Workers", "Gemini API", "Telegram Bot API", "Serverless", "Automation"],
+      "featured": true,
+      "badge": "🤖 AI Automation"
+    },
+    {
+      "id": 6,
+      "title": "foodiCE — Промо-лендинг крафтового мороженого",
+      "desc": "Конверсионный промо-лендинг для презентации крафтового мороженого. Выразительный визуальный дизайн, чистая семантическая верстка без сторонних фреймворков. Мгновенная загрузка (Lighthouse 95+), адаптивность под мобильные устройства и надежная форма захвата лидов с валидацией.",
+      "cat": "featured frontend",
+      "link": "https://228burger228.github.io/foodiCE/",
+      "emoji": "🍦",
+      "tags": ["HTML5", "CSS3", "Vanilla JS", "Lighthouse 95+", "Conversion UI"],
+      "featured": true,
+      "badge": "🍦 E-Commerce Landing"
+    },
+    {
+      "id": 7,
+      "title": "Портфолио Dimutri & Burger — Парная визитка",
+      "desc": "Парная визитка дуэта специалистов: синергия продуктового дизайна, фронтенда и бэкенда для разработки сервисов полного цикла. Интегрирован фирменный Telegram-бот для связи с клиентами.",
+      "cat": "featured frontend ui",
+      "link": "https://228burger228.github.io/burgerCreate/index.html",
+      "emoji": "🤝",
+      "tags": ["UI/UX Concept", "Frontend & Backend", "Telegram Bot API", "Figma"],
+      "featured": true,
+      "badge": "🤝 Studio Showcase",
+      "bot": "https://t.me/dmitryB_studio_bot"
+    },
+    {
+      "id": 8,
+      "title": "Корпоративная VPN-платформа — UX/UI архитектура",
+      "desc": "Проектирование пользовательского интерфейса корпоративной VPN-платформы для компаний. Разработал архитектуру ролевой модели доступа (Admin/User), личные кабинеты управления сетью и безопасностью, комплексную дизайн-систему и кликабельные прототипы высокой детализации для команды разработки.",
+      "cat": "featured ui",
+      "link": "javascript:void(0)",
+      "emoji": "🔐",
+      "tags": ["UX-проектирование", "Дизайн-система", "B2B SaaS", "Figma"],
+      "featured": true,
+      "badge": "🔐 B2B Platform"
+    },
+    {
+      "id": 8,
+      "title": "SkillForge — Образовательный веб-сервис",
+      "desc": "Полный цикл разработки MVP платформы для обучения профессиональным навыкам: от проектирования интерфейса в Figma до реализации SPA на Vue 3. Интерактивная программа курсов, личный кабинет пользователя, система отслеживания прогресса и геймификация достижений.",
+      "cat": "frontend ui",
+      "link": "https://228burger228.github.io/SkillForge/",
+      "emoji": "🎓",
+      "tags": ["Vue 3", "Vite", "UI/UX", "SPA Architecture", "Lighthouse 95+"],
+      "featured": true,
+      "badge": "🎓 Full Cycle MVP"
     },
     {
       "id": 9,
-      "title": "Город Мастеров",
-      "desc": "Образовательная игровая платформа Департамента образования Москвы. Авторизация, профили пользователей, достижения, тёмная тема, выбор шрифта, канбан-доска, техподдержка. Верстал макет и писал весь код — от дизайна до деплоя.",
+      "title": "Digital Garden — Веб-архив исследований",
+      "desc": "Легковесный контентный веб-сервис на HTML5/CSS3/Vanilla JS без фреймворков. Мгновенный real-time поиск, фильтрация по категориям, светлая/тёмная тема, мультиязычность (RU/EN), соответствие стандарту доступности WCAG AA и максимальный рейтинг производительности Lighthouse 95+.",
       "cat": "frontend",
-      "link": "https://masterscitygame.ru",
-      "emoji": "🏛️",
-      "tags": ["HTML/CSS/JS", "Figma", "Авторизация", "LocalStorage", "Адаптив", "Тёмная тема"],
+      "link": "https://228burger228.github.io/digital-garden",
+      "emoji": "🌱",
+      "tags": ["Vanilla JS", "WCAG AA", "SEO", "Lighthouse 95+", "FCP < 1s"],
       "featured": true,
-      "badge": "Гос. проект (архив)"
+      "badge": "🌱 High Performance"
     },
     {
       "id": 10,
-      "title": "Warpath: Ace Shooter Wiki",
-      "desc": "Справочник для русскоязычного комьюнити мобильной стратегии. Юниты, офицеры, снаряжение, механики. Официальное партнёрство с игрой — закрывает нишу, которую не покрывают ни EN, ни CN ресурсы.",
-      "cat": "frontend",
-      "link": "https://228burger228.github.io/WarpathYTwiki/index.html",
-      "emoji": "⚔️",
-      "tags": ["Vue 3", "Vite", "GitHub Pages", "Community"],
-      "featured": true,
-      "badge": "Партнёрство"
-    },
-    {
-      "id": 11,
-      "title": "SkillForge — Платформа обучения",
-      "desc": "MVP платформы для обучения профессиональным навыкам. Конкурсный проект с полным циклом: дизайн в Figma, фронтенд на Vue 3, интеграция с backend. Интерактивные курсы, прогресс пользователя, система достижений. Lighthouse 95+.",
-      "cat": "featured frontend",
-      "link": "https://228burger228.github.io/SkillForge/",
-      "emoji": "🎓",
-      "tags": ["Vue 3", "Vite", "UI/UX", "MVP", "Figma"],
-      "featured": true,
-      "badge": "MVP 2026"
-    },
-    {
-      "id": 12,
-      "title": "Корпоративная VPN-платформа",
-      "desc": "Разработал концепцию интерфейса корпоративной VPN-платформы для компаний. Проект включает UX-проектирование, дизайн системы авторизации (Admin/User), личные кабинеты, дизайн-систему, интерактивные прототипы и подготовку интерфейса к разработке. Основной акцент на простоте использования, безопасности, масштабируемости и современном B2B-дизайне.",
-      "cat": "featured frontend",
-      "link": "javascript:void(0)",
-      "emoji": "🔐",
-      "tags": ["UX Design", "Figma", "B2B", "Product Design"],
-      "featured": true,
-      "badge": "Design 2026 (в работе)"
-    },
-    {
-      "id": 13,
-      "title": "DoryBim — Портфолио иллюстратора",
-      "desc": "Сайт-портфолио для цифрового иллюстратора. Галерея работ, прайс-лист, форма заказа арта, интеграция с социальными сетями. Адаптивный дизайн, оптимизация для мобильных устройств.",
-      "cat": "frontend",
-      "link": "https://228burger228.github.io/Dorybim/index.html",
-      "emoji": "🎨",
-      "tags": ["HTML/CSS/JS", "Portfolio", "Gallery", "Responsive"],
-      "featured": false,
-      "badge": "Production"
-    },
-    {
-      "id": 14,
-      "title": "Спортивная школа триатлона",
-      "desc": "Многостраничный сайт спортивной школы. Информация о тренерах, расписание занятий, галерея соревнований, форма записи. Адаптивный дизайн, быстрая загрузка, оптимизация для поисковых систем.",
-      "cat": "frontend",
-      "link": "https://228burger228.github.io/triatlon/",
-      "emoji": "🏊",
-      "tags": ["HTML/CSS", "Frontend", "Responsive", "SEO"],
-      "featured": false,
-      "badge": "Production"
-    },
-    {
-      "id": 15,
-      "title": "Точка ритма — Музыкальный портал",
-      "desc": "UI/UX дизайн музыкального медиа-портала. Плеер, рекомендации, плейлисты, профиль пользователя. Тёмная эстетика, современный интерфейс, фокус на удобстве навигации. Проект завершён в Яндекс Практикуме.",
+      "title": "Точка ритма — Интерфейс стриминг-сервиса",
+      "desc": "UI/UX проектирование музыкального медиа-портала: эргономичный плеер, система персонализированных рекомендаций, управление плейлистами и профиль слушателя. Выполнен в строгой темной эстетике с соблюдением требований дизайн-системы.",
       "cat": "ui",
       "link": "https://www.figma.com/design/",
       "emoji": "🎵",
-      "tags": ["UI/UX", "Figma", "Music", "Яндекс Практикум"],
+      "tags": ["UI/UX", "Figma", "Дизайн-система", "Яндекс Практикум"],
       "featured": false,
-      "badge": "Design 2025"
+      "badge": "🎵 UI/UX Case"
     },
     {
-      "id": 16,
-      "title": "BOYS 100% — Мерч для мото-братства",
-      "desc": "Дизайн наклеек и мерча для сообщества мотоциклистов в Туле. Брендовые стикеры с крутыми мотивами — от логотипа до текстовых фраз. Готово к производству на печать.",
-      "cat": "content",
-      "emoji": "🏍️",
-      "tags": ["Merch Design", "Stickers", "Branding", "Print"],
+      "id": 11,
+      "title": "Город Мастеров — Образовательная платформа (Архив)",
+      "desc": "Геймифицированная образовательная веб-платформа для Департамента образования Москвы. Самостоятельная реализация от UI-макетов до фронтенда: авторизация, профили, система игровых достижений, канбан-доска и соответствие стандартам доступности.",
+      "cat": "frontend",
+      "link": "https://masterscitygame.ru",
+      "emoji": "🏛️",
+      "tags": ["HTML/CSS/JS", "LocalStorage", "WCAG 2.1", "Гос. заказ"],
       "featured": false,
-      "badge": "Merch 2026",
-      "isGallery": true,
-      "gallery": ["100_BOYS.png"]
+      "badge": "🏛️ Гос. заказ"
     },
     {
-      "id": 17,
-      "title": "Графический дизайн — Постеры и кампании",
-      "desc": "Коллекция графических работ: промо-флаеры для моды, медиа-пак кампаний, социальные материалы. Дизайн для печати, типография, цветовые схемы. Готовы к производству.",
+      "id": 12,
+      "title": "Графический дизайн — Постеры и промо-кампании",
+      "desc": "Комплекс графических и визуальных материалов: медиа-паки для социальных кампаний, постеры, инфографика и рекламные материалы, подготовленные в печать в строгом соответствии с полиграфическими стандартами.",
       "cat": "content",
       "emoji": "🎨",
-      "tags": ["Graphic Design", "Print", "Figma", "Campaigns"],
+      "tags": ["Graphic Design", "Print", "Campaigns", "Figma"],
       "featured": false,
-      "badge": "Design 2026",
+      "badge": "🎨 Design & Print",
       "isGallery": true,
       "gallery": ["sitikol1.png", "постер ппд.png", "posterr1.jpg", "posterr12.jpg", "posterr122.jpg", "posterr1223.jpg", "posterr12234.jpg"]
     },
     {
-      "id": 18,
-      "title": "Римский дворик РГБ — BIM проект",
-      "desc": "BIM-проект реконструкции Римского дворика в Российской государственной библиотеке. Моделирование в Revit, визуализация в Blender. Полная документация для строительства.",
+      "id": 13,
+      "title": "BOYS 100% — Мерч и стикерпак сообщества",
+      "desc": "Разработка айдентики, фирменных стикерпаков и мерча для мото-сообщества. Создание векторных иллюстраций, типографики и подготовка файлов к шелкографии и плоттерной резке.",
+      "cat": "content",
+      "emoji": "🏍️",
+      "tags": ["Merch Design", "Stickers", "Branding", "Print"],
+      "featured": false,
+      "badge": "🏍️ Merch & Brand",
+      "isGallery": true,
+      "gallery": ["100_BOYS.png"]
+    },
+    {
+      "id": 14,
+      "title": "Римский дворик РГБ — BIM-моделирование и 3D",
+      "desc": "Проект архитектурной реконструкции Римского дворика Российской государственной библиотеки. Точное пространственное моделирование в Revit, 3D-визуализация в Blender и выпуск комплекта чертежной документации.",
       "cat": "content",
       "link": "https://www.figma.com/design/",
       "emoji": "🏛️",
       "tags": ["BIM", "Revit", "Blender", "Architecture"],
       "featured": false,
-      "badge": "Architecture 2026"
+      "badge": "🏛️ BIM & 3D"
     },
     {
-      "id": 19,
-      "title": "Midnight Choice — Квест выбора кино",
-      "desc": "Квест-сайт выбора кино по настроению и темам. Интерактивный опросник, рекомендации, интеграция с IMDb. Концептуальный проект.",
+      "id": 15,
+      "title": "Midnight Choice — Интерактивный гид по кино",
+      "desc": "Концепт сервиса подбора фильмов по настроению и сценариям. Интерактивный опросник, персонализированные карточки рекомендаций и динамический интерфейс.",
       "cat": "ui",
       "link": "https://www.figma.com/design/zcN1ZENeexrt7Re0UzFFOS/",
       "emoji": "🎬",
-      "tags": ["Web", "Concept", "Interactive", "Entertainment"],
+      "tags": ["Web Design", "Interactive UI", "Concept"],
       "featured": false,
-      "badge": "Concept"
+      "badge": "🎬 Concept"
     },
     {
-      "id": 20,
-      "title": "Портфолио v1",
-      "desc": "Первая версия портфолио. Адаптивный дизайн, галерея работ, многостраничная структура. Архивный проект.",
+      "id": 16,
+      "title": "Портфолио v1 — Первая итерация",
+      "desc": "Первая версия персонального сайта-портфолио. Адаптивная верстка, базовая галерея проектов и многостраничная архитектура.",
       "cat": "frontend",
       "link": "https://228burger228.github.io/burgerCreate/index.html",
       "emoji": "💼",
-      "tags": ["HTML/CSS", "Frontend", "Portfolio", "Archive"],
+      "tags": ["HTML/CSS/JS", "Responsive", "Archive"],
       "featured": false,
-      "badge": "Archive"
-    }
-  ],
-  "videos": [
-    {
-      "id": 1,
-      "vidId": "L13FJlzavbM",
-      "title": "ROAD MAP 2026 WARPATH! ОБЗОР НА ДОРОЖНУЮ КАРТУ"
-    },
-    {
-      "id": 2,
-      "vidId": "JvhISaFT1rI",
-      "title": "20K+ KILLS IN DESERT BATTLE | WARPATH ACE SHOOTER MADNESS"
-    },
-    {
-      "id": 3,
-      "vidId": "sJJxi8jqE1A",
-      "title": "ОБЗОР АККАУНТА ЛИДЕРА .MU. ЭПИК II"
-    },
-    {
-      "id": 4,
-      "vidId": "Xy1UkZrxkrY",
-      "title": "ТЕСТЫ LT Vs HELI С НОВЫМ ОФИЦЕРОМ HAYMEKER"
-    },
-    {
-      "id": 5,
-      "vidId": "JACgDDwLJ9k",
-      "title": "Warpath · Видео #5"
-    },
-    {
-      "id": 6,
-      "vidId": "yJ6uTqb0sFU",
-      "title": "ТЕСТЫ LT Vs HELI С НОВЫМ ОФИЦЕРОМ HAYMEKER"
+      "badge": "📁 Archive"
     }
   ],
   "certificates": [
@@ -260,7 +196,7 @@
       "id": 1,
       "title": "Яндекс Практикум",
       "course": "UI/UX Design",
-      "desc": "Полный курс по дизайну интерфейсов. Успешно завершён с проектом Точка ритма.",
+      "desc": "Профессиональный курс проектирования интерфейсов. Проект Точка ритма.",
       "date": "2025",
       "icon": "certificate"
     },
@@ -268,39 +204,23 @@
       "id": 2,
       "title": "МГКЭИТ",
       "course": "Графический дизайн",
-      "desc": "Специальность: полный профессиональный цикл дизайна",
+      "desc": "Специальность: полный профессиональный цикл дизайна и визуальных коммуникаций",
       "date": "2023",
       "icon": "graduation-cap"
     },
     {
       "id": 3,
-      "title": "Архитектурный конкурс",
-      "course": "Проектирование",
-      "desc": "Участие в конкурсе колледжей, работа в Revit",
-      "date": "2024",
-      "icon": "medal"
-    },
-    {
-      "id": 4,
       "title": "Официальное партнёрство",
       "course": "Warpath: Ace Shooter",
-      "desc": "Официальный блогер и разработчик для мобильной стратегии",
-      "date": "2024 — 2025",
+      "desc": "Официальный ресурс сообщества и партнер мобильной стратегии",
+      "date": "2024 — сейчас",
       "icon": "handshake"
     },
     {
-      "id": 5,
-      "title": "Государственный проект",
-      "course": "Город Мастеров",
-      "desc": "Официальный заказ Департамента образования Москвы",
-      "date": "2024",
-      "icon": "seal-check"
-    },
-    {
-      "id": 6,
-      "title": "Масштабный проект",
-      "course": "HgStroy",
-      "desc": "Полный редизайн и разработка сайта строительной компании",
+      "id": 4,
+      "title": "ООО «Хаус Гард»",
+      "course": "HgStroy B2B Portal",
+      "desc": "Официальное благодарственное письмо за разработку корпоративного портала smr.hgstroy.ru",
       "date": "2025",
       "icon": "star"
     }
