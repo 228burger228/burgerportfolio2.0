@@ -28,13 +28,22 @@
       "desc": "Team Lead в продуктовом запуске онлайн-школы Study Up. Спроектировал UX/UI концепцию сайта, руководил разработкой первого конверсионного MVP лендинга, выполнил декомпозицию технических задач и выстроил бесшовную синхронизацию между дизайнерами и разработчиками стартапа.",
       "cat": "featured frontend ui",
       "link": "https://228burger228.github.io/StudyUp/index.html",
-      "emoji": "🎓",
       "tags": ["Product Lead", "Team Coordination", "UX/UI Design", "Web Development", "MVP Launch"],
       "featured": true,
-      "badge": "👥 Team Lead"
+      "badge": "Team Lead · MVP"
     },
     {
       "id": 4,
+      "title": "Game Portfolio 2.0 — 3D Боевой Вертолёт и интерактивный мир",
+      "desc": "Интерактивное 3D-портфолио, спроектированное с нуля на чистом Three.js и Vite без сторонних тяжелых движков. Процедурная генерация ландшафта, кастомные GLSL-шейдеры воды и неба, селективный HDR Bloom, оптимизация тысяч объектов травы через InstancedMesh и два режима: быстрый автопилот по 10 станциям за 60 секунд для HR и свободный полет на WASD.",
+      "cat": "featured frontend ui",
+      "link": "https://228burger228.github.io/Game-portfolio/",
+      "tags": ["Three.js / WebGL", "GLSL Shaders", "InstancedMesh", "HDR Bloom", "Vite", "60 FPS"],
+      "featured": true,
+      "badge": "3D WebGL · 60 FPS"
+    },
+    {
+      "id": 5,
       "title": "vertical.team — Платформа AI-креаторов",
       "desc": "Разработка конверсионного 8-секционного лендинга с нуля без сторонних библиотек. Спроектировал UI-компоненты, реализовал кастомные touch/drag слайдеры, анимации появления контента, аккордеоны FAQ и строгую семантику. Высокая скорость загрузки, адаптив от 320px до 2560px и доступность по WCAG.",
       "cat": "featured frontend",

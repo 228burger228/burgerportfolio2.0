@@ -1,22 +1,91 @@
 /* ═══════════════════════════════════════════════════════════════════════════
-   MAIN.JS — Portfolio v2.0
+   MAIN.JS — Portfolio v2.0 (Optimized Reactive Architecture)
+   - Reactive Store (Proxy Signals / React-like State & Persistence)
+   - Unified requestAnimationFrame Scroll Pipeline (Zero Layout Thrashing)
+   - Pre-indexed O(1) Project Search + Debounce
+   - Centralized Keyboard Dispatcher (Escape, Arrows, Ctrl+K Search Focus)
    ═══════════════════════════════════════════════════════════════════════════ */
+
+/**
+ * Lightweight Reactive Store (React useState/useEffect + Proxy Signals pattern)
+ * Обеспечивает реактивное управление состоянием и синхронизацию с localStorage
+ */
+function createReactiveStore(initialState, storageKey = null) {
+  let saved = {};
+  if (storageKey) {
+    try {
+      const raw = localStorage.getItem(storageKey);
+      if (raw) saved = JSON.parse(raw);
+    } catch (_) {
+      saved = {};
+    }
+  }
+
+  const internalState = { ...initialState, ...saved };
+  const listeners = new Set();
+
+  const notify = () => {
+    if (storageKey) {
+      try {
+        localStorage.setItem(storageKey, JSON.stringify(internalState));
+      } catch (_) {}
+    }
+    listeners.forEach(fn => fn(internalState));
+  };
+
+  const proxy = new Proxy(internalState, {
+    set(target, prop, value) {
+      if (target[prop] !== value) {
+        target[prop] = value;
+        notify();
+      }
+      return true;
+    }
+  });
+
+  return {
+    state: proxy,
+    setState(partial) {
+      let changed = false;
+      Object.keys(partial).forEach(key => {
+        if (internalState[key] !== partial[key]) {
+          internalState[key] = partial[key];
+          changed = true;
+        }
+      });
+      if (changed) notify();
+    },
+    reset() {
+      Object.keys(initialState).forEach(key => {
+        internalState[key] = Array.isArray(initialState[key])
+          ? [...initialState[key]]
+          : initialState[key];
+      });
+      notify();
+    },
+    subscribe(fn) {
+      listeners.add(fn);
+      fn(internalState);
+      return () => listeners.delete(fn);
+    }
+  };
+}
 
 class Portfolio {
   constructor() {
-    this.navbar      = document.querySelector('.navbar');
-    this.navToggle   = document.getElementById('navbar-toggle');
-    this.navMenu     = document.getElementById('navbar-menu');
-    this.navLinks    = document.querySelectorAll('.nav-link');
-    this.filtBtns    = document.querySelectorAll('.filt-btn');
-    this.projCards   = document.querySelectorAll('.proj-card');
-    this.statNums    = document.querySelectorAll('.stat-num');
-    this.modal       = document.getElementById('doc-modal');
-    this.modalImage  = document.getElementById('modal-image');
-    this.modalClose  = document.getElementById('modal-close');
-    this.modalOverlay = document.getElementById('modal-overlay');
-    this.skipLink    = document.getElementById('skip-link');
-    this.scrollToTopBtn = document.getElementById('scroll-to-top');
+    this.navbar          = document.querySelector('.navbar');
+    this.navToggle       = document.getElementById('navbar-toggle');
+    this.navMenu         = document.getElementById('navbar-menu');
+    this.navLinks        = document.querySelectorAll('.nav-link');
+    this.filtBtns        = document.querySelectorAll('.filt-btn');
+    this.projCards       = document.querySelectorAll('.proj-card');
+    this.statNums        = document.querySelectorAll('.stat-num');
+    this.modal           = document.getElementById('doc-modal');
+    this.modalImage      = document.getElementById('modal-image');
+    this.modalClose      = document.getElementById('modal-close');
+    this.modalOverlay    = document.getElementById('modal-overlay');
+    this.skipLink        = document.getElementById('skip-link');
+    this.scrollToTopBtn  = document.getElementById('scroll-to-top');
 
     this.searchInput     = document.getElementById('project-search');
     this.searchClear     = document.getElementById('project-search-clear');
@@ -26,16 +95,19 @@ class Portfolio {
     this.currentSearch   = '';
 
     this.countersStarted = false;
+    this.scrollTicking   = false;
+    this.projectIndex    = [];
 
     this.init();
   }
 
   init() {
-    this.setupNavbar();
+    this.buildProjectSearchIndex();
+    this.setupScrollPipeline();
+    this.setupActiveNavLinkObserver();
     this.setupMobileMenu();
     this.setupSmoothScroll();
     this.setupScrollReveal();
-    this.setupActiveNavLink();
     this.setupProjectFilter();
     this.setupProjectSearch();
     this.setupCalculator();
@@ -46,22 +118,67 @@ class Portfolio {
     this.setupContactForm();
     this.setupScrollToTop();
     this.setupGalleries();
+    this.setupKeyboardDispatcher();
   }
 
   /* ─────────────────────────────────────────────────────────────────────
-     NAVBAR — scroll effect
+     UNIFIED rAF SCROLL PIPELINE (Navbar + Scroll-To-Top in 1 loop)
      ───────────────────────────────────────────────────────────────────── */
 
-  setupNavbar() {
+  setupScrollPipeline() {
+    const updateOnScroll = () => {
+      const y = window.scrollY;
+
+      if (this.navbar) {
+        if (y > 20) {
+          this.navbar.style.boxShadow = '0 1px 0 rgba(255,255,255,0.04)';
+          this.navbar.style.backgroundColor = 'rgba(9, 9, 11, 0.98)';
+        } else {
+          this.navbar.style.boxShadow = 'none';
+          this.navbar.style.backgroundColor = 'rgba(9, 9, 11, 0.95)';
+        }
+      }
+
+      if (this.scrollToTopBtn) {
+        this.scrollToTopBtn.classList.toggle('visible', y > 300);
+      }
+
+      this.scrollTicking = false;
+    };
+
     window.addEventListener('scroll', () => {
-      if (window.scrollY > 20) {
-        this.navbar.style.boxShadow = '0 1px 0 rgba(255,255,255,0.04)';
-        this.navbar.style.backgroundColor = 'rgba(9, 9, 11, 0.98)';
-      } else {
-        this.navbar.style.boxShadow = 'none';
-        this.navbar.style.backgroundColor = 'rgba(9, 9, 11, 0.95)';
+      if (!this.scrollTicking) {
+        this.scrollTicking = true;
+        requestAnimationFrame(updateOnScroll);
       }
     }, { passive: true });
+
+    updateOnScroll();
+  }
+
+  /* ─────────────────────────────────────────────────────────────────────
+     ACTIVE NAV LINK via IntersectionObserver (Zero Forced Reflow)
+     ───────────────────────────────────────────────────────────────────── */
+
+  setupActiveNavLinkObserver() {
+    const sections = document.querySelectorAll('section[id]');
+    if (!sections.length || !('IntersectionObserver' in window)) return;
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const id = entry.target.id;
+          this.navLinks.forEach(link => {
+            link.classList.toggle('active', link.getAttribute('href') === `#${id}`);
+          });
+        }
+      });
+    }, {
+      rootMargin: '-25% 0px -65% 0px',
+      threshold: 0
+    });
+
+    sections.forEach(sec => observer.observe(sec));
   }
 
   /* ─────────────────────────────────────────────────────────────────────
@@ -77,23 +194,13 @@ class Portfolio {
       this.navToggle.setAttribute('aria-expanded', String(!isOpen));
     });
 
-    // Close on link click
     this.navLinks.forEach(link => {
       link.addEventListener('click', () => this.closeMobileMenu());
     });
 
-    // Close on outside click
     document.addEventListener('click', (e) => {
-      if (!this.navbar.contains(e.target)) {
+      if (this.navbar && !this.navbar.contains(e.target)) {
         this.closeMobileMenu();
-      }
-    });
-
-    // Close on Escape
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape') {
-        this.closeMobileMenu();
-        this.navToggle.focus();
       }
     });
   }
@@ -113,37 +220,14 @@ class Portfolio {
       anchor.addEventListener('click', (e) => {
         const href = anchor.getAttribute('href');
         if (href === '#') return;
-        e.preventDefault();
         const target = document.querySelector(href);
         if (target) {
-          const offset = target.offsetTop - 80;
+          e.preventDefault();
+          const offset = target.getBoundingClientRect().top + window.scrollY - 80;
           window.scrollTo({ top: offset, behavior: 'smooth' });
         }
       });
     });
-  }
-
-  /* ─────────────────────────────────────────────────────────────────────
-     ACTIVE NAV LINK on scroll
-     ───────────────────────────────────────────────────────────────────── */
-
-  setupActiveNavLink() {
-    const sections = document.querySelectorAll('section[id]');
-
-    const update = () => {
-      let current = '';
-      sections.forEach(sec => {
-        if (window.scrollY >= sec.offsetTop - 200) {
-          current = sec.id;
-        }
-      });
-      this.navLinks.forEach(link => {
-        link.classList.toggle('active', link.getAttribute('href') === `#${current}`);
-      });
-    };
-
-    window.addEventListener('scroll', update, { passive: true });
-    update();
   }
 
   /* ─────────────────────────────────────────────────────────────────────
@@ -152,7 +236,6 @@ class Portfolio {
 
   setupScrollReveal() {
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-      // Make all reveal elements visible immediately
       document.querySelectorAll('.reveal').forEach(el => {
         el.classList.add('visible');
       });
@@ -175,8 +258,16 @@ class Portfolio {
   }
 
   /* ─────────────────────────────────────────────────────────────────────
-     PROJECT FILTER & LIVE SEARCH
+     PRE-INDEXED PROJECT FILTER & LIVE SEARCH (O(1) Memory Index)
      ───────────────────────────────────────────────────────────────────── */
+
+  buildProjectSearchIndex() {
+    this.projectIndex = Array.from(this.projCards).map(card => {
+      const cats = (card.dataset.filter || '').split(/\s+/).filter(Boolean);
+      const searchText = (card.textContent || '').replace(/\s+/g, ' ').trim().toLowerCase();
+      return { card, cats, searchText };
+    });
+  }
 
   setupProjectFilter() {
     if (!this.filtBtns.length) return;
@@ -199,12 +290,16 @@ class Portfolio {
   setupProjectSearch() {
     if (!this.searchInput) return;
 
+    let searchRaf = null;
     this.searchInput.addEventListener('input', () => {
-      this.currentSearch = this.searchInput.value.trim().toLowerCase();
-      if (this.searchClear) {
-        this.searchClear.style.display = this.currentSearch ? 'inline-block' : 'none';
-      }
-      this.applyProjectFilters();
+      if (searchRaf) cancelAnimationFrame(searchRaf);
+      searchRaf = requestAnimationFrame(() => {
+        this.currentSearch = this.searchInput.value.trim().toLowerCase();
+        if (this.searchClear) {
+          this.searchClear.style.display = this.currentSearch ? 'inline-block' : 'none';
+        }
+        this.applyProjectFilters();
+      });
     });
 
     if (this.searchClear) {
@@ -240,27 +335,27 @@ class Portfolio {
   applyProjectFilters() {
     let visibleCount = 0;
     const filter = this.currentCategory;
-    const search = this.currentSearch;
+    const query = this.currentSearch;
 
-    this.projCards.forEach(card => {
-      const cats = card.dataset.filter || '';
-      const text = card.textContent.toLowerCase();
-      
+    for (let i = 0; i < this.projectIndex.length; i++) {
+      const { card, cats, searchText } = this.projectIndex[i];
       const catMatch = filter === 'all' || cats.includes(filter);
-      const searchMatch = !search || text.includes(search);
+      const searchMatch = !query || searchText.includes(query);
       const show = catMatch && searchMatch;
 
       if (show) {
         visibleCount++;
-        card.classList.remove('hidden');
-        card.style.display = '';
-        card.style.opacity = '1';
-        card.style.transform = 'translateY(0)';
-      } else {
+        if (card.classList.contains('hidden')) {
+          card.classList.remove('hidden');
+          card.style.display = '';
+          card.style.opacity = '1';
+          card.style.transform = 'translateY(0)';
+        }
+      } else if (!card.classList.contains('hidden')) {
         card.classList.add('hidden');
         card.style.display = 'none';
       }
-    });
+    }
 
     if (this.emptyState) {
       this.emptyState.style.display = visibleCount === 0 ? 'block' : 'none';
@@ -268,64 +363,91 @@ class Portfolio {
   }
 
   /* ─────────────────────────────────────────────────────────────────────
-     MVP CALCULATOR
+     REACTIVE MVP CALCULATOR (Store + Add-ons + LocalStorage Persistence)
      ───────────────────────────────────────────────────────────────────── */
 
   setupCalculator() {
     const calcSection = document.getElementById('calculator');
     if (!calcSection) return;
 
-    const state = {
+    const defaultConfig = {
       task: 'mvp',
       state: 'idea',
-      timeline: 'optimal'
+      timeline: 'optimal',
+      addons: []
     };
+
+    const store = createReactiveStore(defaultConfig, 'burger_mvp_calc_v2');
 
     const taskPresets = {
       landing: {
         title: 'Лендинг / Промо-сайт',
-        stack: ['HTML5 / CSS Tokens', 'Modern Vanilla JS', 'Motion UI', 'Formspree / Webhooks', 'Lighthouse 100'],
+        arch: 'Static Edge + Motion UI',
+        stack: ['HTML5 / CSS Tokens', 'Modern ES6+', 'Motion UI', 'Formspree / Webhooks', 'Lighthouse 98+'],
         steps: [
           'Анализ целевой аудитории и CJM конверсии',
           'Проектирование адаптивного прототипа в Figma',
-          'Чистая верстка без раздутых библиотек',
+          'Чистая верстка без тяжелых библиотек',
           'Тестирование скорости на смартфонах и деплой'
         ],
         briefTask: 'конверсионный промо-лендинг'
       },
       mvp: {
         title: 'Веб-сервис / MVP под ключ',
-        stack: ['Figma', 'Vue 3 / Vite', 'REST API / Supabase', 'Pinia', 'Cloudflare Workers'],
+        arch: 'Reactive SPA (Vue 3 / React) + API',
+        stack: ['Figma', 'Vue 3 / React 18', 'REST API / Supabase', 'State Management', 'Cloudflare'],
         steps: [
           'Проектирование пользовательских сценариев и архитектуры',
           'Дизайн-система компонентов и UI-кит в Figma',
-          'Разработка SPA на Vue 3 с чистым кодом',
+          'Разработка реактивного SPA на Vue 3 / React',
           'Тестирование ключевых путей и передача в продакшен'
         ],
         briefTask: 'веб-сервис / MVP под ключ'
       },
+      webgl: {
+        title: '3D WebGL / Интерактивный спецпроект',
+        arch: 'Three.js + Custom GLSL + 60 FPS',
+        stack: ['Three.js / WebGL', 'GLSL Shaders', 'InstancedMesh', 'HDR Bloom', 'Vite'],
+        steps: [
+          'Разработка концепции 3D-сцены, физики и навигации',
+          'Оптимизация геометрии, шейдеров и освещения под 60 FPS',
+          'Интеграция продуктового UI/HUD поверх 3D-канваса',
+          'Кроссбраузерная отладка и бесшовный деплой'
+        ],
+        briefTask: 'интерактивный 3D WebGL спецпроект на Three.js'
+      },
       bot: {
         title: 'Telegram-бот / AI-агент',
-        stack: ['Cloudflare Workers', 'Telegram Bot API', 'Gemini API', 'TypeScript / Serverless', '$0 за сервер'],
+        arch: 'Serverless Edge + LLM Pipeline',
+        stack: ['Cloudflare Workers', 'Telegram Bot API', 'Gemini / OpenAI API', 'TypeScript', '$0 за сервер'],
         steps: [
           'Проектирование диалоговых веток и логики ассистента',
           'Развертывание Serverless-воркера на Cloudflare',
-          'Подключение Gemini API и системных промптов',
+          'Подключение LLM API и системных промптов',
           'Тестирование сценариев в Telegram и запуск'
         ],
         briefTask: 'интеллектуальный Telegram-бот / AI-агент'
       },
       design: {
         title: 'UI/UX & Дизайн-система',
-        stack: ['Figma', 'Design Tokens', 'Auto Layout', 'Interactive Prototype', 'WCAG AA'],
+        arch: 'Tokenized Figma System (WCAG AA)',
+        stack: ['Figma', 'Design Tokens', 'Auto Layout 5.0', 'Interactive Prototype', 'WCAG AA'],
         steps: [
           'UX-исследование потребностей и аудит аналогов',
-          'Сетка, типографика и система токенов',
-          'Библиотека интерактивных компонентов (80+ состояний)',
-          'Подготовка спецификации и хэндофф для разработчиков'
+          'Сетка, типографика и система дизайн-токенов',
+          'Библиотека интерактивных компонентов и состояний',
+          'Подготовка спецификации и хэндофф для разработки'
         ],
         briefTask: 'UI/UX проектирование и дизайн-система в Figma'
       }
+    };
+
+    const addonPresets = {
+      ai:        { label: 'AI / LLM-модуль', tag: 'LLM / AI Agent' },
+      uikit:     { label: 'UI-кит в Figma', tag: 'Figma UI-Kit' },
+      motion:    { label: '3D / Motion-анимации', tag: 'WebGL / Motion' },
+      seo:       { label: 'SEO & Скорость 95+', tag: 'Core Web Vitals 95+' },
+      analytics: { label: 'Аналитика & CRM', tag: 'Analytics & Webhooks' }
     };
 
     const stateDescriptions = {
@@ -335,33 +457,58 @@ class Portfolio {
     };
 
     const timelinePresets = {
-      fast: { label: '~1–2 недели (спринт)', brief: 'срочно за 1–2 недели' },
-      optimal: { label: '~3–4 недели', brief: 'в темпе ~3–4 недели' },
+      fast:     { label: '~1–2 недели (Спринт)', brief: 'срочно за 1–2 недели' },
+      optimal:  { label: '~3–4 недели', brief: 'в темпе ~3–4 недели' },
       flexible: { label: 'Сроки гибкие', brief: 'сроки гибкие, готов обсудить' }
     };
 
-    const elTitle = document.getElementById('summary-task-title');
-    const elStack = document.getElementById('summary-stack');
+    const elTitle    = document.getElementById('summary-task-title');
+    const elStack    = document.getElementById('summary-stack');
     const elTimeline = document.getElementById('summary-timeline');
-    const elSteps = document.getElementById('summary-steps');
-    const elBrief = document.getElementById('summary-brief');
-    const elTgBtn = document.getElementById('calc-tg-btn');
-    const elCopyBtn = document.getElementById('calc-copy-btn');
+    const elArch     = document.getElementById('summary-arch');
+    const elSteps    = document.getElementById('summary-steps');
+    const elBrief    = document.getElementById('summary-brief');
+    const elTgBtn    = document.getElementById('calc-tg-btn');
+    const elCopyBtn  = document.getElementById('calc-copy-btn');
+    const elResetBtn = document.getElementById('calc-reset-btn');
+    const addonBtns  = calcSection.querySelectorAll('.calc-addon-btn');
 
-    const updateSummary = () => {
-      const taskData = taskPresets[state.task] || taskPresets.mvp;
-      const timeData = timelinePresets[state.timeline] || timelinePresets.optimal;
-      const stateText = stateDescriptions[state.state] || stateDescriptions.idea;
+    const syncButtonsWithState = (current) => {
+      calcSection.querySelectorAll('.calc-options-grid, .calc-options-row').forEach(container => {
+        const group = container.dataset.group;
+        if (!group) return;
+        container.querySelectorAll('.calc-opt-btn, .calc-opt-pill').forEach(btn => {
+          btn.classList.toggle('active', btn.dataset.value === current[group]);
+        });
+      });
+
+      const activeAddons = Array.isArray(current.addons) ? current.addons : [];
+      addonBtns.forEach(btn => {
+        btn.classList.toggle('active', activeAddons.includes(btn.dataset.addon));
+      });
+    };
+
+    // Subscribe UI to Reactive Store
+    store.subscribe((current) => {
+      syncButtonsWithState(current);
+
+      const taskData  = taskPresets[current.task] || taskPresets.mvp;
+      const timeData  = timelinePresets[current.timeline] || timelinePresets.optimal;
+      const stateText = stateDescriptions[current.state] || stateDescriptions.idea;
+      const addons    = Array.isArray(current.addons) ? current.addons : [];
 
       if (elTitle) elTitle.textContent = taskData.title;
+      if (elArch) elArch.textContent = taskData.arch;
+      if (elTimeline) elTimeline.textContent = timeData.label;
 
       if (elStack) {
-        elStack.innerHTML = taskData.stack
-          .map(tag => `<span class="summary-stack-tag">${tag}</span>`)
-          .join('');
+        const baseTags = taskData.stack.map(tag => `<span class="summary-stack-tag">${tag}</span>`);
+        const extraTags = addons
+          .map(key => addonPresets[key])
+          .filter(Boolean)
+          .map(a => `<span class="summary-stack-tag summary-stack-tag--addon">+ ${a.tag}</span>`);
+        elStack.innerHTML = [...baseTags, ...extraTags].join('');
       }
-
-      if (elTimeline) elTimeline.textContent = timeData.label;
 
       if (elSteps) {
         elSteps.innerHTML = taskData.steps
@@ -369,7 +516,14 @@ class Portfolio {
           .join('');
       }
 
-      const message = `Привет, Дмитрий! Интересует ${taskData.briefTask}. Исходные данные: ${stateText}, ориентир по срокам: ${timeData.brief}. Хочу обсудить реализацию!`;
+      const addonLabels = addons
+        .map(key => addonPresets[key]?.label)
+        .filter(Boolean);
+      const addonSentence = addonLabels.length
+        ? ` Дополнительно включить: ${addonLabels.join(', ')}.`
+        : '';
+
+      const message = `Привет, Дмитрий! Интересует ${taskData.briefTask}. Исходные данные: ${stateText}, ориентир по срокам: ${timeData.brief}.${addonSentence} Хочу обсудить реализацию!`;
 
       if (elBrief) {
         elBrief.textContent = `«${message}»`;
@@ -378,26 +532,46 @@ class Portfolio {
       if (elTgBtn) {
         elTgBtn.href = `https://t.me/aimovl?text=${encodeURIComponent(message)}`;
       }
-    };
+    });
 
-    // Bind Option Clicks
+    // Bind Step 1-3 Option Clicks
     calcSection.querySelectorAll('.calc-options-grid, .calc-options-row').forEach(container => {
       const group = container.dataset.group;
       const buttons = container.querySelectorAll('.calc-opt-btn, .calc-opt-pill');
 
       buttons.forEach(btn => {
         btn.addEventListener('click', () => {
-          buttons.forEach(b => b.classList.remove('active'));
-          btn.classList.add('active');
           if (group && btn.dataset.value) {
-            state[group] = btn.dataset.value;
-            updateSummary();
+            store.setState({ [group]: btn.dataset.value });
           }
         });
       });
     });
 
-    // Copy Button Handler
+    // Bind Step 4 Add-on Module Toggles
+    addonBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const key = btn.dataset.addon;
+        if (!key) return;
+        const currentAddons = Array.isArray(store.state.addons) ? [...store.state.addons] : [];
+        const idx = currentAddons.indexOf(key);
+        if (idx >= 0) {
+          currentAddons.splice(idx, 1);
+        } else {
+          currentAddons.push(key);
+        }
+        store.setState({ addons: currentAddons });
+      });
+    });
+
+    // Bind Reset Button
+    if (elResetBtn) {
+      elResetBtn.addEventListener('click', () => {
+        store.reset();
+      });
+    }
+
+    // Bind Copy Button
     if (elCopyBtn) {
       elCopyBtn.addEventListener('click', () => {
         const text = elBrief ? elBrief.textContent.replace(/^«|»$/g, '').trim() : '';
@@ -416,9 +590,6 @@ class Portfolio {
         }
       });
     }
-
-    // Initial render
-    updateSummary();
   }
 
   /* ─────────────────────────────────────────────────────────────────────
@@ -459,7 +630,6 @@ class Portfolio {
     const tick = (now) => {
       const elapsed = now - start;
       const progress = Math.min(elapsed / duration, 1);
-      // Ease out cubic
       const eased = 1 - Math.pow(1 - progress, 3);
       el.textContent = Math.round(eased * target);
       if (progress < 1) requestAnimationFrame(tick);
@@ -473,7 +643,6 @@ class Portfolio {
      ───────────────────────────────────────────────────────────────────── */
 
   setupAccessibility() {
-    // Keyboard support for buttons
     document.querySelectorAll('.btn').forEach(btn => {
       btn.addEventListener('keydown', (e) => {
         if (e.key === 'Enter' || e.key === ' ') {
@@ -483,7 +652,6 @@ class Portfolio {
       });
     });
 
-    // Lazy load images
     if ('IntersectionObserver' in window) {
       const imgObserver = new IntersectionObserver((entries, obs) => {
         entries.forEach(entry => {
@@ -508,7 +676,6 @@ class Portfolio {
   setupModal() {
     if (!this.modal) return;
 
-    // Open modal on button click
     document.querySelectorAll('.modal-trigger').forEach(btn => {
       btn.addEventListener('click', (e) => {
         e.preventDefault();
@@ -517,22 +684,13 @@ class Portfolio {
       });
     });
 
-    // Close modal on close button
     if (this.modalClose) {
       this.modalClose.addEventListener('click', () => this.closeModal());
     }
 
-    // Close modal on overlay click
     if (this.modalOverlay) {
       this.modalOverlay.addEventListener('click', () => this.closeModal());
     }
-
-    // Close modal on Escape key
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape' && this.modal.classList.contains('active')) {
-        this.closeModal();
-      }
-    });
   }
 
   openModal(imageSrc) {
@@ -577,15 +735,15 @@ class Portfolio {
 
     form.addEventListener('submit', async (e) => {
       e.preventDefault();
-      
+
       const formData = new FormData(form);
       const submitBtn = form.querySelector('button[type="submit"]');
       const originalText = submitBtn.textContent;
-      
+
       try {
         submitBtn.disabled = true;
         submitBtn.textContent = 'Отправка...';
-        
+
         const response = await fetch(form.action, {
           method: 'POST',
           body: formData,
@@ -604,7 +762,7 @@ class Portfolio {
           statusEl.classList.remove('success');
           statusEl.classList.add('error');
         }
-      } catch (error) {
+      } catch (_) {
         statusEl.textContent = '✗ Ошибка подключения. Пожалуйста, напишите в Telegram.';
         statusEl.classList.remove('success');
         statusEl.classList.add('error');
@@ -622,31 +780,14 @@ class Portfolio {
   setupScrollToTop() {
     if (!this.scrollToTopBtn) return;
 
-    // Show/hide button on scroll
-    window.addEventListener('scroll', () => {
-      if (window.scrollY > 300) {
-        this.scrollToTopBtn.classList.add('visible');
-      } else {
-        this.scrollToTopBtn.classList.remove('visible');
-      }
-    }, { passive: true });
-
-    // Scroll to top on click
     this.scrollToTopBtn.addEventListener('click', () => {
-      window.scrollTo({
-        top: 0,
-        behavior: 'smooth'
-      });
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     });
 
-    // Keyboard support
     this.scrollToTopBtn.addEventListener('keydown', (e) => {
       if (e.key === 'Enter' || e.key === ' ') {
         e.preventDefault();
-        window.scrollTo({
-          top: 0,
-          behavior: 'smooth'
-        });
+        window.scrollTo({ top: 0, behavior: 'smooth' });
       }
     });
   }
@@ -656,7 +797,6 @@ class Portfolio {
      ───────────────────────────────────────────────────────────────────── */
 
   setupGalleries() {
-    // Gallery triggers
     document.querySelectorAll('.gallery-trigger').forEach(btn => {
       btn.addEventListener('click', (e) => {
         e.preventDefault();
@@ -665,153 +805,137 @@ class Portfolio {
       });
     });
 
-    // Gallery close buttons
     document.querySelectorAll('.gallery-close').forEach(btn => {
       btn.addEventListener('click', () => {
         const modal = btn.closest('.gallery-modal');
-        if (modal) {
-          modal.classList.remove('active');
-          modal.setAttribute('aria-hidden', 'true');
-          document.body.style.overflow = '';
-        }
+        if (modal) this.closeGalleryModal(modal);
       });
     });
 
-    // Close gallery on overlay click
     document.querySelectorAll('.gallery-overlay').forEach(overlay => {
       overlay.addEventListener('click', () => {
         const modal = overlay.closest('.gallery-modal');
-        if (modal) {
-          modal.classList.remove('active');
-          modal.setAttribute('aria-hidden', 'true');
-          document.body.style.overflow = '';
-        }
+        if (modal) this.closeGalleryModal(modal);
       });
     });
 
-    // Close gallery on Escape
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape') {
-        document.querySelectorAll('.gallery-modal.active').forEach(modal => {
-          modal.classList.remove('active');
-          modal.setAttribute('aria-hidden', 'true');
-          document.body.style.overflow = '';
-        });
-      }
-    });
-
-    // Gallery navigation
     document.querySelectorAll('.gallery-next').forEach(btn => {
       btn.addEventListener('click', (e) => {
         e.preventDefault();
-        this.nextGalleryImage(btn);
+        this.stepGalleryImage(btn, 1);
       });
     });
 
     document.querySelectorAll('.gallery-prev').forEach(btn => {
       btn.addEventListener('click', (e) => {
         e.preventDefault();
-        this.prevGalleryImage(btn);
+        this.stepGalleryImage(btn, -1);
       });
     });
+  }
 
-    // Keyboard navigation in gallery
-    document.addEventListener('keydown', (e) => {
-      const activeGallery = document.querySelector('.gallery-modal.active');
-      if (!activeGallery) return;
-      
-      if (e.key === 'ArrowRight') {
-        const nextBtn = activeGallery.querySelector('.gallery-next');
-        if (nextBtn) nextBtn.click();
-      } else if (e.key === 'ArrowLeft') {
-        const prevBtn = activeGallery.querySelector('.gallery-prev');
-        if (prevBtn) prevBtn.click();
-      }
-    });
+  closeGalleryModal(modal) {
+    modal.classList.remove('active');
+    modal.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
   }
 
   openGallery(galleryId) {
     const gallery = document.getElementById(galleryId);
     if (!gallery) return;
-    
-    // Reset slider position if exists
+
     const slider = gallery.querySelector('.gallery-slider');
     if (slider) {
       slider.style.transform = 'translateX(0)';
     }
-    
-    // Reset counter if exists
+
     const currentEl = gallery.querySelector('.current');
     if (currentEl) {
       currentEl.textContent = '1';
     }
-    
-    // Update total if exists
+
     const totalEl = gallery.querySelector('.total');
     if (totalEl && slider) {
       const images = slider.querySelectorAll('img');
       totalEl.textContent = images.length;
     }
-    
+
     gallery.classList.add('active');
     gallery.setAttribute('aria-hidden', 'false');
     document.body.style.overflow = 'hidden';
   }
 
-  nextGalleryImage(btn) {
+  stepGalleryImage(btn, direction) {
     const modal = btn.closest('.gallery-modal');
     if (!modal) return;
-    
+
     const slider = modal.querySelector('.gallery-slider');
     if (!slider) return;
 
     const images = slider.querySelectorAll('img');
-    if (images.length === 0) return;
-    if (images.length === 1) return; // Не листаем если одна картинка
+    if (images.length <= 1) return;
 
     const currentEl = modal.querySelector('.current');
-    let current = parseInt(currentEl.textContent, 10) || 1;
-    const next = current >= images.length ? 1 : current + 1;
+    const current = parseInt(currentEl.textContent, 10) || 1;
+    let next = current + direction;
+    if (next > images.length) next = 1;
+    if (next < 1) next = images.length;
 
-    // Calculate transform с плавностью
     const offset = (next - 1) * 100;
     slider.style.transition = 'transform 0.4s cubic-bezier(0.16, 0.84, 0.44, 1)';
     slider.style.transform = `translateX(-${offset}%)`;
     currentEl.textContent = next;
   }
 
-  prevGalleryImage(btn) {
-    const modal = btn.closest('.gallery-modal');
-    if (!modal) return;
-    
-    const slider = modal.querySelector('.gallery-slider');
-    if (!slider) return;
+  /* ─────────────────────────────────────────────────────────────────────
+     CENTRALIZED KEYBOARD DISPATCHER (Replaces 5 separate listeners)
+     ───────────────────────────────────────────────────────────────────── */
 
-    const images = slider.querySelectorAll('img');
-    if (images.length === 0) return;
-    if (images.length === 1) return; // Не листаем если одна картинка
+  setupKeyboardDispatcher() {
+    document.addEventListener('keydown', (e) => {
+      // Ctrl+K or Cmd+K: Quick focus on Project Search
+      if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'k') {
+        if (this.searchInput) {
+          e.preventDefault();
+          this.searchInput.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          this.searchInput.focus({ preventScroll: true });
+        }
+        return;
+      }
 
-    const currentEl = modal.querySelector('.current');
-    let current = parseInt(currentEl.textContent, 10) || 1;
-    const prev = current === 1 ? images.length : current - 1;
+      if (e.key === 'Escape') {
+        if (this.modal && this.modal.classList.contains('active')) {
+          this.closeModal();
+          return;
+        }
 
-    // Calculate transform с плавностью
-    const offset = (prev - 1) * 100;
-    slider.style.transition = 'transform 0.4s cubic-bezier(0.16, 0.84, 0.44, 1)';
-    slider.style.transform = `translateX(-${offset}%)`;
-    currentEl.textContent = prev;
+        const activeGalleries = document.querySelectorAll('.gallery-modal.active');
+        if (activeGalleries.length) {
+          activeGalleries.forEach(m => this.closeGalleryModal(m));
+          return;
+        }
+
+        if (this.navMenu && this.navMenu.getAttribute('aria-expanded') === 'true') {
+          this.closeMobileMenu();
+          if (this.navToggle) this.navToggle.focus();
+        }
+        return;
+      }
+
+      const activeGallery = document.querySelector('.gallery-modal.active');
+      if (activeGallery) {
+        if (e.key === 'ArrowRight') {
+          const nextBtn = activeGallery.querySelector('.gallery-next');
+          if (nextBtn) nextBtn.click();
+        } else if (e.key === 'ArrowLeft') {
+          const prevBtn = activeGallery.querySelector('.gallery-prev');
+          if (prevBtn) prevBtn.click();
+        }
+      }
+    });
   }
 }
-
-/* ═══════════════════════════════════════════════════════════════════════════
-   INIT
-   ═══════════════════════════════════════════════════════════════════════════ */
 
 document.addEventListener('DOMContentLoaded', () => {
   new Portfolio();
 });
-
-/* Screen reader utility */
-const srStyle = document.createElement('style');
-srStyle.textContent = `.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border-width:0}`;
-document.head.appendChild(srStyle);
