@@ -1,7 +1,7 @@
 # Дмитрий Бургер — Product-Oriented Frontend Engineer & UI/UX Lead
 
 > **«Собираю хаос требований в работающую систему.»**  
-> Проектирую интерфейсы и дизайн-системы в Figma, разрабатываю реактивные веб-сервисы на **Vue 3 / React 18**, интерактивные **3D WebGL-проекты (Three.js / GLSL)** и высококонверсионные B2B-платформы с оценкой **Lighthouse 95+**.
+> Проектирую интерфейсы и дизайн-системы в Figma, разрабатываю реактивные веб-сервисы на **React 19 / React 18 / Vue 3**, интерактивные **3D WebGL-проекты (Three.js / GLSL)** и высококонверсионные B2B-платформы с оценкой **Lighthouse 95+**.
 
 ---
 
@@ -21,7 +21,7 @@
    - Вместо абстрактных лозунгов — 3 направления (`UX/UI Архитектура`, `Frontend Инженерия`, `Product Delivery`) и разбор **3 главных болей бизнеса** (разрыв дизайна и верстки, затянутый Time-to-Market, медленные мобильные сайты).
 2. **Структура кейсов «Слева направо» (`Было → Результат → Что стало`):**
    - Каждый кейс показывает исходную проблему клиента, измеримый коммерческий результат простым языком и итоговое инженерное решение.
-   - Полноширинные флагманские карточки (**HgStroy B2B**, **Game Portfolio 2.0 — 3D Three.js**) и симметричная сетка ключевых продуктов (**Warpath Wiki 10 000+ чел/мес**, **Study Up**, **vertical.team**, **Dmitry OS AI**, **foodiCE**, **Dimutri & Burger**, **Digital Garden**).
+   - Полноширинные флагманские карточки (**HgStroy B2B**, **Game Portfolio 2.0 — 3D Three.js**) и симметричная сетка ключевых продуктов (**EuroPath EdTech на React 19**, **Ainala Rehab MedTech SPA**, **Warpath Wiki 10 000+ чел/мес**, **Study Up**, **vertical.team**, **Dmitry OS AI**, **foodiCE**, **Dimutri & Burger**, **Digital Garden**).
    - Отдельная компактная полка **«Другие проекты, графика и архив»** (3 колонки с модальными галереями).
 3. **Реактивный конфигуратор запуска MVP (`#calculator`):**
    - Построен на базе легковесного реактивного стора **`createReactiveStore` (Proxy Signals + React Hooks паттерн)** с автоматическим сохранением выбора в `localStorage`.
@@ -41,8 +41,8 @@
 
 ## 🛠️ Технологический стек
 
-- **Frontend & UI:** `HTML5 (Semantic)`, `CSS3 Design Tokens`, `JavaScript (ES6+)`
-- **Frameworks & 3D:** `Vue 3`, `React 18`, `Three.js / WebGL`, `GLSL Shaders`, `Vite`
+- **Frontend & UI:** `HTML5 (Semantic)`, `CSS3 Design Tokens`, `JavaScript (ES6+)`, `Tailwind CSS v4`
+- **Frameworks & 3D:** `React 19`, `React 18`, `Vue 3`, `Three.js / WebGL`, `GLSL Shaders`, `Vite`
 - **Backend & Cloud / AI:** `Supabase`, `Cloudflare Workers (Serverless)`, `Gemini API`, `Telegram Bot API`
 - **Design & Quality:** `Figma (Design Systems, Auto Layout, Tokens)`, `Lighthouse 95+`, `WCAG 2.1 AA`
 
