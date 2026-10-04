@@ -13,14 +13,14 @@
     },
     {
       "id": 2,
-      "title": "Warpath: Ace Shooter Wiki — Справочник сообщества",
-      "desc": "Высоконагруженный веб-справочник русскоязычного комьюнити мобильной стратегии. Разработал архитектуру на Vue 3 и Supabase, реализовал поиск, фильтрацию и поисковую оптимизацию. Продукт обслуживает более 10 000 активных пользователей в месяц и имеет статус официального ресурса-партнера игры.",
-      "cat": "featured frontend",
-      "link": "https://228burger228.github.io/WarpathYTwiki/index.html",
-      "emoji": "⚔️",
-      "tags": ["Vue 3", "Vite", "Supabase", "SEO & a11y", "High-Load"],
+      "title": "Портфолио Dimutri & Burger — Парная визитка",
+      "desc": "Парная визитка дуэта специалистов: синергия продуктового дизайна, фронтенда и бэкенда для разработки сервисов полного цикла. Интегрирован фирменный Telegram-бот для связи с клиентами.",
+      "cat": "featured frontend ui",
+      "link": "https://228burger228.github.io/burgerCreate/index.html",
+      "tags": ["UI/UX Concept", "Frontend & Backend", "Telegram Bot API", "Figma"],
       "featured": true,
-      "badge": "⭐ 10 000+ MAU"
+      "badge": "Studio Showcase",
+      "bot": "https://t.me/dmitryB_studio_bot"
     },
     {
       "id": 3,
@@ -96,14 +96,14 @@
     },
     {
       "id": 10,
-      "title": "Портфолио Dimutri & Burger — Парная визитка",
-      "desc": "Парная визитка дуэта специалистов: синергия продуктового дизайна, фронтенда и бэкенда для разработки сервисов полного цикла. Интегрирован фирменный Telegram-бот для связи с клиентами.",
-      "cat": "featured frontend ui",
-      "link": "https://228burger228.github.io/burgerCreate/index.html",
-      "tags": ["UI/UX Concept", "Frontend & Backend", "Telegram Bot API", "Figma"],
+      "title": "Warpath: Ace Shooter Wiki — Справочник сообщества",
+      "desc": "Высоконагруженный веб-справочник русскоязычного комьюнити мобильной стратегии. Разработал архитектуру на Vue 3 и Supabase, реализовал поиск, фильтрацию и поисковую оптимизацию. Продукт обслуживает более 10 000 активных пользователей в месяц и имеет статус официального ресурса-партнера игры.",
+      "cat": "featured frontend",
+      "link": "https://228burger228.github.io/WarpathYTwiki/index.html",
+      "emoji": "⚔️",
+      "tags": ["Vue 3", "Vite", "Supabase", "SEO & a11y", "High-Load"],
       "featured": true,
-      "badge": "Studio Showcase",
-      "bot": "https://t.me/dmitryB_studio_bot"
+      "badge": "⭐ 10 000+ MAU"
     },
     {
       "id": 11,
