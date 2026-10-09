@@ -1,0 +1,30 @@
+# Editor
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Logs & Temp
+*.log
+*.tmp
+*.bak
+*~
+
+# Archives & local scratch builds
+*.zip
+ЗАГРУЗИТЬ_НА_NETLIFY/
+ЗАПУСТИТЬ_ИГРУ.html
+Резюме_Дмитрий_Бургер.docx
+постер ппд.png
+
+# Local asset working duplicates (preserving already tracked items)
+assets/*
+!assets/ainala.jpg
+!assets/europath.jpg
+mefoto2.jpg
+mefoto3.jpg

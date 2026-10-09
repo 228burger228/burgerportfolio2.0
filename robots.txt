@@ -1,0 +1,6 @@
+# robots.txt for burgerportfolio2.0
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://228burger228.github.io/burgerportfolio2.0/sitemap.xml

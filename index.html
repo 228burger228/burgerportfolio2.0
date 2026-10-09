@@ -1,14 +1,85 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="ru" prefix="og: https://ogp.me/ns#">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Дмитрий Бургер — Product-Oriented Frontend Engineer & UI/UX Lead. Создаю современные веб-продукты: от UX-архитектуры и дизайн-систем до быстрого production-кода." />
-  <meta name="theme-color" content="#09090b" />
   <title>Дмитрий Бургер — Product-Oriented Frontend Engineer & UI/UX Lead</title>
+  
+  <!-- Primary Meta Tags -->
+  <meta name="description" content="Дмитрий Бургер — Product-Oriented Frontend Engineer & UI/UX Lead. Создаю современные веб-продукты: от UX-архитектуры и дизайн-систем до быстрого production-кода." />
+  <meta name="keywords" content="Дмитрий Бургер, frontend engineer, frontend разработчик, UI/UX дизайнер, Vue 3, React, веб-разработка, создание сайтов, портфолио, калькулятор MVP, интерактивные интерфейсы" />
+  <meta name="author" content="Дмитрий Бургер" />
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+  <meta name="theme-color" content="#09090b" />
+  <link rel="canonical" href="https://228burger228.github.io/burgerportfolio2.0/" />
+
+  <!-- Verification Tags Placeholder (Яндекс.Вебмастер / Google Search Console) -->
+  <!-- <meta name="yandex-verification" content="ВАШ_КОД_ИЗ_ЯНДЕКС_ВЕБМАСТЕРА" /> -->
+  <!-- <meta name="google-site-verification" content="ВАШ_КОД_ИЗ_GOOGLE_SEARCH_CONSOLE" /> -->
+
+  <!-- Favicon & Icons -->
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <link rel="apple-touch-icon" href="mefoto.jpg" />
+
+  <!-- Open Graph / Facebook / Telegram / VK -->
+  <meta property="og:type" content="website" />
+  <meta property="og:locale" content="ru_RU" />
+  <meta property="og:site_name" content="Dmitry Burger Portfolio" />
+  <meta property="og:url" content="https://228burger228.github.io/burgerportfolio2.0/" />
+  <meta property="og:title" content="Дмитрий Бургер — Product-Oriented Frontend Engineer & UI/UX Lead" />
+  <meta property="og:description" content="Создаю современные веб-продукты: от UX-архитектуры и дизайн-систем до быстрого production-кода. Кейсы, интерактивный калькулятор MVP и 3D-технологии." />
+  <meta property="og:image" content="https://228burger228.github.io/burgerportfolio2.0/Porfolscr.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="Портфолио Дмитрия Бургера" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:url" content="https://228burger228.github.io/burgerportfolio2.0/" />
+  <meta name="twitter:title" content="Дмитрий Бургер — Product-Oriented Frontend Engineer & UI/UX Lead" />
+  <meta name="twitter:description" content="Создаю современные веб-продукты: от UX-архитектуры и дизайн-систем до быстрого production-кода." />
+  <meta name="twitter:image" content="https://228burger228.github.io/burgerportfolio2.0/Porfolscr.png" />
+
+  <!-- Structured Data: Schema.org JSON-LD -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Person",
+        "@id": "https://228burger228.github.io/burgerportfolio2.0/#person",
+        "name": "Дмитрий Бургер",
+        "jobTitle": "Product-Oriented Frontend Engineer & UI/UX Lead",
+        "url": "https://228burger228.github.io/burgerportfolio2.0/",
+        "image": "https://228burger228.github.io/burgerportfolio2.0/mefoto.jpg",
+        "description": "Product-Minded Frontend Engineer и UI/UX Lead. Специализация: интерактивные SPA, дизайн-системы, веб-сервисы и 3D Canvas.",
+        "sameAs": [
+          "https://github.com/228burger228",
+          "https://t.me/Burger_228",
+          "https://228burger228.github.io/portfelDD/"
+        ]
+      },
+      {
+        "@type": "WebSite",
+        "@id": "https://228burger228.github.io/burgerportfolio2.0/#website",
+        "url": "https://228burger228.github.io/burgerportfolio2.0/",
+        "name": "Дмитрий Бургер — Портфолио",
+        "description": "Портфолио проектов и интерактивный калькулятор стоимости MVP разработки.",
+        "inLanguage": "ru",
+        "publisher": {
+          "@id": "https://228burger228.github.io/burgerportfolio2.0/#person"
+        }
+      }
+    ]
+  }
+  </script>
+
+  <!-- Preconnect & Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+  <!-- Stylesheets -->
   <link rel="stylesheet" href="css/tokens.css" />
   <link rel="stylesheet" href="css/base.css" />
   <link rel="stylesheet" href="css/layout.css" />
@@ -101,7 +172,7 @@
           <!-- Фотография Дмитрия -->
           <div class="hero-media animate-fade-up">
             <div class="hero-photo-card">
-              <img src="mefoto.jpg" alt="Дмитрий Бургер — Product Frontend Engineer & UI/UX Lead" class="hero-photo" />
+              <img src="mefoto.jpg" alt="Дмитрий Бургер — Product Frontend Engineer & UI/UX Lead" class="hero-photo" fetchpriority="high" decoding="async" />
               <div class="hero-photo-meta">
                 <div class="hero-photo-status">
                   <span class="avail-dot" aria-hidden="true"></span>
@@ -901,7 +972,7 @@
           <!-- Точка ритма / Яндекс Практикум -->
           <article class="proj-card reveal" data-filter="ui" aria-label="Проект Точка ритма">
             <div class="proj-img">
-              <img src="шапкаЯ1.png" alt="Точка ритма — музыкальный медиа-портал UI/UX дизайн" loading="lazy" />
+              <img src="tochkaritma.png" alt="Точка ритма — музыкальный медиа-портал UI/UX дизайн" loading="lazy" />
               <div class="proj-overlay">
                 <a href="https://www.figma.com/design/" target="_blank" rel="noopener noreferrer" class="proj-overlay-btn">
                   Открыть в Figma ↗
@@ -1709,7 +1780,7 @@
       <div class="gallery-viewer">
         <div class="gallery-slider">
           <img src="sitikol1.png" alt="City Collection Флаер" />
-          <img src="постер ппд.png" alt="Безопасность и велодвижение" />
+          <img src="posterPPD.png" alt="Безопасность и велодвижение" />
           <img src="posterr1.jpg" alt="Плакат 1" />
           <img src="posterr12.jpg" alt="Плакат 2" />
           <img src="posterr122.jpg" alt="Плакат 3" />
