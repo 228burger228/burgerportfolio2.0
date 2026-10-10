@@ -98,11 +98,11 @@
       "id": 10,
       "title": "Warpath: Ace Shooter Wiki — Справочник сообщества",
       "desc": "Высоконагруженный веб-справочник русскоязычного комьюнити мобильной стратегии. Разработал архитектуру на Vue 3 и Supabase, реализовал поиск, фильтрацию и поисковую оптимизацию. Официальный партнер сообщества игры.",
-      "cat": "featured frontend",
+      "cat": "frontend",
       "link": "https://228burger228.github.io/WarpathYTwiki/index.html",
       "emoji": "⚔️",
       "tags": ["Vue 3", "Vite", "Supabase", "SEO & a11y", "High-Load"],
-      "featured": true,
+      "featured": false,
       "badge": "High-Load Wiki"
     },
     {
@@ -211,13 +211,13 @@
       "id": 21,
       "title": "WP Commander — Тактический веб-сервис Warpath",
       "desc": "Совместное развитие и техническое сопровождение веб-платформы WP Commander в плотной коллаборации с разработчиком экосистемы speedpath.org. Модули исследований, интерактивные калькуляторы и тактическая аналитика для игроков стратегии.",
-      "cat": "featured frontend",
+      "cat": "frontend",
       "link": "https://wpcommander.netlify.app/",
       "collab": "https://speedpath.org/",
       "emoji": "🎖️",
       "tags": ["PWA / WebApp", "Gaming Tools", "Co-Development", "SpeedPath Collab", "Поддержка"],
-      "featured": true,
-      "badge": "Коллаборация & Co-Dev"
+      "featured": false,
+      "badge": "Co-Dev & Support"
     }
   ],
   "certificates": [
