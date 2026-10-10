@@ -210,14 +210,24 @@
     {
       "id": 21,
       "title": "WP Commander — Тактический веб-сервис Warpath",
-      "desc": "Совместное развитие и техническое сопровождение веб-платформы WP Commander в плотной коллаборации с разработчиком экосистемы speedpath.org. Модули исследований, интерактивные калькуляторы и тактическая аналитика для игроков стратегии.",
+      "desc": "Совместное ведение, развитие и техническая поддержка веб-платформы: интерактивные модули исследований, тактические калькуляторы и актуализация данных для игроков.",
       "cat": "frontend",
       "link": "https://wpcommander.netlify.app/",
-      "collab": "https://speedpath.org/",
       "emoji": "🎖️",
-      "tags": ["PWA / WebApp", "Gaming Tools", "Co-Development", "SpeedPath Collab", "Поддержка"],
+      "tags": ["PWA / WebApp", "Gaming Tools", "Веб-поддержка", "Модули UI"],
       "featured": false,
-      "badge": "Co-Dev & Support"
+      "badge": "Веб-поддержка"
+    },
+    {
+      "id": 22,
+      "title": "SpeedPath — Стратегические инструменты",
+      "desc": "Отдельная игровая экосистема инструментов Warpath. Приглашен в проект для PR-коллаборации и продвижения как профильный YouTube-автор: привлечение целевой аудитории и медиа-интеграции.",
+      "cat": "content frontend",
+      "link": "https://speedpath.org/",
+      "emoji": "⚡",
+      "tags": ["PR & Media", "YouTube Creator", "Gaming Tools", "Коллаборация"],
+      "featured": false,
+      "badge": "PR Collab · YouTube"
     }
   ],
   "certificates": [
