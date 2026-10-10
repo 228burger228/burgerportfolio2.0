@@ -190,11 +190,13 @@ class Portfolio {
 
     this.navToggle.addEventListener('click', () => {
       const isOpen = this.navMenu.getAttribute('aria-expanded') === 'true';
-      this.navMenu.setAttribute('aria-expanded', String(!isOpen));
-      this.navToggle.setAttribute('aria-expanded', String(!isOpen));
+      const willOpen = !isOpen;
+      this.navMenu.setAttribute('aria-expanded', String(willOpen));
+      this.navToggle.setAttribute('aria-expanded', String(willOpen));
+      document.body.classList.toggle('nav-menu-open', willOpen);
     });
 
-    this.navLinks.forEach(link => {
+    this.navMenu.querySelectorAll('a').forEach(link => {
       link.addEventListener('click', () => this.closeMobileMenu());
     });
 
@@ -209,6 +211,7 @@ class Portfolio {
     if (!this.navMenu) return;
     this.navMenu.setAttribute('aria-expanded', 'false');
     if (this.navToggle) this.navToggle.setAttribute('aria-expanded', 'false');
+    document.body.classList.remove('nav-menu-open');
   }
 
   /* ─────────────────────────────────────────────────────────────────────
