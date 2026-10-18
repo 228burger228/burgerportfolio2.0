@@ -228,6 +228,17 @@
       "tags": ["PR & Media", "YouTube Creator", "Gaming Tools", "Коллаборация"],
       "featured": false,
       "badge": "PR Collab · YouTube"
+    },
+    {
+      "id": 23,
+      "title": "JobHunter AI — Агрегатор вакансий и авто-откликов",
+      "desc": "Автономная система мониторинга бирж и лидогенерации 24/7. Непрерывный парсинг HH.ru, Хабр Фриланса, FL.ru и Telegram-каналов с AI-скорингом релевантности и мгновенной генерацией персонального КП за 30 секунд.",
+      "cat": "featured ai frontend",
+      "link": "#cases",
+      "emoji": "🤖",
+      "tags": ["Telegram Bot API", "Web Scraping", "Python / Node.js", "Gemini AI", "Лидогенерация"],
+      "featured": true,
+      "badge": "AI Bot · Лидогенерация"
     }
   ],
   "certificates": [
