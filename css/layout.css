@@ -519,25 +519,25 @@
 }
 
 /* ─────────────────────────────────────────────────────────────────────────
-   PROJECT CASE FLOW (Было → Результат → Что стало)
+   PROJECT CASE FLOW (Было → Что сделали → Результат)
    ───────────────────────────────────────────────────────────────────────── */
 
 .case-flow {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 8px;
   margin-top: var(--space-md);
   margin-bottom: var(--space-md);
   background: rgba(0, 0, 0, 0.28);
   border: 1px solid rgba(255, 255, 255, 0.06);
   border-radius: var(--radius-lg);
-  padding: 12px;
+  padding: 10px 12px;
 }
 
-@container (min-width: 440px) {
+@container (min-width: 680px) {
   .case-flow {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: repeat(3, 1fr);
     gap: 10px;
     padding: 12px 14px;
   }
@@ -546,11 +546,17 @@
 .flow-step {
   display: flex;
   flex-direction: column;
-  gap: 5px;
+  gap: 4px;
   background: rgba(255, 255, 255, 0.02);
   border: 1px solid rgba(255, 255, 255, 0.04);
   border-radius: var(--radius-sm);
-  padding: 10px 12px;
+  padding: 8px 11px;
+  transition: background-color var(--transition-fast), border-color var(--transition-fast);
+}
+
+.flow-step:hover {
+  background: rgba(255, 255, 255, 0.035);
+  border-color: rgba(255, 255, 255, 0.08);
 }
 
 .flow-tag {
@@ -558,9 +564,13 @@
   align-items: center;
   font-size: 11px;
   font-weight: 700;
-  letter-spacing: 0.04em;
+  letter-spacing: 0.05em;
   text-transform: uppercase;
   width: fit-content;
+}
+
+.flow-tag.tag-was {
+  color: #94a3b8;
 }
 
 .flow-tag.tag-did {
@@ -571,16 +581,12 @@
   color: #34d399;
 }
 
-.flow-tag.tag-was {
-  color: #94a3b8;
-}
-
 .flow-tag.tag-became {
   color: #34d399;
 }
 
 .flow-text {
-  font-size: 12.5px;
+  font-size: 12px;
   line-height: 1.48;
   color: var(--color-text-secondary);
   margin: 0;

@@ -85,7 +85,8 @@ class Portfolio {
     this.modalClose      = document.getElementById('modal-close');
     this.modalOverlay    = document.getElementById('modal-overlay');
     this.skipLink        = document.getElementById('skip-link');
-    this.scrollToTopBtn  = document.getElementById('scroll-to-top');
+    this.scrollToTopBtn   = document.getElementById('scroll-to-top');
+    this.scrollProgressBar = document.getElementById('scroll-progress-bar');
 
     this.searchInput     = document.getElementById('project-search');
     this.searchClear     = document.getElementById('project-search-clear');
@@ -140,7 +141,14 @@ class Portfolio {
       }
 
       if (this.scrollToTopBtn) {
-        this.scrollToTopBtn.classList.toggle('visible', y > 300);
+        this.scrollToTopBtn.classList.toggle('visible', y > 280);
+      }
+
+      if (this.scrollProgressBar) {
+        const scrollTotal = document.documentElement.scrollHeight - window.innerHeight;
+        const progress = scrollTotal > 0 ? Math.min(1, Math.max(0, y / scrollTotal)) : 0;
+        const circumference = 125.66;
+        this.scrollProgressBar.style.strokeDashoffset = (circumference * (1 - progress)).toFixed(2);
       }
 
       this.scrollTicking = false;
