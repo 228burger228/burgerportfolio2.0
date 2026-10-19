@@ -27,12 +27,32 @@ body {
   line-height: var(--line-height-normal);
   color: var(--color-text-primary);
   background-color: var(--color-bg-primary);
-  background-image: 
-    linear-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
-  background-size: 44px 44px;
-  background-position: center top;
   overflow-x: hidden;
+  position: relative;
+}
+
+/* Точечная сетка (кругляшки в стиле Astra/knice.tech с радиальным затуханием) */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background-image: radial-gradient(circle, rgba(255, 255, 255, 0.08) 1px, transparent 1px);
+  background-size: 26px 26px;
+  background-position: center top;
+  mask-image: radial-gradient(ellipse 85% 65% at 50% 30%, black 20%, transparent 85%);
+  -webkit-mask-image: radial-gradient(ellipse 85% 65% at 50% 30%, black 20%, transparent 85%);
+}
+
+/* Мягкий перелив / свечение по центру */
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background: radial-gradient(ellipse 65% 45% at 50% 25%, rgba(56, 189, 248, 0.03), rgba(124, 58, 237, 0.02) 45%, transparent 75%);
 }
 
 /* ─────────────────────────────────────────────────────────────────────────

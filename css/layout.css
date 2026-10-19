@@ -528,47 +528,51 @@
   gap: 10px;
   margin-top: var(--space-md);
   margin-bottom: var(--space-md);
-  background: rgba(0, 0, 0, 0.32);
+  background: rgba(0, 0, 0, 0.28);
   border: 1px solid rgba(255, 255, 255, 0.06);
   border-radius: var(--radius-lg);
   padding: 12px;
 }
 
-@container (min-width: 460px) {
+@container (min-width: 440px) {
   .case-flow {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: 1fr 1fr;
     gap: 10px;
-    padding: 14px;
+    padding: 12px 14px;
   }
 }
 
 .flow-step {
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  gap: 5px;
   background: rgba(255, 255, 255, 0.02);
   border: 1px solid rgba(255, 255, 255, 0.04);
   border-radius: var(--radius-sm);
-  padding: 8px 10px;
+  padding: 10px 12px;
 }
 
 .flow-tag {
   display: inline-flex;
   align-items: center;
-  font-size: 10px;
+  font-size: 11px;
   font-weight: 700;
-  letter-spacing: 0.06em;
+  letter-spacing: 0.04em;
   text-transform: uppercase;
   width: fit-content;
 }
 
-.flow-tag.tag-was {
-  color: #94a3b8;
+.flow-tag.tag-did {
+  color: #38bdf8;
 }
 
 .flow-tag.tag-res {
-  color: #fbbf24;
+  color: #34d399;
+}
+
+.flow-tag.tag-was {
+  color: #94a3b8;
 }
 
 .flow-tag.tag-became {
@@ -576,8 +580,8 @@
 }
 
 .flow-text {
-  font-size: 12px;
-  line-height: 1.45;
+  font-size: 12.5px;
+  line-height: 1.48;
   color: var(--color-text-secondary);
   margin: 0;
 }
