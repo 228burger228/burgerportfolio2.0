@@ -121,11 +121,11 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
 
   <!-- Stylesheets -->
-  <link rel="stylesheet" href="css/tokens.css?v=20261019-4" />
-  <link rel="stylesheet" href="css/base.css?v=20261019-4" />
-  <link rel="stylesheet" href="css/layout.css?v=20261019-4" />
-  <link rel="stylesheet" href="css/components.css?v=20261019-4" />
-  <link rel="stylesheet" href="css/responsive.css?v=20261019-4" />
+  <link rel="stylesheet" href="css/tokens.css?v=20261019-5" />
+  <link rel="stylesheet" href="css/base.css?v=20261019-5" />
+  <link rel="stylesheet" href="css/layout.css?v=20261019-5" />
+  <link rel="stylesheet" href="css/components.css?v=20261019-5" />
+  <link rel="stylesheet" href="css/responsive.css?v=20261019-5" />
 </head>
 <body>
   <a href="#main-content" class="skip-link" id="skip-link">Перейти к основному контенту</a>
@@ -1935,10 +1935,135 @@
   </main>
 
   <footer class="footer" role="contentinfo">
-    <div class="container">
-      <p class="footer-text">
-        © 2026 Дмитрий Бургер · Product-Oriented Frontend Engineer & UI/UX Lead.
-      </p>
+    <div class="container footer-container">
+      
+      <!-- Top Bar: Brand, Availability, and Quick Action Mini-Buttons -->
+      <div class="footer-top">
+        <div class="footer-brand-col">
+          <a href="#" class="footer-brand" aria-label="Дмитрий Бургер — На главную">
+            <span class="footer-brand-title">Dmitry Burger</span>
+            <span class="footer-brand-tag">Frontend &amp; Product Lead</span>
+          </a>
+          <p class="footer-brand-desc">
+            Разработка сайтов под ключ, быстрый фронтенд на нативном стеке и UI/UX дизайн для предпринимателей и продуктов.
+          </p>
+          <div class="footer-status-badge">
+            <span class="status-pulse-dot" aria-hidden="true"></span>
+            <span>Открыт к новым проектам и сотрудничеству</span>
+          </div>
+        </div>
+
+        <!-- Quick Connect Mini-Buttons ("мини кнопки на быстрые ссылки на меня") -->
+        <div class="footer-quick-links">
+          <div class="quick-links-label">Быстрые контакты и ссылки:</div>
+          <div class="quick-pills-row">
+            <a href="https://t.me/Burger_228" target="_blank" rel="noopener noreferrer" class="quick-pill quick-pill-tg" title="Личный Telegram">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
+              <span>Telegram: @Burger_228</span>
+            </a>
+            <a href="https://t.me/dmitryB_studio_bot" target="_blank" rel="noopener noreferrer" class="quick-pill quick-pill-bot" title="Студийный бот-помощник">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="11" width="18" height="10" rx="2"></rect><circle cx="12" cy="5" r="2"></circle><path d="M12 7v4"></path><line x1="8" y1="16" x2="8" y2="16"></line><line x1="16" y1="16" x2="16" y2="16"></line></svg>
+              <span>Бот: @dmitryB_studio_bot</span>
+            </a>
+            <a href="https://github.com/228burger228" target="_blank" rel="noopener noreferrer" class="quick-pill quick-pill-gh" title="GitHub Репозитории">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+              <span>GitHub: 228burger228</span>
+            </a>
+            <a href="https://228burger228.github.io/portfelDD/" target="_blank" rel="noopener noreferrer" class="quick-pill quick-pill-duo" title="Парная визитка студии">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+              <span>Студия Dimutri &amp; Burger</span>
+            </a>
+            <a href="https://228burger228.github.io/WarpathYTwiki/index.html" target="_blank" rel="noopener noreferrer" class="quick-pill quick-pill-yt" title="Warpath Wiki & YouTube">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+              <span>Warpath Wiki &amp; YouTube</span>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-divider" aria-hidden="true"></div>
+
+      <!-- Main Columns Navigation Grid (4 columns) -->
+      <div class="footer-nav-grid">
+        
+        <!-- Col 1: Кейсы -->
+        <div class="footer-nav-col">
+          <div class="footer-col-header">Ключевые кейсы</div>
+          <ul class="footer-link-list">
+            <li><a href="https://228burger228.github.io/Game-portfolio/" target="_blank" rel="noopener noreferrer">Game Portfolio 2.0 (3D) ↗</a></li>
+            <li><a href="https://228burger228.github.io/portfelDD/" target="_blank" rel="noopener noreferrer">Dimutri &amp; Burger ↗</a></li>
+            <li><a href="https://228burger228.github.io/StudyUp/index.html" target="_blank" rel="noopener noreferrer">Study Up — Онлайн-школа ↗</a></li>
+            <li><a href="https://228burger228.github.io/school-333/docs/index.html" target="_blank" rel="noopener noreferrer">EuroPath — Вузы Европы ↗</a></li>
+            <li><a href="https://228burger228.github.io/med/" target="_blank" rel="noopener noreferrer">Ainala Rehab — Медсервис ↗</a></li>
+            <li><a href="https://228burger228.github.io/foodiCE/" target="_blank" rel="noopener noreferrer">foodiCE — Мороженое ↗</a></li>
+          </ul>
+        </div>
+
+        <!-- Col 2: Навигация по разделам -->
+        <div class="footer-nav-col">
+          <div class="footer-col-header">Навигация по сайту</div>
+          <ul class="footer-link-list">
+            <li><a href="#hero">Главный экран</a></li>
+            <li><a href="#case-studies">Все работы и фильтры</a></li>
+            <li><a href="#expertise">Технологический стек</a></li>
+            <li><a href="#services">Услуги и прозрачные цены</a></li>
+            <li><a href="#calculator">Интерактивный калькулятор MVP</a></li>
+            <li><a href="#about">О подходе и гарантиях</a></li>
+            <li><a href="#contact">Форма связи</a></li>
+          </ul>
+        </div>
+
+        <!-- Col 3: Продукты и проекты -->
+        <div class="footer-nav-col">
+          <div class="footer-col-header">Проекты и экосистема</div>
+          <ul class="footer-link-list">
+            <li><a href="https://228burger228.github.io/digital-garden" target="_blank" rel="noopener noreferrer">Digital Garden (База знаний) ↗</a></li>
+            <li><a href="https://228burger228.github.io/SkillForge/" target="_blank" rel="noopener noreferrer">SkillForge (Vue 3 SPA) ↗</a></li>
+            <li><a href="https://228burger228.github.io/aNdreyTT/" target="_blank" rel="noopener noreferrer">vertical.team (Лендинг) ↗</a></li>
+            <li><a href="https://228burger228.github.io/WarpathYTwiki/index.html" target="_blank" rel="noopener noreferrer">Warpath Community Wiki ↗</a></li>
+            <li><a href="https://github.com/228burger228" target="_blank" rel="noopener noreferrer">Все репозитории на GitHub ↗</a></li>
+          </ul>
+        </div>
+
+        <!-- Col 4: Контакты и связь -->
+        <div class="footer-nav-col">
+          <div class="footer-col-header">Прямой контакт</div>
+          <p class="footer-col-desc">Отвечаю лично в Telegram в течение 1–2 часов. Без посредников и агентских наценок.</p>
+          <div class="footer-contact-item">
+            <span class="footer-contact-label">Личный Telegram:</span>
+            <a href="https://t.me/Burger_228" target="_blank" rel="noopener noreferrer" class="footer-contact-val">@Burger_228 ↗</a>
+          </div>
+          <div class="footer-contact-item">
+            <span class="footer-contact-label">Студийный бот:</span>
+            <a href="https://t.me/dmitryB_studio_bot" target="_blank" rel="noopener noreferrer" class="footer-contact-val">@dmitryB_studio_bot ↗</a>
+          </div>
+          <div class="footer-contact-item">
+            <span class="footer-contact-label">Формат работы:</span>
+            <span class="footer-contact-plain">Москва / Удаленно по миру</span>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="footer-divider footer-divider-subtle" aria-hidden="true"></div>
+
+      <!-- Bottom Meta / Legal Bar -->
+      <div class="footer-bottom-bar">
+        <div class="footer-copy">
+          © 2026 Дмитрий Бургер · Frontend &amp; Product Lead. Разработка сайтов и веб-сервисов под ключ.
+        </div>
+        <div class="footer-tech-stack">
+          <span>HTML5 / CSS3 / Vanilla JS</span>
+          <span class="footer-bullet">•</span>
+          <span>Core Web Vitals 95+</span>
+          <span class="footer-bullet">•</span>
+          <span>Zero Framework Overhead</span>
+        </div>
+        <a href="#hero" class="footer-back-to-top" aria-label="Вернуться в начало страницы">
+          <span>Наверх ↑</span>
+        </a>
+      </div>
+
     </div>
   </footer>
 
@@ -2014,6 +2139,6 @@
     </svg>
   </button>
 
-  <script src="js/main.js?v=20261019-4" defer></script>
+  <script src="js/main.js?v=20261019-5" defer></script>
 </body>
 </html>

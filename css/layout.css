@@ -2409,19 +2409,297 @@
 }
 
 /* ─────────────────────────────────────────────────────────────────────────
-   FOOTER
+   FOOTER (Комплексный подвал Бизнес-Премиум)
    ───────────────────────────────────────────────────────────────────────── */
 
 .footer {
-  background-color: var(--color-bg-surface);
-  border-top: 1px solid var(--color-border);
-  padding: var(--space-2xl) 0;
-  text-align: center;
+  background-color: #0b0f17;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 56px 0 32px 0;
+  position: relative;
+  z-index: 2;
 }
 
-.footer-text {
-  font-size: var(--font-size-sm);
+.footer-container {
+  display: flex;
+  flex-direction: column;
+  gap: 36px;
+}
+
+/* Верхняя полоса: бренд, статус и мини-кнопки */
+.footer-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 32px;
+  flex-wrap: wrap;
+}
+
+.footer-brand-col {
+  max-width: 440px;
+}
+
+.footer-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+  margin-bottom: 10px;
+}
+
+.footer-brand-title {
+  font-family: var(--font-family-display);
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--color-text-primary);
+  letter-spacing: -0.02em;
+}
+
+.footer-brand-tag {
+  font-size: 11px;
+  font-weight: 600;
+  color: #38bdf8;
+  background: rgba(56, 189, 248, 0.1);
+  border: 1px solid rgba(56, 189, 248, 0.25);
+  padding: 2px 8px;
+  border-radius: 9999px;
+  letter-spacing: 0.02em;
+}
+
+.footer-brand-desc {
+  font-size: 13.5px;
+  line-height: 1.55;
+  color: var(--color-text-secondary);
+  margin-bottom: 12px;
+}
+
+.footer-status-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  color: #34d399;
+  background: rgba(52, 211, 153, 0.08);
+  border: 1px solid rgba(52, 211, 153, 0.2);
+  padding: 4px 10px;
+  border-radius: 9999px;
+}
+
+.status-pulse-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background-color: #34d399;
+  box-shadow: 0 0 8px #34d399;
+  animation: pulseDot 2s infinite ease-in-out;
+}
+
+@keyframes pulseDot {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.4; transform: scale(0.85); }
+}
+
+/* Мини кнопки на быстрые ссылки на меня */
+.footer-quick-links {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-width: 540px;
+}
+
+.quick-links-label {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
   color: var(--color-text-muted);
+}
+
+.quick-pills-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.quick-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--color-text-secondary);
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 6px 12px;
+  border-radius: 9999px;
+  text-decoration: none;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.quick-pill:hover {
+  background: rgba(56, 189, 248, 0.1);
+  border-color: rgba(56, 189, 248, 0.4);
+  color: #38bdf8;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(56, 189, 248, 0.15);
+}
+
+.quick-pill-tg:hover { border-color: rgba(56, 189, 248, 0.5); color: #38bdf8; }
+.quick-pill-bot:hover { border-color: rgba(129, 140, 248, 0.5); color: #818cf8; }
+.quick-pill-gh:hover { border-color: rgba(255, 255, 255, 0.3); color: #ffffff; }
+.quick-pill-duo:hover { border-color: rgba(244, 63, 94, 0.4); color: #fb7185; }
+.quick-pill-yt:hover { border-color: rgba(239, 68, 68, 0.5); color: #f87171; }
+
+/* Разделители */
+.footer-divider {
+  width: 100%;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.07);
+}
+
+.footer-divider-subtle {
+  background: rgba(255, 255, 255, 0.04);
+}
+
+/* 4-колоночная навигация */
+.footer-nav-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 32px;
+}
+
+@media (max-width: 900px) {
+  .footer-nav-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 28px;
+  }
+}
+
+@media (max-width: 520px) {
+  .footer-nav-grid {
+    grid-template-columns: 1fr;
+    gap: 22px;
+  }
+}
+
+.footer-nav-col {
+  display: flex;
+  flex-direction: column;
+}
+
+.footer-col-header {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-text-primary);
+  margin-bottom: 14px;
+}
+
+.footer-link-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+}
+
+.footer-link-list a {
+  font-size: 13px;
+  color: var(--color-text-muted);
+  text-decoration: none;
+  transition: color 0.2s ease, transform 0.2s ease;
+  display: inline-block;
+  line-height: 1.4;
+}
+
+.footer-link-list a:hover {
+  color: #38bdf8;
+  transform: translateX(3px);
+}
+
+.footer-col-desc {
+  font-size: 13px;
+  color: var(--color-text-muted);
+  line-height: 1.5;
+  margin-bottom: 12px;
+}
+
+.footer-contact-item {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  margin-bottom: 10px;
+}
+
+.footer-contact-label {
+  font-size: 11px;
+  color: var(--color-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.footer-contact-val {
+  font-size: 13px;
+  font-weight: 500;
+  color: #38bdf8;
+  text-decoration: none;
+}
+
+.footer-contact-val:hover {
+  text-decoration: underline;
+}
+
+.footer-contact-plain {
+  font-size: 13px;
+  color: var(--color-text-secondary);
+}
+
+/* Нижняя полоса копирайта */
+.footer-bottom-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 16px;
+  font-size: 12px;
+  color: var(--color-text-muted);
+}
+
+.footer-copy {
   max-width: none;
+  color: var(--color-text-muted);
+}
+
+.footer-tech-stack {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  font-size: 11.5px;
+  color: #71717a;
+}
+
+.footer-bullet {
+  opacity: 0.5;
+}
+
+.footer-back-to-top {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--color-text-secondary);
+  text-decoration: none;
+  padding: 4px 8px;
+  border-radius: var(--radius-sm);
+  transition: all 0.2s ease;
+}
+
+.footer-back-to-top:hover {
+  color: #38bdf8;
+  background: rgba(255, 255, 255, 0.04);
 }
 
