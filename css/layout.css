@@ -1877,15 +1877,16 @@
 .contact-btn {
   min-width: 180px;
 }
-
 /* ─────────────────────────────────────────────────────────────────────────
-   MVP CALCULATOR SECTION
+   MVP CALCULATOR SECTION (Astra-Inspired Interactive Blueprint)
    ───────────────────────────────────────────────────────────────────────── */
 
 .section-calculator {
   background-color: var(--color-bg-surface);
   border-top: 1px solid var(--color-border);
   border-bottom: 1px solid var(--color-border);
+  position: relative;
+  overflow: hidden;
 }
 
 .calc-badge {
@@ -1893,8 +1894,8 @@
   align-items: center;
   gap: 8px;
   background: rgba(59, 130, 246, 0.08);
-  border: 1px solid rgba(59, 130, 246, 0.2);
-  padding: 4px 12px;
+  border: 1px solid rgba(59, 130, 246, 0.25);
+  padding: 5px 14px;
   border-radius: var(--radius-full);
   font-size: var(--font-size-xs);
   font-weight: var(--font-weight-semibold);
@@ -1909,17 +1910,87 @@
   border-radius: 50%;
   background: var(--color-accent);
   display: inline-block;
-  box-shadow: 0 0 6px var(--color-accent);
+  box-shadow: 0 0 8px var(--color-accent);
+  animation: badgeDotPulse 2s infinite ease-in-out;
 }
 
+@keyframes badgeDotPulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.5; transform: scale(0.85); }
+}
+
+/* Astra-Style Quick Presets Bar */
+.calc-presets-bar {
+  margin-top: var(--space-xl);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.calc-presets-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+  font-weight: var(--font-weight-semibold);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--color-text-muted);
+}
+
+.calc-presets-list {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+}
+
+.calc-preset-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-full);
+  padding: 6px 14px;
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text-secondary);
+  cursor: pointer;
+  transition: all var(--transition-base);
+}
+
+.calc-preset-chip:hover {
+  background: rgba(59, 130, 246, 0.08);
+  border-color: rgba(59, 130, 246, 0.35);
+  color: var(--color-text-primary);
+  transform: translateY(-1px);
+}
+
+.calc-preset-chip.active {
+  background: rgba(59, 130, 246, 0.14);
+  border-color: var(--color-accent);
+  color: var(--color-text-primary);
+  box-shadow: 0 0 12px rgba(59, 130, 246, 0.25);
+  font-weight: var(--font-weight-semibold);
+}
+
+.preset-icon {
+  font-size: 13px;
+}
+
+/* 2-Column Calculator Layout */
 .calc-layout {
   display: grid;
-  grid-template-columns: 1.25fr 0.95fr;
+  grid-template-columns: 1.15fr 1.05fr;
   gap: var(--space-3xl);
   align-items: start;
+  margin-top: var(--space-2xl);
 }
 
-@media (max-width: 980px) {
+@media (max-width: 1040px) {
   .calc-layout {
     grid-template-columns: 1fr;
     gap: var(--space-2xl);
@@ -1937,6 +2008,12 @@
   border: 1px solid var(--color-border);
   border-radius: var(--radius-xl);
   padding: var(--space-xl);
+  box-shadow: var(--shadow-sm);
+  transition: border-color var(--transition-base);
+}
+
+.calc-step-card:hover {
+  border-color: rgba(255, 255, 255, 0.12);
 }
 
 .calc-step-header {
@@ -1948,13 +2025,13 @@
 
 .calc-step-num {
   font-family: var(--font-family-display);
-  font-size: var(--font-size-sm);
+  font-size: var(--font-size-xs);
   font-weight: var(--font-weight-bold);
   color: var(--color-accent);
   background: rgba(59, 130, 246, 0.1);
-  border: 1px solid rgba(59, 130, 246, 0.2);
-  width: 28px;
-  height: 28px;
+  border: 1px solid rgba(59, 130, 246, 0.25);
+  width: 26px;
+  height: 26px;
   border-radius: 50%;
   display: inline-flex;
   align-items: center;
@@ -1978,12 +2055,12 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 16px;
+  gap: 14px;
   text-align: left;
   background: var(--color-bg-surface);
   border: 1px solid var(--color-border);
   border-radius: var(--radius-lg);
-  padding: 14px 18px;
+  padding: 12px 16px;
   cursor: pointer;
   transition: all var(--transition-base);
   width: 100%;
@@ -1995,10 +2072,40 @@
   transform: translateY(-1px);
 }
 
+.calc-opt-btn:active {
+  transform: scale(0.99);
+}
+
 .calc-opt-btn.active {
-  background: rgba(59, 130, 246, 0.06);
+  background: rgba(59, 130, 246, 0.08);
   border-color: var(--color-accent);
-  box-shadow: 0 0 0 1px var(--color-accent);
+  box-shadow: 0 0 0 1px var(--color-accent), 0 4px 14px rgba(59, 130, 246, 0.12);
+}
+
+.opt-icon-box {
+  width: 34px;
+  height: 34px;
+  border-radius: var(--radius-md);
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--color-border);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-text-secondary);
+  flex-shrink: 0;
+  transition: all var(--transition-base);
+}
+
+.calc-opt-btn:hover .opt-icon-box {
+  color: var(--color-accent);
+  border-color: rgba(59, 130, 246, 0.3);
+  background: rgba(59, 130, 246, 0.08);
+}
+
+.calc-opt-btn.active .opt-icon-box {
+  color: var(--color-accent);
+  background: rgba(59, 130, 246, 0.16);
+  border-color: rgba(59, 130, 246, 0.4);
 }
 
 .opt-content {
@@ -2039,6 +2146,7 @@
   box-shadow: inset 0 0 0 3px var(--color-bg-surface);
 }
 
+/* Timeline Pills */
 .calc-options-row {
   display: flex;
   gap: 8px;
@@ -2074,166 +2182,7 @@
   box-shadow: 0 0 0 1px var(--color-accent);
 }
 
-/* Calculator Summary Card */
-.calc-summary-card {
-  position: sticky;
-  top: 100px;
-  background: var(--color-bg-primary);
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-2xl);
-  padding: var(--space-2xl);
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
-}
-
-.summary-top {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: var(--space-lg);
-  padding-bottom: var(--space-md);
-  border-bottom: 1px solid var(--color-border);
-}
-
-.summary-badge {
-  font-size: 11px;
-  font-weight: var(--font-weight-semibold);
-  color: var(--color-success);
-  background: rgba(16, 185, 129, 0.1);
-  border: 1px solid rgba(16, 185, 129, 0.25);
-  padding: 3px 8px;
-  border-radius: var(--radius-full);
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-}
-
-.summary-title {
-  font-size: var(--font-size-lg);
-  font-weight: var(--font-weight-bold);
-  color: var(--color-text-primary);
-  margin-bottom: 0;
-}
-
-.summary-detail-block {
-  margin-bottom: var(--space-md);
-}
-
-.summary-label {
-  font-size: 11px;
-  font-weight: var(--font-weight-semibold);
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  color: var(--color-text-muted);
-  display: block;
-  margin-bottom: 6px;
-}
-
-.summary-stack-tags {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 6px;
-}
-
-.summary-stack-tag {
-  font-size: 11px;
-  background: var(--color-bg-surface);
-  border: 1px solid var(--color-border);
-  color: var(--color-text-secondary);
-  padding: 3px 8px;
-  border-radius: var(--radius-sm);
-  font-weight: var(--font-weight-medium);
-}
-
-.summary-timeline-val {
-  font-size: var(--font-size-base);
-  font-weight: var(--font-weight-bold);
-  color: var(--color-accent);
-}
-
-.summary-steps-list {
-  padding-left: 18px;
-  margin: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-}
-
-.summary-steps-list li {
-  font-size: var(--font-size-xs);
-  color: var(--color-text-secondary);
-  line-height: 1.4;
-}
-
-.summary-brief-block {
-  margin-top: var(--space-lg);
-  margin-bottom: var(--space-lg);
-  background: rgba(255, 255, 255, 0.02);
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-lg);
-  padding: 12px;
-}
-
-.summary-brief-head {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 6px;
-}
-
-.calc-copy-btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 5px;
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px solid var(--color-border);
-  color: var(--color-text-secondary);
-  font-size: 11px;
-  font-weight: var(--font-weight-medium);
-  cursor: pointer;
-  padding: 4px 8px;
-  border-radius: var(--radius-sm);
-  transition: all var(--transition-fast);
-}
-
-.calc-copy-btn:hover {
-  background: rgba(59, 130, 246, 0.12);
-  color: var(--color-text-primary);
-  border-color: var(--color-accent);
-}
-
-.calc-copy-btn svg {
-  flex-shrink: 0;
-}
-
-.summary-brief-text {
-  font-size: 12px;
-  color: var(--color-text-primary);
-  line-height: 1.5;
-  font-style: italic;
-}
-
-.calc-cta-btn {
-  width: 100%;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  padding: 14px;
-  font-size: var(--font-size-sm);
-}
-
-.calc-cta-btn svg {
-  flex-shrink: 0;
-}
-
-.calc-guarantee-note {
-  font-size: 11px;
-  color: var(--color-text-muted);
-  text-align: center;
-  margin-top: 10px;
-  margin-bottom: 0;
-}
-
-/* Calculator Add-on Modules & Summary Enhancements */
+/* Addons Grid */
 .calc-addons-grid {
   display: flex;
   flex-wrap: wrap;
@@ -2243,12 +2192,12 @@
 .calc-addon-btn {
   display: inline-flex;
   align-items: center;
-  gap: 6px;
+  gap: 8px;
   background: var(--color-bg-surface);
   border: 1px solid var(--color-border);
   color: var(--color-text-secondary);
   border-radius: var(--radius-md);
-  padding: 8px 12px;
+  padding: 8px 14px;
   font-size: var(--font-size-xs);
   font-weight: var(--font-weight-medium);
   cursor: pointer;
@@ -2259,6 +2208,10 @@
   color: var(--color-text-primary);
   border-color: rgba(59, 130, 246, 0.4);
   background: var(--color-bg-elevated);
+}
+
+.calc-addon-btn:active {
+  transform: scale(0.98);
 }
 
 .calc-addon-btn.active {
@@ -2285,12 +2238,1218 @@
   border-color: var(--color-accent);
 }
 
+/* ═══════════════════════════════════════════════════════════════════════════
+   ASTRA-STYLE BLUEPRINT WINDOW
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.calc-summary-column {
+  position: relative;
+}
+
+.calc-blueprint-window {
+  position: sticky;
+  top: 90px;
+  background: rgba(18, 18, 22, 0.95);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: var(--radius-2xl);
+  overflow: hidden;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.12);
+  transition: border-color var(--transition-base);
+}
+
+/* Titlebar */
+.blueprint-titlebar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 18px;
+  background: rgba(255, 255, 255, 0.02);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+}
+
+.blueprint-traffic {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.blueprint-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.blueprint-dot--red { background: #ef4444; }
+.blueprint-dot--yellow { background: #f59e0b; }
+.blueprint-dot--green { background: #10b981; }
+
+.blueprint-title {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-family: monospace;
+  font-size: 11px;
+  color: var(--color-text-secondary);
+}
+
+.blueprint-file-badge {
+  font-size: 9px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 1px 5px;
+  border-radius: 3px;
+  color: var(--color-text-muted);
+}
+
+.blueprint-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-family: monospace;
+  font-size: 10px;
+  font-weight: var(--font-weight-semibold);
+  letter-spacing: 0.08em;
+  color: var(--color-success);
+  background: rgba(16, 185, 129, 0.1);
+  border: 1px solid rgba(16, 185, 129, 0.25);
+  padding: 2px 8px;
+  border-radius: var(--radius-full);
+}
+
+.blueprint-status-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--color-success);
+  box-shadow: 0 0 6px var(--color-success);
+}
+
+/* Astra Project HUD (System Stats Style) */
+.blueprint-hud {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1px;
+  background: rgba(255, 255, 255, 0.06);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+@media (max-width: 600px) {
+  .blueprint-hud {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.blueprint-hud-item {
+  background: rgba(14, 14, 18, 0.95);
+  padding: 12px 14px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 3px;
+}
+
+.hud-label {
+  font-size: 10px;
+  font-weight: var(--font-weight-semibold);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--color-text-muted);
+}
+
+.hud-label-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.hud-value {
+  font-family: var(--font-family-display);
+  font-size: 14px;
+  font-weight: var(--font-weight-bold);
+  color: var(--color-text-primary);
+  white-space: nowrap;
+}
+
+.hud-value--accent {
+  color: #38bdf8;
+  background: linear-gradient(135deg, #38bdf8 0%, #818cf8 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.hud-value--green {
+  color: var(--color-success);
+}
+
+.hud-sub {
+  font-size: 10px;
+  color: var(--color-text-muted);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.hud-meter-val {
+  font-family: monospace;
+  font-size: 11px;
+  font-weight: var(--font-weight-bold);
+  color: var(--color-accent);
+}
+
+.blueprint-bar {
+  width: 100%;
+  height: 4px;
+  border-radius: var(--radius-full);
+  background: rgba(255, 255, 255, 0.08);
+  overflow: hidden;
+  margin-top: 3px;
+  margin-bottom: 2px;
+}
+
+.blueprint-bar-fill {
+  height: 100%;
+  border-radius: var(--radius-full);
+  background: linear-gradient(90deg, #38bdf8, #818cf8);
+  transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Tabs Navigation */
+.blueprint-tabs {
+  display: flex;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.02);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.blueprint-tabs::-webkit-scrollbar {
+  display: none;
+}
+
+.blueprint-tab {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  background: transparent;
+  border: none;
+  border-bottom: 2px solid transparent;
+  padding: 12px 16px;
+  font-size: 12px;
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text-secondary);
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all var(--transition-base);
+}
+
+.blueprint-tab:hover {
+  color: var(--color-text-primary);
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.blueprint-tab.active {
+  color: var(--color-accent);
+  border-bottom-color: var(--color-accent);
+  background: rgba(59, 130, 246, 0.06);
+  font-weight: var(--font-weight-semibold);
+}
+
+.blueprint-tab-pill {
+  font-size: 9px;
+  font-weight: var(--font-weight-bold);
+  color: #38bdf8;
+  background: rgba(56, 189, 248, 0.14);
+  border: 1px solid rgba(56, 189, 248, 0.3);
+  padding: 1px 6px;
+  border-radius: var(--radius-full);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  animation: tabPillPulse 2s infinite ease-in-out;
+}
+
+@keyframes tabPillPulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.6; }
+}
+
+/* Tab Panels */
+.blueprint-panel {
+  display: none;
+  padding: var(--space-xl);
+  animation: panelFadeIn 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.blueprint-panel.active {
+  display: block;
+}
+
+@keyframes panelFadeIn {
+  from { opacity: 0; transform: translateY(4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.summary-top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: var(--space-lg);
+  padding-bottom: var(--space-md);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.summary-badge {
+  font-size: 10px;
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-success);
+  background: rgba(16, 185, 129, 0.1);
+  border: 1px solid rgba(16, 185, 129, 0.25);
+  padding: 2px 7px;
+  border-radius: var(--radius-full);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  display: inline-block;
+  margin-bottom: 4px;
+}
+
+.summary-title {
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-text-primary);
+  margin-bottom: 0;
+}
+
+.summary-arch-tag {
+  font-family: monospace;
+  font-size: 11px;
+  color: var(--color-accent);
+  background: rgba(59, 130, 246, 0.08);
+  border: 1px solid rgba(59, 130, 246, 0.25);
+  padding: 4px 10px;
+  border-radius: var(--radius-md);
+  white-space: nowrap;
+}
+
+.summary-detail-block {
+  margin-bottom: var(--space-lg);
+}
+
+.summary-label {
+  font-size: 11px;
+  font-weight: var(--font-weight-semibold);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--color-text-muted);
+  display: block;
+  margin-bottom: 8px;
+}
+
+.summary-stack-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.summary-stack-tag {
+  font-size: 11px;
+  background: var(--color-bg-surface);
+  border: 1px solid var(--color-border);
+  color: var(--color-text-secondary);
+  padding: 4px 10px;
+  border-radius: var(--radius-md);
+  font-weight: var(--font-weight-medium);
+  transition: all var(--transition-fast);
+}
+
+.summary-stack-tag:hover {
+  color: var(--color-text-primary);
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+.summary-stack-tag--addon {
+  border-color: rgba(56, 189, 248, 0.4);
+  color: #38bdf8;
+  background: rgba(56, 189, 248, 0.08);
+}
+
+/* Blueprint Specs Grid */
+.blueprint-specs-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-top: var(--space-md);
+}
+
+@media (max-width: 520px) {
+  .blueprint-specs-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.blueprint-spec-card {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: 10px 12px;
+}
+
+.spec-head {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-primary);
+  margin-bottom: 4px;
+}
+
+.spec-head svg {
+  color: var(--color-accent);
+}
+
+.spec-desc {
+  font-size: 11px;
+  color: var(--color-text-muted);
+  line-height: 1.4;
+  margin-bottom: 0;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   ASTRA-STYLE LIVE INTERACTIVE MOCKUP SANDBOX (Tab 2)
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.mockup-sandbox-intro {
+  margin-bottom: var(--space-md);
+}
+
+.sandbox-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 10px;
+  font-weight: var(--font-weight-semibold);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #38bdf8;
+  margin-bottom: 4px;
+}
+
+.sandbox-live-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #38bdf8;
+  box-shadow: 0 0 6px #38bdf8;
+}
+
+.sandbox-text {
+  font-size: 12px;
+  color: var(--color-text-muted);
+  margin-bottom: 0;
+}
+
+.mockup-frame {
+  background: #0a0a0d;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06);
+}
+
+/* 1. Sub-mockup: SaaS MVP Dashboard */
+.mock-dash-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 12px;
+  background: rgba(255, 255, 255, 0.03);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.mock-dash-brand {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-primary);
+}
+
+.mock-dot-live {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--color-success);
+}
+
+.mock-badge-status {
+  font-family: monospace;
+  font-size: 9px;
+  color: var(--color-text-muted);
+}
+
+.mock-dash-body {
+  display: grid;
+  grid-template-columns: 85px 1fr;
+  min-height: 175px;
+}
+
+.mock-dash-sidebar {
+  background: rgba(255, 255, 255, 0.015);
+  border-right: 1px solid rgba(255, 255, 255, 0.06);
+  padding: 8px 6px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.mock-nav-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: var(--radius-sm);
+  padding: 6px 8px;
+  font-size: 10px;
+  color: var(--color-text-muted);
+  cursor: pointer;
+  text-align: left;
+  transition: all var(--transition-fast);
+}
+
+.mock-nav-item:hover {
+  color: var(--color-text-primary);
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.mock-nav-item.active {
+  color: var(--color-accent);
+  background: rgba(59, 130, 246, 0.12);
+  border-color: rgba(59, 130, 246, 0.3);
+  font-weight: var(--font-weight-semibold);
+}
+
+.mock-dash-main {
+  padding: 10px 12px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.mock-stats-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 6px;
+}
+
+.mock-stat-tile {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: var(--radius-md);
+  padding: 6px 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.mock-stat-label {
+  font-size: 9px;
+  color: var(--color-text-muted);
+  text-transform: uppercase;
+}
+
+.mock-stat-val {
+  font-family: var(--font-family-display);
+  font-size: 11px;
+  font-weight: var(--font-weight-bold);
+  color: var(--color-text-primary);
+  white-space: nowrap;
+}
+
+.mock-stat-val--green {
+  color: var(--color-success);
+}
+
+.mock-interactive-bar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px dashed rgba(255, 255, 255, 0.1);
+  border-radius: var(--radius-md);
+  padding: 8px 10px;
+}
+
+.mock-btn-action {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  background: rgba(59, 130, 246, 0.15);
+  border: 1px solid rgba(59, 130, 246, 0.35);
+  color: var(--color-accent);
+  font-size: 10px;
+  font-weight: var(--font-weight-semibold);
+  padding: 5px 10px;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all var(--transition-fast);
+}
+
+.mock-btn-action:hover {
+  background: rgba(59, 130, 246, 0.25);
+  color: #fff;
+  transform: translateY(-1px);
+}
+
+.mock-btn-action:active {
+  transform: scale(0.96);
+}
+
+.mock-toast-msg {
+  font-size: 10px;
+  color: var(--color-text-muted);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  transition: color 0.2s ease;
+}
+
+/* 2. Sub-mockup: Landing Page */
+.mock-landing-box {
+  padding: 16px 14px;
+}
+
+.mock-landing-hero {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 8px;
+}
+
+.mock-landing-pill {
+  font-family: monospace;
+  font-size: 9px;
+  color: var(--color-success);
+  background: rgba(16, 185, 129, 0.1);
+  border: 1px solid rgba(16, 185, 129, 0.25);
+  padding: 2px 8px;
+  border-radius: var(--radius-full);
+}
+
+.mock-landing-title {
+  font-size: 15px;
+  font-weight: var(--font-weight-bold);
+  color: var(--color-text-primary);
+  margin-bottom: 0;
+}
+
+.mock-landing-sub {
+  font-size: 11px;
+  color: var(--color-text-secondary);
+  max-width: 380px;
+  margin-bottom: 6px;
+  line-height: 1.4;
+}
+
+.mock-landing-form {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  width: 100%;
+  max-width: 320px;
+}
+
+.mock-input {
+  flex: 1;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: 6px 10px;
+  font-size: 11px;
+  color: var(--color-text-primary);
+}
+
+.mock-submit-btn {
+  background: var(--color-accent);
+  color: #fff;
+  border: none;
+  border-radius: var(--radius-md);
+  padding: 6px 12px;
+  font-size: 11px;
+  font-weight: var(--font-weight-semibold);
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all var(--transition-fast);
+}
+
+.mock-submit-btn:hover {
+  background: var(--color-accent-hover);
+  transform: translateY(-1px);
+}
+
+.mock-submit-btn:active {
+  transform: scale(0.96);
+}
+
+.mock-landing-feedback {
+  font-size: 10px;
+  color: var(--color-success);
+  min-height: 14px;
+}
+
+/* 3. Sub-mockup: 3D WebGL Cube */
+.mock-webgl-box {
+  padding: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.mock-3d-scene {
+  height: 140px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  perspective: 600px;
+  overflow: hidden;
+  background: radial-gradient(circle at center, rgba(59, 130, 246, 0.12) 0%, transparent 70%);
+  border-radius: var(--radius-lg);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.mock-wireframe-cube {
+  width: 60px;
+  height: 60px;
+  position: relative;
+  transform-style: preserve-3d;
+  animation: rotateCube 12s infinite linear;
+  --cube-color: #38bdf8;
+}
+
+@keyframes rotateCube {
+  0% { transform: rotateX(15deg) rotateY(0deg); }
+  100% { transform: rotateX(15deg) rotateY(360deg); }
+}
+
+.cube-face {
+  position: absolute;
+  width: 60px;
+  height: 60px;
+  border: 1.5px solid var(--cube-color);
+  background: rgba(56, 189, 248, 0.05);
+  box-shadow: 0 0 10px rgba(56, 189, 248, 0.2);
+}
+
+.cube-front  { transform: rotateY(  0deg) translateZ(30px); }
+.cube-back   { transform: rotateY(180deg) translateZ(30px); }
+.cube-right  { transform: rotateY( 90deg) translateZ(30px); }
+.cube-left   { transform: rotateY(-90deg) translateZ(30px); }
+.cube-top    { transform: rotateX( 90deg) translateZ(30px); }
+.cube-bottom { transform: rotateX(-90deg) translateZ(30px); }
+
+.mock-scene-overlay {
+  position: absolute;
+  bottom: 8px;
+  left: 10px;
+  right: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.mock-fps-tag, .mock-shader-tag {
+  font-family: monospace;
+  font-size: 9px;
+  color: var(--color-text-muted);
+  background: rgba(0, 0, 0, 0.6);
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+
+.mock-shader-controls {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.mock-controls-label {
+  font-size: 10px;
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-muted);
+}
+
+.mock-shader-buttons {
+  display: flex;
+  gap: 6px;
+}
+
+.mock-shader-btn {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--color-border);
+  color: var(--color-text-secondary);
+  border-radius: var(--radius-sm);
+  padding: 4px 8px;
+  font-size: 10px;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.mock-shader-btn:hover {
+  color: var(--color-text-primary);
+  border-color: rgba(255, 255, 255, 0.25);
+}
+
+.mock-shader-btn.active {
+  background: rgba(59, 130, 246, 0.16);
+  border-color: var(--color-accent);
+  color: var(--color-accent);
+  font-weight: var(--font-weight-semibold);
+}
+
+/* 4. Sub-mockup: Telegram AI Bot */
+.mock-bot-window {
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.mock-bot-head {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.mock-bot-avatar {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: rgba(59, 130, 246, 0.15);
+  border: 1px solid rgba(59, 130, 246, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+}
+
+.mock-bot-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.mock-bot-name {
+  font-size: 11px;
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-primary);
+}
+
+.mock-bot-status {
+  font-size: 9px;
+  color: var(--color-success);
+}
+
+.mock-bot-chat {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-height: 95px;
+  max-height: 130px;
+  overflow-y: auto;
+  padding-right: 4px;
+}
+
+.mock-msg {
+  padding: 8px 10px;
+  border-radius: var(--radius-md);
+  font-size: 11px;
+  line-height: 1.4;
+  max-width: 85%;
+  animation: panelFadeIn 0.2s ease;
+}
+
+.mock-msg--bot {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  color: var(--color-text-primary);
+  align-self: flex-start;
+}
+
+.mock-msg--user {
+  background: var(--color-accent);
+  color: #fff;
+  align-self: flex-end;
+}
+
+.mock-bot-actions {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.mock-chat-chip {
+  background: rgba(59, 130, 246, 0.1);
+  border: 1px solid rgba(59, 130, 246, 0.25);
+  color: #38bdf8;
+  border-radius: var(--radius-full);
+  padding: 5px 10px;
+  font-size: 10px;
+  font-weight: var(--font-weight-medium);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.mock-chat-chip:hover {
+  background: rgba(59, 130, 246, 0.2);
+  border-color: #38bdf8;
+  transform: translateY(-1px);
+}
+
+.mock-chat-chip:active {
+  transform: scale(0.96);
+}
+
+/* 5. Sub-mockup: Figma Design System */
+.mock-design-box {
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.mock-tokens-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 11px;
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-primary);
+}
+
+.mock-token-count {
+  font-family: monospace;
+  font-size: 9px;
+  color: var(--color-text-muted);
+}
+
+.mock-swatches-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+}
+
+.mock-swatch {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: var(--radius-md);
+  padding: 6px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.mock-swatch:hover {
+  border-color: rgba(255, 255, 255, 0.25);
+  transform: translateY(-1px);
+}
+
+.swatch-color {
+  width: 100%;
+  height: 22px;
+  border-radius: 4px;
+  background: var(--swatch-color);
+}
+
+.swatch-code {
+  font-family: monospace;
+  font-size: 9px;
+  color: var(--color-text-muted);
+}
+
+.mock-component-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  flex-wrap: wrap;
+  padding-top: 8px;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.mock-uikit-btn {
+  font-size: 10px;
+  font-weight: var(--font-weight-semibold);
+  padding: 5px 10px;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+}
+
+.mock-uikit-btn--primary {
+  background: var(--color-accent);
+  color: #fff;
+  border: none;
+}
+
+.mock-uikit-btn--ghost {
+  background: transparent;
+  border: 1px solid var(--color-border);
+  color: var(--color-text-secondary);
+  border-radius: var(--radius-full);
+}
+
+.mock-switch-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+}
+
+.mock-switch-input {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.mock-switch-slider {
+  width: 28px;
+  height: 16px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: var(--radius-full);
+  position: relative;
+  transition: background 0.2s;
+}
+
+.mock-switch-slider::before {
+  content: '';
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  left: 2px;
+  top: 2px;
+  background: #fff;
+  border-radius: 50%;
+  transition: transform 0.2s;
+}
+
+.mock-switch-input:checked + .mock-switch-slider {
+  background: var(--color-accent);
+}
+
+.mock-switch-input:checked + .mock-switch-slider::before {
+  transform: translateX(12px);
+}
+
+.mock-switch-text {
+  font-size: 10px;
+  color: var(--color-text-muted);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   ROADMAP & TERMINAL TABS
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.roadmap-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--space-md);
+}
+
+.roadmap-note {
+  font-size: 10px;
+  color: var(--color-text-muted);
+}
+
+.blueprint-sprints-list {
+  padding-left: 18px;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.blueprint-sprints-list li {
+  font-size: 12px;
+  color: var(--color-text-secondary);
+  line-height: 1.4;
+  padding-left: 4px;
+}
+
+.blueprint-terminal-head {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: rgba(255, 255, 255, 0.03);
+  padding: 8px 12px;
+  border-top-left-radius: var(--radius-lg);
+  border-top-right-radius: var(--radius-lg);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-bottom: none;
+}
+
+.terminal-dots {
+  display: flex;
+  gap: 5px;
+}
+
+.terminal-dots span {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.15);
+}
+
+.terminal-title {
+  font-family: monospace;
+  font-size: 10px;
+  color: var(--color-text-muted);
+}
+
+.blueprint-terminal-body {
+  background: #09090c;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-bottom-left-radius: var(--radius-lg);
+  border-bottom-right-radius: var(--radius-lg);
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.terminal-cmd-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-family: monospace;
+  font-size: 11px;
+}
+
+.terminal-prompt {
+  color: var(--color-accent);
+  font-weight: bold;
+}
+
+.terminal-cmd {
+  color: var(--color-text-secondary);
+}
+
+.terminal-output {
+  font-family: monospace;
+  font-size: 11px;
+  color: var(--color-text-primary);
+  line-height: 1.5;
+  background: rgba(255, 255, 255, 0.02);
+  border-left: 2px solid var(--color-accent);
+  padding: 8px 10px;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   BLUEPRINT FOOTER ACTIONS
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.blueprint-footer {
+  padding: var(--space-lg) var(--space-xl);
+  background: rgba(255, 255, 255, 0.015);
+  border-top: 1px solid rgba(255, 255, 255, 0.07);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.blueprint-actions-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.calc-cta-btn {
+  flex: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 13px 18px;
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-semibold);
+  border-radius: var(--radius-lg);
+  background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  box-shadow: 0 4px 16px rgba(37, 99, 235, 0.35);
+  transition: all var(--transition-base);
+}
+
+.calc-cta-btn:hover {
+  background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+  transform: translateY(-1px);
+  box-shadow: 0 8px 24px rgba(37, 99, 235, 0.45);
+}
+
+.calc-copy-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--color-border);
+  color: var(--color-text-secondary);
+  font-size: 12px;
+  font-weight: var(--font-weight-medium);
+  cursor: pointer;
+  padding: 13px 16px;
+  border-radius: var(--radius-lg);
+  white-space: nowrap;
+  transition: all var(--transition-fast);
+}
+
+.calc-copy-btn:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--color-text-primary);
+  border-color: rgba(255, 255, 255, 0.25);
+}
+
+.blueprint-meta-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.calc-guarantee-note {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 11px;
+  color: var(--color-text-muted);
+  margin-bottom: 0;
+}
+
+.calc-guarantee-note svg {
+  color: var(--color-success);
+  flex-shrink: 0;
+}
+
 .summary-reset-btn {
   background: transparent;
   border: 1px solid var(--color-border);
   color: var(--color-text-muted);
   font-size: 11px;
-  padding: 4px 8px;
+  padding: 3px 8px;
   border-radius: var(--radius-sm);
   cursor: pointer;
   transition: all var(--transition-fast);
@@ -2299,29 +3458,6 @@
 .summary-reset-btn:hover {
   color: var(--color-text-primary);
   border-color: var(--color-text-secondary);
-}
-
-.summary-meta-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 10px;
-  margin-bottom: var(--space-md);
-  padding: 10px 12px;
-  background: rgba(255, 255, 255, 0.02);
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-md);
-}
-
-.summary-arch-val {
-  font-size: var(--font-size-xs);
-  font-weight: var(--font-weight-semibold);
-  color: var(--color-text-primary);
-}
-
-.summary-stack-tag--addon {
-  border-color: rgba(59, 130, 246, 0.45);
-  color: var(--color-accent);
-  background: rgba(59, 130, 246, 0.08);
 }
 
 /* 3D Game Portfolio Preview Banner */

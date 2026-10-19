@@ -390,10 +390,47 @@ class Portfolio {
 
     const store = createReactiveStore(defaultConfig, 'burger_mvp_calc_v2');
 
+    const quickPresets = {
+      mvp: {
+        task: 'mvp',
+        state: 'idea',
+        timeline: 'optimal',
+        addons: ['uikit', 'analytics']
+      },
+      landing: {
+        task: 'landing',
+        state: 'spec',
+        timeline: 'fast',
+        addons: ['seo', 'motion']
+      },
+      webgl: {
+        task: 'webgl',
+        state: 'idea',
+        timeline: 'optimal',
+        addons: ['motion', 'seo']
+      },
+      bot: {
+        task: 'bot',
+        state: 'spec',
+        timeline: 'fast',
+        addons: ['ai', 'analytics']
+      },
+      design: {
+        task: 'design',
+        state: 'idea',
+        timeline: 'optimal',
+        addons: ['uikit']
+      }
+    };
+
     const taskPresets = {
       landing: {
         title: 'Лендинг / Промо-сайт',
         arch: 'Static Edge + Motion UI',
+        baseMin: 25000,
+        baseMax: 45000,
+        complexity: 40,
+        cwv: '99 / 100',
         stack: ['HTML5 / CSS Tokens', 'Modern ES6+', 'Motion UI', 'Formspree / Webhooks', 'Lighthouse 98+'],
         steps: [
           'Анализ целевой аудитории и CJM конверсии',
@@ -406,6 +443,10 @@ class Portfolio {
       mvp: {
         title: 'Веб-сервис / MVP под ключ',
         arch: 'Reactive SPA (Vue 3 / React) + API',
+        baseMin: 55000,
+        baseMax: 95000,
+        complexity: 75,
+        cwv: '98 / 100',
         stack: ['Figma', 'Vue 3 / React 18', 'REST API / Supabase', 'State Management', 'Cloudflare'],
         steps: [
           'Проектирование пользовательских сценариев и архитектуры',
@@ -418,6 +459,10 @@ class Portfolio {
       webgl: {
         title: '3D WebGL / Интерактивный спецпроект',
         arch: 'Three.js + Custom GLSL + 60 FPS',
+        baseMin: 65000,
+        baseMax: 120000,
+        complexity: 85,
+        cwv: '95 / 100',
         stack: ['Three.js / WebGL', 'GLSL Shaders', 'InstancedMesh', 'HDR Bloom', 'Vite'],
         steps: [
           'Разработка концепции 3D-сцены, физики и навигации',
@@ -430,6 +475,10 @@ class Portfolio {
       bot: {
         title: 'Telegram-бот / AI-агент',
         arch: 'Serverless Edge + LLM Pipeline',
+        baseMin: 30000,
+        baseMax: 60000,
+        complexity: 55,
+        cwv: '100 / 100',
         stack: ['Cloudflare Workers', 'Telegram Bot API', 'Gemini / OpenAI API', 'TypeScript', '$0 за сервер'],
         steps: [
           'Проектирование диалоговых веток и логики ассистента',
@@ -442,6 +491,10 @@ class Portfolio {
       design: {
         title: 'UI/UX & Дизайн-система',
         arch: 'Tokenized Figma System (WCAG AA)',
+        baseMin: 35000,
+        baseMax: 65000,
+        complexity: 50,
+        cwv: '100 / 100',
         stack: ['Figma', 'Design Tokens', 'Auto Layout 5.0', 'Interactive Prototype', 'WCAG AA'],
         steps: [
           'UX-исследование потребностей и аудит аналогов',
@@ -454,11 +507,11 @@ class Portfolio {
     };
 
     const addonPresets = {
-      ai:        { label: 'AI / LLM-модуль', tag: 'LLM / AI Agent' },
-      uikit:     { label: 'UI-кит в Figma', tag: 'Figma UI-Kit' },
-      motion:    { label: '3D / Motion-анимации', tag: 'WebGL / Motion' },
-      seo:       { label: 'SEO & Скорость 95+', tag: 'Core Web Vitals 95+' },
-      analytics: { label: 'Аналитика & CRM', tag: 'Analytics & Webhooks' }
+      ai:        { label: 'AI / LLM-модуль', tag: 'LLM / AI Agent', min: 20000, max: 25000, c: 10 },
+      uikit:     { label: 'UI-кит в Figma', tag: 'Figma UI-Kit', min: 15000, max: 20000, c: 8 },
+      motion:    { label: '3D / Motion-анимации', tag: 'WebGL / Motion', min: 20000, max: 30000, c: 12 },
+      seo:       { label: 'SEO & Скорость 95+', tag: 'Core Web Vitals 95+', min: 10000, max: 15000, c: 5 },
+      analytics: { label: 'Аналитика & CRM', tag: 'Analytics & Webhooks', min: 12000, max: 18000, c: 7 }
     };
 
     const stateDescriptions = {
@@ -468,23 +521,75 @@ class Portfolio {
     };
 
     const timelinePresets = {
-      fast:     { label: '~1–2 недели (Спринт)', brief: 'срочно за 1–2 недели' },
-      optimal:  { label: '~3–4 недели', brief: 'в темпе ~3–4 недели' },
-      flexible: { label: 'Сроки гибкие', brief: 'сроки гибкие, готов обсудить' }
+      fast:     { label: '~1–2 недели (Спринт)', sub: 'приоритетный темп', brief: 'срочно за 1–2 недели' },
+      optimal:  { label: '~3–4 недели', sub: 'поэтапные спринты', brief: 'в темпе ~3–4 недели' },
+      flexible: { label: 'Сроки гибкие', sub: 'по согласованию', brief: 'сроки гибкие, готов обсудить' }
     };
 
-    const elTitle    = document.getElementById('summary-task-title');
-    const elStack    = document.getElementById('summary-stack');
-    const elTimeline = document.getElementById('summary-timeline');
-    const elArch     = document.getElementById('summary-arch');
-    const elSteps    = document.getElementById('summary-steps');
-    const elBrief    = document.getElementById('summary-brief');
-    const elTgBtn    = document.getElementById('calc-tg-btn');
-    const elCopyBtn  = document.getElementById('calc-copy-btn');
-    const elResetBtn = document.getElementById('calc-reset-btn');
-    const addonBtns  = calcSection.querySelectorAll('.calc-addon-btn');
+    // DOM Elements
+    const elTitle          = document.getElementById('summary-task-title');
+    const elStack          = document.getElementById('summary-stack');
+    const elArch           = document.getElementById('summary-arch');
+    const elSteps          = document.getElementById('summary-steps');
+    const elBrief          = document.getElementById('summary-brief');
+    const elTgBtn          = document.getElementById('calc-tg-btn');
+    const elCopyBtn        = document.getElementById('calc-copy-btn');
+    const elResetBtn       = document.getElementById('calc-reset-btn');
+    const addonBtns        = calcSection.querySelectorAll('.calc-addon-btn');
+    const presetBtns       = calcSection.querySelectorAll('.calc-preset-chip');
+
+    // Astra HUD Elements
+    const elHudPrice       = document.getElementById('hud-price');
+    const elHudTimeline    = document.getElementById('hud-timeline');
+    const elHudTimelineSub = document.getElementById('hud-timeline-sub');
+    const elHudComplexity  = document.getElementById('hud-complexity-val');
+    const elHudBar         = document.getElementById('hud-complexity-bar');
+    const elHudArch        = document.getElementById('hud-arch-label');
+    const elHudSpeed       = document.getElementById('hud-speed');
+
+    // Calculate budget & complexity
+    const calculateMetrics = (current) => {
+      const task = taskPresets[current.task] || taskPresets.mvp;
+      let min = task.baseMin;
+      let max = task.baseMax;
+      let complexity = task.complexity;
+
+      if (current.state === 'idea') {
+        min = Math.round(min * 1.1);
+        max = Math.round(max * 1.15);
+        complexity += 5;
+      } else if (current.state === 'redesign') {
+        min = Math.round(min * 0.95);
+        max = Math.round(max * 0.95);
+      }
+
+      const addons = Array.isArray(current.addons) ? current.addons : [];
+      addons.forEach(key => {
+        const addon = addonPresets[key];
+        if (addon) {
+          min += addon.min;
+          max += addon.max;
+          complexity += addon.c;
+        }
+      });
+
+      if (current.timeline === 'fast') {
+        min = Math.round(min * 1.1);
+        max = Math.round(max * 1.12);
+        complexity += 4;
+      }
+
+      complexity = Math.min(complexity, 98);
+      const fmt = (num) => new Intl.NumberFormat('ru-RU').format(Math.round(num / 1000) * 1000);
+
+      return {
+        priceStr: `${fmt(min)} – ${fmt(max)} ₽`,
+        complexity
+      };
+    };
 
     const syncButtonsWithState = (current) => {
+      // Step buttons
       calcSection.querySelectorAll('.calc-options-grid, .calc-options-row').forEach(container => {
         const group = container.dataset.group;
         if (!group) return;
@@ -493,9 +598,23 @@ class Portfolio {
         });
       });
 
+      // Addons
       const activeAddons = Array.isArray(current.addons) ? current.addons : [];
       addonBtns.forEach(btn => {
         btn.classList.toggle('active', activeAddons.includes(btn.dataset.addon));
+      });
+
+      // Presets
+      presetBtns.forEach(chip => {
+        chip.classList.toggle('active', chip.dataset.preset === current.task);
+      });
+    };
+
+    // Sub-mockup view updater (Astra interactive tabs)
+    const mockViews = calcSection.querySelectorAll('.mock-task-view');
+    const updateMockupView = (task) => {
+      mockViews.forEach(view => {
+        view.style.display = view.id === `mock-view-${task}` ? 'block' : 'none';
       });
     };
 
@@ -507,11 +626,22 @@ class Portfolio {
       const timeData  = timelinePresets[current.timeline] || timelinePresets.optimal;
       const stateText = stateDescriptions[current.state] || stateDescriptions.idea;
       const addons    = Array.isArray(current.addons) ? current.addons : [];
+      const metrics   = calculateMetrics(current);
 
+      // Update Summary Header & Specs
       if (elTitle) elTitle.textContent = taskData.title;
       if (elArch) elArch.textContent = taskData.arch;
-      if (elTimeline) elTimeline.textContent = timeData.label;
 
+      // Update Astra HUD
+      if (elHudPrice) elHudPrice.textContent = metrics.priceStr;
+      if (elHudTimeline) elHudTimeline.textContent = timeData.label;
+      if (elHudTimelineSub) elHudTimelineSub.textContent = timeData.sub;
+      if (elHudComplexity) elHudComplexity.textContent = `${metrics.complexity}%`;
+      if (elHudBar) elHudBar.style.width = `${metrics.complexity}%`;
+      if (elHudArch) elHudArch.textContent = taskData.arch;
+      if (elHudSpeed) elHudSpeed.textContent = taskData.cwv;
+
+      // Update Stack Cloud
       if (elStack) {
         const baseTags = taskData.stack.map(tag => `<span class="summary-stack-tag">${tag}</span>`);
         const extraTags = addons
@@ -521,20 +651,22 @@ class Portfolio {
         elStack.innerHTML = [...baseTags, ...extraTags].join('');
       }
 
+      // Update Sprints List
       if (elSteps) {
         elSteps.innerHTML = taskData.steps
-          .map(step => `<li>${step}</li>`)
+          .map((step, idx) => `<li><strong>Спринт 0${idx + 1}:</strong> ${step}</li>`)
           .join('');
       }
 
+      // Generate brief & telegram message
       const addonLabels = addons
         .map(key => addonPresets[key]?.label)
         .filter(Boolean);
       const addonSentence = addonLabels.length
-        ? ` Дополнительно включить: ${addonLabels.join(', ')}.`
+        ? ` Дополнительно: ${addonLabels.join(', ')}.`
         : '';
 
-      const message = `Привет, Дмитрий! Интересует ${taskData.briefTask}. Исходные данные: ${stateText}, ориентир по срокам: ${timeData.brief}.${addonSentence} Хочу обсудить реализацию!`;
+      const message = `Привет, Дмитрий! Интересует ${taskData.briefTask}. Исходные данные: ${stateText}, ориентир по срокам: ${timeData.brief}.${addonSentence} Ориентир бюджета: ${metrics.priceStr}. Хочу обсудить реализацию!`;
 
       if (elBrief) {
         elBrief.textContent = `«${message}»`;
@@ -543,6 +675,19 @@ class Portfolio {
       if (elTgBtn) {
         elTgBtn.href = `https://t.me/aimovl?text=${encodeURIComponent(message)}`;
       }
+
+      // Switch live mockup sandbox
+      updateMockupView(current.task);
+    });
+
+    // Bind Presets Bar
+    presetBtns.forEach(chip => {
+      chip.addEventListener('click', () => {
+        const presetKey = chip.dataset.preset;
+        if (quickPresets[presetKey]) {
+          store.setState(quickPresets[presetKey]);
+        }
+      });
     });
 
     // Bind Step 1-3 Option Clicks
@@ -574,6 +719,175 @@ class Portfolio {
         store.setState({ addons: currentAddons });
       });
     });
+
+    // Bind Blueprint Tabs Navigation
+    const blueprintTabs = calcSection.querySelectorAll('.blueprint-tab');
+    const blueprintPanels = calcSection.querySelectorAll('.blueprint-panel');
+
+    blueprintTabs.forEach(tabBtn => {
+      tabBtn.addEventListener('click', () => {
+        const targetTab = tabBtn.dataset.tab;
+        if (!targetTab) return;
+
+        blueprintTabs.forEach(t => {
+          const isActive = t === tabBtn;
+          t.classList.toggle('active', isActive);
+          t.setAttribute('aria-selected', isActive ? 'true' : 'false');
+        });
+
+        blueprintPanels.forEach(panel => {
+          panel.classList.toggle('active', panel.id === `tab-panel-${targetTab}`);
+        });
+      });
+    });
+
+    // ═══════════════════════════════════════════════════════════════════════════
+    // ASTRA-STYLE INTERACTIVE SANDBOX MOCKUP EVENT HANDLERS
+    // ═══════════════════════════════════════════════════════════════════════════
+
+    // 1. Dashboard Nav Items & Test Webhook
+    const mockNavItems = calcSection.querySelectorAll('.mock-nav-item');
+    const mockToast    = document.getElementById('mock-toast-msg');
+    const mockVal1     = document.getElementById('mock-mvp-val1');
+    const mockVal2     = document.getElementById('mock-mvp-val2');
+    const mockBtnWebh  = document.getElementById('mock-btn-webhook');
+
+    mockNavItems.forEach(item => {
+      item.addEventListener('click', () => {
+        mockNavItems.forEach(i => i.classList.remove('active'));
+        item.classList.add('active');
+        const action = item.dataset.mockAction;
+        if (action === 'tab-users') {
+          if (mockVal1) mockVal1.textContent = '1 420 чел.';
+          if (mockVal2) mockVal2.textContent = '+18% за неделю';
+        } else if (action === 'tab-api') {
+          if (mockVal1) mockVal1.textContent = '48.2k запросов';
+          if (mockVal2) mockVal2.textContent = '22ms avg';
+        } else {
+          if (mockVal1) mockVal1.textContent = '248 500 ₽';
+          if (mockVal2) mockVal2.textContent = '1 420 чел.';
+        }
+      });
+    });
+
+    if (mockBtnWebh && mockToast) {
+      mockBtnWebh.addEventListener('click', () => {
+        mockToast.textContent = '✓ Webhook отправлен: 200 OK (21ms)';
+        mockToast.style.color = 'var(--color-success)';
+        mockBtnWebh.style.transform = 'scale(0.95)';
+        setTimeout(() => {
+          mockBtnWebh.style.transform = '';
+          mockToast.textContent = 'Кликните кнопку для проверки API';
+          mockToast.style.color = '';
+        }, 2200);
+      });
+    }
+
+    // 2. Landing Form Submit
+    const mockLandingBtn = document.getElementById('mock-landing-btn');
+    const mockLandingMsg = document.getElementById('mock-landing-feedback');
+    if (mockLandingBtn && mockLandingMsg) {
+      mockLandingBtn.addEventListener('click', () => {
+        mockLandingMsg.textContent = '✓ Заявка зарегистрирована в CRM (Конверсия: 5.2%)';
+        mockLandingBtn.textContent = 'Отправлено!';
+        setTimeout(() => {
+          mockLandingBtn.textContent = 'Запустить проект';
+          mockLandingMsg.textContent = '';
+        }, 2500);
+      });
+    }
+
+    // 3. WebGL 3D Shader Controls
+    const mockShaderBtns = calcSection.querySelectorAll('.mock-shader-btn');
+    const mock3dCube     = document.getElementById('mock-3d-cube');
+    const mockShaderTag  = document.getElementById('mock-active-shader');
+
+    const shaderMap = {
+      blue:    { color: '#38bdf8', label: 'Шейдер: Неон-Блю' },
+      emerald: { color: '#10b981', label: 'Шейдер: Кибер-Изумруд' },
+      violet:  { color: '#a855f7', label: 'Шейдер: Плазма-Вайолет' }
+    };
+
+    mockShaderBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const shaderKey = btn.dataset.shader;
+        const config = shaderMap[shaderKey] || shaderMap.blue;
+        mockShaderBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+
+        if (mock3dCube) {
+          mock3dCube.style.setProperty('--cube-color', config.color);
+        }
+        if (mockShaderTag) {
+          mockShaderTag.textContent = config.label;
+        }
+      });
+    });
+
+    // 4. Telegram Bot Interactive Simulator
+    const mockBotChat    = document.getElementById('mock-bot-chat');
+    const mockBotChips   = calcSection.querySelectorAll('.mock-chat-chip');
+
+    const botReplies = {
+      vacancies: '🔍 Спарсено 142 вакансии с hh.ru и Habr Freelance! 3 подходящих под стек Vue/React.',
+      estimate:  '💰 На основе конфигурации: сметная вилка рассчитана в Blueprint HUD выше. Готов составить КП!',
+      ping:      '⚡ Cloudflare Edge: 18ms latency. Uptime 99.99%. Воркер работает без сбоев.'
+    };
+
+    mockBotChips.forEach(chip => {
+      chip.addEventListener('click', () => {
+        const cmd = chip.dataset.botCmd;
+        if (!mockBotChat || !cmd) return;
+
+        const label = chip.querySelector('span')?.textContent || 'Запрос';
+        const userMsg = document.createElement('div');
+        userMsg.className = 'mock-msg mock-msg--user';
+        userMsg.textContent = label;
+        mockBotChat.appendChild(userMsg);
+
+        // Typing dot placeholder
+        const typingMsg = document.createElement('div');
+        typingMsg.className = 'mock-msg mock-msg--bot';
+        typingMsg.textContent = 'Astra печатает...';
+        mockBotChat.appendChild(typingMsg);
+        mockBotChat.scrollTop = mockBotChat.scrollHeight;
+
+        setTimeout(() => {
+          typingMsg.textContent = botReplies[cmd] || '✓ Команда успешно выполнена.';
+          mockBotChat.scrollTop = mockBotChat.scrollHeight;
+        }, 400);
+      });
+    });
+
+    // 5. Figma Design System Swatches & Toggle
+    const mockSwatches = calcSection.querySelectorAll('.mock-swatch');
+    mockSwatches.forEach(swatch => {
+      swatch.addEventListener('click', () => {
+        const hex = swatch.dataset.hex;
+        if (hex && navigator.clipboard) {
+          navigator.clipboard.writeText(hex).then(() => {
+            const codeEl = swatch.querySelector('.swatch-code');
+            if (codeEl) {
+              const orig = codeEl.textContent;
+              codeEl.textContent = 'Скопировано!';
+              codeEl.style.color = 'var(--color-success)';
+              setTimeout(() => {
+                codeEl.textContent = orig;
+                codeEl.style.color = '';
+              }, 1200);
+            }
+          });
+        }
+      });
+    });
+
+    const mockSwitch = document.getElementById('mock-switch-toggle');
+    const mockSwitchStatus = document.getElementById('mock-switch-status');
+    if (mockSwitch && mockSwitchStatus) {
+      mockSwitch.addEventListener('change', () => {
+        mockSwitchStatus.textContent = mockSwitch.checked ? 'Dark Mode ON' : 'Light Mode';
+      });
+    }
 
     // Bind Reset Button
     if (elResetBtn) {

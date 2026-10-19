@@ -121,11 +121,11 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
 
   <!-- Stylesheets -->
-  <link rel="stylesheet" href="css/tokens.css?v=20261019-5" />
-  <link rel="stylesheet" href="css/base.css?v=20261019-5" />
-  <link rel="stylesheet" href="css/layout.css?v=20261019-5" />
-  <link rel="stylesheet" href="css/components.css?v=20261019-5" />
-  <link rel="stylesheet" href="css/responsive.css?v=20261019-5" />
+  <link rel="stylesheet" href="css/tokens.css?v=20261019-6" />
+  <link rel="stylesheet" href="css/base.css?v=20261019-6" />
+  <link rel="stylesheet" href="css/layout.css?v=20261019-6" />
+  <link rel="stylesheet" href="css/components.css?v=20261019-6" />
+  <link rel="stylesheet" href="css/responsive.css?v=20261019-6" />
 </head>
 <body>
   <a href="#main-content" class="skip-link" id="skip-link">Перейти к основному контенту</a>
@@ -1660,20 +1660,52 @@
       </div>
     </section>
 
-    <!-- ═══ SECTION: MVP CALCULATOR ═══ -->
+    <!-- ═══ SECTION: MVP CALCULATOR (Astra-Inspired Interactive Blueprint) ═══ -->
     <section id="calculator" class="section section-calculator" aria-labelledby="calculator-title">
       <div class="container">
+        
+        <!-- Header -->
         <div class="section-header reveal">
           <div class="calc-badge">
             <span class="calc-badge-dot"></span>
-            Экспресс-конфигуратор задачи
+            Интерактивный Blueprint &amp; Экспресс-конфигуратор
           </div>
           <h2 id="calculator-title" class="section-title">Калькулятор запуска MVP</h2>
-          <p class="section-subtitle">Соберите примерный контур вашей задачи за 45 секунд — получите рекомендуемый стек, ключевые этапы и готовую формулировку для старта</p>
+          <p class="section-subtitle">Соберите архитектуру вашего проекта в реальном времени — моментальный расчет бюджета, спринтов, рекомендуемого стека и готовое ТЗ для старта</p>
+          
+          <!-- Astra-Style Quick Presets Bar -->
+          <div class="calc-presets-bar">
+            <span class="calc-presets-label">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
+              Быстрые сценарии:
+            </span>
+            <div class="calc-presets-list" role="tablist" aria-label="Готовые сценарии конфигурации">
+              <button type="button" class="calc-preset-chip active" data-preset="mvp">
+                <span class="preset-icon">⚡</span>
+                <span>Стартап MVP под ключ</span>
+              </button>
+              <button type="button" class="calc-preset-chip" data-preset="landing">
+                <span class="preset-icon">🚀</span>
+                <span>High-Speed Лендинг</span>
+              </button>
+              <button type="button" class="calc-preset-chip" data-preset="webgl">
+                <span class="preset-icon">🎮</span>
+                <span>3D WebGL Спецпроект</span>
+              </button>
+              <button type="button" class="calc-preset-chip" data-preset="bot">
+                <span class="preset-icon">🤖</span>
+                <span>Telegram-бот с AI</span>
+              </button>
+              <button type="button" class="calc-preset-chip" data-preset="design">
+                <span class="preset-icon">🎨</span>
+                <span>UI/UX &amp; Дизайн-система</span>
+              </button>
+            </div>
+          </div>
         </div>
 
         <div class="calc-layout reveal">
-          <!-- Левая колонка: шаги выбора -->
+          <!-- Левая колонка: шаги конфигурации -->
           <div class="calc-steps-column">
             
             <!-- Шаг 1 -->
@@ -1684,37 +1716,52 @@
               </div>
               <div class="calc-options-grid" data-group="task">
                 <button type="button" class="calc-opt-btn" data-value="landing">
+                  <span class="opt-icon-box" aria-hidden="true">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
+                  </span>
                   <span class="opt-content">
                     <span class="opt-label">Лендинг / Промо-сайт</span>
-                    <span class="opt-desc">Конверсия, быстрая загрузка, презентация продукта</span>
+                    <span class="opt-desc">Максимальная конверсия, загрузка 0.5с, Lighthouse 98+</span>
                   </span>
                   <span class="opt-radio" aria-hidden="true"></span>
                 </button>
                 <button type="button" class="calc-opt-btn active" data-value="mvp">
+                  <span class="opt-icon-box" aria-hidden="true">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
+                  </span>
                   <span class="opt-content">
                     <span class="opt-label">Веб-сервис / MVP под ключ</span>
-                    <span class="opt-desc">Личный кабинет, SPA на Vue 3 / React, интерфейс сервиса</span>
+                    <span class="opt-desc">Личный кабинет, реактивное SPA на Vue 3 / React, интерфейс сервиса</span>
                   </span>
                   <span class="opt-radio" aria-hidden="true"></span>
                 </button>
                 <button type="button" class="calc-opt-btn" data-value="webgl">
+                  <span class="opt-icon-box" aria-hidden="true">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg>
+                  </span>
                   <span class="opt-content">
                     <span class="opt-label">3D WebGL / Интерактивный спецпроект</span>
-                    <span class="opt-desc">Three.js, кастомные шейдеры, игровой промо-опыт 60 FPS</span>
+                    <span class="opt-desc">Three.js, кастомные шейдеры, кинематографичный опыт 60 FPS</span>
                   </span>
                   <span class="opt-radio" aria-hidden="true"></span>
                 </button>
                 <button type="button" class="calc-opt-btn" data-value="bot">
+                  <span class="opt-icon-box" aria-hidden="true">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="10" rx="2"></rect><circle cx="12" cy="5" r="2"></circle><path d="M12 7v4"></path><line x1="8" y1="16" x2="8" y2="16"></line><line x1="16" y1="16" x2="16" y2="16"></line></svg>
+                  </span>
                   <span class="opt-content">
                     <span class="opt-label">Telegram-бот / AI-агент</span>
-                    <span class="opt-desc">Автоматизация задач, прием заявок, Cloudflare Workers</span>
+                    <span class="opt-desc">Автоматизация задач, парсинг вакансий, Cloudflare Edge $0/мес</span>
                   </span>
                   <span class="opt-radio" aria-hidden="true"></span>
                 </button>
                 <button type="button" class="calc-opt-btn" data-value="design">
+                  <span class="opt-icon-box" aria-hidden="true">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="13.5" cy="6.5" r=".5" fill="currentColor"></circle><circle cx="17.5" cy="10.5" r=".5" fill="currentColor"></circle><circle cx="8.5" cy="7.5" r=".5" fill="currentColor"></circle><circle cx="6.5" cy="12.5" r=".5" fill="currentColor"></circle><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.926 0 1.648-.746 1.648-1.688 0-.437-.18-.835-.437-1.125-.29-.289-.438-.652-.438-1.125a1.64 1.64 0 0 1 1.668-1.668h1.996c3.051 0 5.555-2.503 5.555-5.554C21.965 6.012 17.461 2 12 2z"></path></svg>
+                  </span>
                   <span class="opt-content">
                     <span class="opt-label">UI/UX &amp; Дизайн-система</span>
-                    <span class="opt-desc">Проектирование в Figma, UI-кит, дизайн-токены</span>
+                    <span class="opt-desc">Проектирование в Figma, токены, кликабельный интерактивный прототип</span>
                   </span>
                   <span class="opt-radio" aria-hidden="true"></span>
                 </button>
@@ -1729,23 +1776,32 @@
               </div>
               <div class="calc-options-grid" data-group="state">
                 <button type="button" class="calc-opt-btn active" data-value="idea">
+                  <span class="opt-icon-box" aria-hidden="true">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6"></path><path d="M10 22h4"></path><path d="M12 2v1"></path><path d="M12 7a5 5 0 0 0-5 5c0 1.7.9 3.2 2.2 4.1.5.3.8.9.8 1.5v.4h4v-.4c0-.6.3-1.2.8-1.5 1.3-.9 2.2-2.4 2.2-4.1a5 5 0 0 0-5-5z"></path></svg>
+                  </span>
                   <span class="opt-content">
                     <span class="opt-label">Есть идея и общее видение</span>
-                    <span class="opt-desc">Помогу структурировать, сделать CJM и спроектировать с нуля</span>
+                    <span class="opt-desc">Помогу составить CJM, структуру данных и спроектировать решение с нуля</span>
                   </span>
                   <span class="opt-radio" aria-hidden="true"></span>
                 </button>
                 <button type="button" class="calc-opt-btn" data-value="spec">
+                  <span class="opt-icon-box" aria-hidden="true">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+                  </span>
                   <span class="opt-content">
                     <span class="opt-label">Есть готовое ТЗ или макет в Figma</span>
-                    <span class="opt-desc">Нужна чистая фронтенд-разработка и надежная верстка</span>
+                    <span class="opt-desc">Нужна чистая фронтенд-разработка, Pixel-Perfect верстка и деплой</span>
                   </span>
                   <span class="opt-radio" aria-hidden="true"></span>
                 </button>
                 <button type="button" class="calc-opt-btn" data-value="redesign">
+                  <span class="opt-icon-box" aria-hidden="true">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 4 23 10 17 10"></polyline><polyline points="1 20 1 14 7 14"></polyline><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"></path></svg>
+                  </span>
                   <span class="opt-content">
                     <span class="opt-label">Нужен редизайн и ускорение</span>
-                    <span class="opt-desc">Текущий сайт тормозит, не приносит заявок или устарел</span>
+                    <span class="opt-desc">Текущий сайт устарел, тормозит на мобильных или дает слабую конверсию</span>
                   </span>
                   <span class="opt-radio" aria-hidden="true"></span>
                 </button>
@@ -1813,44 +1869,312 @@
 
           </div>
 
-          <!-- Правая колонка: Динамическое резюме -->
+          <!-- Правая колонка: Astra-Style Live Blueprint Window -->
           <div class="calc-summary-column">
-            <div class="calc-summary-card">
-              <div class="summary-top">
-                <div>
-                  <span class="summary-badge">Контур готов</span>
-                  <h3 class="summary-title" id="summary-task-title">Веб-сервис / MVP под ключ</h3>
+            <div class="calc-blueprint-window" id="calc-blueprint">
+              
+              <!-- Astra Titlebar with Traffic Dots -->
+              <div class="blueprint-titlebar">
+                <div class="blueprint-traffic" aria-hidden="true">
+                  <span class="blueprint-dot blueprint-dot--red"></span>
+                  <span class="blueprint-dot blueprint-dot--yellow"></span>
+                  <span class="blueprint-dot blueprint-dot--green"></span>
                 </div>
-                <button type="button" id="calc-reset-btn" class="summary-reset-btn" title="Сбросить конфигуратор">
-                  Сбросить
+                <div class="blueprint-title">
+                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>
+                  <span>project-blueprint.json</span>
+                  <span class="blueprint-file-badge">v2.6</span>
+                </div>
+                <div class="blueprint-status">
+                  <span class="blueprint-status-dot"></span>
+                  <span class="blueprint-status-text">LIVE</span>
+                </div>
+              </div>
+
+              <!-- Astra System Stats / Metrics HUD -->
+              <div class="blueprint-hud">
+                <div class="blueprint-hud-item">
+                  <span class="hud-label">Ориентир бюджета</span>
+                  <div class="hud-value hud-value--accent" id="hud-price">55 000 – 95 000 ₽</div>
+                  <span class="hud-sub">без скрытых наценок</span>
+                </div>
+                <div class="blueprint-hud-item">
+                  <span class="hud-label">Срок запуска</span>
+                  <div class="hud-value" id="hud-timeline">~3–4 недели</div>
+                  <span class="hud-sub" id="hud-timeline-sub">поэтапные спринты</span>
+                </div>
+                <div class="blueprint-hud-item">
+                  <div class="hud-label-row">
+                    <span class="hud-label">Сложность проекта</span>
+                    <span class="hud-meter-val" id="hud-complexity-val">75%</span>
+                  </div>
+                  <div class="blueprint-bar">
+                    <div class="blueprint-bar-fill" id="hud-complexity-bar" style="width: 75%;"></div>
+                  </div>
+                  <span class="hud-sub" id="hud-arch-label">Reactive SPA + API</span>
+                </div>
+                <div class="blueprint-hud-item blueprint-hud-item--speed">
+                  <span class="hud-label">Core Web Vitals</span>
+                  <div class="hud-value hud-value--green" id="hud-speed">98 / 100</div>
+                  <span class="hud-sub">Lighthouse Score</span>
+                </div>
+              </div>
+
+              <!-- Navigation Tabs (Astra Desktop style) -->
+              <nav class="blueprint-tabs" role="tablist" aria-label="Вкладки спецификации проекта">
+                <button type="button" class="blueprint-tab active" data-tab="stack" role="tab" aria-selected="true" aria-controls="tab-panel-stack">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
+                  <span>Архитектура</span>
                 </button>
-              </div>
+                <button type="button" class="blueprint-tab" data-tab="preview" role="tab" aria-selected="false" aria-controls="tab-panel-preview">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg>
+                  <span>Live Макет</span>
+                  <span class="blueprint-tab-pill">Интерактив</span>
+                </button>
+                <button type="button" class="blueprint-tab" data-tab="roadmap" role="tab" aria-selected="false" aria-controls="tab-panel-roadmap">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                  <span>Спринты</span>
+                </button>
+                <button type="button" class="blueprint-tab" data-tab="terminal" role="tab" aria-selected="false" aria-controls="tab-panel-terminal">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="4 17 10 11 4 5"></polyline><line x1="12" y1="19" x2="20" y2="19"></line></svg>
+                  <span>Консоль ТЗ</span>
+                </button>
+              </nav>
 
-              <div class="summary-detail-block">
-                <span class="summary-label">Рекомендуемый стек:</span>
-                <div class="summary-stack-tags" id="summary-stack">
-                  <span class="summary-stack-tag">Figma</span>
-                  <span class="summary-stack-tag">Vue 3 / React</span>
-                  <span class="summary-stack-tag">REST API / Supabase</span>
-                  <span class="summary-stack-tag">Pinia / Hooks</span>
-                  <span class="summary-stack-tag">Cloudflare</span>
+              <!-- Tab 1: Architecture & Recommended Stack -->
+              <div class="blueprint-panel active" id="tab-panel-stack" role="tabpanel">
+                <div class="summary-top">
+                  <div>
+                    <span class="summary-badge">Контур готов</span>
+                    <h3 class="summary-title" id="summary-task-title">Веб-сервис / MVP под ключ</h3>
+                  </div>
+                  <div class="summary-arch-tag" id="summary-arch">Reactive SPA + API</div>
+                </div>
+
+                <div class="summary-detail-block">
+                  <span class="summary-label">Рекомендуемый стек &amp; модули:</span>
+                  <div class="summary-stack-tags" id="summary-stack">
+                    <span class="summary-stack-tag">Figma</span>
+                    <span class="summary-stack-tag">Vue 3 / React</span>
+                    <span class="summary-stack-tag">REST API / Supabase</span>
+                    <span class="summary-stack-tag">Pinia / Hooks</span>
+                    <span class="summary-stack-tag">Cloudflare</span>
+                  </div>
+                </div>
+
+                <div class="blueprint-specs-grid">
+                  <div class="blueprint-spec-card">
+                    <div class="spec-head">
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                      <span>Чистый стек</span>
+                    </div>
+                    <p class="spec-desc">Никаких тяжелых библиотек-мусора. Строгая типизация и быстрая загрузка.</p>
+                  </div>
+                  <div class="blueprint-spec-card">
+                    <div class="spec-head">
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"></rect><line x1="12" y1="18" x2="12.01" y2="18"></line></svg>
+                      <span>Адаптив 360–4K</span>
+                    </div>
+                    <p class="spec-desc">Плавная верстка без горизонтального скролла на любых смартфонах.</p>
+                  </div>
+                  <div class="blueprint-spec-card">
+                    <div class="spec-head">
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"></path></svg>
+                      <span>$0 за сервер</span>
+                    </div>
+                    <p class="spec-desc">Развертывание на Cloudflare Edge / GitHub Pages без регулярных оплат за VPS.</p>
+                  </div>
+                  <div class="blueprint-spec-card">
+                    <div class="spec-head">
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 14 14"></polyline></svg>
+                      <span>Передача прав</span>
+                    </div>
+                    <p class="spec-desc">Полный доступ к репозиторию на GitHub, макетам Figma и чистая документация.</p>
+                  </div>
                 </div>
               </div>
 
-              <div class="summary-meta-grid">
-                <div>
-                  <span class="summary-label">Ориентир по срокам:</span>
-                  <div class="summary-timeline-val" id="summary-timeline">~3–4 недели</div>
+              <!-- Tab 2: Astra-Style Live Interactive Mockup Sandbox -->
+              <div class="blueprint-panel" id="tab-panel-preview" role="tabpanel">
+                <div class="mockup-sandbox-intro">
+                  <span class="sandbox-tag">
+                    <span class="sandbox-live-dot"></span>
+                    Живая интерактивная симуляция
+                  </span>
+                  <p class="sandbox-text">Кликайте по элементам внутри макета, чтобы протестировать логику интерфейса:</p>
                 </div>
-                <div>
-                  <span class="summary-label">Архитектура:</span>
-                  <div class="summary-arch-val" id="summary-arch">Reactive SPA + API</div>
+
+                <!-- Sub-mockup: MVP Dashboard -->
+                <div class="mockup-frame mock-task-view" id="mock-view-mvp">
+                  <div class="mock-dash-header">
+                    <div class="mock-dash-brand">
+                      <span class="mock-dot-live"></span>
+                      <span>CloudFlow MVP Console</span>
+                    </div>
+                    <span class="mock-badge-status">Production v1.0</span>
+                  </div>
+                  <div class="mock-dash-body">
+                    <div class="mock-dash-sidebar">
+                      <button type="button" class="mock-nav-item active" data-mock-action="tab-overview">
+                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
+                        <span>Дашборд</span>
+                      </button>
+                      <button type="button" class="mock-nav-item" data-mock-action="tab-users">
+                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+                        <span>Клиенты</span>
+                      </button>
+                      <button type="button" class="mock-nav-item" data-mock-action="tab-api">
+                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>
+                        <span>API Hooks</span>
+                      </button>
+                    </div>
+                    <div class="mock-dash-main">
+                      <div class="mock-stats-row">
+                        <div class="mock-stat-tile">
+                          <span class="mock-stat-label">MRR</span>
+                          <span class="mock-stat-val" id="mock-mvp-val1">248 500 ₽</span>
+                        </div>
+                        <div class="mock-stat-tile">
+                          <span class="mock-stat-label">Активные</span>
+                          <span class="mock-stat-val" id="mock-mvp-val2">1 420 чел.</span>
+                        </div>
+                        <div class="mock-stat-tile">
+                          <span class="mock-stat-label">Конверсия</span>
+                          <span class="mock-stat-val mock-stat-val--green">4.82%</span>
+                        </div>
+                      </div>
+                      <div class="mock-interactive-bar">
+                        <button type="button" class="mock-btn-action" id="mock-btn-webhook">
+                          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
+                          <span>Отправить тест-вебхук</span>
+                        </button>
+                        <span class="mock-toast-msg" id="mock-toast-msg">Кликните кнопку для проверки API</span>
+                      </div>
+                    </div>
+                  </div>
                 </div>
+
+                <!-- Sub-mockup: Landing Page -->
+                <div class="mockup-frame mock-task-view" id="mock-view-landing" style="display: none;">
+                  <div class="mock-landing-box">
+                    <div class="mock-landing-hero">
+                      <div class="mock-landing-pill">Lighthouse 99/100 · Core Web Vitals</div>
+                      <h4 class="mock-landing-title">Превращайте трафик в заявки</h4>
+                      <p class="mock-landing-sub">Чистый Vanilla-стек с загрузкой за 0.4 секунды и безупречным адаптивом под мобильные устройства.</p>
+                      <div class="mock-landing-form">
+                        <input type="text" class="mock-input" placeholder="user@company.ru" value="client@startup.io" readonly />
+                        <button type="button" class="mock-submit-btn" id="mock-landing-btn">
+                          <span>Запустить проект</span>
+                        </button>
+                      </div>
+                      <span class="mock-landing-feedback" id="mock-landing-feedback"></span>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Sub-mockup: 3D WebGL -->
+                <div class="mockup-frame mock-task-view" id="mock-view-webgl" style="display: none;">
+                  <div class="mock-webgl-box">
+                    <div class="mock-3d-scene">
+                      <div class="mock-wireframe-cube" id="mock-3d-cube">
+                        <div class="cube-face cube-front"></div>
+                        <div class="cube-face cube-back"></div>
+                        <div class="cube-face cube-right"></div>
+                        <div class="cube-face cube-left"></div>
+                        <div class="cube-face cube-top"></div>
+                        <div class="cube-face cube-bottom"></div>
+                      </div>
+                      <div class="mock-scene-overlay">
+                        <span class="mock-fps-tag">60.0 FPS · WebGL 2.0</span>
+                        <span class="mock-shader-tag" id="mock-active-shader">Шейдер: Неон-Блю</span>
+                      </div>
+                    </div>
+                    <div class="mock-shader-controls">
+                      <span class="mock-controls-label">Переключить шейдер:</span>
+                      <div class="mock-shader-buttons">
+                        <button type="button" class="mock-shader-btn active" data-shader="blue">✦ Неон-Блю</button>
+                        <button type="button" class="mock-shader-btn" data-shader="emerald">✦ Кибер-Изумруд</button>
+                        <button type="button" class="mock-shader-btn" data-shader="violet">✦ Плазма-Вайолет</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Sub-mockup: Telegram AI Bot -->
+                <div class="mockup-frame mock-task-view" id="mock-view-bot" style="display: none;">
+                  <div class="mock-bot-window">
+                    <div class="mock-bot-head">
+                      <div class="mock-bot-avatar">🤖</div>
+                      <div class="mock-bot-info">
+                        <span class="mock-bot-name">Dmitry AI Assistant</span>
+                        <span class="mock-bot-status">online · Cloudflare Worker</span>
+                      </div>
+                    </div>
+                    <div class="mock-bot-chat" id="mock-bot-chat">
+                      <div class="mock-msg mock-msg--bot">
+                        👋 Привет! Я тестовый бот-агент на Cloudflare Workers. Выберите действие, чтобы увидеть мгновенный отклик:
+                      </div>
+                    </div>
+                    <div class="mock-bot-actions">
+                      <button type="button" class="mock-chat-chip" data-bot-cmd="vacancies">
+                        <span>🔍 Парсинг вакансий</span>
+                      </button>
+                      <button type="button" class="mock-chat-chip" data-bot-cmd="estimate">
+                        <span>💰 Расчет сметы</span>
+                      </button>
+                      <button type="button" class="mock-chat-chip" data-bot-cmd="ping">
+                        <span>⚡ Пинг сервера</span>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Sub-mockup: Figma Design System -->
+                <div class="mockup-frame mock-task-view" id="mock-view-design" style="display: none;">
+                  <div class="mock-design-box">
+                    <div class="mock-tokens-header">
+                      <span>Дизайн-токены &amp; Компоненты</span>
+                      <span class="mock-token-count">24 токена · WCAG AAA</span>
+                    </div>
+                    <div class="mock-swatches-grid">
+                      <div class="mock-swatch" style="--swatch-color: #3b82f6;" data-hex="#3b82f6" title="Нажмите, чтобы скопировать">
+                        <div class="swatch-color"></div>
+                        <span class="swatch-code">#3b82f6</span>
+                      </div>
+                      <div class="mock-swatch" style="--swatch-color: #10b981;" data-hex="#10b981" title="Нажмите, чтобы скопировать">
+                        <div class="swatch-color"></div>
+                        <span class="swatch-code">#10b981</span>
+                      </div>
+                      <div class="mock-swatch" style="--swatch-color: #f59e0b;" data-hex="#f59e0b" title="Нажмите, чтобы скопировать">
+                        <div class="swatch-color"></div>
+                        <span class="swatch-code">#f59e0b</span>
+                      </div>
+                      <div class="mock-swatch" style="--swatch-color: #18181b;" data-hex="#18181b" title="Нажмите, чтобы скопировать">
+                        <div class="swatch-color"></div>
+                        <span class="swatch-code">#18181b</span>
+                      </div>
+                    </div>
+                    <div class="mock-component-row">
+                      <button type="button" class="mock-uikit-btn mock-uikit-btn--primary">Primary Button</button>
+                      <button type="button" class="mock-uikit-btn mock-uikit-btn--ghost">Ghost Pill</button>
+                      <label class="mock-switch-label">
+                        <input type="checkbox" checked class="mock-switch-input" id="mock-switch-toggle" />
+                        <span class="mock-switch-slider"></span>
+                        <span class="mock-switch-text" id="mock-switch-status">Dark Mode ON</span>
+                      </label>
+                    </div>
+                  </div>
+                </div>
+
               </div>
 
-              <div class="summary-detail-block">
-                <span class="summary-label">Маршрут запуска:</span>
-                <ol class="summary-steps-list" id="summary-steps">
+              <!-- Tab 3: Roadmap & Sprints -->
+              <div class="blueprint-panel" id="tab-panel-roadmap" role="tabpanel">
+                <div class="roadmap-head">
+                  <span class="summary-label">Маршрут запуска по спринтам:</span>
+                  <span class="roadmap-note">Оплата по факту готовности каждого этапа</span>
+                </div>
+                <ol class="summary-steps-list blueprint-sprints-list" id="summary-steps">
                   <li>Проектирование пользовательских путей и архитектуры</li>
                   <li>Дизайн-система компонентов в Figma</li>
                   <li>Разработка SPA на Vue 3 / React с чистым кодом</li>
@@ -1858,26 +2182,49 @@
                 </ol>
               </div>
 
-              <div class="summary-brief-block">
-                <div class="summary-brief-head">
-                  <span class="summary-label">Сформированное ТЗ для старта:</span>
+              <!-- Tab 4: Terminal Spec -->
+              <div class="blueprint-panel" id="tab-panel-terminal" role="tabpanel">
+                <div class="blueprint-terminal-head">
+                  <div class="terminal-dots">
+                    <span></span><span></span><span></span>
+                  </div>
+                  <span class="terminal-title">bash — 80x24 · client-spec-generator</span>
+                </div>
+                <div class="blueprint-terminal-body">
+                  <div class="terminal-cmd-row">
+                    <span class="terminal-prompt">$</span>
+                    <span class="terminal-cmd">antigravity generate-spec --target=mvp --author=aimovl</span>
+                  </div>
+                  <div class="terminal-output" id="summary-brief">
+                    «Привет, Дмитрий! Нужен веб-сервис / MVP под ключ, есть идея и общее видение, ориентир по срокам 3–4 недели. Хочу обсудить реализацию!»
+                  </div>
+                </div>
+              </div>
+
+              <!-- Blueprint Actions & CTA -->
+              <div class="blueprint-footer">
+                <div class="blueprint-actions-row">
+                  <a id="calc-tg-btn" href="https://t.me/aimovl" target="_blank" rel="noopener noreferrer" class="btn btn-primary calc-cta-btn">
+                    <span>Обсудить задачу в Telegram</span>
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
+                  </a>
                   <button type="button" id="calc-copy-btn" class="calc-copy-btn" aria-label="Скопировать текст сообщения">
                     <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
                     <span>Скопировать ТЗ</span>
                   </button>
                 </div>
-                <div class="summary-brief-text" id="summary-brief">
-                  «Привет, Дмитрий! Нужен веб-сервис / MVP под ключ, есть идея и общее видение, ориентир по срокам 3–4 недели. Хочу обсудить реализацию!»
+
+                <div class="blueprint-meta-bottom">
+                  <p class="calc-guarantee-note">
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+                    Отвечаю лично в течение 1–2 часов. Без менеджеров и накруток.
+                  </p>
+                  <button type="button" id="calc-reset-btn" class="summary-reset-btn" title="Сбросить конфигуратор">
+                    Сбросить
+                  </button>
                 </div>
               </div>
 
-              <div class="calc-actions">
-                <a id="calc-tg-btn" href="https://t.me/aimovl" target="_blank" rel="noopener noreferrer" class="btn btn-primary calc-cta-btn">
-                  <span>Обсудить задачу в Telegram</span>
-                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
-                </a>
-              </div>
-              <p class="calc-guarantee-note">Отвечаю лично в течение 1–2 часов. Без навязывания лишних услуг.</p>
             </div>
           </div>
         </div>
@@ -2139,6 +2486,6 @@
     </svg>
   </button>
 
-  <script src="js/main.js?v=20261019-5" defer></script>
+  <script src="js/main.js?v=20261019-6" defer></script>
 </body>
 </html>
