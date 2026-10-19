@@ -57,7 +57,48 @@
           "https://github.com/228burger228",
           "https://t.me/Burger_228",
           "https://228burger228.github.io/portfelDD/"
-        ]
+        ],
+        "knowsAbout": [
+          "Frontend Architecture",
+          "Vanilla JavaScript",
+          "React",
+          "Vue 3",
+          "UI/UX Design Systems",
+          "Core Web Vitals",
+          "Telegram Bot API",
+          "Cloudflare Workers",
+          "Web Scraping & Automation"
+        ],
+        "hasOfferCatalog": {
+          "@type": "OfferCatalog",
+          "name": "Услуги веб-разработки и дизайна",
+          "itemListElement": [
+            {
+              "@type": "Offer",
+              "itemOffered": {
+                "@type": "Service",
+                "name": "Разработка сайтов и лендингов под ключ",
+                "description": "Адаптивная верстка, высокая скорость загрузки (Lighthouse 95+), чистый код без сторонних тяжелых библиотек."
+              }
+            },
+            {
+              "@type": "Offer",
+              "itemOffered": {
+                "@type": "Service",
+                "name": "UI/UX дизайн и модульные дизайн-системы",
+                "description": "Проектирование пользовательских сценариев в Figma, адаптивные сетки, дизайн под мобильные устройства и ПК."
+              }
+            },
+            {
+              "@type": "Offer",
+              "itemOffered": {
+                "@type": "Service",
+                "name": "Telegram-боты, парсеры и AI-автоматизация",
+                "description": "Создание лидогенерационных ботов, парсеров вакансий 24/7, интеграция с Google API, Cloudflare Workers и Gemini API."
+              }
+            }
+          ]
+        }
       },
       {
         "@type": "WebSite",
@@ -80,11 +121,11 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
 
   <!-- Stylesheets -->
-  <link rel="stylesheet" href="css/tokens.css?v=20261019-1" />
-  <link rel="stylesheet" href="css/base.css?v=20261019-1" />
-  <link rel="stylesheet" href="css/layout.css?v=20261019-1" />
-  <link rel="stylesheet" href="css/components.css?v=20261019-1" />
-  <link rel="stylesheet" href="css/responsive.css?v=20261019-1" />
+  <link rel="stylesheet" href="css/tokens.css?v=20261019-2" />
+  <link rel="stylesheet" href="css/base.css?v=20261019-2" />
+  <link rel="stylesheet" href="css/layout.css?v=20261019-2" />
+  <link rel="stylesheet" href="css/components.css?v=20261019-2" />
+  <link rel="stylesheet" href="css/responsive.css?v=20261019-2" />
 </head>
 <body>
   <a href="#main-content" class="skip-link" id="skip-link">Перейти к основному контенту</a>
@@ -689,10 +730,23 @@
           <!-- Dmitry OS / Telegram AI Agent (Featured #5) -->
           <article class="proj-card reveal" data-filter="featured ai" aria-label="Проект Dmitry OS AI Agent">
             <div class="proj-img">
-              <div class="proj-img-placeholder" style="background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%); display: flex; align-items: center; justify-content: center; height: 200px;">
-                <div style="text-align: center; color: white;">
-                  <svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="margin-bottom: 10px;" aria-hidden="true"><rect x="4" y="4" width="16" height="16" rx="2" ry="2"></rect><rect x="9" y="9" width="6" height="6"></rect><line x1="9" y1="1" x2="9" y2="4"></line><line x1="15" y1="1" x2="15" y2="4"></line><line x1="9" y1="20" x2="9" y2="23"></line><line x1="15" y1="20" x2="15" y2="23"></line><line x1="20" y1="9" x2="23" y2="9"></line><line x1="20" y1="14" x2="23" y2="14"></line><line x1="1" y1="9" x2="4" y2="9"></line><line x1="1" y1="14" x2="4" y2="14"></line></svg>
-                  <div style="font-size: 14px; font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase;">Dmitry OS · AI Agent</div>
+              <div class="edge-terminal-widget" aria-label="Консоль Cloudflare Edge и Gemini AI">
+                <div class="term-bar">
+                  <div class="term-dots">
+                    <span class="term-dot term-dot-close"></span>
+                    <span class="term-dot term-dot-min"></span>
+                    <span class="term-dot term-dot-max"></span>
+                  </div>
+                  <div class="term-title">dmitry-os.worker.dev — Cloudflare Edge</div>
+                  <span class="term-status">● 32ms</span>
+                </div>
+                <div class="term-body">
+                  <div class="term-line"><span class="term-prompt">$</span> <span class="term-cmd">cloudflare-worker telemetry --live</span></div>
+                  <div class="term-line term-dim">> Edge Network: Cloudflare Workers · Region: FRA</div>
+                  <div class="term-line term-success">[12:44:02] POST /webhook/telegram 200 OK (38ms)</div>
+                  <div class="term-line term-info">[12:44:03] Gemini-1.5-Flash: Vision/Voice parsed in 0.42s</div>
+                  <div class="term-line term-accent">[12:44:03] Google Bridge API: Docs &amp; Calendar synced</div>
+                  <div class="term-line term-stats">Memory: 16 MB · CPU: 8ms · Errors: 0% · Zero Server Cost</div>
                 </div>
               </div>
               <div class="proj-badge" style="background: #0284c7;">
@@ -736,35 +790,37 @@
           <!-- JobHunter AI — Парсер вакансий и авто-отклик (Featured AI) -->
           <article class="proj-card reveal" data-filter="featured ai frontend" aria-label="Проект JobHunter AI">
             <div class="proj-img">
-              <div class="pipeline-preview">
-                <div class="pipeline-grid-bg" aria-hidden="true"></div>
-                <div class="pipeline-track">
-                  <div class="pipeline-node">
-                    <div class="p-header">
-                      <span class="p-dot"></span>
-                      <span class="p-title">Парсер 24/7</span>
+              <div class="tg-leadgen-widget" aria-label="Интерфейс Telegram-бота JobHunter AI">
+                <div class="tg-bar">
+                  <div class="tg-profile">
+                    <span class="tg-avatar">🤖<span class="tg-online"></span></span>
+                    <div class="tg-info">
+                      <div class="tg-name">
+                        <span>JobHunter AI Bot</span>
+                        <svg width="12" height="12" viewBox="0 0 24 24" fill="#38bdf8" aria-hidden="true"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+                      </div>
+                      <span class="tg-status">24/7 Scraping Engine · 32ms</span>
                     </div>
-                    <span class="p-sub">HH · Хабр · FL · TG</span>
                   </div>
-                  <div class="pipeline-arrow" aria-hidden="true">
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                  <span class="tg-badge">● LIVE</span>
+                </div>
+                <div class="tg-bubble">
+                  <div class="tg-msg-header">
+                    <span class="tg-source-tag">HH.ru</span>
+                    <span class="tg-time">только что · 98% Match</span>
                   </div>
-                  <div class="pipeline-node">
-                    <div class="p-header">
-                      <span class="p-dot p-dot-ai"></span>
-                      <span class="p-title">AI-Фильтр</span>
-                    </div>
-                    <span class="p-sub">Стек &amp; Бюджет</span>
+                  <div class="tg-vacancy-title">Frontend / Fullstack Архитектор (Remote)</div>
+                  <div class="tg-salary">240 000 — 320 000 ₽ · Полный день</div>
+                  <div class="tg-proposal-quote">
+                    <code>⚡ Стек совпадает: React, чистый JS, Performance. Сгенерирован персонализированный отклик: «Опыт 19+ проектов, Lighthouse 95+...»</code>
                   </div>
-                  <div class="pipeline-arrow" aria-hidden="true">
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
-                  </div>
-                  <div class="pipeline-node">
-                    <div class="p-header">
-                      <span class="p-dot p-dot-action"></span>
-                      <span class="p-title">Авто-отклик</span>
-                    </div>
-                    <span class="p-sub">Telegram 30 сек</span>
+                  <div class="tg-actions">
+                    <button type="button" class="tg-action-btn tg-action-primary" onclick="if(navigator.clipboard){navigator.clipboard.writeText('Здравствуйте! Опыт 19+ проектов в production...');}this.textContent='✓ КП скопировано!';">
+                      ⚡ Откликнуться (1 клик)
+                    </button>
+                    <button type="button" class="tg-action-btn" onclick="if(navigator.clipboard){navigator.clipboard.writeText('https://228burger228.github.io/burgerportfolio2.0/');}this.textContent='✓ Ссылка скопирована!';">
+                      📋 Скопировать КП
+                    </button>
                   </div>
                 </div>
               </div>
@@ -1948,6 +2004,6 @@
     </svg>
   </button>
 
-  <script src="js/main.js?v=20261019-1" defer></script>
+  <script src="js/main.js?v=20261019-2" defer></script>
 </body>
 </html>

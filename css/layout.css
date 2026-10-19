@@ -861,108 +861,268 @@
 }
 
 /* ─────────────────────────────────────────────────────────────────────────
-   PIPELINE WORKFLOW WIDGET (Interactive Node Flow)
+   TELEGRAM BOT LEADGEN WIDGET (JobHunter AI)
    ───────────────────────────────────────────────────────────────────────── */
 
-.pipeline-preview {
-  background: linear-gradient(135deg, #090d16 0%, #0f172a 60%, #1e1b4b 100%);
-  padding: 24px 18px;
+.tg-leadgen-widget {
+  background: #0d141e;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 14px 16px;
   min-height: 200px;
   display: flex;
-  align-items: center;
-  justify-content: center;
+  flex-direction: column;
+  justify-content: space-between;
+  font-family: var(--font-family-body);
   position: relative;
   overflow: hidden;
 }
 
-.pipeline-grid-bg {
-  position: absolute;
-  inset: 0;
-  opacity: 0.15;
-  background-image: radial-gradient(#38bdf8 1px, transparent 1px);
-  background-size: 14px 14px;
+.tg-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 8px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
 }
 
-.pipeline-track {
+.tg-profile {
   display: flex;
   align-items: center;
   gap: 10px;
-  position: relative;
-  z-index: 1;
-  width: 100%;
-  max-width: 440px;
-  justify-content: space-between;
 }
 
-.pipeline-node {
-  background: rgba(15, 23, 42, 0.85);
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.18), 0 4px 12px rgba(0, 0, 0, 0.35);
-  backdrop-filter: blur(8px);
-  padding: 10px 12px;
-  border-radius: 10px;
-  display: flex;
-  flex-direction: column;
-  gap: 3px;
-  flex: 1;
-  min-width: 90px;
-  transition: transform 0.2s ease, border-color 0.2s ease;
-}
-
-.pipeline-node:hover {
-  transform: translateY(-2px);
-  border-color: rgba(56, 189, 248, 0.6);
-}
-
-.p-header {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-}
-
-.p-dot {
-  width: 7px;
-  height: 7px;
+.tg-avatar {
+  width: 30px;
+  height: 30px;
   border-radius: 50%;
-  background: #38bdf8;
-  box-shadow: 0 0 8px #38bdf8;
-}
-
-.p-dot-ai {
-  background: #a855f7;
-  box-shadow: 0 0 8px #a855f7;
-}
-
-.p-dot-action {
-  background: #10b981;
-  box-shadow: 0 0 8px #10b981;
-}
-
-.p-title {
-  font-size: 11px;
-  font-weight: 700;
-  color: #f1f5f9;
-  letter-spacing: 0.02em;
-  white-space: nowrap;
-}
-
-.p-sub {
-  font-size: 9px;
-  color: #94a3b8;
-  font-family: var(--font-family-display);
-}
-
-.pipeline-arrow {
+  background: linear-gradient(135deg, #2563eb, #7c3aed);
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #38bdf8;
-  animation: pulseArrow 2s infinite ease-in-out;
+  font-size: 14px;
+  position: relative;
+  box-shadow: 0 2px 8px rgba(37, 99, 235, 0.35);
 }
 
-@keyframes pulseArrow {
-  0%, 100% { opacity: 0.4; transform: translateX(0); }
-  50% { opacity: 1; transform: translateX(2px); }
+.tg-online {
+  position: absolute;
+  bottom: -1px;
+  right: -1px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #10b981;
+  border: 2px solid #0d141e;
+}
+
+.tg-info {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+
+.tg-name {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 12px;
+  font-weight: 600;
+  color: #f8fafc;
+}
+
+.tg-status {
+  font-size: 10px;
+  color: #94a3b8;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+
+.tg-badge {
+  font-size: 10px;
+  font-weight: 700;
+  color: #34d399;
+  background: rgba(16, 185, 129, 0.12);
+  border: 1px solid rgba(16, 185, 129, 0.25);
+  padding: 2px 8px;
+  border-radius: 9999px;
+  letter-spacing: 0.04em;
+}
+
+.tg-bubble {
+  background: #151e2b;
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  padding: 10px 12px;
+  margin-top: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.tg-msg-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 10px;
+}
+
+.tg-source-tag {
+  background: #2563eb;
+  color: #fff;
+  font-weight: 700;
+  padding: 1px 6px;
+  border-radius: 4px;
+  letter-spacing: 0.03em;
+}
+
+.tg-time {
+  color: #64748b;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+
+.tg-vacancy-title {
+  font-size: 12px;
+  font-weight: 600;
+  color: #e2e8f0;
+  line-height: 1.35;
+}
+
+.tg-salary {
+  font-size: 11px;
+  color: #38bdf8;
+  font-weight: 600;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+
+.tg-proposal-quote {
+  background: rgba(0, 0, 0, 0.3);
+  border-left: 2px solid #7c3aed;
+  padding: 6px 8px;
+  border-radius: 4px;
+}
+
+.tg-proposal-quote code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 10px;
+  color: #cbd5e1;
+  line-height: 1.4;
+  display: block;
+}
+
+.tg-actions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6px;
+  margin-top: 4px;
+}
+
+.tg-action-btn {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #cbd5e1;
+  padding: 6px 8px;
+  border-radius: 6px;
+  font-size: 10px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-align: center;
+}
+
+.tg-action-btn:hover {
+  background: rgba(255, 255, 255, 0.12);
+  border-color: rgba(255, 255, 255, 0.2);
+  color: #fff;
+}
+
+.tg-action-btn.tg-action-primary {
+  background: rgba(37, 99, 235, 0.2);
+  border-color: rgba(37, 99, 235, 0.4);
+  color: #93c5fd;
+}
+
+.tg-action-btn.tg-action-primary:hover {
+  background: rgba(37, 99, 235, 0.35);
+  color: #fff;
+}
+
+/* ─────────────────────────────────────────────────────────────────────────
+   CLOUDFLARE EDGE TERMINAL WIDGET (Dmitry OS)
+   ───────────────────────────────────────────────────────────────────────── */
+
+.edge-terminal-widget {
+  background: #070a11;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  min-height: 200px;
+  display: flex;
+  flex-direction: column;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  position: relative;
+  overflow: hidden;
+}
+
+.term-bar {
+  background: rgba(255, 255, 255, 0.03);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  padding: 8px 12px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.term-dots {
+  display: flex;
+  gap: 5px;
+}
+
+.term-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+
+.term-dot-close { background: #ef4444; }
+.term-dot-min   { background: #eab308; }
+.term-dot-max   { background: #10b981; }
+
+.term-title {
+  font-size: 10px;
+  color: #94a3b8;
+  letter-spacing: 0.02em;
+}
+
+.term-status {
+  font-size: 9px;
+  color: #34d399;
+  font-weight: 600;
+}
+
+.term-body {
+  padding: 10px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-size: 10.5px;
+  line-height: 1.45;
+}
+
+.term-line {
+  color: #cbd5e1;
+  word-break: break-all;
+}
+
+.term-prompt { color: #f59e0b; font-weight: 700; margin-right: 4px; }
+.term-cmd    { color: #f8fafc; font-weight: 600; }
+.term-dim    { color: #64748b; font-size: 9.5px; }
+.term-success{ color: #34d399; }
+.term-info   { color: #38bdf8; }
+.term-accent { color: #a855f7; }
+
+.term-stats {
+  margin-top: 4px;
+  padding-top: 5px;
+  border-top: 1px dashed rgba(255, 255, 255, 0.08);
+  color: #94a3b8;
+  font-size: 9.5px;
 }
 
 /* ─────────────────────────────────────────────────────────────────────────
