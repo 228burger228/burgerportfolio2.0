@@ -1,0 +1,43 @@
+# Dmitry (Burger) — Product Designer & Design Engineer
+
+> Высокопроизводительные веб-приложения, продуктовый UI/UX дизайн, препресс и масштабируемые клиентские интерфейсы с чистой архитектурой.
+
+## Профиль и специализация
+- **Имя:** Дмитрий (Burger)
+- **Локация:** Москва, Россия
+- **Роли:** Product Designer, Frontend Architect, Design Engineer, Print & Prepress Specialist
+- **Портфолио:** https://228burger228.github.io/burgerportfolio2.0/
+- **Студийное партнерство (portfelDD):** https://228burger228.github.io/portfelDD/
+- **Telegram для связи:** https://t.me/aimovl
+- **GitHub:** https://github.com/228burger228
+
+## Ключевой технологический стек
+- **Frontend:** Vanilla JavaScript (ES6+), React 19, Vue 3, HTML5 Semantic, CSS3 Modern (Flexbox, Grid, Container Queries), Three.js, Canvas 2D.
+- **Design & UI/UX:** Figma (Auto Layout, Tokens, Component Libraries, CJM), Adobe Illustrator 2026, Photoshop.
+- **Инженерия и Производительность:** Core Web Vitals (100/100), Zero-Layout-Thrashing (rAF pipelines), Offline PWA, Cloudflare Workers Serverless, Telegram WebApps / Mini Apps.
+- **Полиграфия и Препресс (МГКЭИТ):** Предпечатная подготовка (CMYK, треппинг, вылеты), широкоформатная и настенная УФ-печать, тиражная шелкография и кастомный мерч.
+
+## Избранные коммерческие и инженерные проекты
+1. **Алекспром (Frost):**
+   - *Сайт:* https://228burger228.github.io/Frost/docs/
+   - *Репозиторий:* https://github.com/228burger228/Frost
+   - *Суть:* B2B-каталог промышленного холодильного оборудования с быстрым фильтром и конверсионной заявкой.
+2. **Да — Архитектура & Дом (cottedj):**
+   - *Сайт:* https://228burger228.github.io/cottedj/
+   - *Репозиторий:* https://github.com/228burger228/cottedj
+   - *Суть:* Премиальный промо-сайт загородной резиденции на React 19 с плавной анимацией и интерактивной галереей.
+3. **Warpath Wiki & Community:**
+   - *Сайт:* https://228burger228.github.io/WarpathYTwiki/index.html
+   - *Суть:* Игровой справочник с мгновенным поиском по базе юнитов, 10 000+ активных пользователей в месяц.
+4. **HgStroy (Хаус Гард):**
+   - *Суть:* Корпоративный портал строительной компании. Получено официальное благодарственное письмо руководства за качество и соблюдение сроков.
+5. **Game Portfolio 2.0 (Canvas 2D):**
+   - *Сайт:* https://228burger228.github.io/Game-portfolio/
+   - *Суть:* Интерактивная 2D-физика полета боевого вертолета на чистом Canvas без сторонних тяжелых библиотек.
+6. **Dmitry OS AI Agent & JobHunter:**
+   - *Суть:* Серверлесс-архитектура на Cloudflare Workers с мгновенным временем отклика (< 50 мс) и 0 ₽ затрат на инфраструктуру.
+
+## Принципы сотрудничества для бизнеса
+- **Без 40 страниц ТЗ:** Брифование за 5 точных вопросов, самостоятельная проработка структуры и пути клиента.
+- **Фиксированная смета:** Окончательная стоимость и сроки спринтов закрепляются до старта работ.
+- **Свой чистый код:** Отказ от конструкторов (Tilda, Webflow). Сайт полностью принадлежит клиенту, не требует ежемесячной аренды платформ и загружается быстрее 0.8 секунд.
