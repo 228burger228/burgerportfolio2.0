@@ -371,19 +371,19 @@ body.nav-menu-open {
   .marquee-content span { font-size: 10px; padding: 0 var(--space-md); }
 
   /* Calculator on Mobile: Compact 2-column pills */
-  .calc-summary-card { position: static; padding: var(--space-lg); border-radius: var(--radius-xl); }
-  .calc-step-card { padding: var(--space-lg); }
-  .calc-opt-btn { padding: 12px 14px; }
+  .calc-summary-card { position: static; padding: 12px; border-radius: var(--radius-lg); }
+  .calc-step-card { padding: 12px; }
+  .calc-opt-btn { padding: 8px 10px; }
   .calc-options-row {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 8px;
+    gap: 6px;
   }
   .calc-opt-pill {
     width: 100%;
     min-width: 0;
-    padding: 10px 8px;
-    font-size: 12px;
+    padding: 6px 6px;
+    font-size: 11px;
   }
 
   /* Modals on Mobile */

@@ -109,6 +109,7 @@ class Portfolio {
     this.setupMobileMenu();
     this.setupSmoothScroll();
     this.setupScrollReveal();
+    this.setupCardGlow();
     this.setupProjectFilter();
     this.setupProjectSearch();
     this.setupCalculator();
@@ -266,6 +267,22 @@ class Portfolio {
     });
 
     document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+  }
+
+  /* ─────────────────────────────────────────────────────────────────────
+     TACTILE CARD GLOW INTERACTION (Zero-Layout Thrashing via CSS Vars)
+     ───────────────────────────────────────────────────────────────────── */
+
+  setupCardGlow() {
+    if (window.matchMedia('(hover: none)').matches) return;
+    const cards = document.querySelectorAll('.proj-card, .pain-card, .document-card');
+    cards.forEach(card => {
+      card.addEventListener('mousemove', (e) => {
+        const rect = card.getBoundingClientRect();
+        card.style.setProperty('--mouse-x', `${(e.clientX - rect.left).toFixed(1)}px`);
+        card.style.setProperty('--mouse-y', `${(e.clientY - rect.top).toFixed(1)}px`);
+      }, { passive: true });
+    });
   }
 
   /* ─────────────────────────────────────────────────────────────────────
