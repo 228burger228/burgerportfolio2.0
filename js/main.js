@@ -254,6 +254,7 @@ class Portfolio {
       return;
     }
 
+    const revealElements = document.querySelectorAll('.reveal');
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
@@ -262,11 +263,18 @@ class Portfolio {
         }
       });
     }, {
-      threshold: 0.1,
-      rootMargin: '0px 0px -60px 0px'
+      threshold: 0.05,
+      rootMargin: '0px 0px -20px 0px'
     });
 
-    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+    revealElements.forEach(el => {
+      const rect = el.getBoundingClientRect();
+      if (rect.top < window.innerHeight && rect.bottom > 0) {
+        el.classList.add('visible');
+      } else {
+        observer.observe(el);
+      }
+    });
   }
 
   /* ─────────────────────────────────────────────────────────────────────
@@ -281,6 +289,11 @@ class Portfolio {
         const rect = card.getBoundingClientRect();
         card.style.setProperty('--mouse-x', `${(e.clientX - rect.left).toFixed(1)}px`);
         card.style.setProperty('--mouse-y', `${(e.clientY - rect.top).toFixed(1)}px`);
+      }, { passive: true });
+
+      card.addEventListener('mouseleave', () => {
+        card.style.removeProperty('--mouse-x');
+        card.style.removeProperty('--mouse-y');
       }, { passive: true });
     });
   }

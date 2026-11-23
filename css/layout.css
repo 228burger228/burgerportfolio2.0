@@ -146,50 +146,67 @@
   opacity: 1;
   transform: perspective(1000px) rotateX(0deg) translateY(0);
   filter: brightness(1);
+  transition-delay: 0s !important;
 }
 
-/* Staggered roll unroll cascade */
-.proj-grid .proj-card.reveal:nth-child(2n+1) { transition-delay: 0.04s; }
-.proj-grid .proj-card.reveal:nth-child(2n+2) { transition-delay: 0.12s; }
+/* Staggered roll unroll cascade (ONLY when not yet visible) */
+.proj-grid .proj-card.reveal:not(.visible):nth-child(2n+1) { transition-delay: 0.04s; }
+.proj-grid .proj-card.reveal:not(.visible):nth-child(2n+2) { transition-delay: 0.12s; }
 
-.compact-grid .proj-card.reveal:nth-child(3n+1) { transition-delay: 0.03s; }
-.compact-grid .proj-card.reveal:nth-child(3n+2) { transition-delay: 0.09s; }
-.compact-grid .proj-card.reveal:nth-child(3n+3) { transition-delay: 0.15s; }
+.compact-grid .proj-card.reveal:not(.visible):nth-child(3n+1) { transition-delay: 0.03s; }
+.compact-grid .proj-card.reveal:not(.visible):nth-child(3n+2) { transition-delay: 0.09s; }
+.compact-grid .proj-card.reveal:not(.visible):nth-child(3n+3) { transition-delay: 0.15s; }
 
-.pains-grid .pain-card.reveal:nth-child(1) { transition-delay: 0.04s; }
-.pains-grid .pain-card.reveal:nth-child(2) { transition-delay: 0.10s; }
-.pains-grid .pain-card.reveal:nth-child(3) { transition-delay: 0.16s; }
+.pains-grid .pain-card.reveal:not(.visible):nth-child(1) { transition-delay: 0.04s; }
+.pains-grid .pain-card.reveal:not(.visible):nth-child(2) { transition-delay: 0.10s; }
+.pains-grid .pain-card.reveal:not(.visible):nth-child(3) { transition-delay: 0.16s; }
 
-/* Desktop hover & active after unrolled */
+/* Desktop hover & active after unrolled (snappy 0.28s, 0ms delay) */
 @media (hover: hover) {
+  .proj-card.visible {
+    transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1),
+                border-color 0.25s ease,
+                box-shadow 0.28s ease;
+  }
+
   .proj-card.visible:hover {
-    transform: translateY(-4px) !important;
+    transform: perspective(1000px) rotateX(0deg) translateY(-5px) !important;
     border-color: rgba(59, 130, 246, 0.4) !important;
-    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 14px 28px rgba(0, 0, 0, 0.38), 0 0 20px rgba(59, 130, 246, 0.12) !important;
-    transition: transform var(--transition-base), border-color var(--transition-base), box-shadow var(--transition-base);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 16px 32px rgba(0, 0, 0, 0.4), 0 0 24px rgba(59, 130, 246, 0.12) !important;
+    transition-delay: 0s !important;
+  }
+
+  .pain-card.visible {
+    transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
   }
 
   .pain-card.visible:hover {
-    transform: translateY(-4px) !important;
+    transform: perspective(1000px) rotateX(0deg) translateY(-4px) !important;
     border-color: rgba(59, 130, 246, 0.4) !important;
     box-shadow: var(--edge-card-hover) !important;
-    transition: transform var(--transition-base), border-color var(--transition-base), box-shadow var(--transition-base);
+    transition-delay: 0s !important;
+  }
+
+  .document-card.visible {
+    transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
   }
 
   .document-card.visible:hover {
-    transform: translateY(-4px) !important;
+    transform: perspective(1000px) rotateX(0deg) translateY(-4px) !important;
     border-color: rgba(59, 130, 246, 0.3) !important;
     box-shadow: var(--edge-card-hover) !important;
-    transition: transform var(--transition-base), border-color var(--transition-base), box-shadow var(--transition-base);
+    transition-delay: 0s !important;
   }
 }
 
 .proj-card.visible:active {
-  transform: translateY(-2px) scale(0.995) !important;
+  transform: perspective(1000px) rotateX(0deg) translateY(-2px) scale(0.995) !important;
+  transition-delay: 0s !important;
 }
 
 .pain-card.visible:active {
-  transform: translateY(-2px) scale(0.995) !important;
+  transform: perspective(1000px) rotateX(0deg) translateY(-2px) scale(0.995) !important;
+  transition-delay: 0s !important;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -1435,7 +1452,7 @@
 
 .proj-overlay-btn {
   background: var(--color-accent);
-  color: var(--color-bg-primary);
+  color: #ffffff !important;
   font-family: var(--font-family-display);
   font-weight: var(--font-weight-bold);
   font-size: var(--font-size-sm);
@@ -1453,7 +1470,7 @@
 
 .proj-overlay-btn:hover {
   background: var(--color-accent-hover);
-  color: var(--color-bg-primary);
+  color: #ffffff !important;
 }
 
 /* Badges */
@@ -1462,7 +1479,7 @@
   top: 12px;
   right: 12px;
   background: var(--color-accent);
-  color: var(--color-bg-primary);
+  color: #ffffff !important;
   font-family: var(--font-family-display);
   font-size: 10px;
   font-weight: var(--font-weight-bold);
