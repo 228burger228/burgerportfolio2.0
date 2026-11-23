@@ -1,6 +1,20 @@
 # robots.txt for burgerportfolio2.0
 User-agent: *
 Allow: /
+Allow: /llms.txt
 
-# Sitemap
+# AI and Search Crawlers discovery
+User-agent: GPTBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+# Sitemap & LLM manifest
 Sitemap: https://228burger228.github.io/burgerportfolio2.0/sitemap.xml
