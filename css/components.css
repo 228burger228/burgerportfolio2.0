@@ -49,20 +49,22 @@
 /* Primary Button */
 .btn-primary {
   background-color: var(--color-accent);
-  color: var(--color-bg-primary);
+  color: #ffffff !important;
   border-color: var(--color-accent);
 }
 
 .btn-primary:hover:not(:disabled) {
   background-color: var(--color-accent-hover);
   border-color: var(--color-accent-hover);
+  color: #ffffff !important;
   transform: translateY(-2px);
-  box-shadow: 0 8px 16px rgba(59, 130, 246, 0.3);
+  box-shadow: 0 8px 16px rgba(59, 130, 246, 0.35);
 }
 
 .btn-primary:active:not(:disabled) {
   background-color: var(--color-accent-active);
   border-color: var(--color-accent-active);
+  color: #ffffff !important;
   transform: scale(0.97);
 }
 
