@@ -408,9 +408,9 @@
     {
       "id": 24,
       "title": "Алекспром — Профессиональное холодильное оборудование",
-      "desc": "Интерактивный B2B-каталог промышленного холода: шкафы шоковой заморозки, холодильные витрины и экспресс-расчет смет. Разработан на React 19 и Vite 6 по спецификации дизайн-системы в Figma.",
+      "desc": "Холод держит, работа идёт. Интерактивный B2B-каталог профессионального холода: шкафы шоковой заморозки (−35 °C), витрины и быстрый расчет смет на React 19.",
       "cat": "featured frontend ui",
-      "link": "https://www.figma.com/design/NmxT7zgFqy7KUnZFGrNNc5?node-id=4-2",
+      "link": "https://228burger228.github.io/Frost/docs/",
       "img": "frosTscrin.png",
       "tags": [
         "React 19",
@@ -421,7 +421,8 @@
         "Шоковая заморозка"
       ],
       "featured": true,
-      "badge": "React 19 · B2B Industrial"
+      "badge": "React 19 · B2B Industrial",
+      "github": "https://github.com/228burger228/Frost"
     }
   ],
   "certificates": [
