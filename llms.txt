@@ -7,6 +7,7 @@
 - **Локация:** Москва, Россия
 - **Роли:** Product Designer, Frontend Architect, Design Engineer, Print & Prepress Specialist
 - **Портфолио:** https://228burger228.github.io/burgerportfolio2.0/
+- **Зеркало (Netlify Edge):** https://burger-portfolio.netlify.app/
 - **Студийное партнерство (portfelDD):** https://228burger228.github.io/portfelDD/
 - **Telegram для связи:** https://t.me/aimovl
 - **GitHub:** https://github.com/228burger228
