@@ -85,6 +85,94 @@
 .reveal:nth-child(5) { transition-delay: 0.4s; }
 .reveal:nth-child(6) { transition-delay: 0.5s; }
 
+/* ─────────────────────────────────────────────────────────────────────────
+   ROLL UNFURL ("РАСКРУЧИВАЮЩИЙСЯ РУЛОН") MOTION FOR CARDS
+   Zero-lag 60fps GPU transform with perspective & tactile decelerate
+   ───────────────────────────────────────────────────────────────────────── */
+
+.proj-grid,
+.compact-grid,
+.pains-grid,
+.documents-grid {
+  perspective: 1400px;
+}
+
+.proj-card.reveal,
+.pain-card.reveal,
+.document-card.reveal {
+  opacity: 0;
+  transform-origin: 50% 0%;
+  transform: perspective(1200px) rotateX(-22deg) scale(0.96) translateY(-24px);
+  filter: brightness(0.88);
+  will-change: transform, opacity, filter;
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.85s cubic-bezier(0.16, 1, 0.3, 1),
+              filter 0.85s cubic-bezier(0.16, 1, 0.3, 1),
+              border-color var(--transition-base),
+              box-shadow var(--transition-base);
+}
+
+.proj-card.reveal.visible,
+.pain-card.reveal.visible,
+.document-card.reveal.visible {
+  opacity: 1;
+  transform: perspective(1200px) rotateX(0deg) scale(1) translateY(0);
+  filter: brightness(1);
+}
+
+/* Staggered roll unroll cascade */
+.proj-grid .proj-card.reveal:nth-child(2n+1) { transition-delay: 0.05s; }
+.proj-grid .proj-card.reveal:nth-child(2n+2) { transition-delay: 0.16s; }
+
+.compact-grid .proj-card.reveal:nth-child(3n+1) { transition-delay: 0.04s; }
+.compact-grid .proj-card.reveal:nth-child(3n+2) { transition-delay: 0.12s; }
+.compact-grid .proj-card.reveal:nth-child(3n+3) { transition-delay: 0.20s; }
+
+.pains-grid .pain-card.reveal:nth-child(1) { transition-delay: 0.05s; }
+.pains-grid .pain-card.reveal:nth-child(2) { transition-delay: 0.14s; }
+.pains-grid .pain-card.reveal:nth-child(3) { transition-delay: 0.22s; }
+
+/* Desktop hover & active after unrolled */
+@media (hover: hover) {
+  .proj-card.visible:hover {
+    transform: perspective(1200px) rotateX(0deg) scale(1) translateY(-4px) !important;
+    border-color: rgba(59, 130, 246, 0.35);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.18), 0 14px 28px rgba(0, 0, 0, 0.35);
+    transition: transform var(--transition-slow), border-color var(--transition-base), box-shadow var(--transition-base);
+  }
+
+  .pain-card.visible:hover {
+    transform: perspective(1200px) rotateX(0deg) scale(1) translateY(-4px) !important;
+    border-color: rgba(59, 130, 246, 0.4);
+    box-shadow: var(--edge-card-hover);
+    transition: transform var(--transition-base), border-color var(--transition-base), box-shadow var(--transition-base);
+  }
+
+  .document-card.visible:hover {
+    transform: perspective(1200px) rotateX(0deg) scale(1) translateY(-4px) !important;
+    transition: transform var(--transition-base), border-color var(--transition-base), box-shadow var(--transition-base);
+  }
+}
+
+.proj-card.visible:active {
+  transform: perspective(1200px) rotateX(0deg) scale(0.995) translateY(-2px) !important;
+}
+
+.pain-card.visible:active {
+  transform: perspective(1200px) rotateX(0deg) scale(0.995) translateY(-2px) !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .proj-card.reveal,
+  .pain-card.reveal,
+  .document-card.reveal {
+    opacity: 1 !important;
+    transform: none !important;
+    filter: none !important;
+    transition: none !important;
+  }
+}
+
 /* Hero animations */
 .animate-fade-up {
   opacity: 0;

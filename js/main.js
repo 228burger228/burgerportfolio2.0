@@ -359,8 +359,9 @@ class Portfolio {
         if (card.classList.contains('hidden')) {
           card.classList.remove('hidden');
           card.style.display = '';
-          card.style.opacity = '1';
-          card.style.transform = 'translateY(0)';
+          card.style.opacity = '';
+          card.style.transform = '';
+          card.classList.add('visible');
         }
       } else if (!card.classList.contains('hidden')) {
         card.classList.add('hidden');
