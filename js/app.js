@@ -28,6 +28,7 @@ class EditorialPortfolio {
     this.setupMobileMenu();
     this.setupActiveNav();
     this.renderFragments();
+    this.setupDeviceToggle();
     this.setupCaseFiltersAndSearch();
     this.setupTopLayerDialog();
     this.setupBriefBuilder();
@@ -153,9 +154,29 @@ class EditorialPortfolio {
     });
   }
 
+  /* ─── 4B. Flagship Desktop / Mobile Mockup Switcher ───────────────────── */
+  setupDeviceToggle() {
+    document.addEventListener('click', (e) => {
+      const btn = e.target.closest('.device-toggle-btn[data-device]');
+      if (!btn) return;
+      const group = btn.closest('.device-toggle');
+      const targetId = group?.dataset.target;
+      const frame = targetId ? document.getElementById(targetId) : null;
+      if (!frame) return;
+
+      const isMobile = btn.dataset.device === 'mobile';
+      frame.classList.toggle('is-mobile', isMobile);
+      group.querySelectorAll('.device-toggle-btn').forEach(b => {
+        b.setAttribute('aria-pressed', String(b === btn));
+      });
+    });
+  }
+
   /* ─── 5. Case Study Filter & Live Search ──────────────────────────────── */
   setupCaseFiltersAndSearch() {
-    const rows = Array.from(document.querySelectorAll('.case-row'));
+    const rows = Array.from(document.querySelectorAll('.bento-card, .case-row'));
+    const bentoWrap = document.getElementById('bento-showcase');
+    const subLabel = document.getElementById('cases-sub-label');
     const filterBtns = document.querySelectorAll('.filter-btn');
     const searchInput = document.getElementById('case-search');
     const emptyEl = document.getElementById('cases-empty');
@@ -163,6 +184,7 @@ class EditorialPortfolio {
 
     const index = rows.map(row => ({
       row,
+      isBento: row.classList.contains('bento-card'),
       cats: (row.dataset.cat || '').split(/\s+/).filter(Boolean),
       text: (row.textContent || '').replace(/\s+/g, ' ').toLowerCase()
     }));
@@ -172,13 +194,21 @@ class EditorialPortfolio {
 
     const apply = () => {
       let visible = 0;
+      let visibleBento = 0;
+      let visibleRows = 0;
       index.forEach(item => {
         const matchCat = activeCat === 'all' || item.cats.includes(activeCat);
         const matchQuery = !query || item.text.includes(query);
         const show = matchCat && matchQuery;
         item.row.hidden = !show;
-        if (show) visible++;
+        if (show) {
+          visible++;
+          if (item.isBento) visibleBento++;
+          else visibleRows++;
+        }
       });
+      if (bentoWrap) bentoWrap.hidden = visibleBento === 0;
+      if (subLabel) subLabel.hidden = visibleRows === 0 || visibleBento === 0;
       if (emptyEl) emptyEl.hidden = visible > 0;
     };
 
