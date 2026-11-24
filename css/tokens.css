@@ -1,186 +1,69 @@
 /* ═══════════════════════════════════════════════════════════════════════════
-   DESIGN TOKENS — Production-Ready System
+   DESIGN TOKENS — Editorial Monochrome Architecture (Dark / Light Parity)
    ═══════════════════════════════════════════════════════════════════════════ */
 
 :root {
-  /* ─────────────────────────────────────────────────────────────────────
-     COLOR TOKENS
-     ───────────────────────────────────────────────────────────────────── */
-  
-  /* Backgrounds */
-  --color-bg-primary: #09090b;
-  --color-bg-surface: #18181b;
-  --color-bg-elevated: #27272a;
-  --color-bg-hover: #2e2e31;
-  
-  /* Text */
-  --color-text-primary: #fafafa;
-  --color-text-secondary: #a1a1aa;
-  --color-text-muted: #71717a;
-  --color-text-disabled: #52525b;
-  
-  /* Accent */
-  --color-accent: #3b82f6;
-  --color-accent-hover: #2563eb;
-  --color-accent-active: #1d4ed8;
-  --color-accent-subtle: rgba(59, 130, 246, 0.1);
-  
-  /* Borders */
-  --color-border: rgba(255, 255, 255, 0.08);
-  --color-border-subtle: rgba(255, 255, 255, 0.04);
-  
-  /* Semantic */
-  --color-success: #10b981;
-  --color-warning: #f59e0b;
-  --color-error: #ef4444;
-  
-  /* ─────────────────────────────────────────────────────────────────────
-     TYPOGRAPHY TOKENS
-     ───────────────────────────────────────────────────────────────────── */
-  
-  --font-family-display: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-  --font-family-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-  
-  /* Font Sizes */
-  --font-size-xs: 12px;
-  --font-size-sm: 14px;
-  --font-size-base: 16px;
-  --font-size-lg: 18px;
-  --font-size-xl: 20px;
-  --font-size-2xl: 24px;
-  --font-size-3xl: 32px;
-  --font-size-4xl: 40px;
-  --font-size-5xl: 48px;
-  --font-size-6xl: 56px;
-  
-  /* Font Weights */
-  --font-weight-regular: 400;
-  --font-weight-medium: 500;
-  --font-weight-semibold: 600;
-  --font-weight-bold: 700;
-  
-  /* Line Heights */
-  --line-height-tight: 1.2;
-  --line-height-normal: 1.5;
-  --line-height-relaxed: 1.75;
-  
-  /* Letter Spacing */
-  --letter-spacing-tight: -0.02em;
-  --letter-spacing-normal: 0;
-  --letter-spacing-wide: 0.04em;
-  
-  /* ─────────────────────────────────────────────────────────────────────
-     SPACING TOKENS
-     ───────────────────────────────────────────────────────────────────── */
-  
-  --space-xs: 4px;
-  --space-sm: 8px;
-  --space-md: 16px;
-  --space-lg: 24px;
-  --space-xl: 32px;
-  --space-2xl: 48px;
-  --space-3xl: 64px;
-  --space-4xl: 96px;
-  
-  /* ─────────────────────────────────────────────────────────────────────
-     CONTAINER & LAYOUT TOKENS
-     ───────────────────────────────────────────────────────────────────── */
-  
-  --container-max: 1280px;
-  --content-max: 72ch;
-  
-  /* Padding */
-  --padding-section-desktop: var(--space-4xl);
-  --padding-section-tablet: var(--space-3xl);
-  --padding-section-mobile: var(--space-2xl);
-  
-  --padding-inline-desktop: var(--space-3xl);
-  --padding-inline-tablet: var(--space-2xl);
-  --padding-inline-mobile: var(--space-lg);
-  
-  /* ─────────────────────────────────────────────────────────────────────
-     BORDER RADIUS TOKENS
-     ───────────────────────────────────────────────────────────────────── */
-  
+  color-scheme: dark light;
+
+  /* Typography */
+  --font-display: 'Unbounded', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+
+  /* Dark Theme (Default — Architectural Slate inspired by Lucas Berghoef) */
+  --bg: #121316;
+  --bg-elevated: #191b20;
+  --bg-panel: #20232a;
+  --bg-hover: #262a33;
+
+  --text-primary: #f4f4f1;
+  --text-secondary: #a8adb8;
+  --text-muted: #767c87;
+
+  --line: rgba(255, 255, 255, 0.11);
+  --line-strong: rgba(255, 255, 255, 0.24);
+
+  /* Signal Accent — Inspired by Lucas Berghoef PF3.0 */
+  --accent: #c8ff00;
+  --accent-ink: #121316;
+  --status-ok: #22c55e;
+  --status-err: #ef4444;
+
+  --header-bg: rgba(18, 19, 22, 0.9);
+  --portrait-tint: rgba(18, 19, 22, 0);
+
+  /* Layout & Radius */
+  --container-max: 1320px;
+  --gutter: clamp(16px, 3vw, 48px);
   --radius-sm: 4px;
   --radius-md: 8px;
-  --radius-lg: 12px;
-  --radius-xl: 16px;
-  --radius-full: 9999px;
-  
-  /* ─────────────────────────────────────────────────────────────────────
-     SHADOW TOKENS
-     ───────────────────────────────────────────────────────────────────── */
-  
-  --shadow-soft: 0 1px 2px rgba(0, 0, 0, 0.05);
-  --shadow-base: 0 4px 6px rgba(0, 0, 0, 0.1);
-  --shadow-md: 0 10px 15px rgba(0, 0, 0, 0.1);
-  --shadow-lg: 0 20px 25px rgba(0, 0, 0, 0.15);
-  --shadow-xl: 0 25px 50px rgba(0, 0, 0, 0.2);
-  
-  /* Edge Lighting & Micro-Bevels */
-  --edge-card: inset 0 1px 0 rgba(255, 255, 255, 0.12), 0 4px 16px rgba(0, 0, 0, 0.25);
-  --edge-card-hover: inset 0 1px 0 rgba(255, 255, 255, 0.24), 0 20px 40px rgba(0, 0, 0, 0.45);
-  --edge-button: inset 0 1px 0 rgba(255, 255, 255, 0.25), 0 2px 4px rgba(0, 0, 0, 0.2);
-  
-  /* ─────────────────────────────────────────────────────────────────────
-     TRANSITION TOKENS
-     ───────────────────────────────────────────────────────────────────── */
-  
-  --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
-  --transition-base: 200ms cubic-bezier(0.4, 0, 0.2, 1);
-  --transition-slow: 300ms cubic-bezier(0.4, 0, 0.2, 1);
-  
-  /* ─────────────────────────────────────────────────────────────────────
-     Z-INDEX TOKENS
-     ───────────────────────────────────────────────────────────────────── */
-  
-  --z-dropdown: 100;
-  --z-sticky: 200;
-  --z-fixed: 300;
-  --z-modal-backdrop: 400;
-  --z-modal: 500;
-  
-  /* ─────────────────────────────────────────────────────────────────────
-     BREAKPOINTS (for reference in media queries)
-     ───────────────────────────────────────────────────────────────────── */
-  
-  --breakpoint-sm: 640px;
-  --breakpoint-md: 768px;
-  --breakpoint-lg: 1024px;
-  --breakpoint-xl: 1280px;
-  --breakpoint-2xl: 1536px;
+  --radius-lg: 14px;
+  --radius-pill: 9999px;
+
+  /* Motion */
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --dur-fast: 160ms;
+  --dur-base: 260ms;
 }
 
-/* ═══════════════════════════════════════════════════════════════════════════
-   REDUCED MOTION SUPPORT
-   ═══════════════════════════════════════════════════════════════════════════ */
+[data-theme="light"] {
+  color-scheme: light;
 
-@media (prefers-reduced-motion: reduce) {
-  :root {
-    --transition-fast: 0ms;
-    --transition-base: 0ms;
-    --transition-slow: 0ms;
-  }
+  --bg: #f4f4f2;
+  --bg-elevated: #ffffff;
+  --bg-panel: #ecece8;
+  --bg-hover: #e5e5e0;
 
-  .animate-fade-up,
-  .avail-dot,
-  .status-pulse-dot,
-  .marquee-content {
-    animation: none !important;
-    opacity: 1 !important;
-    transform: none !important;
-  }
-}
+  --text-primary: #09090b;
+  --text-secondary: #52525b;
+  --text-muted: #71717a;
 
-/* ═══════════════════════════════════════════════════════════════════════════
-   HIGH CONTRAST MODE SUPPORT
-   ═══════════════════════════════════════════════════════════════════════════ */
+  --line: rgba(9, 9, 11, 0.12);
+  --line-strong: rgba(9, 9, 11, 0.28);
 
-@media (prefers-contrast: more) {
-  :root {
-    --color-text-secondary: #b0b0b0;
-    --color-text-muted: #808080;
-    --color-border: rgba(255, 255, 255, 0.15);
-  }
+  --accent: #09090b;
+  --accent-ink: #fafafa;
+
+  --header-bg: rgba(244, 244, 242, 0.9);
+  --portrait-tint: rgba(244, 244, 242, 0.08);
 }

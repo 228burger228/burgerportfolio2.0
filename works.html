@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="ru" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Все работы и разборы кейсов — Дмитрий Еремин (Бургер)</title>
+  <meta name="description" content="Полный архив проектов Дмитрия Еремина: коммерческие сайты, сервисы на React 19 и Vue 3, 3D-портфолио на вертолёте, Telegram-боты, UI/UX в Figma и графика." />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://burger-portfolio.netlify.app/works.html" />
+
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&family=Unbounded:wght@500;600;700;800&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="css/tokens.css" />
+  <link rel="stylesheet" href="css/base.css" />
+  <link rel="stylesheet" href="css/components.css" />
+  <link rel="stylesheet" href="css/sections.css" />
+</head>
+<body>
+  <a href="#main-content" class="skip-link">Перейти к проектам</a>
+
+  <header class="site-header">
+    <div class="container">
+      <div class="header-row-main">
+        <a href="index.html" class="brand" aria-label="Дмитрий Еремин — На главную">
+          <span class="brand-mark" aria-hidden="true">DE®</span>
+          <span>Дмитрий Еремин</span>
+        </a>
+
+        <nav aria-label="Навигация архива">
+          <ul class="nav-list" id="nav-list" data-open="false">
+            <li><a href="index.html" class="nav-link"><span class="nav-link-idx">00</span>Главная</a></li>
+            <li><a href="works.html" class="nav-link active"><span class="nav-link-idx">01</span>Все работы</a></li>
+            <li><a href="index.html#approach" class="nav-link"><span class="nav-link-idx">02</span>Подход</a></li>
+            <li><a href="index.html#formats" class="nav-link"><span class="nav-link-idx">03</span>Услуги</a></li>
+            <li><a href="index.html#contact" class="nav-link"><span class="nav-link-idx">04</span>Контакт</a></li>
+          </ul>
+        </nav>
+
+        <div class="header-actions">
+          <button type="button" class="pill-btn" data-copy="@aimovl" data-toast="Telegram @aimovl скопирован" aria-label="Скопировать Telegram @aimovl">
+            <span>@aimovl</span>
+          </button>
+          <a href="https://t.me/aimovl" target="_blank" rel="noopener noreferrer" class="pill-btn pill-btn--solid pill-btn--tg">
+            <span>Telegram ↗</span>
+          </a>
+          <button type="button" id="theme-toggle" class="theme-toggle" aria-label="Переключить тему"></button>
+          <button type="button" id="menu-toggle" class="menu-toggle" aria-label="Меню" aria-expanded="false" aria-controls="nav-list">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><line x1="3" y1="8" x2="21" y2="8"/><line x1="3" y1="16" x2="21" y2="16"/></svg>
+          </button>
+        </div>
+      </div>
+
+      <div class="header-row-meta" aria-hidden="true">
+        <span>Полный каталог проектов · 2024–2026</span>
+        <span class="header-meta-hide-sm">12 подробных кейсов · Веб, UI/UX, 3D, AI и полиграфия</span>
+        <span class="meta-status"><span class="live-dot"></span>Свободен к проектам</span>
+      </div>
+    </div>
+    <div class="scroll-progress" id="scroll-progress" aria-hidden="true"></div>
+  </header>
+
+  <main id="main-content">
+    <section class="sec" aria-labelledby="archive-title">
+      <div class="container">
+        <div class="sec-head">
+          <div>
+            <span class="sec-eyebrow"><a href="index.html" style="text-decoration: underline;">← На главную</a> · Архив</span>
+            <h1 id="archive-title" class="sec-title">Все работы и разборы</h1>
+          </div>
+          <p class="sec-note">Подробная база проектов с живыми ссылками, задачами бизнеса и техническими решениями.</p>
+        </div>
+
+        <div class="cases-controls">
+          <div class="filter-bar" role="tablist" aria-label="Фильтр кейсов">
+            <button type="button" class="filter-btn active" data-filter="all" role="tab" aria-selected="true">Все (12)</button>
+            <button type="button" class="filter-btn" data-filter="web" role="tab" aria-selected="false">Веб-сайты и сервисы</button>
+            <button type="button" class="filter-btn" data-filter="ui" role="tab" aria-selected="false">Дизайн Figma</button>
+            <button type="button" class="filter-btn" data-filter="ai" role="tab" aria-selected="false">3D и AI-боты</button>
+            <button type="button" class="filter-btn" data-filter="print" role="tab" aria-selected="false">Графика и печать</button>
+          </div>
+
+          <search class="search-wrap">
+            <input type="search" id="case-search" class="search-input" placeholder="Поиск: Study Up, React, Ainala, бот..." aria-label="Поиск по архиву работ" />
+            <span class="search-kbd" aria-hidden="true">Ctrl+K</span>
+          </search>
+        </div>
+
+        <div class="cases-list" id="cases-list">
+
+          <!-- 01 -->
+          <article class="case-row" data-cat="web ui">
+            <div class="case-num-col"><span class="case-index">01</span><span class="case-year">2025</span></div>
+            <div class="case-info">
+              <div class="case-badges"><span class="case-tag">B2B Портал</span><span class="case-tag">Figma</span><span class="case-tag">Bootstrap 5</span></div>
+              <h2 class="case-title">HgStroy — Корпоративный портал стройкомпании</h2>
+              <p class="case-summary"><strong>Задача:</strong> устаревший сайт тормозил на телефонах и терял заявки. <strong>Решение:</strong> полностью переработана структура экранов, калькулятор сметы и адаптивная мобильная версия.</p>
+              <p class="case-result">Итог: быстрая загрузка, рост мобильных заявок и благодарственное письмо гендиректора.</p>
+              <div class="case-links">
+                <a href="https://smr.hgstroy.ru/index.html" target="_blank" rel="noopener noreferrer" class="case-link">Открыть сайт ↗</a>
+                <button type="button" class="case-link" data-preview="assets/img/hgstroyblag.webp" data-preview-fallback="assets/img/hgstroyblag.png" data-preview-title="Благодарственное письмо — ООО «Хаус Гард»">Письмо гендиректора</button>
+              </div>
+            </div>
+            <div class="case-media">
+              <button type="button" class="case-media-btn" data-preview="assets/img/hgstroy.webp" data-preview-title="HgStroy — B2B Портал"><img src="assets/img/hgstroy.webp" width="1400" height="725" alt="HgStroy" loading="lazy" /></button>
+            </div>
+          </article>
+
+          <!-- 02 -->
+          <article class="case-row" data-cat="web ui">
+            <div class="case-num-col"><span class="case-index">02</span><span class="case-year">2026</span></div>
+            <div class="case-info">
+              <div class="case-badges"><span class="case-tag">React 19</span><span class="case-tag">B2B Каталог</span></div>
+              <h2 class="case-title">Алекспром — Промышленное холодильное оборудование</h2>
+              <p class="case-summary"><strong>Задача:</strong> удобно презентовать сложное оборудование для ресторанов и производств. <strong>Решение:</strong> витрина с карточками температурных режимов и подбором под нагрузку кухни.</p>
+              <p class="case-result">Итог: клиент за 1 минуту находит нужную модель и отправляет расчёт в отдел продаж.</p>
+              <div class="case-links">
+                <a href="https://228burger228.github.io/Frost/docs/" target="_blank" rel="noopener noreferrer" class="case-link">Открыть сайт ↗</a>
+                <a href="https://github.com/228burger228/Frost" target="_blank" rel="noopener noreferrer" class="case-link">GitHub ↗</a>
+              </div>
+            </div>
+            <div class="case-media">
+              <button type="button" class="case-media-btn" data-preview="assets/img/frosTscrin.webp" data-preview-title="Алекспром"><img src="assets/img/frosTscrin.webp" width="1024" height="600" alt="Алекспром" loading="lazy" /></button>
+            </div>
+          </article>
+
+          <!-- 03 -->
+          <article class="case-row" data-cat="web ui">
+            <div class="case-num-col"><span class="case-index">03</span><span class="case-year">2026</span></div>
+            <div class="case-info">
+              <div class="case-badges"><span class="case-tag">React 19</span><span class="case-tag">Figma</span><span class="case-tag">Архитектура</span></div>
+              <h2 class="case-title">Да — Архитектура &amp; Дом (Загородные резиденции)</h2>
+              <p class="case-summary"><strong>Задача:</strong> передать премиальный статус каменного строительства без тяжёлых шаблонов. <strong>Решение:</strong> вёрстка с точной типографикой, поэтапной дорожной картой 01–04 и адаптивом.</p>
+              <p class="case-result">Итог: мгновенный отклик интерфейса и акценты на доверии (экскурсии и наблюдение 24/7).</p>
+              <div class="case-links">
+                <a href="https://228burger228.github.io/cottedj/" target="_blank" rel="noopener noreferrer" class="case-link">Открыть сайт ↗</a>
+                <a href="https://github.com/228burger228/cottedj" target="_blank" rel="noopener noreferrer" class="case-link">GitHub ↗</a>
+              </div>
+            </div>
+            <div class="case-media">
+              <button type="button" class="case-media-btn" data-preview="assets/img/cottedj.webp" data-preview-title="Да — Архитектура и Дом"><img src="assets/img/cottedj.webp" width="1024" height="655" alt="Да Архитектура и Дом" loading="lazy" /></button>
+            </div>
+          </article>
+
+          <!-- 04 -->
+          <article class="case-row" data-cat="web ui">
+            <div class="case-num-col"><span class="case-index">04</span><span class="case-year">2026</span></div>
+            <div class="case-info">
+              <div class="case-badges"><span class="case-tag">React 19</span><span class="case-tag">EdTech</span></div>
+              <h2 class="case-title">Maybe abroad? / EuroPath — Навигатор вузов ЕС</h2>
+              <p class="case-summary"><strong>Задача:</strong> собрать разрозненные правила поступления в Европу на одном сайте. <strong>Решение:</strong> интерактивная база 30+ вузов, программы 0 €, калькулятор бюджета и тест подбора.</p>
+              <p class="case-result">Итог: абитуриент выбирает страну и план поступления за 3 минуты без агентств.</p>
+              <div class="case-links">
+                <a href="https://228burger228.github.io/school-333/docs/index.html" target="_blank" rel="noopener noreferrer" class="case-link">Открыть сайт ↗</a>
+                <a href="https://github.com/228burger228/school-333" target="_blank" rel="noopener noreferrer" class="case-link">GitHub ↗</a>
+              </div>
+            </div>
+            <div class="case-media">
+              <button type="button" class="case-media-btn" data-preview="assets/img/europath.webp" data-preview-title="Maybe abroad? / EuroPath"><img src="assets/img/europath.webp" width="1024" height="520" alt="EuroPath" loading="lazy" /></button>
+            </div>
+          </article>
+
+          <!-- 05 -->
+          <article class="case-row" data-cat="web">
+            <div class="case-num-col"><span class="case-index">05</span><span class="case-year">2026</span></div>
+            <div class="case-info">
+              <div class="case-badges"><span class="case-tag">React 18</span><span class="case-tag">MedTech</span><span class="case-tag">PDF</span></div>
+              <h2 class="case-title">Ainala — Платформа безопасной реабилитации</h2>
+              <p class="case-summary"><strong>Задача:</strong> помочь пациенту следовать плану ЛФК дома. <strong>Решение:</strong> пошаговый онбординг, приватное хранение данных на устройстве, дневник боли и экспорт отчёта врачу.</p>
+              <p class="case-result">Итог: запущенный рабочий сервис с понятным интерфейсом даже с первого экрана телефона.</p>
+              <div class="case-links">
+                <a href="https://ainala.net/docs/index.html" target="_blank" rel="noopener noreferrer" class="case-link">Открыть приложение ↗</a>
+                <a href="https://ainala.net" target="_blank" rel="noopener noreferrer" class="case-link">ainala.net ↗</a>
+              </div>
+            </div>
+            <div class="case-media">
+              <button type="button" class="case-media-btn" data-preview="assets/img/ainala.webp" data-preview-title="Ainala"><img src="assets/img/ainala.webp" width="439" height="875" alt="Ainala" loading="lazy" /></button>
+            </div>
+          </article>
+
+          <!-- 06 -->
+          <article class="case-row" data-cat="web ui">
+            <div class="case-num-col"><span class="case-index">06</span><span class="case-year">2025</span></div>
+            <div class="case-info">
+              <div class="case-badges"><span class="case-tag">EdTech</span><span class="case-tag">HTML5 / JS</span></div>
+              <h2 class="case-title">Study Up — Онлайн-школа подготовки к ОГЭ</h2>
+              <p class="case-summary"><strong>Задача:</strong> быстро упаковать новую образовательную платформу для 9-классников. <strong>Решение:</strong> дружелюбный визуал, тарифы, расписание, отзывы и запись на пробный урок.</p>
+              <p class="case-result">Итог: запуск лендинга и потока заявок на обучение за 3 недели.</p>
+              <div class="case-links">
+                <a href="https://228burger228.github.io/StudyUp/index.html" target="_blank" rel="noopener noreferrer" class="case-link">Открыть сайт ↗</a>
+              </div>
+            </div>
+            <div class="case-media">
+              <button type="button" class="case-media-btn" data-preview="assets/img/studyup.webp" data-preview-title="Study Up — Онлайн-школа"><img src="assets/img/studyup.webp" width="1024" height="609" alt="Study Up" loading="lazy" /></button>
+            </div>
+          </article>
+
+          <!-- 07 -->
+          <article class="case-row" data-cat="ai web">
+            <div class="case-num-col"><span class="case-index">07</span><span class="case-year">2026</span></div>
+            <div class="case-info">
+              <div class="case-badges"><span class="case-tag">Three.js</span><span class="case-tag">WebGL</span><span class="case-tag">60 FPS</span></div>
+              <h2 class="case-title">3D-портфолио: полёт на вертолёте</h2>
+              <p class="case-summary"><strong>Задача:</strong> выделиться среди тысяч статичных портфолио. <strong>Решение:</strong> собственный 3D-архипелаг прямо в браузере с физикой вертолёта, автопилотом и 10 стендами кейсов.</p>
+              <p class="case-result">Итог: плавная работа без установки программ на базе лёгкого нативного кода.</p>
+              <div class="case-links">
+                <a href="https://228burger228.github.io/Game-portfolio/" target="_blank" rel="noopener noreferrer" class="case-link">Запустить 3D-полёт ↗</a>
+              </div>
+            </div>
+            <div class="case-media">
+              <a href="https://228burger228.github.io/Game-portfolio/" target="_blank" rel="noopener noreferrer" class="case-spec-card">
+                <div class="case-spec-head"><span>WEBGL 2.0 · THREE.JS</span><span>● 60.0 FPS</span></div>
+                <div class="case-spec-main">3D Боевой Вертолёт<br>× 10 станций</div>
+                <div class="case-spec-foot">Полетать прямо сейчас ↗</div>
+              </a>
+            </div>
+          </article>
+
+          <!-- 08 -->
+          <article class="case-row" data-cat="ai">
+            <div class="case-num-col"><span class="case-index">08</span><span class="case-year">2026</span></div>
+            <div class="case-info">
+              <div class="case-badges"><span class="case-tag">Cloudflare Workers</span><span class="case-tag">Gemini AI</span><span class="case-tag">Telegram</span></div>
+              <h2 class="case-title">Dmitry OS &amp; JobHunter AI — Telegram-боты с ИИ</h2>
+              <p class="case-summary"><strong>Задача:</strong> автоматизировать рутинный разбор голосовых задач и поиск заказов 24/7 без оплаты за VPS-сервер.</p>
+              <p class="case-result">Итог: голосовой ввод дел сразу в Google Календарь и Документы, отклик &lt; 1с при 0 ₽ за хостинг.</p>
+              <div class="case-links">
+                <a href="https://t.me/aimovl" target="_blank" rel="noopener noreferrer" class="case-link">Запросить демо в TG ↗</a>
+                <a href="https://t.me/dmitryB_studio_bot" target="_blank" rel="noopener noreferrer" class="case-link">Студийный бот ↗</a>
+              </div>
+            </div>
+            <div class="case-media">
+              <div class="case-spec-card">
+                <div class="case-spec-head"><span>CLOUDFLARE EDGE</span><span>● 32ms</span></div>
+                <div class="case-spec-main">Gemini AI × Telegram<br>Голос + Парсинг</div>
+                <div class="case-spec-foot">0 ₽/мес за сервер · Работает 24/7</div>
+              </div>
+            </div>
+          </article>
+
+          <!-- 09 -->
+          <article class="case-row" data-cat="web">
+            <div class="case-num-col"><span class="case-index">09</span><span class="case-year">2025–2026</span></div>
+            <div class="case-info">
+              <div class="case-badges"><span class="case-tag">Vue 3</span><span class="case-tag">Дашборд</span><span class="case-tag">Wiki</span></div>
+              <h2 class="case-title">SkillForge &amp; Warpath Wiki — Игровые и EdTech SPA</h2>
+              <p class="case-summary">Два быстрых веб-приложения на Vue 3: интерактивный портал обучения SkillForge и справочник по 500+ боевым юнитам Warpath.</p>
+              <p class="case-result">Итог: мгновенный поиск и фильтрация базы данных в браузере без перезагрузки страниц.</p>
+              <div class="case-links">
+                <a href="https://228burger228.github.io/SkillForge/" target="_blank" rel="noopener noreferrer" class="case-link">SkillForge ↗</a>
+                <a href="https://228burger228.github.io/WarpathYTwiki/index.html" target="_blank" rel="noopener noreferrer" class="case-link">Warpath Wiki ↗</a>
+              </div>
+            </div>
+            <div class="case-media">
+              <button type="button" class="case-media-btn" data-preview="assets/img/warpathwikiscrin.webp" data-preview-title="Warpath Wiki на Vue 3"><img src="assets/img/warpathwikiscrin.webp" width="1400" height="719" alt="Warpath Wiki" loading="lazy" /></button>
+            </div>
+          </article>
+
+          <!-- 10 -->
+          <article class="case-row" data-cat="ui">
+            <div class="case-num-col"><span class="case-index">10</span><span class="case-year">2025</span></div>
+            <div class="case-info">
+              <div class="case-badges"><span class="case-tag">UI/UX</span><span class="case-tag">Figma</span><span class="case-tag">Яндекс Практикум</span></div>
+              <h2 class="case-title">Точка ритма — Музыкальный стриминг-сервис</h2>
+              <p class="case-summary">Продуманная тёмная дизайн-система медиа-портала: подборки по темпу, удобный плеер и визуальная иерархия.</p>
+              <p class="case-result">Итог: высокая оценка от ревьюеров Яндекс Практикума за сетку и логику плеера.</p>
+              <div class="case-links">
+                <button type="button" class="case-link" data-preview="assets/img/tochkaritma.webp" data-preview-title="Точка ритма — UI/UX дизайн">Увеличить макет</button>
+              </div>
+            </div>
+            <div class="case-media">
+              <button type="button" class="case-media-btn" data-preview="assets/img/tochkaritma.webp" data-preview-title="Точка ритма — UI/UX дизайн"><img src="assets/img/tochkaritma.webp" width="1400" height="874" alt="Точка ритма" loading="lazy" /></button>
+            </div>
+          </article>
+
+          <!-- 11 -->
+          <article class="case-row" data-cat="web ui">
+            <div class="case-num-col"><span class="case-index">11</span><span class="case-year">2025</span></div>
+            <div class="case-info">
+              <div class="case-badges"><span class="case-tag">Промо</span><span class="case-tag">E-Commerce</span><span class="case-tag">Vanilla JS</span></div>
+              <h2 class="case-title">vertical.team &amp; foodiCE &amp; Dimutri &amp; Burger</h2>
+              <p class="case-summary">Серия ярких коммерческих промо-сайтов: онлайн-курс по вирусным роликам, витрина крафтового мороженого и парная визитка дуэта разработчиков.</p>
+              <p class="case-result">Итог: лёгкая быстрая вёрстка, карусели отзывов и прямая передача заявок в мессенджеры.</p>
+              <div class="case-links">
+                <a href="https://228burger228.github.io/portfelDD/" target="_blank" rel="noopener noreferrer" class="case-link">Dimutri &amp; Burger ↗</a>
+                <button type="button" class="case-link" data-preview="assets/img/verticalteam.webp" data-preview-title="vertical.team">vertical.team</button>
+                <button type="button" class="case-link" data-preview="assets/img/foodiCE.webp" data-preview-title="foodiCE — Витрина мороженого">foodiCE</button>
+              </div>
+            </div>
+            <div class="case-media">
+              <button type="button" class="case-media-btn" data-preview="assets/img/verticalteam.webp" data-preview-title="vertical.team"><img src="assets/img/verticalteam.webp" width="1400" height="720" alt="vertical.team" loading="lazy" /></button>
+            </div>
+          </article>
+
+          <!-- 12 -->
+          <article class="case-row" data-cat="print">
+            <div class="case-num-col"><span class="case-index">12</span><span class="case-year">2026</span></div>
+            <div class="case-info">
+              <div class="case-badges"><span class="case-tag">Полиграфия</span><span class="case-tag">Illustrator 2026</span><span class="case-tag">3D BIM</span></div>
+              <h2 class="case-title">Графика, мерч, моддинг ПК и 3D РГБ (7 работ)</h2>
+              <p class="case-summary">Новогодний плакат HPY NEW YER, чертёж и поклейка винила на корпус ПК (Evangelion 02), магниты Warpath, мерч 100% BOYS и BIM-реконструкция Римского дворика.</p>
+              <p class="case-result">Итог: точная допечатная подготовка макетов в тираж (плоттер, УФ-печать, шелкография).</p>
+              <div class="case-links">
+                <button type="button" class="case-link" data-gallery="print" data-gallery-index="0" data-gallery-title="Графика, мерч, моддинг и 3D BIM">Листать все 7 работ ↗</button>
+                <button type="button" class="case-link" data-gallery="print" data-gallery-index="1" data-gallery-title="Графика, мерч, моддинг и 3D BIM">Моддинг ПК</button>
+                <button type="button" class="case-link" data-gallery="print" data-gallery-index="3" data-gallery-title="Графика, мерч, моддинг и 3D BIM">3D РГБ</button>
+              </div>
+            </div>
+            <div class="case-media">
+              <button type="button" class="case-media-btn" data-gallery="print" data-gallery-index="0" data-gallery-title="Графика, мерч, моддинг и 3D BIM"><img src="assets/img/poster_newyear.webp" width="724" height="1024" alt="Новогодний плакат" loading="lazy" /></button>
+            </div>
+          </article>
+
+        </div>
+        <p id="cases-empty" class="empty-cases" hidden>По этому запросу проектов не найдено.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>© 2026 Дмитрий Еремин (Бургер)</div>
+        <div><a href="index.html">← На главную страницу</a></div>
+        <div class="footer-links">
+          <a href="https://t.me/aimovl" target="_blank" rel="noopener noreferrer">Telegram @aimovl ↗</a>
+          <a href="https://github.com/228burger228" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
+        </div>
+        <a href="#archive-title" class="case-link">Наверх ↑</a>
+      </div>
+    </div>
+  </footer>
+
+  <dialog id="viewer-dialog" class="ed-dialog" closedby="any" aria-labelledby="viewer-title">
+    <div class="dialog-surface">
+      <div class="dialog-head">
+        <h2 id="viewer-title" class="dialog-title">Просмотр</h2>
+        <button type="button" id="viewer-close" class="dialog-close" aria-label="Закрыть">✕</button>
+      </div>
+      <div class="dialog-media-wrap">
+        <img id="viewer-img" src="" alt="" decoding="async" />
+      </div>
+      <div class="dialog-foot">
+        <span id="viewer-caption"></span>
+        <div class="dialog-nav">
+          <button type="button" id="viewer-prev" class="dialog-step-btn" aria-label="Предыдущий">‹</button>
+          <span id="viewer-counter" class="mono">1 / 1</span>
+          <button type="button" id="viewer-next" class="dialog-step-btn" aria-label="Следующий">›</button>
+        </div>
+      </div>
+    </div>
+  </dialog>
+
+  <div id="ed-toast" class="ed-toast" role="status" aria-live="polite"></div>
+
+  <script src="js/data.js" defer></script>
+  <script src="js/app.js" defer></script>
+</body>
+</html>

@@ -1,9 +1,7 @@
-# robots.txt for burger-portfolio.netlify.app
 User-agent: *
 Allow: /
 Allow: /llms.txt
 
-# AI and Search Crawlers discovery
 User-agent: GPTBot
 Allow: /
 
@@ -16,5 +14,4 @@ Allow: /
 User-agent: Google-Extended
 Allow: /
 
-# Sitemap & LLM manifest
 Sitemap: https://burger-portfolio.netlify.app/sitemap.xml

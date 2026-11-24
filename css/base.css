@@ -1,344 +1,121 @@
 /* ═══════════════════════════════════════════════════════════════════════════
-   BASE STYLES — Global Reset & Typography
+   BASE & RESET (Cascade Layered — Modern CSS Architecture)
    ═══════════════════════════════════════════════════════════════════════════ */
 
-/* ─────────────────────────────────────────────────────────────────────────
-   RESET & BOX MODEL
-   ───────────────────────────────────────────────────────────────────────── */
+@layer reset, base, theme, components, sections, utilities;
 
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
-
-html {
-  scroll-behavior: smooth;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-body {
-  font-family: var(--font-family-body);
-  font-size: var(--font-size-base);
-  font-weight: var(--font-weight-regular);
-  line-height: var(--line-height-normal);
-  color: var(--color-text-primary);
-  background-color: var(--color-bg-primary);
-  overflow-x: hidden;
-  position: relative;
-}
-
-/* Точечная сетка (кругляшки в стиле Astra/knice.tech с радиальным затуханием) */
-body::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  z-index: 0;
-  background-image: radial-gradient(circle, rgba(255, 255, 255, 0.08) 1px, transparent 1px);
-  background-size: 26px 26px;
-  background-position: center top;
-  mask-image: radial-gradient(ellipse 85% 65% at 50% 30%, black 20%, transparent 85%);
-  -webkit-mask-image: radial-gradient(ellipse 85% 65% at 50% 30%, black 20%, transparent 85%);
-}
-
-/* Мягкий перелив / свечение по центру */
-body::after {
-  content: "";
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  z-index: 0;
-  background: radial-gradient(ellipse 65% 45% at 50% 25%, rgba(56, 189, 248, 0.03), rgba(124, 58, 237, 0.02) 45%, transparent 75%);
-}
-
-/* ─────────────────────────────────────────────────────────────────────────
-   TYPOGRAPHY
-   ───────────────────────────────────────────────────────────────────────── */
-
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  font-family: var(--font-family-display);
-  font-weight: var(--font-weight-bold);
-  line-height: var(--line-height-tight);
-  letter-spacing: var(--letter-spacing-tight);
-}
-
-h1 {
-  font-size: var(--font-size-5xl);
-}
-
-h2 {
-  font-size: var(--font-size-4xl);
-}
-
-h3 {
-  font-size: var(--font-size-3xl);
-}
-
-h4 {
-  font-size: var(--font-size-2xl);
-}
-
-h5 {
-  font-size: var(--font-size-xl);
-}
-
-h6 {
-  font-size: var(--font-size-lg);
-}
-
-p {
-  line-height: var(--line-height-relaxed);
-  max-width: var(--content-max);
-}
-
-/* ─────────────────────────────────────────────────────────────────────────
-   LINKS
-   ───────────────────────────────────────────────────────────────────────── */
-
-a {
-  color: var(--color-accent);
-  text-decoration: none;
-  transition: color var(--transition-fast);
-  position: relative;
-}
-
-a:hover {
-  color: var(--color-accent-hover);
-}
-
-a:focus-visible {
-  outline: 2px solid var(--color-accent);
-  outline-offset: 2px;
-  border-radius: var(--radius-sm);
-}
-
-a:active {
-  color: var(--color-accent-active);
-}
-
-/* ─────────────────────────────────────────────────────────────────────────
-   LISTS
-   ───────────────────────────────────────────────────────────────────────── */
-
-ul,
-ol {
-  list-style-position: inside;
-}
-
-li {
-  margin-bottom: var(--space-sm);
-}
-
-/* ─────────────────────────────────────────────────────────────────────────
-   BUTTONS
-   ───────────────────────────────────────────────────────────────────────── */
-
-button {
-  font-family: var(--font-family-display);
-  cursor: pointer;
-  border: none;
-  background: none;
-  padding: 0;
-}
-
-button:focus-visible {
-  outline: 2px solid var(--color-accent);
-  outline-offset: 2px;
-}
-
-/* ─────────────────────────────────────────────────────────────────────────
-   FORM ELEMENTS
-   ───────────────────────────────────────────────────────────────────────── */
-
-input,
-textarea,
-select {
-  font-family: var(--font-family-body);
-  font-size: var(--font-size-base);
-  color: var(--color-text-primary);
-  background-color: var(--color-bg-surface);
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-md);
-  padding: var(--space-md);
-  transition: border-color var(--transition-fast), background-color var(--transition-fast);
-}
-
-input:focus,
-textarea:focus,
-select:focus {
-  outline: none;
-  border-color: var(--color-accent);
-  background-color: var(--color-bg-elevated);
-}
-
-input:focus-visible,
-textarea:focus-visible,
-select:focus-visible {
-  outline: 2px solid var(--color-accent);
-  outline-offset: 2px;
-}
-
-input::placeholder,
-textarea::placeholder {
-  color: var(--color-text-muted);
-}
-
-/* ─────────────────────────────────────────────────────────────────────────
-   IMAGES & MEDIA
-   ───────────────────────────────────────────────────────────────────────── */
-
-img {
-  max-width: 100%;
-  height: auto;
-  display: block;
-}
-
-img[alt=""] {
-  /* Decorative images should have empty alt */
-}
-
-/* ─────────────────────────────────────────────────────────────────────────
-   SCROLLBAR STYLING
-   ───────────────────────────────────────────────────────────────────────── */
-
-::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
-}
-
-::-webkit-scrollbar-track {
-  background: var(--color-bg-primary);
-}
-
-::-webkit-scrollbar-thumb {
-  background: var(--color-border);
-  border-radius: var(--radius-full);
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: var(--color-text-muted);
-}
-
-/* ─────────────────────────────────────────────────────────────────────────
-   SELECTION
-   ───────────────────────────────────────────────────────────────────────── */
-
-::selection {
-  background-color: var(--color-accent);
-  color: var(--color-bg-primary);
-}
-
-::-moz-selection {
-  background-color: var(--color-accent);
-  color: var(--color-bg-primary);
-}
-
-/* ─────────────────────────────────────────────────────────────────────────
-   ACCESSIBILITY: SKIP LINK
-   ───────────────────────────────────────────────────────────────────────── */
-
-.skip-link {
-  position: absolute;
-  top: -40px;
-  left: 0;
-  background: var(--color-accent);
-  color: var(--color-bg-primary);
-  padding: var(--space-md) var(--space-lg);
-  text-decoration: none;
-  z-index: var(--z-modal);
-  border-radius: var(--radius-md);
-  font-weight: var(--font-weight-semibold);
-}
-
-.skip-link:focus {
-  top: var(--space-md);
-}
-
-/* ─────────────────────────────────────────────────────────────────────────
-   FOCUS VISIBLE STYLES (for keyboard navigation)
-   ───────────────────────────────────────────────────────────────────────── */
-
-:focus-visible {
-  outline: 2px solid var(--color-accent);
-  outline-offset: 2px;
-}
-
-/* ─────────────────────────────────────────────────────────────────────────
-   CONTRAST ENHANCEMENTS FOR ACCESSIBILITY
-   ───────────────────────────────────────────────────────────────────────── */
-
-@media (prefers-contrast: more) {
-  body {
-    color: var(--color-text-primary);
+@layer reset {
+  html {
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
-  
-  a {
-    text-decoration: underline;
+
+  *,
+  *::before,
+  *::after {
+    box-sizing: inherit;
   }
-  
+
+  body, h1, h2, h3, h4, p, ul, ol, dl, dd, figure {
+    margin: 0;
+  }
+
+  ul, ol {
+    padding: 0;
+    list-style: none;
+  }
+
+  img, svg, picture {
+    display: block;
+    max-width: 100%;
+  }
+
+  button, input, textarea, select {
+    font: inherit;
+    color: inherit;
+  }
+
   button {
-    border: 2px solid currentColor;
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+  }
+
+  a {
+    color: inherit;
+    text-decoration: none;
   }
 }
 
-/* ─────────────────────────────────────────────────────────────────────────
-   REDUCED MOTION
-   ───────────────────────────────────────────────────────────────────────── */
+@layer base {
+  body {
+    font-family: var(--font-sans);
+    font-size: 16px;
+    line-height: 1.55;
+    color: var(--text-primary);
+    background-color: var(--bg);
+    overflow-x: hidden;
+    transition: background-color var(--dur-base) ease, color var(--dur-base) ease;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+
+  ::selection {
+    background-color: var(--accent);
+    color: var(--accent-ink);
+  }
+
+  .container {
+    width: 100%;
+    max-width: var(--container-max);
+    margin-inline: auto;
+    padding-inline: var(--gutter);
+  }
+
+  .mono {
+    font-family: var(--font-mono);
+  }
+
+  .skip-link {
+    position: absolute;
+    top: -60px;
+    left: 16px;
+    z-index: 9999;
+    background: var(--text-primary);
+    color: var(--bg);
+    padding: 10px 16px;
+    font-size: 13px;
+    font-weight: 600;
+    border-radius: var(--radius-sm);
+  }
+
+  .skip-link:focus {
+    top: 16px;
+  }
+
+  /* Custom slim scrollbar */
+  ::-webkit-scrollbar {
+    width: 7px;
+    height: 7px;
+  }
+  ::-webkit-scrollbar-track {
+    background: var(--bg);
+  }
+  ::-webkit-scrollbar-thumb {
+    background: var(--line-strong);
+    border-radius: var(--radius-pill);
+  }
+}
 
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
-  }
-  
-  *,
-  *::before,
-  *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-  }
-}
-
-/* ─────────────────────────────────────────────────────────────────────────
-   DARK MODE (already default, but explicit for clarity)
-   ───────────────────────────────────────────────────────────────────────── */
-
-@media (prefers-color-scheme: dark) {
-  body {
-    background-color: var(--color-bg-primary);
-    color: var(--color-text-primary);
-  }
-}
-
-/* ─────────────────────────────────────────────────────────────────────────
-   PRINT STYLES
-   ───────────────────────────────────────────────────────────────────────── */
-
-@media print {
-  body {
-    background: white;
-    color: black;
-  }
-  
-  a {
-    text-decoration: underline;
-  }
-  
-  a::after {
-    content: " (" attr(href) ")";
-  }
-  
-  .navbar,
-  .footer {
-    display: none;
   }
 }

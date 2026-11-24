@@ -1,4 +1,3 @@
-# Netlify Configuration for Burger Portfolio 2.0
 [build]
   publish = "."
 
@@ -8,41 +7,9 @@
     X-Frame-Options = "SAMEORIGIN"
     X-Content-Type-Options = "nosniff"
     Referrer-Policy = "strict-origin-when-cross-origin"
-    Strict-Transport-Security = "max-age=31536000; includeSubDomains; preload"
 
 [[headers]]
-  for = "/llms.txt"
-  [headers.values]
-    Content-Type = "text/plain; charset=UTF-8"
-    Cache-Control = "public, max-age=3600"
-
-[[headers]]
-  for = "/robots.txt"
-  [headers.values]
-    Content-Type = "text/plain; charset=UTF-8"
-
-[[headers]]
-  for = "/sitemap.xml"
-  [headers.values]
-    Content-Type = "application/xml; charset=UTF-8"
-
-[[headers]]
-  for = "/*.webp"
-  [headers.values]
-    Cache-Control = "public, max-age=2592000, immutable"
-
-[[headers]]
-  for = "/*.svg"
-  [headers.values]
-    Cache-Control = "public, max-age=2592000, immutable"
-
-[[headers]]
-  for = "/*.png"
-  [headers.values]
-    Cache-Control = "public, max-age=2592000, immutable"
-
-[[headers]]
-  for = "/*.jpg"
+  for = "/assets/img/*"
   [headers.values]
     Cache-Control = "public, max-age=2592000, immutable"
 
