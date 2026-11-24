@@ -1,4 +1,4 @@
-# robots.txt for burgerportfolio2.0
+# robots.txt for burger-portfolio.netlify.app
 User-agent: *
 Allow: /
 Allow: /llms.txt
@@ -17,4 +17,4 @@ User-agent: Google-Extended
 Allow: /
 
 # Sitemap & LLM manifest
-Sitemap: https://228burger228.github.io/burgerportfolio2.0/sitemap.xml
+Sitemap: https://burger-portfolio.netlify.app/sitemap.xml

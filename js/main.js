@@ -81,12 +81,14 @@ class Portfolio {
     this.projCards       = document.querySelectorAll('.proj-card');
     this.statNums        = document.querySelectorAll('.stat-num');
     this.modal           = document.getElementById('doc-modal');
+    this.modalTitle      = document.getElementById('modal-title');
     this.modalImage      = document.getElementById('modal-image');
     this.modalClose      = document.getElementById('modal-close');
-    this.modalOverlay    = document.getElementById('modal-overlay');
     this.skipLink        = document.getElementById('skip-link');
     this.scrollToTopBtn   = document.getElementById('scroll-to-top');
     this.scrollProgressBar = document.getElementById('scroll-progress-bar');
+    this.toastEl         = document.getElementById('site-toast');
+    this.toastTimer      = null;
 
     this.searchInput     = document.getElementById('project-search');
     this.searchClear     = document.getElementById('project-search-clear');
@@ -98,6 +100,7 @@ class Portfolio {
     this.countersStarted = false;
     this.scrollTicking   = false;
     this.projectIndex    = [];
+    this.supportsDisplayTransition = undefined;
 
     this.init();
   }
@@ -108,6 +111,7 @@ class Portfolio {
     this.setupActiveNavLinkObserver();
     this.setupMobileMenu();
     this.setupSmoothScroll();
+    this.setupMarqueeControl();
     this.setupScrollReveal();
     this.setupCardGlow();
     this.setupProjectFilter();
@@ -115,12 +119,53 @@ class Portfolio {
     this.setupCalculator();
     this.setupCounters();
     this.setupAccessibility();
+    this.setupTopLayerDialogs();
     this.setupModal();
     this.setupSkipLink();
     this.setupContactForm();
+    this.setupCopyButtons();
     this.setupScrollToTop();
     this.setupGalleries();
     this.setupKeyboardDispatcher();
+  }
+
+  showToast(message) {
+    if (!this.toastEl) return;
+    const textEl = this.toastEl.querySelector('.site-toast-text');
+    if (textEl) textEl.textContent = message;
+    this.toastEl.classList.add('visible');
+    if (this.toastTimer) clearTimeout(this.toastTimer);
+    this.toastTimer = setTimeout(() => {
+      this.toastEl.classList.remove('visible');
+    }, 2400);
+  }
+
+  setupMarqueeControl() {
+    const section = document.querySelector('.marquee-section');
+    const btn = document.getElementById('marquee-pause-btn');
+    if (!section || !btn) return;
+
+    const pauseSvg = '<svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="6" y="4" width="4" height="16"></rect><rect x="14" y="4" width="4" height="16"></rect></svg>';
+    const playSvg = '<svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><polygon points="6 4 20 12 6 20 6 4"></polygon></svg>';
+
+    btn.addEventListener('click', () => {
+      const paused = section.classList.toggle('is-paused');
+      btn.setAttribute('aria-label', paused ? 'Возобновить бегущую строку' : 'Пауза бегущей строки');
+      btn.setAttribute('title', paused ? 'Возобновить' : 'Пауза');
+      btn.innerHTML = paused ? playSvg : pauseSvg;
+    });
+  }
+
+  setupCopyButtons() {
+    document.querySelectorAll('[data-copy-text]').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const text = btn.dataset.copyText;
+        if (!text || !navigator.clipboard) return;
+        navigator.clipboard.writeText(text).then(() => {
+          this.showToast(btn.dataset.copyToast || 'Скопировано в буфер обмена');
+        });
+      });
+    });
   }
 
   /* ─────────────────────────────────────────────────────────────────────
@@ -879,7 +924,7 @@ class Portfolio {
         // Typing dot placeholder
         const typingMsg = document.createElement('div');
         typingMsg.className = 'mock-msg mock-msg--bot';
-        typingMsg.textContent = 'Astra печатает...';
+        typingMsg.textContent = 'Dmitry AI печатает...';
         mockBotChat.appendChild(typingMsg);
         mockBotChat.scrollTop = mockBotChat.scrollHeight;
 
@@ -897,6 +942,7 @@ class Portfolio {
         const hex = swatch.dataset.hex;
         if (hex && navigator.clipboard) {
           navigator.clipboard.writeText(hex).then(() => {
+            this.showToast(`Цвет ${hex} скопирован`);
             const codeEl = swatch.querySelector('.swatch-code');
             if (codeEl) {
               const orig = codeEl.textContent;
@@ -924,6 +970,7 @@ class Portfolio {
     if (elResetBtn) {
       elResetBtn.addEventListener('click', () => {
         store.reset();
+        this.showToast('Конфигуратор сброшен');
       });
     }
 
@@ -933,6 +980,7 @@ class Portfolio {
         const text = elBrief ? elBrief.textContent.replace(/^«|»$/g, '').trim() : '';
         if (navigator.clipboard && text) {
           navigator.clipboard.writeText(text).then(() => {
+            this.showToast('ТЗ и смета скопированы');
             const orig = elCopyBtn.innerHTML;
             elCopyBtn.innerHTML = '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg> <span>Скопировано!</span>';
             elCopyBtn.style.color = 'var(--color-success)';
@@ -941,9 +989,32 @@ class Portfolio {
               elCopyBtn.style.color = '';
             }, 2000);
           }).catch(() => {
-            prompt('Скопируйте текст сообщения:', text);
+            this.showToast('Выделите и скопируйте ТЗ во вкладке Терминал');
           });
         }
+      });
+    }
+
+    // Bind Calc -> Contact Form Bridge
+    const elToFormBtn = document.getElementById('calc-to-form-btn');
+    if (elToFormBtn) {
+      elToFormBtn.addEventListener('click', () => {
+        const text = elBrief ? elBrief.textContent.replace(/^«|»$/g, '').trim() : '';
+        const msgInput = document.getElementById('contact-message');
+        const nameInput = document.getElementById('contact-name');
+        const contactSec = document.getElementById('contact');
+        if (msgInput && text) {
+          msgInput.value = text;
+          msgInput.dispatchEvent(new Event('input', { bubbles: true }));
+        }
+        if (contactSec) {
+          const offset = contactSec.getBoundingClientRect().top + window.scrollY - 80;
+          window.scrollTo({ top: offset, behavior: 'smooth' });
+        }
+        setTimeout(() => {
+          if (nameInput) nameInput.focus({ preventScroll: true });
+        }, 500);
+        this.showToast('Смета и ТЗ перенесены в форму заявки');
       });
     }
   }
@@ -1026,42 +1097,110 @@ class Portfolio {
   }
 
   /* ─────────────────────────────────────────────────────────────────────
+     NATIVE <DIALOG> TOP-LAYER LIFECYCLE & FALLBACKS
+     ───────────────────────────────────────────────────────────────────── */
+
+  canTransitionDisplay() {
+    if (this.supportsDisplayTransition !== undefined) return this.supportsDisplayTransition;
+    if (!window.CSS?.supports?.('transition-behavior', 'allow-discrete') || !document.body) {
+      return false;
+    }
+    const probe = document.createElement('div');
+    probe.style.cssText = 'transition: display 1s allow-discrete !important; display: block;';
+    document.body.appendChild(probe);
+    getComputedStyle(probe).display;
+    probe.style.display = 'none';
+    this.supportsDisplayTransition = getComputedStyle(probe).display === 'block';
+    probe.remove();
+    return this.supportsDisplayTransition;
+  }
+
+  supportsTopLayerExit() {
+    return window.CSS?.supports?.('overlay', 'auto') && this.canTransitionDisplay();
+  }
+
+  async closeTopLayer(dialog) {
+    if (!dialog || !dialog.open) return;
+    if (!this.supportsTopLayerExit()) {
+      dialog.setAttribute('data-closing', '');
+      const animations = dialog.getAnimations({ subtree: true });
+      if (animations.length > 0) {
+        await Promise.race([
+          Promise.allSettled(animations.map(a => a.finished)),
+          new Promise(r => setTimeout(r, 400))
+        ]);
+      }
+      if (!dialog.hasAttribute('data-closing')) return;
+      dialog.removeAttribute('data-closing');
+    }
+    dialog.close();
+  }
+
+  setupTopLayerDialogs() {
+    const dialogs = document.querySelectorAll('dialog[closedby="any"]');
+    const supportsClosedBy = 'closedBy' in HTMLDialogElement.prototype;
+
+    dialogs.forEach(dialog => {
+      dialog.addEventListener('cancel', (e) => {
+        e.preventDefault();
+        this.closeTopLayer(dialog);
+      });
+
+      if (!supportsClosedBy) {
+        let pressedOutside = false;
+        const outside = (e) => {
+          const panel = dialog.querySelector('.modal-content, .gallery-content');
+          if (!panel) return false;
+          const r = panel.getBoundingClientRect();
+          return e.clientX < r.left || e.clientX > r.right || e.clientY < r.top || e.clientY > r.bottom;
+        };
+        dialog.addEventListener('pointerdown', (e) => { pressedOutside = outside(e); });
+        dialog.addEventListener('pointerup', (e) => {
+          if (pressedOutside && outside(e)) this.closeTopLayer(dialog);
+        });
+      }
+    });
+  }
+
+  /* ─────────────────────────────────────────────────────────────────────
      MODAL
      ───────────────────────────────────────────────────────────────────── */
 
   setupModal() {
     if (!this.modal) return;
 
-    document.querySelectorAll('.modal-trigger').forEach(btn => {
-      btn.addEventListener('click', (e) => {
-        e.preventDefault();
-        const imageSrc = btn.dataset.modal;
-        this.openModal(imageSrc);
-      });
+    document.addEventListener('click', (e) => {
+      const btn = e.target.closest('.modal-trigger');
+      if (!btn) return;
+      e.preventDefault();
+      const imageSrc = btn.dataset.modal;
+      const fallbackSrc = btn.dataset.modalFallback || '';
+      const title = btn.dataset.modalTitle || 'Документ';
+      this.openModal(imageSrc, title, fallbackSrc);
     });
 
     if (this.modalClose) {
       this.modalClose.addEventListener('click', () => this.closeModal());
     }
-
-    if (this.modalOverlay) {
-      this.modalOverlay.addEventListener('click', () => this.closeModal());
-    }
   }
 
-  openModal(imageSrc) {
-    if (!this.modal || !this.modalImage) return;
+  openModal(imageSrc, title = 'Документ', fallbackSrc = '') {
+    if (!this.modal || !this.modalImage || !imageSrc) return;
+    this.modalImage.onerror = () => {
+      if (fallbackSrc && this.modalImage.getAttribute('src') !== fallbackSrc) {
+        this.modalImage.onerror = null;
+        this.modalImage.src = fallbackSrc;
+      }
+    };
     this.modalImage.src = imageSrc;
-    this.modal.classList.add('active');
-    this.modal.setAttribute('aria-hidden', 'false');
-    document.body.style.overflow = 'hidden';
+    if (this.modalTitle) this.modalTitle.textContent = title;
+    this.modal.removeAttribute('data-closing');
+    if (!this.modal.open) this.modal.showModal();
   }
 
   closeModal() {
     if (!this.modal) return;
-    this.modal.classList.remove('active');
-    this.modal.setAttribute('aria-hidden', 'true');
-    document.body.style.overflow = '';
+    this.closeTopLayer(this.modal);
   }
 
   /* ─────────────────────────────────────────────────────────────────────
@@ -1089,8 +1228,27 @@ class Portfolio {
     const statusEl = document.getElementById('form-status');
     if (!form || !statusEl) return;
 
+    const fields = form.querySelectorAll('input, textarea');
+    fields.forEach(field => {
+      field.addEventListener('invalid', () => {
+        field.setAttribute('aria-invalid', 'true');
+      });
+      field.addEventListener('input', () => {
+        if (field.validity.valid) {
+          field.removeAttribute('aria-invalid');
+        }
+      });
+    });
+
     form.addEventListener('submit', async (e) => {
       e.preventDefault();
+
+      if (!form.checkValidity()) {
+        const firstInvalid = form.querySelector(':invalid');
+        if (firstInvalid) firstInvalid.focus();
+        form.reportValidity();
+        return;
+      }
 
       const formData = new FormData(form);
       const submitBtn = form.querySelector('button[type="submit"]');
@@ -1114,12 +1272,12 @@ class Portfolio {
           statusEl.classList.add('success');
           form.reset();
         } else {
-          statusEl.textContent = '✗ Ошибка при отправке. Пожалуйста, попробуйте позже или напишите в Telegram.';
+          statusEl.textContent = '✗ Ошибка при отправке. Пожалуйста, попробуйте позже или напишите в Telegram @aimovl.';
           statusEl.classList.remove('success');
           statusEl.classList.add('error');
         }
       } catch (_) {
-        statusEl.textContent = '✗ Ошибка подключения. Пожалуйста, напишите в Telegram.';
+        statusEl.textContent = '✗ Ошибка подключения. Пожалуйста, напишите в Telegram @aimovl.';
         statusEl.classList.remove('success');
         statusEl.classList.add('error');
       } finally {
@@ -1149,7 +1307,7 @@ class Portfolio {
   }
 
   /* ─────────────────────────────────────────────────────────────────────
-     GALLERY MODALS
+     GALLERY MODALS (Lazy Load + Touch Swipe + Dynamic Captions)
      ───────────────────────────────────────────────────────────────────── */
 
   setupGalleries() {
@@ -1168,32 +1326,54 @@ class Portfolio {
       });
     });
 
-    document.querySelectorAll('.gallery-overlay').forEach(overlay => {
-      overlay.addEventListener('click', () => {
-        const modal = overlay.closest('.gallery-modal');
-        if (modal) this.closeGalleryModal(modal);
-      });
-    });
-
     document.querySelectorAll('.gallery-next').forEach(btn => {
       btn.addEventListener('click', (e) => {
         e.preventDefault();
-        this.stepGalleryImage(btn, 1);
+        this.stepGalleryImage(btn.closest('.gallery-modal'), 1);
       });
     });
 
     document.querySelectorAll('.gallery-prev').forEach(btn => {
       btn.addEventListener('click', (e) => {
         e.preventDefault();
-        this.stepGalleryImage(btn, -1);
+        this.stepGalleryImage(btn.closest('.gallery-modal'), -1);
       });
+    });
+
+    // Touch / Pointer Swipe inside Gallery Viewer
+    document.querySelectorAll('.gallery-viewer').forEach(viewer => {
+      let startX = 0;
+      let startY = 0;
+      viewer.addEventListener('pointerdown', (e) => {
+        startX = e.clientX;
+        startY = e.clientY;
+      }, { passive: true });
+      viewer.addEventListener('pointerup', (e) => {
+        const dx = e.clientX - startX;
+        const dy = e.clientY - startY;
+        if (Math.abs(dx) > 40 && Math.abs(dx) > Math.abs(dy)) {
+          this.stepGalleryImage(viewer.closest('.gallery-modal'), dx < 0 ? 1 : -1);
+        }
+      }, { passive: true });
     });
   }
 
+  hydrateGallerySlide(img) {
+    if (img && img.dataset.src && !img.getAttribute('src')) {
+      img.setAttribute('src', img.dataset.src);
+    }
+  }
+
+  updateGalleryCaption(gallery, index) {
+    const captionEl = gallery.querySelector('.gallery-caption');
+    const images = gallery.querySelectorAll('.gallery-slider img');
+    if (captionEl && images[index]) {
+      captionEl.textContent = images[index].getAttribute('alt') || '';
+    }
+  }
+
   closeGalleryModal(modal) {
-    modal.classList.remove('active');
-    modal.setAttribute('aria-hidden', 'true');
-    document.body.style.overflow = '';
+    this.closeTopLayer(modal);
   }
 
   openGallery(galleryId) {
@@ -1201,28 +1381,29 @@ class Portfolio {
     if (!gallery) return;
 
     const slider = gallery.querySelector('.gallery-slider');
+    const images = slider ? slider.querySelectorAll('img') : [];
+
     if (slider) {
       slider.style.transform = 'translateX(0)';
     }
 
-    const currentEl = gallery.querySelector('.current');
-    if (currentEl) {
-      currentEl.textContent = '1';
+    if (images.length) {
+      this.hydrateGallerySlide(images[0]);
+      if (images[1]) this.hydrateGallerySlide(images[1]);
     }
+
+    const currentEl = gallery.querySelector('.current');
+    if (currentEl) currentEl.textContent = '1';
 
     const totalEl = gallery.querySelector('.total');
-    if (totalEl && slider) {
-      const images = slider.querySelectorAll('img');
-      totalEl.textContent = images.length;
-    }
+    if (totalEl) totalEl.textContent = images.length;
 
-    gallery.classList.add('active');
-    gallery.setAttribute('aria-hidden', 'false');
-    document.body.style.overflow = 'hidden';
+    this.updateGalleryCaption(gallery, 0);
+    gallery.removeAttribute('data-closing');
+    if (!gallery.open) gallery.showModal();
   }
 
-  stepGalleryImage(btn, direction) {
-    const modal = btn.closest('.gallery-modal');
+  stepGalleryImage(modal, direction) {
     if (!modal) return;
 
     const slider = modal.querySelector('.gallery-slider');
@@ -1237,14 +1418,19 @@ class Portfolio {
     if (next > images.length) next = 1;
     if (next < 1) next = images.length;
 
+    this.hydrateGallerySlide(images[next - 1]);
+    const nextPreload = next % images.length;
+    this.hydrateGallerySlide(images[nextPreload]);
+
     const offset = (next - 1) * 100;
-    slider.style.transition = 'transform 0.4s cubic-bezier(0.16, 0.84, 0.44, 1)';
+    slider.style.transition = 'transform 0.36s cubic-bezier(0.16, 0.84, 0.44, 1)';
     slider.style.transform = `translateX(-${offset}%)`;
     currentEl.textContent = next;
+    this.updateGalleryCaption(modal, next - 1);
   }
 
   /* ─────────────────────────────────────────────────────────────────────
-     CENTRALIZED KEYBOARD DISPATCHER (Replaces 5 separate listeners)
+     CENTRALIZED KEYBOARD DISPATCHER
      ───────────────────────────────────────────────────────────────────── */
 
   setupKeyboardDispatcher() {
@@ -1260,17 +1446,6 @@ class Portfolio {
       }
 
       if (e.key === 'Escape') {
-        if (this.modal && this.modal.classList.contains('active')) {
-          this.closeModal();
-          return;
-        }
-
-        const activeGalleries = document.querySelectorAll('.gallery-modal.active');
-        if (activeGalleries.length) {
-          activeGalleries.forEach(m => this.closeGalleryModal(m));
-          return;
-        }
-
         if (this.navMenu && this.navMenu.getAttribute('aria-expanded') === 'true') {
           this.closeMobileMenu();
           if (this.navToggle) this.navToggle.focus();
@@ -1278,14 +1453,12 @@ class Portfolio {
         return;
       }
 
-      const activeGallery = document.querySelector('.gallery-modal.active');
+      const activeGallery = document.querySelector('dialog.gallery-modal[open]');
       if (activeGallery) {
         if (e.key === 'ArrowRight') {
-          const nextBtn = activeGallery.querySelector('.gallery-next');
-          if (nextBtn) nextBtn.click();
+          this.stepGalleryImage(activeGallery, 1);
         } else if (e.key === 'ArrowLeft') {
-          const prevBtn = activeGallery.querySelector('.gallery-prev');
-          if (prevBtn) prevBtn.click();
+          this.stepGalleryImage(activeGallery, -1);
         }
       }
     });

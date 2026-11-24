@@ -162,13 +162,14 @@
     --transition-base: 0ms;
     --transition-slow: 0ms;
   }
-  
-  *,
-  *::before,
-  *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
+
+  .animate-fade-up,
+  .avail-dot,
+  .status-pulse-dot,
+  .marquee-content {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
   }
 }
 
