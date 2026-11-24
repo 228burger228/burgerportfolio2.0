@@ -1,46 +1,12 @@
-# Еремин Дмитрий (Дмитрий Бургер / Burger) — Product Designer & Design Engineer
+# Еремин Дмитрий (Дмитрий Бургер) — Product Designer & Design Engineer
 
-> Портфолио Дмитрия Еремина (Burger): высокопроизводительные веб-приложения, продуктовый UI/UX дизайн в Figma, Telegram-боты, 3D WebGL и допечатная подготовка с чистой архитектурой.
+> Портфолио Дмитрия Еремина: продуктовый UI/UX дизайн в Figma, разработка веб-сервисов и лендингов на React 19 / Vue 3 / Vanilla JS, 3D-портфолио на Three.js, Telegram-боты с ИИ и допечатная подготовка.
 
-## Профиль и специализация
-- **Имя и фамилия:** Дмитрий Еремин (Ерёмин Дмитрий, творческий псевдоним Burger / Бургер)
-- **Локация:** Москва, Россия / Remote
-- **Роли:** Product Designer, Frontend Architect, Design Engineer, Print & Prepress Specialist
-- **Основной сайт:** https://burger-portfolio.netlify.app/
-- **Зеркало (GitHub Pages):** https://228burger228.github.io/burgerportfolio2.0/
-- **Студийное партнерство (portfelDD):** https://228burger228.github.io/portfelDD/
-- **Telegram для связи:** https://t.me/aimovl (@aimovl)
+- **Имя:** Дмитрий Еремин (Ерёмин Дмитрий / Дмитрий Бургер)
+- **Локация:** Москва / Remote
+- **Главная:** https://burger-portfolio.netlify.app/
+- **Архив всех работ:** https://burger-portfolio.netlify.app/works.html
+- **Telegram:** https://t.me/aimovl (@aimovl)
 - **Студийный бот:** https://t.me/dmitryB_studio_bot
 - **GitHub:** https://github.com/228burger228
-
-## Ключевой технологический стек
-- **Frontend:** Vanilla JavaScript (ES6+), React 19, Vue 3, HTML5 Semantic, CSS3 Modern (Flexbox, Grid, Container Queries), Three.js, Canvas 2D.
-- **Design & UI/UX:** Figma (Auto Layout, Tokens, Component Libraries, CJM), Adobe Illustrator 2026, Photoshop.
-- **Инженерия и Производительность:** Core Web Vitals (95–100/100), Zero-Layout-Thrashing (rAF pipelines), Serverless Cloudflare Workers, Telegram WebApps / Mini Apps.
-- **Полиграфия и Препресс (МГКЭИТ):** Предпечатная подготовка (CMYK, треппинг, вылеты), широкоформатная и настенная УФ-печать, тиражная шелкография и кастомный мерч.
-
-## Избранные коммерческие и инженерные проекты
-1. **HgStroy (Хаус Гард):**
-   - *Сайт:* https://smr.hgstroy.ru/index.html
-   - *Суть:* Корпоративный B2B-портал строительной компании. Получено официальное благодарственное письмо руководства за качество и соблюдение сроков.
-2. **Алекспром (Frost):**
-   - *Сайт:* https://228burger228.github.io/Frost/docs/
-   - *Репозиторий:* https://github.com/228burger228/Frost
-   - *Суть:* B2B-каталог промышленного холодильного оборудования на React 19 с быстрым фильтром и конверсионной заявкой.
-3. **Да — Архитектура & Дом (cottedj):**
-   - *Сайт:* https://228burger228.github.io/cottedj/
-   - *Репозиторий:* https://github.com/228burger228/cottedj
-   - *Суть:* Премиальный промо-сайт загородной резиденции на React 19 + Tailwind CSS 4 с плавной анимацией и интерактивной галереей.
-4. **Warpath Wiki & Community:**
-   - *Сайт:* https://228burger228.github.io/WarpathYTwiki/index.html
-   - *Суть:* Игровой справочник на Vue 3 с мгновенным поиском по базе юнитов.
-5. **Game Portfolio 2.0 (Three.js):**
-   - *Сайт:* https://228burger228.github.io/Game-portfolio/
-   - *Суть:* Интерактивная 3D-сцена полёта вертолета с кастомными GLSL шейдерами воды и неба на чистом Three.js (60 FPS).
-6. **Dmitry OS AI Agent & JobHunter:**
-   - *Суть:* Серверлесс-архитектура на Cloudflare Workers + Gemini API с мгновенным временем отклика (< 50 мс) и 0 ₽ затрат на серверы.
-
-## Принципы сотрудничества для бизнеса
-- **Без 40 страниц ТЗ:** Брифование за 5 точных вопросов, самостоятельная проработка структуры и пути клиента.
-- **Фиксированная смета:** Окончательная стоимость и сроки спринтов закрепляются до старта работ.
-- **Свой чистый код:** Отказ от аренды конструкторов (Tilda, Webflow). Исходный код полностью принадлежит клиенту и загружается быстрее 0.8 секунд.
+- **Стек:** Figma, HTML5, CSS3, Vanilla JS, React 19, Vue 3, Three.js, Cloudflare Workers, Gemini API, Supabase, Prepress (Illustrator)
