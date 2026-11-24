@@ -6,7 +6,8 @@
   color-scheme: dark light;
 
   /* Typography */
-  --font-display: 'Unbounded', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-display: 'Unbounded', 'Manrope', sans-serif;
+  --font-heading: 'Manrope', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
 

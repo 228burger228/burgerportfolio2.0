@@ -20,7 +20,7 @@
   <link rel="icon" type="image/svg+xml" href="favicon.svg" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&family=Unbounded:wght@500;600;700;800&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&family=Manrope:wght@500;600;700;800&family=Unbounded:wght@500;600;700;800&display=swap" rel="stylesheet" />
 
   <script type="application/ld+json">
   {
@@ -182,40 +182,100 @@
           </search>
         </div>
 
-        <div class="cases-list" id="cases-list">
+        <!-- BENTO SHOWCASE (Flagship + Browser & iPhone Mockups) -->
+        <div class="bento-showcase" id="bento-showcase">
 
-          <!-- CASE:01 -->
-          <article class="case-row" data-cat="web ui">
-            <div class="case-num-col">
-              <span class="case-index">CASE:01</span>
-              <span class="case-year">2025</span>
-            </div>
-            <div class="case-info">
+          <!-- CASE:01 Flagship -->
+          <article class="bento-card bento-hero" data-cat="web ui">
+            <div class="bento-info">
               <div class="case-badges">
-                <span class="case-tag">B2B Portal</span>
-                <span class="case-tag">Figma System</span>
-                <span class="case-tag">Bootstrap 5</span>
+                <span class="case-tag">Флагман · 2025</span>
+                <span class="case-tag">B2B Портал</span>
+                <span class="case-tag">Figma</span>
               </div>
-              <h3 class="case-title">HgStroy — Корпоративный B2B-портал</h3>
-              <p class="case-summary">Проектирование и верстка корпоративного сайта строительной компании с адаптивными формами заявок.</p>
-              <p class="case-result">Итог: загрузка &lt; 1с, рост мобильных обращений и официальная благодарность гендиректора.</p>
-              <span class="case-meta-line">Роль: Lead Frontend &amp; Designer</span>
+              <h3 class="bento-title">HgStroy — Корпоративный B2B-портал</h3>
+              <p class="case-summary">Полная переработка сайта строительной компании: дизайн-система, формы расчёта сметы и быстрая мобильная версия.</p>
+              <p class="case-result">Итог: быстрая загрузка, рост мобильных заявок и благодарственное письмо гендиректора.</p>
+              <div class="device-toggle" data-target="bento-flagship-frame" role="group" aria-label="Режим превью HgStroy">
+                <button type="button" class="device-toggle-btn" data-device="desktop" aria-pressed="true">Desktop</button>
+                <button type="button" class="device-toggle-btn" data-device="mobile" aria-pressed="false">Mobile</button>
+              </div>
               <div class="case-links">
                 <a href="https://smr.hgstroy.ru/index.html" target="_blank" rel="noopener noreferrer" class="case-link">Открыть сайт ↗</a>
                 <button type="button" class="case-link" data-preview="assets/img/hgstroyblag.webp" data-preview-fallback="assets/img/hgstroyblag.png" data-preview-title="Благодарственное письмо — ООО «Хаус Гард»">Письмо гендиректора</button>
               </div>
             </div>
-            <div class="case-media">
-              <button type="button" class="case-media-btn" data-preview="assets/img/hgstroy.webp" data-preview-title="HgStroy — Корпоративный портал" aria-label="Увеличить скриншот HgStroy">
-                <img src="assets/img/hgstroy.webp" width="1400" height="725" alt="HgStroy — корпоративный сайт" loading="lazy" decoding="async" />
+            <div class="browser-stage">
+              <div class="browser-frame" id="bento-flagship-frame">
+                <div class="browser-bar">
+                  <span class="browser-dot"></span><span class="browser-dot"></span><span class="browser-dot"></span>
+                  <span class="browser-url">smr.hgstroy.ru</span>
+                </div>
+                <button type="button" class="browser-frame-btn" data-preview="assets/img/hgstroy.webp" data-preview-title="HgStroy — Корпоративный портал" aria-label="Увеличить скриншот HgStroy">
+                  <img src="assets/img/hgstroy.webp" width="1400" height="725" alt="HgStroy — корпоративный сайт" loading="lazy" decoding="async" />
+                </button>
+              </div>
+            </div>
+          </article>
+
+          <!-- CASE:02 Cottages (Browser Frame) -->
+          <article class="bento-card bento-wide" data-cat="web ui">
+            <div class="bento-info">
+              <div class="case-badges">
+                <span class="case-tag">React 19</span>
+                <span class="case-tag">Figma</span>
+                <span class="case-tag">Архитектура</span>
+              </div>
+              <h3 class="bento-title">Да — Загородные коттеджи под ключ</h3>
+              <p class="case-summary">Перенос дизайн-системы строительства каменных резиденций из Figma в код с поэтапной дорожной картой 01–04 и живыми формами.</p>
+              <div class="case-links">
+                <a href="https://228burger228.github.io/cottedj/" target="_blank" rel="noopener noreferrer" class="case-link">Открыть сайт ↗</a>
+                <a href="https://github.com/228burger228/cottedj" target="_blank" rel="noopener noreferrer" class="case-link">GitHub ↗</a>
+              </div>
+            </div>
+            <div class="browser-frame">
+              <div class="browser-bar">
+                <span class="browser-dot"></span><span class="browser-dot"></span><span class="browser-dot"></span>
+                <span class="browser-url">228burger228.github.io/cottedj</span>
+              </div>
+              <button type="button" class="browser-frame-btn" data-preview="assets/img/cottedj.webp" data-preview-title="Да — Архитектура &amp; Дом" aria-label="Увеличить скриншот Да — Архитектура и Дом">
+                <img src="assets/img/cottedj.webp" width="1024" height="655" alt="Да — Архитектура и Дом" loading="lazy" decoding="async" />
               </button>
             </div>
           </article>
 
-          <!-- CASE:02 -->
+          <!-- CASE:03 Ainala (True iPhone Mockup without cropping) -->
+          <article class="bento-card bento-phone" data-cat="web">
+            <div class="bento-info">
+              <div class="case-badges">
+                <span class="case-tag">MedTech</span>
+                <span class="case-tag">React 18</span>
+                <span class="case-tag">PDF-отчёт</span>
+              </div>
+              <h3 class="bento-title">Ainala — ЛФК-трекер</h3>
+              <p class="case-summary">Веб-сервис безопасного восстановления: шаги упражнений, дневник боли и выгрузка отчёта врачу с телефона.</p>
+              <div class="case-links">
+                <a href="https://ainala.net/docs/index.html" target="_blank" rel="noopener noreferrer" class="case-link">Открыть сайт ↗</a>
+                <a href="https://ainala.net" target="_blank" rel="noopener noreferrer" class="case-link">ainala.net ↗</a>
+              </div>
+            </div>
+            <div class="phone-stage">
+              <button type="button" class="iphone-frame" data-preview="assets/img/ainala.webp" data-preview-title="Ainala — Платформа восстановления" aria-label="Увеличить экран Ainala">
+                <img src="assets/img/ainala.webp" width="439" height="875" alt="Ainala Rehab в смартфоне" loading="lazy" decoding="async" />
+              </button>
+            </div>
+          </article>
+
+        </div>
+
+        <span class="cases-sub-label" id="cases-sub-label">Другие избранные направления</span>
+
+        <div class="cases-list" id="cases-list">
+
+          <!-- CASE:04 -->
           <article class="case-row" data-cat="web ui">
             <div class="case-num-col">
-              <span class="case-index">CASE:02</span>
+              <span class="case-index">CASE:04</span>
               <span class="case-year">2026</span>
             </div>
             <div class="case-info">
@@ -240,38 +300,10 @@
             </div>
           </article>
 
-          <!-- CASE:03 -->
+          <!-- CASE:05 -->
           <article class="case-row" data-cat="web ui">
             <div class="case-num-col">
-              <span class="case-index">CASE:03</span>
-              <span class="case-year">2026</span>
-            </div>
-            <div class="case-info">
-              <div class="case-badges">
-                <span class="case-tag">React 19</span>
-                <span class="case-tag">Figma</span>
-                <span class="case-tag">Архитектура</span>
-              </div>
-              <h3 class="case-title">Да — Архитектура &amp; Дом</h3>
-              <p class="case-summary">Сайт строительства каменных коттеджей и загородных резиденций: точный перенос дизайн-системы из Figma в живой код.</p>
-              <p class="case-result">Итог: быстрый отклик на телефонах и выразительная архитектурная подача.</p>
-              <span class="case-meta-line">Роль: Design Engineer &amp; Frontend</span>
-              <div class="case-links">
-                <a href="https://228burger228.github.io/cottedj/" target="_blank" rel="noopener noreferrer" class="case-link">Открыть сайт ↗</a>
-                <a href="https://github.com/228burger228/cottedj" target="_blank" rel="noopener noreferrer" class="case-link">GitHub ↗</a>
-              </div>
-            </div>
-            <div class="case-media">
-              <button type="button" class="case-media-btn" data-preview="assets/img/cottedj.webp" data-preview-title="Да — Архитектура &amp; Дом" aria-label="Увеличить скриншот Да — Архитектура и Дом">
-                <img src="assets/img/cottedj.webp" width="1024" height="655" alt="Да — Архитектура и Дом" loading="lazy" decoding="async" />
-              </button>
-            </div>
-          </article>
-
-          <!-- CASE:04 -->
-          <article class="case-row" data-cat="web ui">
-            <div class="case-num-col">
-              <span class="case-index">CASE:04</span>
+              <span class="case-index">CASE:05</span>
               <span class="case-year">2026</span>
             </div>
             <div class="case-info">
@@ -292,34 +324,6 @@
             <div class="case-media">
               <button type="button" class="case-media-btn" data-preview="assets/img/europath.webp" data-preview-title="Maybe abroad? / EuroPath — Вузы Европы" aria-label="Увеличить скриншот EuroPath">
                 <img src="assets/img/europath.webp" width="1024" height="520" alt="EuroPath — навигатор высшего образования" loading="lazy" decoding="async" />
-              </button>
-            </div>
-          </article>
-
-          <!-- CASE:05 -->
-          <article class="case-row" data-cat="web">
-            <div class="case-num-col">
-              <span class="case-index">CASE:05</span>
-              <span class="case-year">2026</span>
-            </div>
-            <div class="case-info">
-              <div class="case-badges">
-                <span class="case-tag">React 18</span>
-                <span class="case-tag">MedTech</span>
-                <span class="case-tag">PDF-отчёт</span>
-              </div>
-              <h3 class="case-title">Ainala — Платформа восстановления</h3>
-              <p class="case-summary">Веб-сервис ЛФК после травм: план упражнений по этапам, дневник боли, хранение данных в браузере и отчёт для врача.</p>
-              <p class="case-result">Итог: пошаговое безопасное восстановление прямо с телефона без регистрации.</p>
-              <span class="case-meta-line">Роль: Product Lead &amp; Frontend</span>
-              <div class="case-links">
-                <a href="https://ainala.net/docs/index.html" target="_blank" rel="noopener noreferrer" class="case-link">Открыть сайт ↗</a>
-                <a href="https://ainala.net" target="_blank" rel="noopener noreferrer" class="case-link">ainala.net ↗</a>
-              </div>
-            </div>
-            <div class="case-media">
-              <button type="button" class="case-media-btn" data-preview="assets/img/ainala.webp" data-preview-title="Ainala — Платформа восстановления" aria-label="Увеличить скриншот Ainala">
-                <img src="assets/img/ainala.webp" width="439" height="875" alt="Ainala Rehab" loading="lazy" decoding="async" />
               </button>
             </div>
           </article>
